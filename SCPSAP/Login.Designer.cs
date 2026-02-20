@@ -30,6 +30,8 @@
         {
             lblUsuario = new Label();
             txbUsuario = new TextBox();
+            lblContraseña = new Label();
+            txbContraseña = new TextBox();
             SuspendLayout();
             // 
             // lblUsuario
@@ -48,15 +50,35 @@
             txbUsuario.Size = new Size(150, 31);
             txbUsuario.TabIndex = 1;
             // 
+            // lblContraseña
+            // 
+            lblContraseña.AutoSize = true;
+            lblContraseña.Location = new Point(77, 170);
+            lblContraseña.Name = "lblContraseña";
+            lblContraseña.Size = new Size(101, 25);
+            lblContraseña.TabIndex = 2;
+            lblContraseña.Text = "Contraseña";
+            lblContraseña.Click += label1_Click;
+            // 
+            // txbContraseña
+            // 
+            txbContraseña.Location = new Point(184, 171);
+            txbContraseña.Name = "txbContraseña";
+            txbContraseña.Size = new Size(150, 31);
+            txbContraseña.TabIndex = 3;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(txbContraseña);
+            Controls.Add(lblContraseña);
             Controls.Add(txbUsuario);
             Controls.Add(lblUsuario);
             Name = "Login";
-            Text = "Form1";
+            Text = "Contraseña";
+            Load += Login_Load;
             ResumeLayout(false);
             PerformLayout();
         }
@@ -65,5 +87,7 @@
 
         private Label lblUsuario;
         private TextBox txbUsuario;
+        private Label lblContraseña;
+        private TextBox txbContraseña;
     }
 }
