@@ -8,23 +8,23 @@
     "net10.0-windows7.0": []
   },
   "packageFolders": {
-    "C:\\Users\\Dell E5450\\.nuget\\packages\\": {},
+    "C:\\Users\\milto\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dell E5450\\source\\repos\\SCPSAP-2\\SCPSAP\\SCPSAP.csproj",
+      "projectUniqueName": "C:\\Users\\milto\\source\\repos\\SCPSAP-1\\SCPSAP\\SCPSAP.csproj",
       "projectName": "SCPSAP",
-      "projectPath": "C:\\Users\\Dell E5450\\source\\repos\\SCPSAP-2\\SCPSAP\\SCPSAP.csproj",
-      "packagesPath": "C:\\Users\\Dell E5450\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dell E5450\\source\\repos\\SCPSAP-2\\SCPSAP\\obj\\",
+      "projectPath": "C:\\Users\\milto\\source\\repos\\SCPSAP-1\\SCPSAP\\SCPSAP.csproj",
+      "packagesPath": "C:\\Users\\milto\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\milto\\source\\repos\\SCPSAP-1\\SCPSAP\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Dell E5450\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\milto\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
