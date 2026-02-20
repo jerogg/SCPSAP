@@ -28,12 +28,42 @@
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            lblUsuario = new Label();
+            txbUsuario = new TextBox();
+            SuspendLayout();
+            // 
+            // lblUsuario
+            // 
+            lblUsuario.AutoSize = true;
+            lblUsuario.Location = new Point(77, 85);
+            lblUsuario.Name = "lblUsuario";
+            lblUsuario.Size = new Size(72, 25);
+            lblUsuario.TabIndex = 0;
+            lblUsuario.Text = "Usuario";
+            // 
+            // txbUsuario
+            // 
+            txbUsuario.Location = new Point(172, 85);
+            txbUsuario.Name = "txbUsuario";
+            txbUsuario.Size = new Size(150, 31);
+            txbUsuario.TabIndex = 1;
+            // 
+            // Login
+            // 
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(txbUsuario);
+            Controls.Add(lblUsuario);
+            Name = "Login";
             Text = "Form1";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label lblUsuario;
+        private TextBox txbUsuario;
     }
 }
