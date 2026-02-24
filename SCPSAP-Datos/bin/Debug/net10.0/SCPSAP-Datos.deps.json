@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v10.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v10.0": {
+      "SCPSAP-Datos/1.0.0": {
+        "runtime": {
+          "SCPSAP-Datos.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "SCPSAP-Datos/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}

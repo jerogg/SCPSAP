@@ -1,3 +1,5 @@
 <Solution>
-  <Project Path="SCPSAP/SCPSAP.csproj" />
+  <Project Path="SCPSAP-Datos/SCPSAP-Datos.csproj" Id="9c4ee70b-17af-4509-a730-d0e0c95f29d5" />
+  <Project Path="SCPSAP-Negocio/SCPSAP-Negocio.csproj" Id="616e1a5c-0593-41ae-af8c-fbe03114601c" />
+  <Project Path="SCPSAP/SCPSAP-Presentacion.csproj" />
 </Solution>
