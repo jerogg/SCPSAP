@@ -11,4 +11,8 @@
     <ProjectReference Include="..\SCPSAP-Datos\SCPSAP-Datos.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Login\" />
+  </ItemGroup>
+
 </Project>
