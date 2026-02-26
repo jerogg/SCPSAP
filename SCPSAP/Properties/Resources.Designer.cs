@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SCPSAP-Presentacion.Properties {
+namespace SCPSAP.Properties {
     using System;
     
     
