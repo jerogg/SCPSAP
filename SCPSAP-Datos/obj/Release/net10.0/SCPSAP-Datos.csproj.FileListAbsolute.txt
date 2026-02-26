@@ -1,0 +1,12 @@
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Datos\bin\Release\net10.0\SCPSAP-Datos.deps.json
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Datos\bin\Release\net10.0\SCPSAP-Datos.dll
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Datos\bin\Release\net10.0\SCPSAP-Datos.pdb
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Datos\obj\Release\net10.0\SCPSAP-Datos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Datos\obj\Release\net10.0\SCPSAP-Datos.AssemblyInfoInputs.cache
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Datos\obj\Release\net10.0\SCPSAP-Datos.AssemblyInfo.cs
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Datos\obj\Release\net10.0\SCPSAP-Datos.csproj.CoreCompileInputs.cache
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Datos\obj\Release\net10.0\SCPSAP-Datos.sourcelink.json
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Datos\obj\Release\net10.0\SCPSAP-Datos.dll
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Datos\obj\Release\net10.0\refint\SCPSAP-Datos.dll
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Datos\obj\Release\net10.0\SCPSAP-Datos.pdb
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Datos\obj\Release\net10.0\ref\SCPSAP-Datos.dll

@@ -21,3 +21,27 @@ C:\Users\jerog\source\repos\SCPSAP\SCPSAP\obj\Debug\net10.0-windows\refint\SCPSA
 C:\Users\jerog\source\repos\SCPSAP\SCPSAP\obj\Debug\net10.0-windows\SCPSAP-Presentacion.pdb
 C:\Users\jerog\source\repos\SCPSAP\SCPSAP\obj\Debug\net10.0-windows\SCPSAP-Presentacion.genruntimeconfig.cache
 C:\Users\jerog\source\repos\SCPSAP\SCPSAP\obj\Debug\net10.0-windows\ref\SCPSAP-Presentacion.dll
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\obj\Debug\net10.0-windows\SCPSAP-Presentacion.csproj.AssemblyReference.cache
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\obj\Debug\net10.0-windows\SCPSAP.Login.resources
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\obj\Debug\net10.0-windows\SCPSAP-Presentacion.Properties.Resources.resources
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\obj\Debug\net10.0-windows\SCPSAP-Presentacion.csproj.GenerateResource.cache
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\obj\Debug\net10.0-windows\SCPSAP-Presentacion.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\obj\Debug\net10.0-windows\SCPSAP-Presentacion.AssemblyInfoInputs.cache
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\obj\Debug\net10.0-windows\SCPSAP-Presentacion.AssemblyInfo.cs
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\obj\Debug\net10.0-windows\SCPSAP-Presentacion.csproj.CoreCompileInputs.cache
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\obj\Debug\net10.0-windows\SCPSAP-Presentacion.sourcelink.json
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\obj\Debug\net10.0-windows\SCPSAP-Presentacion.dll
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\obj\Debug\net10.0-windows\refint\SCPSAP-Presentacion.dll
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\obj\Debug\net10.0-windows\SCPSAP-Presentacion.pdb
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\bin\Debug\net10.0-windows\SCPSAP-Presentacion.exe
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\bin\Debug\net10.0-windows\SCPSAP-Presentacion.deps.json
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\bin\Debug\net10.0-windows\SCPSAP-Presentacion.runtimeconfig.json
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\bin\Debug\net10.0-windows\SCPSAP-Presentacion.dll
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\bin\Debug\net10.0-windows\SCPSAP-Presentacion.pdb
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\bin\Debug\net10.0-windows\SCPSAP-Datos.dll
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\bin\Debug\net10.0-windows\SCPSAP-Negocio.dll
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\bin\Debug\net10.0-windows\SCPSAP-Negocio.pdb
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\bin\Debug\net10.0-windows\SCPSAP-Datos.pdb
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\obj\Debug\net10.0-windows\SCPSAP-P.72A5EAE8.Up2Date
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\obj\Debug\net10.0-windows\SCPSAP-Presentacion.genruntimeconfig.cache
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\obj\Debug\net10.0-windows\ref\SCPSAP-Presentacion.dll

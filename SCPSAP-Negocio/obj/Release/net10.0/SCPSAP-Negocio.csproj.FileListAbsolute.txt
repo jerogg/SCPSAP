@@ -1,0 +1,16 @@
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Negocio\bin\Release\net10.0\SCPSAP-Negocio.deps.json
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Negocio\bin\Release\net10.0\SCPSAP-Negocio.dll
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Negocio\bin\Release\net10.0\SCPSAP-Negocio.pdb
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Negocio\bin\Release\net10.0\SCPSAP-Datos.dll
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Negocio\bin\Release\net10.0\SCPSAP-Datos.pdb
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Negocio\obj\Release\net10.0\SCPSAP-Negocio.csproj.AssemblyReference.cache
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Negocio\obj\Release\net10.0\SCPSAP-Negocio.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Negocio\obj\Release\net10.0\SCPSAP-Negocio.AssemblyInfoInputs.cache
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Negocio\obj\Release\net10.0\SCPSAP-Negocio.AssemblyInfo.cs
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Negocio\obj\Release\net10.0\SCPSAP-Negocio.csproj.CoreCompileInputs.cache
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Negocio\obj\Release\net10.0\SCPSAP-Negocio.sourcelink.json
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Negocio\obj\Release\net10.0\SCPSAP-N.E78934BC.Up2Date
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Negocio\obj\Release\net10.0\SCPSAP-Negocio.dll
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Negocio\obj\Release\net10.0\refint\SCPSAP-Negocio.dll
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Negocio\obj\Release\net10.0\SCPSAP-Negocio.pdb
+C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP-Negocio\obj\Release\net10.0\ref\SCPSAP-Negocio.dll
