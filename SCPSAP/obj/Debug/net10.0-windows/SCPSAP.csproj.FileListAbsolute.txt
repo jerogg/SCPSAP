@@ -1,0 +1,17 @@
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP\bin\Debug\net10.0-windows\SCPSAP.exe
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP\bin\Debug\net10.0-windows\SCPSAP.deps.json
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP\bin\Debug\net10.0-windows\SCPSAP.runtimeconfig.json
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP\bin\Debug\net10.0-windows\SCPSAP.dll
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP\bin\Debug\net10.0-windows\SCPSAP.pdb
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP\obj\Debug\net10.0-windows\SCPSAP.Login.resources
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP\obj\Debug\net10.0-windows\SCPSAP.csproj.GenerateResource.cache
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP\obj\Debug\net10.0-windows\SCPSAP.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP\obj\Debug\net10.0-windows\SCPSAP.AssemblyInfoInputs.cache
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP\obj\Debug\net10.0-windows\SCPSAP.AssemblyInfo.cs
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP\obj\Debug\net10.0-windows\SCPSAP.csproj.CoreCompileInputs.cache
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP\obj\Debug\net10.0-windows\SCPSAP.sourcelink.json
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP\obj\Debug\net10.0-windows\SCPSAP.dll
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP\obj\Debug\net10.0-windows\refint\SCPSAP.dll
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP\obj\Debug\net10.0-windows\SCPSAP.pdb
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP\obj\Debug\net10.0-windows\SCPSAP.genruntimeconfig.cache
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP\obj\Debug\net10.0-windows\ref\SCPSAP.dll

@@ -1,0 +1,12 @@
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP-Datos\bin\Debug\net10.0\SCPSAP-Datos.deps.json
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP-Datos\bin\Debug\net10.0\SCPSAP-Datos.dll
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP-Datos\bin\Debug\net10.0\SCPSAP-Datos.pdb
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP-Datos\obj\Debug\net10.0\SCPSAP-Datos.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP-Datos\obj\Debug\net10.0\SCPSAP-Datos.AssemblyInfoInputs.cache
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP-Datos\obj\Debug\net10.0\SCPSAP-Datos.AssemblyInfo.cs
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP-Datos\obj\Debug\net10.0\SCPSAP-Datos.csproj.CoreCompileInputs.cache
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP-Datos\obj\Debug\net10.0\SCPSAP-Datos.sourcelink.json
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP-Datos\obj\Debug\net10.0\SCPSAP-Datos.dll
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP-Datos\obj\Debug\net10.0\refint\SCPSAP-Datos.dll
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP-Datos\obj\Debug\net10.0\SCPSAP-Datos.pdb
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP-Datos\obj\Debug\net10.0\ref\SCPSAP-Datos.dll
