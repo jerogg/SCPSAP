@@ -4,7 +4,30 @@ using System.Text;
 
 namespace SCPSAP_Negocio.Login
 {
-    internal class ValidaUsuario
+    public class ValidaUsuario
     {
+        public bool ValidaUsuarios(string Nombre, string Contrasena)
+        {
+
+            try
+            {
+                if (Nombre == string.Empty && Contrasena == string.Empty)
+                {
+                    return false;
+                }
+                else
+                {
+                    //llamar metodo para validar el usuario en la capa de datos
+
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
     }
 }
