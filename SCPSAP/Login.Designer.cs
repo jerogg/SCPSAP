@@ -1,16 +1,16 @@
 ﻿namespace SCPSAP
 {
-    partial class Form1
+    partial class Login
     {
         /// <summary>
-        ///  Required designer variable.
+        /// Variable del diseñador necesaria.
         /// </summary>
         private System.ComponentModel.IContainer components = null;
 
         /// <summary>
-        ///  Clean up any resources being used.
+        /// Limpiar los recursos que se estén usando.
         /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        /// <param name="disposing">true si los recursos administrados se deben desechar; false en caso contrario.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,165 +20,99 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
+        #region Código generado por el Diseñador de Windows Forms
 
         /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
+        /// Método necesario para admitir el Diseñador. No se puede modificar
+        /// el contenido de este método con el editor de código.
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-            panel2 = new Panel();
-            lblContraseña = new Label();
-            txbContraseña = new TextBox();
-            imgContraseña = new PictureBox();
-            panel1 = new Panel();
-            lblUsuario = new Label();
-            imgUser = new PictureBox();
-            txbUsuario = new TextBox();
-            btnCancelar = new Button();
-            btnOk = new Button();
-            panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)imgContraseña).BeginInit();
-            panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)imgUser).BeginInit();
-            SuspendLayout();
-            // 
-            // panel2
-            // 
-            panel2.Controls.Add(lblContraseña);
-            panel2.Controls.Add(txbContraseña);
-            panel2.Controls.Add(imgContraseña);
-            panel2.Location = new Point(38, 80);
-            panel2.Margin = new Padding(2);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(244, 35);
-            panel2.TabIndex = 18;
-            // 
-            // lblContraseña
-            // 
-            lblContraseña.AutoSize = true;
-            lblContraseña.Location = new Point(45, 11);
-            lblContraseña.Margin = new Padding(1, 0, 1, 0);
-            lblContraseña.Name = "lblContraseña";
-            lblContraseña.Size = new Size(67, 15);
-            lblContraseña.TabIndex = 2;
-            lblContraseña.Text = "Contraseña";
-            // 
-            // txbContraseña
-            // 
-            txbContraseña.Location = new Point(115, 6);
-            txbContraseña.Margin = new Padding(1);
-            txbContraseña.Name = "txbContraseña";
-            txbContraseña.PasswordChar = '*';
-            txbContraseña.Size = new Size(106, 23);
-            txbContraseña.TabIndex = 3;
-            // 
-            // imgContraseña
-            // 
-            imgContraseña.Image = (Image)resources.GetObject("imgContraseña.Image");
-            imgContraseña.Location = new Point(20, 10);
-            imgContraseña.Margin = new Padding(2);
-            imgContraseña.Name = "imgContraseña";
-            imgContraseña.Size = new Size(18, 15);
-            imgContraseña.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgContraseña.TabIndex = 7;
-            imgContraseña.TabStop = false;
-            // 
-            // panel1
-            // 
-            panel1.Controls.Add(lblUsuario);
-            panel1.Controls.Add(imgUser);
-            panel1.Controls.Add(txbUsuario);
-            panel1.Location = new Point(38, 34);
-            panel1.Margin = new Padding(2);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(244, 35);
-            panel1.TabIndex = 17;
+            this.lblUsuario = new System.Windows.Forms.Label();
+            this.lblContraseña = new System.Windows.Forms.Label();
+            this.txbUsuario = new System.Windows.Forms.TextBox();
+            this.txbContraseña = new System.Windows.Forms.TextBox();
+            this.btnOk = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.SuspendLayout();
             // 
             // lblUsuario
             // 
-            lblUsuario.AutoSize = true;
-            lblUsuario.Location = new Point(66, 11);
-            lblUsuario.Margin = new Padding(1, 0, 1, 0);
-            lblUsuario.Name = "lblUsuario";
-            lblUsuario.Size = new Size(47, 15);
-            lblUsuario.TabIndex = 0;
-            lblUsuario.Text = "Usuario";
+            this.lblUsuario.AutoSize = true;
+            this.lblUsuario.Location = new System.Drawing.Point(89, 51);
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(64, 20);
+            this.lblUsuario.TabIndex = 0;
+            this.lblUsuario.Text = "Usuario";
             // 
-            // imgUser
+            // lblContraseña
             // 
-            imgUser.Image = (Image)resources.GetObject("imgUser.Image");
-            imgUser.Location = new Point(20, 10);
-            imgUser.Margin = new Padding(2);
-            imgUser.Name = "imgUser";
-            imgUser.Size = new Size(18, 15);
-            imgUser.SizeMode = PictureBoxSizeMode.StretchImage;
-            imgUser.TabIndex = 8;
-            imgUser.TabStop = false;
+            this.lblContraseña.AutoSize = true;
+            this.lblContraseña.Location = new System.Drawing.Point(62, 93);
+            this.lblContraseña.Name = "lblContraseña";
+            this.lblContraseña.Size = new System.Drawing.Size(92, 20);
+            this.lblContraseña.TabIndex = 1;
+            this.lblContraseña.Text = "Contraseña";
             // 
             // txbUsuario
             // 
-            txbUsuario.Location = new Point(116, 6);
-            txbUsuario.Margin = new Padding(1);
-            txbUsuario.Name = "txbUsuario";
-            txbUsuario.Size = new Size(106, 23);
-            txbUsuario.TabIndex = 1;
+            this.txbUsuario.Location = new System.Drawing.Point(157, 47);
+            this.txbUsuario.Name = "txbUsuario";
+            this.txbUsuario.Size = new System.Drawing.Size(200, 26);
+            this.txbUsuario.TabIndex = 2;
             // 
-            // btnCancelar
+            // txbContraseña
             // 
-            btnCancelar.Location = new Point(250, 142);
-            btnCancelar.Margin = new Padding(3, 2, 3, 2);
-            btnCancelar.Name = "btnCancelar";
-            btnCancelar.Size = new Size(83, 22);
-            btnCancelar.TabIndex = 16;
-            btnCancelar.Text = "Cancelar";
-            btnCancelar.UseVisualStyleBackColor = true;
-            btnCancelar.Click += btnCancelar_Click;
+            this.txbContraseña.Location = new System.Drawing.Point(157, 89);
+            this.txbContraseña.Name = "txbContraseña";
+            this.txbContraseña.Size = new System.Drawing.Size(200, 26);
+            this.txbContraseña.TabIndex = 3;
             // 
             // btnOk
             // 
-            btnOk.Location = new Point(153, 142);
-            btnOk.Margin = new Padding(3, 2, 3, 2);
-            btnOk.Name = "btnOk";
-            btnOk.Size = new Size(83, 22);
-            btnOk.TabIndex = 15;
-            btnOk.Text = "Ok";
-            btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Location = new System.Drawing.Point(256, 150);
+            this.btnOk.Name = "btnOk";
+            this.btnOk.Size = new System.Drawing.Size(75, 30);
+            this.btnOk.TabIndex = 4;
+            this.btnOk.Text = "Ok";
+            this.btnOk.UseVisualStyleBackColor = true;
             // 
-            // Form1
+            // btnCancelar
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(340, 171);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
-            Controls.Add(btnCancelar);
-            Controls.Add(btnOk);
-            MaximizeBox = false;
-            Name = "Form1";
-            Text = "Form1";
-            panel2.ResumeLayout(false);
-            panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)imgContraseña).EndInit();
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)imgUser).EndInit();
-            ResumeLayout(false);
+            this.btnCancelar.Location = new System.Drawing.Point(338, 150);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(90, 30);
+            this.btnCancelar.TabIndex = 5;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // Login
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(433, 190);
+            this.Controls.Add(this.btnCancelar);
+            this.Controls.Add(this.btnOk);
+            this.Controls.Add(this.txbContraseña);
+            this.Controls.Add(this.txbUsuario);
+            this.Controls.Add(this.lblContraseña);
+            this.Controls.Add(this.lblUsuario);
+            this.Name = "Login";
+            this.Text = "Login";
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
         }
 
         #endregion
 
-        private Panel panel2;
-        private Label lblContraseña;
-        private TextBox txbContraseña;
-        private PictureBox imgContraseña;
-        private Panel panel1;
-        private Label lblUsuario;
-        private PictureBox imgUser;
-        private TextBox txbUsuario;
-        private Button btnCancelar;
-        private Button btnOk;
+        private System.Windows.Forms.Label lblUsuario;
+        private System.Windows.Forms.Label lblContraseña;
+        private System.Windows.Forms.TextBox txbUsuario;
+        private System.Windows.Forms.TextBox txbContraseña;
+        private System.Windows.Forms.Button btnOk;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }
+

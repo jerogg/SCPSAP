@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Negocio.Login
 {
-    public class Usuarios
+    public class ValidarUsuario
     {
         public bool ValidaUsuarios(string Nombre, string Contrasena)
         {
@@ -18,6 +20,8 @@ namespace Negocio.Login
                 else
                 {
                     //llamar metodo para validar el usuario en la capa de datos
+
+
                     return true;
                 }
             }
@@ -25,7 +29,7 @@ namespace Negocio.Login
             {
                 throw new Exception(ex.Message);
             }
-        }
 
+        }
     }
 }
