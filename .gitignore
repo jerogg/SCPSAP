@@ -6,3 +6,7 @@
 /.vs/SCPSAP.slnx/FileContentIndex/a939ff37-8b2e-4ab3-937c-6ad89c88f5c2.vsidx
 /.vs
 /.vs/SCPSAP.slnx/DesignTimeBuild/.dtbcache.v2
+/SCPSAP/obj/Debug/net10.0-windows/SCPSAP-Presentacion.AssemblyInfo.cs
+/SCPSAP/obj/Debug/net10.0-windows/SCPSAP-Presentacion.AssemblyInfoInputs.cache
+/SCPSAP-Negocio/obj/Debug/net10.0/SCPSAP-Negocio.AssemblyInfoInputs.cache
+/SCPSAP-Negocio/obj/Debug/net10.0/SCPSAP-Negocio.AssemblyInfo.cs
