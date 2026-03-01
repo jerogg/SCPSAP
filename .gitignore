@@ -416,3 +416,5 @@ FodyWeavers.xsd
 *.msix
 *.msm
 *.msp
+/SCPSAP/obj/Debug/net10.0-windows/SCPSAP.AssemblyInfo.cs
+/SCPSAP/obj/Debug/net10.0-windows/SCPSAP.AssemblyInfoInputs.cache
