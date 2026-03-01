@@ -1,6 +1,4 @@
-using SCPSAP_Presentacion.Login;
-
-namespace SCPSAP_Presentacion
+namespace SCPSAP
 {
     internal static class Program
     {
@@ -13,7 +11,7 @@ namespace SCPSAP_Presentacion
             // To customize application configuration such as set high DPI settings or default font,
             // see https://aka.ms/applicationconfiguration.
             ApplicationConfiguration.Initialize();
-            Application.Run(new LoginUsuarios());
+            Application.Run(new Form1());
         }
     }
 }
