@@ -1,4 +1,6 @@
-namespace SCPSAP
+using SCPSAP;
+
+namespace c
 {
     internal static class Program
     {

@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jerog\\source\\repos\\SCPSAP\\SCPSAP-Datos\\SCPSAP-Datos.csproj": {}
+    "C:\\Users\\Dell E5450\\source\\repos\\SCPSAP-2\\SCPSAP-Datos\\SCPSAP-Datos.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jerog\\source\\repos\\SCPSAP\\SCPSAP-Datos\\SCPSAP-Datos.csproj": {
+    "C:\\Users\\Dell E5450\\source\\repos\\SCPSAP-2\\SCPSAP-Datos\\SCPSAP-Datos.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jerog\\source\\repos\\SCPSAP\\SCPSAP-Datos\\SCPSAP-Datos.csproj",
+        "projectUniqueName": "C:\\Users\\Dell E5450\\source\\repos\\SCPSAP-2\\SCPSAP-Datos\\SCPSAP-Datos.csproj",
         "projectName": "SCPSAP-Datos",
-        "projectPath": "C:\\Users\\jerog\\source\\repos\\SCPSAP\\SCPSAP-Datos\\SCPSAP-Datos.csproj",
-        "packagesPath": "C:\\Users\\jerog\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jerog\\source\\repos\\SCPSAP\\SCPSAP-Datos\\obj\\",
+        "projectPath": "C:\\Users\\Dell E5450\\source\\repos\\SCPSAP-2\\SCPSAP-Datos\\SCPSAP-Datos.csproj",
+        "packagesPath": "C:\\Users\\Dell E5450\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Dell E5450\\source\\repos\\SCPSAP-2\\SCPSAP-Datos\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\jerog\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Dell E5450\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -65,7 +65,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.102/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.103/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.CSharp": "(,4.7.32767]",
             "Microsoft.VisualBasic": "(,10.4.32767]",
