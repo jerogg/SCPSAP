@@ -45,3 +45,4 @@ C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\bin\Debug\net10.0-windows\SCPSA
 C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\obj\Debug\net10.0-windows\SCPSAP-P.72A5EAE8.Up2Date
 C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\obj\Debug\net10.0-windows\SCPSAP-Presentacion.genruntimeconfig.cache
 C:\Users\Dell E5450\source\repos\SCPSAP-2\SCPSAP\obj\Debug\net10.0-windows\ref\SCPSAP-Presentacion.dll
+C:\Users\jerog\source\repos\SCPSAP\SCPSAP\obj\Debug\net10.0-windows\SCPSAP-Presentacion.Properties.Resources.resources

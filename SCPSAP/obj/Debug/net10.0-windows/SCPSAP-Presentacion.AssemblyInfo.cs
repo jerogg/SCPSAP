@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SCPSAP-Presentacion")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7e6742c59693c494b8498fa328e59de3d323aa6a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ae724cb65af8796f7faef5c1c5b3d449a9f450b2")]
 [assembly: System.Reflection.AssemblyProductAttribute("SCPSAP-Presentacion")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SCPSAP-Presentacion")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

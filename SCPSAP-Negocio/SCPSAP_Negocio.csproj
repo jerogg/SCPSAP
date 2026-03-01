@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SCPSAP-Datos\SCPSAP-Datos.csproj" />
+    <ProjectReference Include="..\SCPSAP-Datos\SCPSAP_Datos.csproj" />
   </ItemGroup>
 
 </Project>
