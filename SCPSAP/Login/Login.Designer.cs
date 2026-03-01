@@ -37,14 +37,18 @@
             btnCancelar = new Button();
             imgContraseña = new PictureBox();
             imgUser = new PictureBox();
+            panel1 = new Panel();
+            panel2 = new Panel();
             ((System.ComponentModel.ISupportInitialize)imgContraseña).BeginInit();
             ((System.ComponentModel.ISupportInitialize)imgUser).BeginInit();
+            panel1.SuspendLayout();
+            panel2.SuspendLayout();
             SuspendLayout();
             // 
             // lblUsuario
             // 
             lblUsuario.AutoSize = true;
-            lblUsuario.Location = new Point(158, 95);
+            lblUsuario.Location = new Point(86, 17);
             lblUsuario.Margin = new Padding(2, 0, 2, 0);
             lblUsuario.Name = "lblUsuario";
             lblUsuario.Size = new Size(72, 25);
@@ -53,7 +57,7 @@
             // 
             // txbUsuario
             // 
-            txbUsuario.Location = new Point(268, 92);
+            txbUsuario.Location = new Point(165, 14);
             txbUsuario.Margin = new Padding(2);
             txbUsuario.Name = "txbUsuario";
             txbUsuario.Size = new Size(150, 31);
@@ -63,7 +67,7 @@
             // lblContraseña
             // 
             lblContraseña.AutoSize = true;
-            lblContraseña.Location = new Point(151, 171);
+            lblContraseña.Location = new Point(57, 15);
             lblContraseña.Margin = new Padding(2, 0, 2, 0);
             lblContraseña.Name = "lblContraseña";
             lblContraseña.Size = new Size(101, 25);
@@ -73,7 +77,7 @@
             // 
             // txbContraseña
             // 
-            txbContraseña.Location = new Point(269, 168);
+            txbContraseña.Location = new Point(164, 12);
             txbContraseña.Margin = new Padding(2);
             txbContraseña.Name = "txbContraseña";
             txbContraseña.PasswordChar = '*';
@@ -82,7 +86,7 @@
             // 
             // btnOk
             // 
-            btnOk.Location = new Point(267, 274);
+            btnOk.Location = new Point(273, 232);
             btnOk.Margin = new Padding(4);
             btnOk.Name = "btnOk";
             btnOk.Size = new Size(118, 36);
@@ -92,7 +96,7 @@
             // 
             // btnCancelar
             // 
-            btnCancelar.Location = new Point(412, 274);
+            btnCancelar.Location = new Point(412, 232);
             btnCancelar.Margin = new Padding(4);
             btnCancelar.Name = "btnCancelar";
             btnCancelar.Size = new Size(118, 36);
@@ -104,7 +108,7 @@
             // imgContraseña
             // 
             imgContraseña.Image = (Image)resources.GetObject("imgContraseña.Image");
-            imgContraseña.Location = new Point(123, 170);
+            imgContraseña.Location = new Point(24, 18);
             imgContraseña.Name = "imgContraseña";
             imgContraseña.Size = new Size(25, 25);
             imgContraseña.SizeMode = PictureBoxSizeMode.StretchImage;
@@ -114,27 +118,43 @@
             // imgUser
             // 
             imgUser.Image = (Image)resources.GetObject("imgUser.Image");
-            imgUser.Location = new Point(123, 94);
+            imgUser.Location = new Point(24, 18);
             imgUser.Name = "imgUser";
-            imgUser.Size = new Size(29, 30);
+            imgUser.Size = new Size(25, 28);
             imgUser.SizeMode = PictureBoxSizeMode.StretchImage;
             imgUser.TabIndex = 8;
             imgUser.TabStop = false;
             imgUser.Click += imgUser_Click;
             // 
+            // panel1
+            // 
+            panel1.Controls.Add(lblUsuario);
+            panel1.Controls.Add(imgUser);
+            panel1.Controls.Add(txbUsuario);
+            panel1.Location = new Point(106, 56);
+            panel1.Name = "panel1";
+            panel1.Size = new Size(348, 59);
+            panel1.TabIndex = 9;
+            // 
+            // panel2
+            // 
+            panel2.Controls.Add(lblContraseña);
+            panel2.Controls.Add(txbContraseña);
+            panel2.Controls.Add(imgContraseña);
+            panel2.Location = new Point(106, 133);
+            panel2.Name = "panel2";
+            panel2.Size = new Size(348, 59);
+            panel2.TabIndex = 10;
+            // 
             // Login
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(556, 336);
-            Controls.Add(imgUser);
-            Controls.Add(imgContraseña);
+            ClientSize = new Size(540, 280);
+            Controls.Add(panel2);
+            Controls.Add(panel1);
             Controls.Add(btnCancelar);
             Controls.Add(btnOk);
-            Controls.Add(txbContraseña);
-            Controls.Add(lblContraseña);
-            Controls.Add(txbUsuario);
-            Controls.Add(lblUsuario);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Margin = new Padding(2);
             MaximizeBox = false;
@@ -143,8 +163,11 @@
             Load += Login_Load;
             ((System.ComponentModel.ISupportInitialize)imgContraseña).EndInit();
             ((System.ComponentModel.ISupportInitialize)imgUser).EndInit();
+            panel1.ResumeLayout(false);
+            panel1.PerformLayout();
+            panel2.ResumeLayout(false);
+            panel2.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -157,5 +180,7 @@
         private Button btnCancelar;
         private PictureBox imgContraseña;
         private PictureBox imgUser;
+        private Panel panel1;
+        private Panel panel2;
     }
 }
