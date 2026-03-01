@@ -1,3 +1,5 @@
 <Solution>
+  <Project Path="Datos/Datos.csproj" />
+  <Project Path="Negocio/Negocio.csproj" />
   <Project Path="SCPSAP/SCPSAP.csproj" />
 </Solution>
