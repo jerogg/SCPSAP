@@ -37,7 +37,6 @@ namespace SCPSAP
                 }
                 else
                 {
-                    MessageBox.Show("Bienvenido al sistema");
                     MenuPrincipal menuPrincipal = new MenuPrincipal();
                     menuPrincipal.Show();
                     this.Hide();
