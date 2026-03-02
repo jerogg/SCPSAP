@@ -3,6 +3,13 @@ CREATE DATABASE [SCPSAP]
 GO
 
 USE SCPSAP
+CREATE TABLE dbo.UsuarioRol 
+( 
+     IdRol INT IDENTITY(1,1) NOT NULL 
+    ,Descripcion VARCHAR(256) NOT NULL
+);
+GO
+
 CREATE TABLE dbo.UsuarioSistema 
 ( 
      IdUsuarioSistema INT IDENTITY(1,1) NOT NULL 
@@ -13,13 +20,10 @@ CREATE TABLE dbo.UsuarioSistema
 );
 GO
 
-USE SCPSAP
-CREATE TABLE dbo.UsuarioRol 
-( 
-     IdRol INT IDENTITY(1,1) NOT NULL 
-    ,Descripcion VARCHAR(256) NOT NULL
-);
-GO
+INSERT INTO dbo.UsuarioRol (Descripcion) VALUES ('Administrador')
+INSERT INTO dbo.UsuarioRol (Descripcion) VALUES ('Usuario')
+INSERT INTO dbo.UsuarioSistema (NombreUsuario, PasswordHash, IdRol, Activo) VALUES ('admin', 'admin', 1, 1)
+INSERT INTO dbo.UsuarioSistema (NombreUsuario, PasswordHash, IdRol, Activo) VALUES ('user', 'user', 2, 1)
 
 
 --USE master

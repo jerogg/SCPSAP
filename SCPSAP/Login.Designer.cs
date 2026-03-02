@@ -76,6 +76,7 @@
             this.btnOk.TabIndex = 4;
             this.btnOk.Text = "Ok";
             this.btnOk.UseVisualStyleBackColor = true;
+            this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
             // btnCancelar
             // 
@@ -98,6 +99,7 @@
             this.Controls.Add(this.txbUsuario);
             this.Controls.Add(this.lblContraseña);
             this.Controls.Add(this.lblUsuario);
+            this.MaximizeBox = false;
             this.Name = "Login";
             this.Text = "Login";
             this.ResumeLayout(false);

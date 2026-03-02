@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Login\UsuariosDatos.cs" />
     <Compile Include="ModelSCPSAP.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -77,9 +78,7 @@
       <DependentUpon>ModelSCPSAP.tt</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Login\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="ModelSCPSAP.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Negocio.Login;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,8 @@ namespace SCPSAP
 {
     public partial class Login : Form
     {
+        UsuariosNegocio usuario = new UsuariosNegocio();
+
         public Login()
         {
             InitializeComponent();
@@ -20,6 +23,30 @@ namespace SCPSAP
         private void btnCancelar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var result = usuario.ValidaUsuarios(txbUsuario.Text, txbContraseña.Text);
+
+                if(!result)
+                {
+                    MessageBox.Show("Usuario o contraseña incorrectos");
+                }
+                else
+                {
+                    MessageBox.Show("Bienvenido al sistema");
+                    MenuPrincipal menuPrincipal = new MenuPrincipal();
+                    menuPrincipal.Show();
+                    this.Hide();
+                }
+            }
+            catch (Exception ex) 
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
     }
 }
