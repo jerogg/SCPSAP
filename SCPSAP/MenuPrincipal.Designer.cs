@@ -30,19 +30,19 @@
         {
             this.splitContainerMenuPrincipal = new System.Windows.Forms.SplitContainer();
             this.flowLayoutPanelOpcionesMenu = new System.Windows.Forms.FlowLayoutPanel();
-            this.lblMenu = new System.Windows.Forms.Label();
             this.pnlContribuyentes = new System.Windows.Forms.Panel();
             this.pnlCobranza = new System.Windows.Forms.Panel();
             this.pnlReportes = new System.Windows.Forms.Panel();
             this.pnlInventario = new System.Windows.Forms.Panel();
             this.pnlEgresos = new System.Windows.Forms.Panel();
             this.pnlConfiguracion = new System.Windows.Forms.Panel();
-            this.lblContribuyentes = new System.Windows.Forms.Label();
-            this.lblCobranza = new System.Windows.Forms.Label();
-            this.lblReportes = new System.Windows.Forms.Label();
-            this.lblInventario = new System.Windows.Forms.Label();
-            this.lblEgresos = new System.Windows.Forms.Label();
-            this.lblConfiguracion = new System.Windows.Forms.Label();
+            this.lblMenu = new System.Windows.Forms.Label();
+            this.btnMenuContribuyentes = new System.Windows.Forms.Button();
+            this.btnMenuCobranza = new System.Windows.Forms.Button();
+            this.btnMenuReportes = new System.Windows.Forms.Button();
+            this.btnMenuInventario = new System.Windows.Forms.Button();
+            this.btnMenuEgresos = new System.Windows.Forms.Button();
+            this.btnConfiguracion = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainerMenuPrincipal)).BeginInit();
             this.splitContainerMenuPrincipal.Panel1.SuspendLayout();
             this.splitContainerMenuPrincipal.SuspendLayout();
@@ -67,7 +67,7 @@
             // 
             this.splitContainerMenuPrincipal.Panel1.Controls.Add(this.flowLayoutPanelOpcionesMenu);
             this.splitContainerMenuPrincipal.Panel1.Controls.Add(this.lblMenu);
-            this.splitContainerMenuPrincipal.Size = new System.Drawing.Size(800, 450);
+            this.splitContainerMenuPrincipal.Size = new System.Drawing.Size(906, 575);
             this.splitContainerMenuPrincipal.SplitterDistance = 266;
             this.splitContainerMenuPrincipal.TabIndex = 0;
             // 
@@ -85,8 +85,57 @@
             this.flowLayoutPanelOpcionesMenu.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
             this.flowLayoutPanelOpcionesMenu.Location = new System.Drawing.Point(3, 36);
             this.flowLayoutPanelOpcionesMenu.Name = "flowLayoutPanelOpcionesMenu";
-            this.flowLayoutPanelOpcionesMenu.Size = new System.Drawing.Size(260, 411);
+            this.flowLayoutPanelOpcionesMenu.Size = new System.Drawing.Size(260, 536);
             this.flowLayoutPanelOpcionesMenu.TabIndex = 1;
+            // 
+            // pnlContribuyentes
+            // 
+            this.pnlContribuyentes.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.pnlContribuyentes.Controls.Add(this.btnMenuContribuyentes);
+            this.pnlContribuyentes.Location = new System.Drawing.Point(3, 3);
+            this.pnlContribuyentes.Name = "pnlContribuyentes";
+            this.pnlContribuyentes.Size = new System.Drawing.Size(253, 39);
+            this.pnlContribuyentes.TabIndex = 0;
+            // 
+            // pnlCobranza
+            // 
+            this.pnlCobranza.Controls.Add(this.btnMenuCobranza);
+            this.pnlCobranza.Location = new System.Drawing.Point(3, 48);
+            this.pnlCobranza.Name = "pnlCobranza";
+            this.pnlCobranza.Size = new System.Drawing.Size(253, 39);
+            this.pnlCobranza.TabIndex = 1;
+            // 
+            // pnlReportes
+            // 
+            this.pnlReportes.Controls.Add(this.btnMenuReportes);
+            this.pnlReportes.Location = new System.Drawing.Point(3, 93);
+            this.pnlReportes.Name = "pnlReportes";
+            this.pnlReportes.Size = new System.Drawing.Size(253, 39);
+            this.pnlReportes.TabIndex = 2;
+            // 
+            // pnlInventario
+            // 
+            this.pnlInventario.Controls.Add(this.btnMenuInventario);
+            this.pnlInventario.Location = new System.Drawing.Point(3, 138);
+            this.pnlInventario.Name = "pnlInventario";
+            this.pnlInventario.Size = new System.Drawing.Size(253, 39);
+            this.pnlInventario.TabIndex = 3;
+            // 
+            // pnlEgresos
+            // 
+            this.pnlEgresos.Controls.Add(this.btnMenuEgresos);
+            this.pnlEgresos.Location = new System.Drawing.Point(3, 183);
+            this.pnlEgresos.Name = "pnlEgresos";
+            this.pnlEgresos.Size = new System.Drawing.Size(253, 39);
+            this.pnlEgresos.TabIndex = 4;
+            // 
+            // pnlConfiguracion
+            // 
+            this.pnlConfiguracion.Controls.Add(this.btnConfiguracion);
+            this.pnlConfiguracion.Location = new System.Drawing.Point(3, 228);
+            this.pnlConfiguracion.Name = "pnlConfiguracion";
+            this.pnlConfiguracion.Size = new System.Drawing.Size(253, 39);
+            this.pnlConfiguracion.TabIndex = 5;
             // 
             // lblMenu
             // 
@@ -101,120 +150,78 @@
             this.lblMenu.Text = "Menu";
             this.lblMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // pnlContribuyentes
+            // btnMenuContribuyentes
             // 
-            this.pnlContribuyentes.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.pnlContribuyentes.Controls.Add(this.lblContribuyentes);
-            this.pnlContribuyentes.Location = new System.Drawing.Point(3, 3);
-            this.pnlContribuyentes.Name = "pnlContribuyentes";
-            this.pnlContribuyentes.Size = new System.Drawing.Size(253, 39);
-            this.pnlContribuyentes.TabIndex = 0;
+            this.btnMenuContribuyentes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnMenuContribuyentes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMenuContribuyentes.Location = new System.Drawing.Point(0, 0);
+            this.btnMenuContribuyentes.Name = "btnMenuContribuyentes";
+            this.btnMenuContribuyentes.Size = new System.Drawing.Size(253, 39);
+            this.btnMenuContribuyentes.TabIndex = 1;
+            this.btnMenuContribuyentes.Text = "Contribuyentes";
+            this.btnMenuContribuyentes.UseVisualStyleBackColor = true;
+            this.btnMenuContribuyentes.Click += new System.EventHandler(this.btnMenuContribuyentes_Click);
             // 
-            // pnlCobranza
+            // btnMenuCobranza
             // 
-            this.pnlCobranza.Controls.Add(this.lblCobranza);
-            this.pnlCobranza.Location = new System.Drawing.Point(3, 48);
-            this.pnlCobranza.Name = "pnlCobranza";
-            this.pnlCobranza.Size = new System.Drawing.Size(253, 39);
-            this.pnlCobranza.TabIndex = 1;
+            this.btnMenuCobranza.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnMenuCobranza.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMenuCobranza.Location = new System.Drawing.Point(0, 0);
+            this.btnMenuCobranza.Name = "btnMenuCobranza";
+            this.btnMenuCobranza.Size = new System.Drawing.Size(253, 39);
+            this.btnMenuCobranza.TabIndex = 2;
+            this.btnMenuCobranza.Text = "Cobranza";
+            this.btnMenuCobranza.UseVisualStyleBackColor = true;
             // 
-            // pnlReportes
+            // btnMenuReportes
             // 
-            this.pnlReportes.Controls.Add(this.lblReportes);
-            this.pnlReportes.Location = new System.Drawing.Point(3, 93);
-            this.pnlReportes.Name = "pnlReportes";
-            this.pnlReportes.Size = new System.Drawing.Size(253, 39);
-            this.pnlReportes.TabIndex = 2;
+            this.btnMenuReportes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnMenuReportes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMenuReportes.Location = new System.Drawing.Point(0, 0);
+            this.btnMenuReportes.Name = "btnMenuReportes";
+            this.btnMenuReportes.Size = new System.Drawing.Size(253, 39);
+            this.btnMenuReportes.TabIndex = 3;
+            this.btnMenuReportes.Text = "Reportes";
+            this.btnMenuReportes.UseVisualStyleBackColor = true;
             // 
-            // pnlInventario
+            // btnMenuInventario
             // 
-            this.pnlInventario.Controls.Add(this.lblInventario);
-            this.pnlInventario.Location = new System.Drawing.Point(3, 138);
-            this.pnlInventario.Name = "pnlInventario";
-            this.pnlInventario.Size = new System.Drawing.Size(253, 39);
-            this.pnlInventario.TabIndex = 3;
+            this.btnMenuInventario.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnMenuInventario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMenuInventario.Location = new System.Drawing.Point(0, 0);
+            this.btnMenuInventario.Name = "btnMenuInventario";
+            this.btnMenuInventario.Size = new System.Drawing.Size(253, 39);
+            this.btnMenuInventario.TabIndex = 4;
+            this.btnMenuInventario.Text = "Inventario";
+            this.btnMenuInventario.UseVisualStyleBackColor = true;
             // 
-            // pnlEgresos
+            // btnMenuEgresos
             // 
-            this.pnlEgresos.Controls.Add(this.lblEgresos);
-            this.pnlEgresos.Location = new System.Drawing.Point(3, 183);
-            this.pnlEgresos.Name = "pnlEgresos";
-            this.pnlEgresos.Size = new System.Drawing.Size(253, 39);
-            this.pnlEgresos.TabIndex = 4;
+            this.btnMenuEgresos.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnMenuEgresos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMenuEgresos.Location = new System.Drawing.Point(0, 0);
+            this.btnMenuEgresos.Name = "btnMenuEgresos";
+            this.btnMenuEgresos.Size = new System.Drawing.Size(253, 39);
+            this.btnMenuEgresos.TabIndex = 5;
+            this.btnMenuEgresos.Text = "Egresos";
+            this.btnMenuEgresos.UseVisualStyleBackColor = true;
             // 
-            // pnlConfiguracion
+            // btnConfiguracion
             // 
-            this.pnlConfiguracion.Controls.Add(this.lblConfiguracion);
-            this.pnlConfiguracion.Location = new System.Drawing.Point(3, 228);
-            this.pnlConfiguracion.Name = "pnlConfiguracion";
-            this.pnlConfiguracion.Size = new System.Drawing.Size(253, 39);
-            this.pnlConfiguracion.TabIndex = 5;
-            // 
-            // lblContribuyentes
-            // 
-            this.lblContribuyentes.AutoSize = true;
-            this.lblContribuyentes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblContribuyentes.Location = new System.Drawing.Point(74, 9);
-            this.lblContribuyentes.Name = "lblContribuyentes";
-            this.lblContribuyentes.Size = new System.Drawing.Size(130, 20);
-            this.lblContribuyentes.TabIndex = 0;
-            this.lblContribuyentes.Text = "Contribuyentes";
-            // 
-            // lblCobranza
-            // 
-            this.lblCobranza.AutoSize = true;
-            this.lblCobranza.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCobranza.Location = new System.Drawing.Point(74, 9);
-            this.lblCobranza.Name = "lblCobranza";
-            this.lblCobranza.Size = new System.Drawing.Size(86, 20);
-            this.lblCobranza.TabIndex = 1;
-            this.lblCobranza.Text = "Cobranza";
-            // 
-            // lblReportes
-            // 
-            this.lblReportes.AutoSize = true;
-            this.lblReportes.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblReportes.Location = new System.Drawing.Point(74, 9);
-            this.lblReportes.Name = "lblReportes";
-            this.lblReportes.Size = new System.Drawing.Size(83, 20);
-            this.lblReportes.TabIndex = 2;
-            this.lblReportes.Text = "Reportes";
-            // 
-            // lblInventario
-            // 
-            this.lblInventario.AutoSize = true;
-            this.lblInventario.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblInventario.Location = new System.Drawing.Point(74, 9);
-            this.lblInventario.Name = "lblInventario";
-            this.lblInventario.Size = new System.Drawing.Size(89, 20);
-            this.lblInventario.TabIndex = 3;
-            this.lblInventario.Text = "Inventario";
-            // 
-            // lblEgresos
-            // 
-            this.lblEgresos.AutoSize = true;
-            this.lblEgresos.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEgresos.Location = new System.Drawing.Point(74, 9);
-            this.lblEgresos.Name = "lblEgresos";
-            this.lblEgresos.Size = new System.Drawing.Size(75, 20);
-            this.lblEgresos.TabIndex = 4;
-            this.lblEgresos.Text = "Egresos";
-            // 
-            // lblConfiguracion
-            // 
-            this.lblConfiguracion.AutoSize = true;
-            this.lblConfiguracion.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblConfiguracion.Location = new System.Drawing.Point(74, 9);
-            this.lblConfiguracion.Name = "lblConfiguracion";
-            this.lblConfiguracion.Size = new System.Drawing.Size(120, 20);
-            this.lblConfiguracion.TabIndex = 5;
-            this.lblConfiguracion.Text = "Configuracion";
+            this.btnConfiguracion.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnConfiguracion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnConfiguracion.Location = new System.Drawing.Point(0, 0);
+            this.btnConfiguracion.Name = "btnConfiguracion";
+            this.btnConfiguracion.Size = new System.Drawing.Size(253, 39);
+            this.btnConfiguracion.TabIndex = 6;
+            this.btnConfiguracion.Text = "Configuración";
+            this.btnConfiguracion.UseVisualStyleBackColor = true;
             // 
             // MenuPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(906, 575);
             this.Controls.Add(this.splitContainerMenuPrincipal);
             this.Name = "MenuPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -225,17 +232,11 @@
             this.splitContainerMenuPrincipal.ResumeLayout(false);
             this.flowLayoutPanelOpcionesMenu.ResumeLayout(false);
             this.pnlContribuyentes.ResumeLayout(false);
-            this.pnlContribuyentes.PerformLayout();
             this.pnlCobranza.ResumeLayout(false);
-            this.pnlCobranza.PerformLayout();
             this.pnlReportes.ResumeLayout(false);
-            this.pnlReportes.PerformLayout();
             this.pnlInventario.ResumeLayout(false);
-            this.pnlInventario.PerformLayout();
             this.pnlEgresos.ResumeLayout(false);
-            this.pnlEgresos.PerformLayout();
             this.pnlConfiguracion.ResumeLayout(false);
-            this.pnlConfiguracion.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -251,11 +252,11 @@
         private System.Windows.Forms.Panel pnlInventario;
         private System.Windows.Forms.Panel pnlEgresos;
         private System.Windows.Forms.Panel pnlConfiguracion;
-        private System.Windows.Forms.Label lblContribuyentes;
-        private System.Windows.Forms.Label lblCobranza;
-        private System.Windows.Forms.Label lblReportes;
-        private System.Windows.Forms.Label lblInventario;
-        private System.Windows.Forms.Label lblEgresos;
-        private System.Windows.Forms.Label lblConfiguracion;
+        private System.Windows.Forms.Button btnMenuContribuyentes;
+        private System.Windows.Forms.Button btnMenuCobranza;
+        private System.Windows.Forms.Button btnMenuReportes;
+        private System.Windows.Forms.Button btnMenuInventario;
+        private System.Windows.Forms.Button btnMenuEgresos;
+        private System.Windows.Forms.Button btnConfiguracion;
     }
 }

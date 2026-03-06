@@ -1,0 +1,15 @@
+Tareas para viernes 6 de marzo 2026
+
+Generales
+1 - Crear la base de datos en su maquina a partir de los scripts
+2 - Configurar la conexion a la base de datos en el App.config de la capa de presentacion en data source=Jero_Laptop en lugar de Jero_Laptop colocar el nombre de su server sql
+
+Ana
+1 - Crear el user control similar al que se creo para contribuyentes y mostrarlo cuando se de clic en el menu de Cobranza.
+
+Diana
+1 - Crear el user control para reportes y mostrarlo cuando se de clic en el menu de reportes
+
+Milton
+1 - Crear la tabla de contribuyente y actualizar el modelo de entity framework para agregar la nueva tabla.
+2 - Crear un metodo en la clase ContribuyentesDatos.cs de la capa de datos para obtener los contribuyentes de la base de datos.

@@ -56,6 +56,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControlesContribuyentes\ListaContribuyentes.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesContribuyentes\ListaContribuyentes.Designer.cs">
+      <DependentUpon>ListaContribuyentes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +76,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ControlesContribuyentes\ListaContribuyentes.resx">
+      <DependentUpon>ListaContribuyentes.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
     </EmbeddedResource>

@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Contribuyentes\ContribuyentesDatos.cs" />
     <Compile Include="Login\UsuariosDatos.cs" />
     <Compile Include="ModelSCPSAP.Context.cs">
       <AutoGen>True</AutoGen>

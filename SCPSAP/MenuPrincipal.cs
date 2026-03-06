@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SCPSAP.Contribuyentes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,14 @@ namespace SCPSAP
         public MenuPrincipal()
         {
             InitializeComponent();
+        }
+
+        private void btnMenuContribuyentes_Click(object sender, EventArgs e)
+        {
+            splitContainerMenuPrincipal.Panel2.Controls.Clear();
+            ListaContribuyentes contribuyentes = new ListaContribuyentes();
+            contribuyentes.Dock = DockStyle.Fill;
+            splitContainerMenuPrincipal.Panel2.Controls.Add(contribuyentes);
         }
     }
 }

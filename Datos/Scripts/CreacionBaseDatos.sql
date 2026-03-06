@@ -22,8 +22,8 @@ GO
 
 INSERT INTO dbo.UsuarioRol (Descripcion) VALUES ('Administrador')
 INSERT INTO dbo.UsuarioRol (Descripcion) VALUES ('Usuario')
-INSERT INTO dbo.UsuarioSistema (NombreUsuario, PasswordHash, IdRol, Activo) VALUES ('admin', 'admin', 1, 1)
-INSERT INTO dbo.UsuarioSistema (NombreUsuario, PasswordHash, IdRol, Activo) VALUES ('user', 'user', 2, 1)
+INSERT INTO dbo.UsuarioSistema (NombreUsuario, PasswordHash, IdRol, Activo) VALUES ('admin', '8c6976e5b5410415bde908bd4dee15dfb167a9c873fc4bb8a81f6f2ab448a918', 1, 1)
+INSERT INTO dbo.UsuarioSistema (NombreUsuario, PasswordHash, IdRol, Activo) VALUES ('user', '04f8996da763b7a969b1028ee3007569eaf3a635486ddab211d512c85b9df8fb', 2, 1)
 
 
 --USE master
