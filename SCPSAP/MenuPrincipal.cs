@@ -1,4 +1,5 @@
 ﻿using SCPSAP.Contribuyentes;
+using SCPSAP.Reportes;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,6 +25,14 @@ namespace SCPSAP
             ListaContribuyentes contribuyentes = new ListaContribuyentes();
             contribuyentes.Dock = DockStyle.Fill;
             splitContainerMenuPrincipal.Panel2.Controls.Add(contribuyentes);
+        }
+
+        private void btnMenuReportes_Click(object sender, EventArgs e)
+        {
+            splitContainerMenuPrincipal.Panel2.Controls.Clear();
+            UC_Reporte reporte = new UC_Reporte();
+            reporte.Dock = DockStyle.Fill;
+            splitContainerMenuPrincipal.Panel2.Controls.Add(reporte);
         }
     }
 }
