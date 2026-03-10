@@ -5,8 +5,14 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="0e09c79e70eb4288ad88bee88c57b556" Name="Diagram1">
-        <EntityTypeShape EntityType="SCPSAPModel.UsuarioRol" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SCPSAPModel.UsuarioSistema" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SCPSAPModel.Contribuyente" Width="1.5" PointX="3" PointY="1" />
+        <EntityTypeShape EntityType="SCPSAPModel.Estado" Width="1.5" PointX="0.75" PointY="2" />
+        <EntityTypeShape EntityType="SCPSAPModel.Tarifa" Width="1.5" PointX="0.75" PointY="5.875" />
+        <EntityTypeShape EntityType="SCPSAPModel.UsuarioRol" Width="1.5" PointX="5.75" PointY="1.25" />
+        <EntityTypeShape EntityType="SCPSAPModel.UsuarioSistema" Width="1.5" PointX="8" PointY="0.875" />
+        <AssociationConnector Association="SCPSAPModel.FK_Contribuyente_Estado" />
+        <AssociationConnector Association="SCPSAPModel.FK_Contribuyente_Tarifa" />
+        <AssociationConnector Association="SCPSAPModel.FK_UsuarioSistema_Rol" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

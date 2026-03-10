@@ -13,3 +13,16 @@ Diana
 Milton
 1 - Crear la tabla de contribuyente y actualizar el modelo de entity framework para agregar la nueva tabla.
 2 - Crear un metodo en la clase ContribuyentesDatos.cs de la capa de datos para obtener los contribuyentes de la base de datos.
+
+
+Tareas para martes 10 de marzo 2026
+
+1 - Eliminar la base de datos y recrear con el script CreacionBaseDatos.sql actualizado con las nuevas tablas Estado, Tarifa y Contribuyente. 
+2 - Agregar datos de prueba en la tabla de contribuyentes
+3 - Ejecutar la aplicacion y observar que ya se muestran los contribuyentes el en grid que los lista
+4 - llenar el drop de tarifa desde la base de datos
+5 - llenar el drop de Estado desde la base de datos
+6 - En el drop de dias de gracia colocar tres posibles valores, 30, 60 y 90 dias, por default se debe tener seleccionado el 30
+7 - Al seleccionar un contribuyente y dar clic en el boton actualizar se deben mostrar los datos del contribuyente en su respectivo campo
+8 - Se debe guardar los cambios que se hagan al contribuyente
+9 - Se debe poder guardar nuevos contribuyentes y ver como se agregan en el grid.

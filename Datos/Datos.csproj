@@ -54,7 +54,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Contribuyente.cs">
+      <DependentUpon>ModelSCPSAP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Contribuyentes\ContribuyentesDatos.cs" />
+    <Compile Include="Estado.cs">
+      <DependentUpon>ModelSCPSAP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Login\UsuariosDatos.cs" />
     <Compile Include="ModelSCPSAP.Context.cs">
       <AutoGen>True</AutoGen>
@@ -72,6 +78,9 @@
       <DependentUpon>ModelSCPSAP.edmx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tarifa.cs">
+      <DependentUpon>ModelSCPSAP.tt</DependentUpon>
+    </Compile>
     <Compile Include="UsuarioRol.cs">
       <DependentUpon>ModelSCPSAP.tt</DependentUpon>
     </Compile>

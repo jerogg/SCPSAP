@@ -4,24 +4,48 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="SCPSAPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'SCPSAP.dbo.UsuarioRol' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
+    <Schema Namespace="SCPSAPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Contribuyente">
+          <Key>
+            <PropertyRef Name="IdContribuyente" />
+          </Key>
+          <Property Name="IdContribuyente" Type="int" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="200" />
+          <Property Name="Telefono" Type="varchar" MaxLength="20" />
+          <Property Name="FechaAlta" Type="datetime" Nullable="false" />
+          <Property Name="IdEstado" Type="int" Nullable="false" />
+          <Property Name="IdTarifa" Type="int" />
+          <Property Name="Email" Type="varchar" MaxLength="200" />
+          <Property Name="FechaUltimoAviso" Type="datetime" />
+          <Property Name="FechaLimitePago" Type="datetime" />
+          <Property Name="DiasGracia" Type="int" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="IdEstado" />
+          </Key>
+          <Property Name="IdEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Tarifa">
+          <Key>
+            <PropertyRef Name="IdTarifa" />
+          </Key>
+          <Property Name="IdTarifa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NombreTarifa" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="MontoMensual" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+        </EntityType>
         <EntityType Name="UsuarioRol">
           <Key>
             <PropertyRef Name="IdRol" />
-            <PropertyRef Name="Descripcion" />
           </Key>
           <Property Name="IdRol" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="256" Nullable="false" />
         </EntityType>
-        <!--Errores durante la generación:
-advertencia 6002: La tabla o vista 'SCPSAP.dbo.UsuarioSistema' no tiene definida ninguna clave principal. Se ha inferido la clave y la definición se creado como una vista o tabla de solo lectura.-->
         <EntityType Name="UsuarioSistema">
           <Key>
             <PropertyRef Name="IdUsuarioSistema" />
-            <PropertyRef Name="NombreUsuario" />
-            <PropertyRef Name="PasswordHash" />
           </Key>
           <Property Name="IdUsuarioSistema" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="NombreUsuario" Type="varchar" MaxLength="50" Nullable="false" />
@@ -29,74 +53,230 @@ advertencia 6002: La tabla o vista 'SCPSAP.dbo.UsuarioSistema' no tiene definida
           <Property Name="IdRol" Type="int" />
           <Property Name="Activo" Type="bit" />
         </EntityType>
+        <Association Name="FK_Contribuyente_Estado">
+          <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
+          <End Role="Contribuyente" Type="Self.Contribuyente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Contribuyente">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contribuyente_Tarifa">
+          <End Role="Tarifa" Type="Self.Tarifa" Multiplicity="0..1" />
+          <End Role="Contribuyente" Type="Self.Contribuyente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tarifa">
+              <PropertyRef Name="IdTarifa" />
+            </Principal>
+            <Dependent Role="Contribuyente">
+              <PropertyRef Name="IdTarifa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioSistema_Rol">
+          <End Role="UsuarioRol" Type="Self.UsuarioRol" Multiplicity="0..1" />
+          <End Role="UsuarioSistema" Type="Self.UsuarioSistema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsuarioRol">
+              <PropertyRef Name="IdRol" />
+            </Principal>
+            <Dependent Role="UsuarioSistema">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <EntityContainer Name="SCPSAPModelStoreContainer">
-          <EntitySet Name="UsuarioRol" EntityType="Self.UsuarioRol" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [UsuarioRol].[IdRol] AS [IdRol], 
-    [UsuarioRol].[Descripcion] AS [Descripcion]
-    FROM [dbo].[UsuarioRol] AS [UsuarioRol]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="UsuarioSistema" EntityType="Self.UsuarioSistema" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [UsuarioSistema].[IdUsuarioSistema] AS [IdUsuarioSistema], 
-    [UsuarioSistema].[NombreUsuario] AS [NombreUsuario], 
-    [UsuarioSistema].[PasswordHash] AS [PasswordHash], 
-    [UsuarioSistema].[IdRol] AS [IdRol], 
-    [UsuarioSistema].[Activo] AS [Activo]
-    FROM [dbo].[UsuarioSistema] AS [UsuarioSistema]</DefiningQuery>
-          </EntitySet>
+          <EntitySet Name="Contribuyente" EntityType="Self.Contribuyente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tarifa" EntityType="Self.Tarifa" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuarioRol" EntityType="Self.UsuarioRol" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UsuarioSistema" EntityType="Self.UsuarioSistema" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Contribuyente_Estado" Association="Self.FK_Contribuyente_Estado">
+            <End Role="Estado" EntitySet="Estado" />
+            <End Role="Contribuyente" EntitySet="Contribuyente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contribuyente_Tarifa" Association="Self.FK_Contribuyente_Tarifa">
+            <End Role="Tarifa" EntitySet="Tarifa" />
+            <End Role="Contribuyente" EntitySet="Contribuyente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioSistema_Rol" Association="Self.FK_UsuarioSistema_Rol">
+            <End Role="UsuarioRol" EntitySet="UsuarioRol" />
+            <End Role="UsuarioSistema" EntitySet="UsuarioSistema" />
+          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="SCPSAPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="SCPSAPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Contribuyentes" EntityType="SCPSAPModel.Contribuyente" />
+          <EntitySet Name="Estadoes" EntityType="SCPSAPModel.Estado" />
+          <EntitySet Name="Tarifas" EntityType="SCPSAPModel.Tarifa" />
+          <EntitySet Name="UsuarioRols" EntityType="SCPSAPModel.UsuarioRol" />
+          <EntitySet Name="UsuarioSistemas" EntityType="SCPSAPModel.UsuarioSistema" />
+          <AssociationSet Name="FK_Contribuyente_Estado" Association="SCPSAPModel.FK_Contribuyente_Estado">
+            <End Role="Estado" EntitySet="Estadoes" />
+            <End Role="Contribuyente" EntitySet="Contribuyentes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contribuyente_Tarifa" Association="SCPSAPModel.FK_Contribuyente_Tarifa">
+            <End Role="Tarifa" EntitySet="Tarifas" />
+            <End Role="Contribuyente" EntitySet="Contribuyentes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UsuarioSistema_Rol" Association="SCPSAPModel.FK_UsuarioSistema_Rol">
+            <End Role="UsuarioRol" EntitySet="UsuarioRols" />
+            <End Role="UsuarioSistema" EntitySet="UsuarioSistemas" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Contribuyente">
+          <Key>
+            <PropertyRef Name="IdContribuyente" />
+          </Key>
+          <Property Name="IdContribuyente" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <Property Name="IdTarifa" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FechaUltimoAviso" Type="DateTime" Precision="3" />
+          <Property Name="FechaLimitePago" Type="DateTime" Precision="3" />
+          <Property Name="DiasGracia" Type="Int32" />
+          <NavigationProperty Name="Estado" Relationship="SCPSAPModel.FK_Contribuyente_Estado" FromRole="Contribuyente" ToRole="Estado" />
+          <NavigationProperty Name="Tarifa" Relationship="SCPSAPModel.FK_Contribuyente_Tarifa" FromRole="Contribuyente" ToRole="Tarifa" />
+        </EntityType>
+        <EntityType Name="Estado">
+          <Key>
+            <PropertyRef Name="IdEstado" />
+          </Key>
+          <Property Name="IdEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Contribuyentes" Relationship="SCPSAPModel.FK_Contribuyente_Estado" FromRole="Estado" ToRole="Contribuyente" />
+        </EntityType>
+        <EntityType Name="Tarifa">
+          <Key>
+            <PropertyRef Name="IdTarifa" />
+          </Key>
+          <Property Name="IdTarifa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NombreTarifa" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="MontoMensual" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="Contribuyentes" Relationship="SCPSAPModel.FK_Contribuyente_Tarifa" FromRole="Tarifa" ToRole="Contribuyente" />
+        </EntityType>
         <EntityType Name="UsuarioRol">
           <Key>
             <PropertyRef Name="IdRol" />
-            <PropertyRef Name="Descripcion" />
           </Key>
           <Property Name="IdRol" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Descripcion" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="UsuarioSistemas" Relationship="SCPSAPModel.FK_UsuarioSistema_Rol" FromRole="UsuarioRol" ToRole="UsuarioSistema" />
         </EntityType>
         <EntityType Name="UsuarioSistema">
           <Key>
             <PropertyRef Name="IdUsuarioSistema" />
-            <PropertyRef Name="NombreUsuario" />
-            <PropertyRef Name="PasswordHash" />
           </Key>
           <Property Name="IdUsuarioSistema" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="NombreUsuario" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PasswordHash" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NombreUsuario" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="PasswordHash" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Name="IdRol" Type="Int32" />
           <Property Name="Activo" Type="Boolean" />
+          <NavigationProperty Name="UsuarioRol" Relationship="SCPSAPModel.FK_UsuarioSistema_Rol" FromRole="UsuarioSistema" ToRole="UsuarioRol" />
         </EntityType>
-        <EntityContainer Name="SCPSAPEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="UsuarioRols" EntityType="Self.UsuarioRol" />
-          <EntitySet Name="UsuarioSistemas" EntityType="Self.UsuarioSistema" />
-        </EntityContainer>
-      </Schema>
+        <Association Name="FK_Contribuyente_Estado">
+          <End Type="SCPSAPModel.Estado" Role="Estado" Multiplicity="1" />
+          <End Type="SCPSAPModel.Contribuyente" Role="Contribuyente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Contribuyente">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contribuyente_Tarifa">
+          <End Type="SCPSAPModel.Tarifa" Role="Tarifa" Multiplicity="0..1" />
+          <End Type="SCPSAPModel.Contribuyente" Role="Contribuyente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tarifa">
+              <PropertyRef Name="IdTarifa" />
+            </Principal>
+            <Dependent Role="Contribuyente">
+              <PropertyRef Name="IdTarifa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UsuarioSistema_Rol">
+          <End Type="SCPSAPModel.UsuarioRol" Role="UsuarioRol" Multiplicity="0..1" />
+          <End Type="SCPSAPModel.UsuarioSistema" Role="UsuarioSistema" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsuarioRol">
+              <PropertyRef Name="IdRol" />
+            </Principal>
+            <Dependent Role="UsuarioSistema">
+              <PropertyRef Name="IdRol" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SCPSAPModelStoreContainer" CdmEntityContainer="SCPSAPEntities">
+          <EntitySetMapping Name="Contribuyentes">
+            <EntityTypeMapping TypeName="SCPSAPModel.Contribuyente">
+              <MappingFragment StoreEntitySet="Contribuyente">
+                <ScalarProperty Name="DiasGracia" ColumnName="DiasGracia" />
+                <ScalarProperty Name="FechaLimitePago" ColumnName="FechaLimitePago" />
+                <ScalarProperty Name="FechaUltimoAviso" ColumnName="FechaUltimoAviso" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IdTarifa" ColumnName="IdTarifa" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdContribuyente" ColumnName="IdContribuyente" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estadoes">
+            <EntityTypeMapping TypeName="SCPSAPModel.Estado">
+              <MappingFragment StoreEntitySet="Estado">
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tarifas">
+            <EntityTypeMapping TypeName="SCPSAPModel.Tarifa">
+              <MappingFragment StoreEntitySet="Tarifa">
+                <ScalarProperty Name="MontoMensual" ColumnName="MontoMensual" />
+                <ScalarProperty Name="NombreTarifa" ColumnName="NombreTarifa" />
+                <ScalarProperty Name="IdTarifa" ColumnName="IdTarifa" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="UsuarioRols">
             <EntityTypeMapping TypeName="SCPSAPModel.UsuarioRol">
               <MappingFragment StoreEntitySet="UsuarioRol">
-                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="UsuarioSistemas">
             <EntityTypeMapping TypeName="SCPSAPModel.UsuarioSistema">
               <MappingFragment StoreEntitySet="UsuarioSistema">
-                <ScalarProperty Name="IdUsuarioSistema" ColumnName="IdUsuarioSistema" />
-                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
-                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
-                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
                 <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="IdRol" ColumnName="IdRol" />
+                <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
+                <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
+                <ScalarProperty Name="IdUsuarioSistema" ColumnName="IdUsuarioSistema" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

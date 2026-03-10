@@ -12,18 +12,19 @@ namespace Datos
     using System;
     using System.Collections.Generic;
     
-    public partial class UsuarioRol
+    public partial class Tarifa
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UsuarioRol()
+        public Tarifa()
         {
-            this.UsuarioSistemas = new HashSet<UsuarioSistema>();
+            this.Contribuyentes = new HashSet<Contribuyente>();
         }
     
-        public int IdRol { get; set; }
-        public string Descripcion { get; set; }
+        public int IdTarifa { get; set; }
+        public string NombreTarifa { get; set; }
+        public decimal MontoMensual { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UsuarioSistema> UsuarioSistemas { get; set; }
+        public virtual ICollection<Contribuyente> Contribuyentes { get; set; }
     }
 }

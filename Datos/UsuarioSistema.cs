@@ -19,5 +19,7 @@ namespace Datos
         public string PasswordHash { get; set; }
         public Nullable<int> IdRol { get; set; }
         public Nullable<bool> Activo { get; set; }
+    
+        public virtual UsuarioRol UsuarioRol { get; set; }
     }
 }

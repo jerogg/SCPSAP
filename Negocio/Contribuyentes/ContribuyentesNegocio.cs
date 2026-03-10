@@ -1,28 +1,32 @@
-﻿using System;
+﻿using Datos;
+using Datos.Contribuyentes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Datos.Contribuyentes
+namespace Negocio.Contribuyentes
 {
-    public class ContribuyentesDatos
+    public class ContribuyentesNegocio
     {
-        SCPSAPEntities SCPSAPEntities = new SCPSAPEntities();
+        // Instancia de la capa de datos
+        ContribuyentesDatos contribuyentesDatos = new ContribuyentesDatos();
 
         /// <summary>
-        /// Obtiene todos los contribuyentes desde Entity Framework.
+        /// Obtiene la lista de contribuyentes delegando a la capa de datos.
         /// </summary>
         public List<Contribuyente> ObtenerContribuyentes()
         {
             try
             {
-                return SCPSAPEntities.Contribuyentes.ToList();
+                return contribuyentesDatos.ObtenerContribuyentes();
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
+
     }
 }

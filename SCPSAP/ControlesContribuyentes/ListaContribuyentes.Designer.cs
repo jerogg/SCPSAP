@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvListaContribuyentes = new System.Windows.Forms.DataGridView();
             this.lblListadoDeContribuyentes = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
             this.txbNombre = new System.Windows.Forms.TextBox();
@@ -47,19 +47,19 @@
             this.btnGuardar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnActualizar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaContribuyentes)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvListaContribuyentes
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvListaContribuyentes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 53);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(586, 240);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvListaContribuyentes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvListaContribuyentes.Location = new System.Drawing.Point(3, 53);
+            this.dgvListaContribuyentes.Name = "dgvListaContribuyentes";
+            this.dgvListaContribuyentes.Size = new System.Drawing.Size(586, 240);
+            this.dgvListaContribuyentes.TabIndex = 0;
             // 
             // lblListadoDeContribuyentes
             // 
@@ -251,10 +251,11 @@
             this.Controls.Add(this.txbNombre);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.lblListadoDeContribuyentes);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvListaContribuyentes);
             this.Name = "ListaContribuyentes";
             this.Size = new System.Drawing.Size(592, 504);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            this.Load += new System.EventHandler(this.ListaContribuyentes_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaContribuyentes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -262,7 +263,7 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvListaContribuyentes;
         private System.Windows.Forms.Label lblListadoDeContribuyentes;
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.TextBox txbNombre;
