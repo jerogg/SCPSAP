@@ -61,14 +61,16 @@
             this.splitContainerMenuPrincipal.FixedPanel = System.Windows.Forms.FixedPanel.Panel1;
             this.splitContainerMenuPrincipal.IsSplitterFixed = true;
             this.splitContainerMenuPrincipal.Location = new System.Drawing.Point(0, 0);
+            this.splitContainerMenuPrincipal.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.splitContainerMenuPrincipal.Name = "splitContainerMenuPrincipal";
             // 
             // splitContainerMenuPrincipal.Panel1
             // 
             this.splitContainerMenuPrincipal.Panel1.Controls.Add(this.flowLayoutPanelOpcionesMenu);
             this.splitContainerMenuPrincipal.Panel1.Controls.Add(this.lblMenu);
-            this.splitContainerMenuPrincipal.Size = new System.Drawing.Size(906, 575);
+            this.splitContainerMenuPrincipal.Size = new System.Drawing.Size(1208, 708);
             this.splitContainerMenuPrincipal.SplitterDistance = 266;
+            this.splitContainerMenuPrincipal.SplitterWidth = 5;
             this.splitContainerMenuPrincipal.TabIndex = 0;
             // 
             // flowLayoutPanelOpcionesMenu
@@ -83,18 +85,20 @@
             this.flowLayoutPanelOpcionesMenu.Controls.Add(this.pnlEgresos);
             this.flowLayoutPanelOpcionesMenu.Controls.Add(this.pnlConfiguracion);
             this.flowLayoutPanelOpcionesMenu.FlowDirection = System.Windows.Forms.FlowDirection.TopDown;
-            this.flowLayoutPanelOpcionesMenu.Location = new System.Drawing.Point(3, 36);
+            this.flowLayoutPanelOpcionesMenu.Location = new System.Drawing.Point(4, 44);
+            this.flowLayoutPanelOpcionesMenu.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.flowLayoutPanelOpcionesMenu.Name = "flowLayoutPanelOpcionesMenu";
-            this.flowLayoutPanelOpcionesMenu.Size = new System.Drawing.Size(260, 536);
+            this.flowLayoutPanelOpcionesMenu.Size = new System.Drawing.Size(258, 660);
             this.flowLayoutPanelOpcionesMenu.TabIndex = 1;
             // 
             // pnlContribuyentes
             // 
             this.pnlContribuyentes.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.pnlContribuyentes.Controls.Add(this.btnMenuContribuyentes);
-            this.pnlContribuyentes.Location = new System.Drawing.Point(3, 3);
+            this.pnlContribuyentes.Location = new System.Drawing.Point(4, 4);
+            this.pnlContribuyentes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlContribuyentes.Name = "pnlContribuyentes";
-            this.pnlContribuyentes.Size = new System.Drawing.Size(253, 39);
+            this.pnlContribuyentes.Size = new System.Drawing.Size(337, 48);
             this.pnlContribuyentes.TabIndex = 0;
             // 
             // btnMenuContribuyentes
@@ -102,8 +106,9 @@
             this.btnMenuContribuyentes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnMenuContribuyentes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMenuContribuyentes.Location = new System.Drawing.Point(0, 0);
+            this.btnMenuContribuyentes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnMenuContribuyentes.Name = "btnMenuContribuyentes";
-            this.btnMenuContribuyentes.Size = new System.Drawing.Size(253, 39);
+            this.btnMenuContribuyentes.Size = new System.Drawing.Size(337, 48);
             this.btnMenuContribuyentes.TabIndex = 1;
             this.btnMenuContribuyentes.Text = "Contribuyentes";
             this.btnMenuContribuyentes.UseVisualStyleBackColor = true;
@@ -112,9 +117,10 @@
             // pnlCobranza
             // 
             this.pnlCobranza.Controls.Add(this.btnMenuCobranza);
-            this.pnlCobranza.Location = new System.Drawing.Point(3, 48);
+            this.pnlCobranza.Location = new System.Drawing.Point(4, 60);
+            this.pnlCobranza.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlCobranza.Name = "pnlCobranza";
-            this.pnlCobranza.Size = new System.Drawing.Size(253, 39);
+            this.pnlCobranza.Size = new System.Drawing.Size(337, 48);
             this.pnlCobranza.TabIndex = 1;
             // 
             // btnMenuCobranza
@@ -122,8 +128,9 @@
             this.btnMenuCobranza.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnMenuCobranza.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMenuCobranza.Location = new System.Drawing.Point(0, 0);
+            this.btnMenuCobranza.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnMenuCobranza.Name = "btnMenuCobranza";
-            this.btnMenuCobranza.Size = new System.Drawing.Size(253, 39);
+            this.btnMenuCobranza.Size = new System.Drawing.Size(337, 48);
             this.btnMenuCobranza.TabIndex = 2;
             this.btnMenuCobranza.Text = "Cobranza";
             this.btnMenuCobranza.UseVisualStyleBackColor = true;
@@ -131,9 +138,10 @@
             // pnlReportes
             // 
             this.pnlReportes.Controls.Add(this.btnMenuReportes);
-            this.pnlReportes.Location = new System.Drawing.Point(3, 93);
+            this.pnlReportes.Location = new System.Drawing.Point(4, 116);
+            this.pnlReportes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlReportes.Name = "pnlReportes";
-            this.pnlReportes.Size = new System.Drawing.Size(253, 39);
+            this.pnlReportes.Size = new System.Drawing.Size(337, 48);
             this.pnlReportes.TabIndex = 2;
             // 
             // btnMenuReportes
@@ -141,8 +149,9 @@
             this.btnMenuReportes.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnMenuReportes.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMenuReportes.Location = new System.Drawing.Point(0, 0);
+            this.btnMenuReportes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnMenuReportes.Name = "btnMenuReportes";
-            this.btnMenuReportes.Size = new System.Drawing.Size(253, 39);
+            this.btnMenuReportes.Size = new System.Drawing.Size(337, 48);
             this.btnMenuReportes.TabIndex = 3;
             this.btnMenuReportes.Text = "Reportes";
             this.btnMenuReportes.UseVisualStyleBackColor = true;
@@ -151,9 +160,10 @@
             // pnlInventario
             // 
             this.pnlInventario.Controls.Add(this.btnMenuInventario);
-            this.pnlInventario.Location = new System.Drawing.Point(3, 138);
+            this.pnlInventario.Location = new System.Drawing.Point(4, 172);
+            this.pnlInventario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlInventario.Name = "pnlInventario";
-            this.pnlInventario.Size = new System.Drawing.Size(253, 39);
+            this.pnlInventario.Size = new System.Drawing.Size(337, 48);
             this.pnlInventario.TabIndex = 3;
             // 
             // btnMenuInventario
@@ -161,8 +171,9 @@
             this.btnMenuInventario.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnMenuInventario.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMenuInventario.Location = new System.Drawing.Point(0, 0);
+            this.btnMenuInventario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnMenuInventario.Name = "btnMenuInventario";
-            this.btnMenuInventario.Size = new System.Drawing.Size(253, 39);
+            this.btnMenuInventario.Size = new System.Drawing.Size(337, 48);
             this.btnMenuInventario.TabIndex = 4;
             this.btnMenuInventario.Text = "Inventario";
             this.btnMenuInventario.UseVisualStyleBackColor = true;
@@ -170,9 +181,10 @@
             // pnlEgresos
             // 
             this.pnlEgresos.Controls.Add(this.btnMenuEgresos);
-            this.pnlEgresos.Location = new System.Drawing.Point(3, 183);
+            this.pnlEgresos.Location = new System.Drawing.Point(4, 228);
+            this.pnlEgresos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlEgresos.Name = "pnlEgresos";
-            this.pnlEgresos.Size = new System.Drawing.Size(253, 39);
+            this.pnlEgresos.Size = new System.Drawing.Size(337, 48);
             this.pnlEgresos.TabIndex = 4;
             // 
             // btnMenuEgresos
@@ -180,8 +192,9 @@
             this.btnMenuEgresos.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnMenuEgresos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMenuEgresos.Location = new System.Drawing.Point(0, 0);
+            this.btnMenuEgresos.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnMenuEgresos.Name = "btnMenuEgresos";
-            this.btnMenuEgresos.Size = new System.Drawing.Size(253, 39);
+            this.btnMenuEgresos.Size = new System.Drawing.Size(337, 48);
             this.btnMenuEgresos.TabIndex = 5;
             this.btnMenuEgresos.Text = "Egresos";
             this.btnMenuEgresos.UseVisualStyleBackColor = true;
@@ -189,9 +202,10 @@
             // pnlConfiguracion
             // 
             this.pnlConfiguracion.Controls.Add(this.btnConfiguracion);
-            this.pnlConfiguracion.Location = new System.Drawing.Point(3, 228);
+            this.pnlConfiguracion.Location = new System.Drawing.Point(4, 284);
+            this.pnlConfiguracion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.pnlConfiguracion.Name = "pnlConfiguracion";
-            this.pnlConfiguracion.Size = new System.Drawing.Size(253, 39);
+            this.pnlConfiguracion.Size = new System.Drawing.Size(337, 48);
             this.pnlConfiguracion.TabIndex = 5;
             // 
             // btnConfiguracion
@@ -199,8 +213,9 @@
             this.btnConfiguracion.Dock = System.Windows.Forms.DockStyle.Fill;
             this.btnConfiguracion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnConfiguracion.Location = new System.Drawing.Point(0, 0);
+            this.btnConfiguracion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnConfiguracion.Name = "btnConfiguracion";
-            this.btnConfiguracion.Size = new System.Drawing.Size(253, 39);
+            this.btnConfiguracion.Size = new System.Drawing.Size(337, 48);
             this.btnConfiguracion.TabIndex = 6;
             this.btnConfiguracion.Text = "Configuración";
             this.btnConfiguracion.UseVisualStyleBackColor = true;
@@ -211,19 +226,21 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lblMenu.AutoSize = true;
             this.lblMenu.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMenu.Location = new System.Drawing.Point(99, 9);
+            this.lblMenu.Location = new System.Drawing.Point(132, 11);
+            this.lblMenu.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblMenu.Name = "lblMenu";
-            this.lblMenu.Size = new System.Drawing.Size(63, 24);
+            this.lblMenu.Size = new System.Drawing.Size(77, 29);
             this.lblMenu.TabIndex = 0;
             this.lblMenu.Text = "Menu";
             this.lblMenu.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // MenuPrincipal
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(906, 575);
+            this.ClientSize = new System.Drawing.Size(1208, 708);
             this.Controls.Add(this.splitContainerMenuPrincipal);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "MenuPrincipal";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Menu principal";

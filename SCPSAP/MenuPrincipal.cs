@@ -1,6 +1,4 @@
-﻿using SCPSAP.Contribuyentes;
-using SCPSAP.Reportes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,6 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Datos;
+using SCPSAP.Contribuyentes;
+using SCPSAP.Reportes;
+
+
 
 namespace SCPSAP
 {
@@ -21,11 +24,14 @@ namespace SCPSAP
 
         private void btnMenuContribuyentes_Click(object sender, EventArgs e)
         {
+            
             splitContainerMenuPrincipal.Panel2.Controls.Clear();
             ListaContribuyentes contribuyentes = new ListaContribuyentes();
             contribuyentes.Dock = DockStyle.Fill;
             splitContainerMenuPrincipal.Panel2.Controls.Add(contribuyentes);
+
         }
+
 
         private void btnMenuReportes_Click(object sender, EventArgs e)
         {

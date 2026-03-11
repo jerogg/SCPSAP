@@ -56,17 +56,20 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvListaContribuyentes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvListaContribuyentes.Location = new System.Drawing.Point(3, 53);
+            this.dgvListaContribuyentes.Location = new System.Drawing.Point(4, 65);
+            this.dgvListaContribuyentes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.dgvListaContribuyentes.Name = "dgvListaContribuyentes";
-            this.dgvListaContribuyentes.Size = new System.Drawing.Size(586, 240);
+            this.dgvListaContribuyentes.RowHeadersWidth = 51;
+            this.dgvListaContribuyentes.Size = new System.Drawing.Size(781, 295);
             this.dgvListaContribuyentes.TabIndex = 0;
             // 
             // lblListadoDeContribuyentes
             // 
             this.lblListadoDeContribuyentes.AutoSize = true;
-            this.lblListadoDeContribuyentes.Location = new System.Drawing.Point(4, 23);
+            this.lblListadoDeContribuyentes.Location = new System.Drawing.Point(5, 28);
+            this.lblListadoDeContribuyentes.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblListadoDeContribuyentes.Name = "lblListadoDeContribuyentes";
-            this.lblListadoDeContribuyentes.Size = new System.Drawing.Size(173, 13);
+            this.lblListadoDeContribuyentes.Size = new System.Drawing.Size(214, 16);
             this.lblListadoDeContribuyentes.TabIndex = 1;
             this.lblListadoDeContribuyentes.Text = "LISTADO DE CONTRIBUYENTES";
             // 
@@ -74,71 +77,79 @@
             // 
             this.lblNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblNombre.AutoSize = true;
-            this.lblNombre.Location = new System.Drawing.Point(20, 315);
+            this.lblNombre.Location = new System.Drawing.Point(27, 388);
+            this.lblNombre.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNombre.Name = "lblNombre";
-            this.lblNombre.Size = new System.Drawing.Size(47, 13);
+            this.lblNombre.Size = new System.Drawing.Size(59, 16);
             this.lblNombre.TabIndex = 2;
             this.lblNombre.Text = "Nombre:";
             // 
             // txbNombre
             // 
             this.txbNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txbNombre.Location = new System.Drawing.Point(70, 311);
+            this.txbNombre.Location = new System.Drawing.Point(93, 383);
+            this.txbNombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txbNombre.Name = "txbNombre";
-            this.txbNombre.Size = new System.Drawing.Size(206, 20);
+            this.txbNombre.Size = new System.Drawing.Size(273, 22);
             this.txbNombre.TabIndex = 3;
             // 
             // txbDireccion
             // 
             this.txbDireccion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txbDireccion.Location = new System.Drawing.Point(70, 350);
+            this.txbDireccion.Location = new System.Drawing.Point(93, 431);
+            this.txbDireccion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txbDireccion.Name = "txbDireccion";
-            this.txbDireccion.Size = new System.Drawing.Size(206, 20);
+            this.txbDireccion.Size = new System.Drawing.Size(273, 22);
             this.txbDireccion.TabIndex = 5;
             // 
             // lblDireccion
             // 
             this.lblDireccion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblDireccion.AutoSize = true;
-            this.lblDireccion.Location = new System.Drawing.Point(12, 354);
+            this.lblDireccion.Location = new System.Drawing.Point(16, 436);
+            this.lblDireccion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDireccion.Name = "lblDireccion";
-            this.lblDireccion.Size = new System.Drawing.Size(55, 13);
+            this.lblDireccion.Size = new System.Drawing.Size(67, 16);
             this.lblDireccion.TabIndex = 4;
             this.lblDireccion.Text = "Dirección:";
             // 
             // txbTelefono
             // 
             this.txbTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txbTelefono.Location = new System.Drawing.Point(70, 389);
+            this.txbTelefono.Location = new System.Drawing.Point(93, 479);
+            this.txbTelefono.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txbTelefono.Name = "txbTelefono";
-            this.txbTelefono.Size = new System.Drawing.Size(206, 20);
+            this.txbTelefono.Size = new System.Drawing.Size(273, 22);
             this.txbTelefono.TabIndex = 7;
             // 
             // lblTelefono
             // 
             this.lblTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTelefono.AutoSize = true;
-            this.lblTelefono.Location = new System.Drawing.Point(15, 393);
+            this.lblTelefono.Location = new System.Drawing.Point(20, 484);
+            this.lblTelefono.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTelefono.Name = "lblTelefono";
-            this.lblTelefono.Size = new System.Drawing.Size(52, 13);
+            this.lblTelefono.Size = new System.Drawing.Size(64, 16);
             this.lblTelefono.TabIndex = 6;
             this.lblTelefono.Text = "Teléfono:";
             // 
             // txbEmail
             // 
             this.txbEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txbEmail.Location = new System.Drawing.Point(70, 430);
+            this.txbEmail.Location = new System.Drawing.Point(93, 529);
+            this.txbEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.txbEmail.Name = "txbEmail";
-            this.txbEmail.Size = new System.Drawing.Size(206, 20);
+            this.txbEmail.Size = new System.Drawing.Size(273, 22);
             this.txbEmail.TabIndex = 9;
             // 
             // lblEmail
             // 
             this.lblEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(32, 434);
+            this.lblEmail.Location = new System.Drawing.Point(43, 534);
+            this.lblEmail.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(35, 13);
+            this.lblEmail.Size = new System.Drawing.Size(44, 16);
             this.lblEmail.TabIndex = 8;
             this.lblEmail.Text = "Email:";
             // 
@@ -146,9 +157,10 @@
             // 
             this.lblTarifa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTarifa.AutoSize = true;
-            this.lblTarifa.Location = new System.Drawing.Point(367, 315);
+            this.lblTarifa.Location = new System.Drawing.Point(489, 388);
+            this.lblTarifa.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTarifa.Name = "lblTarifa";
-            this.lblTarifa.Size = new System.Drawing.Size(37, 13);
+            this.lblTarifa.Size = new System.Drawing.Size(45, 16);
             this.lblTarifa.TabIndex = 10;
             this.lblTarifa.Text = "Tarifa:";
             // 
@@ -156,9 +168,10 @@
             // 
             this.lblDiasDeGracia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDiasDeGracia.AutoSize = true;
-            this.lblDiasDeGracia.Location = new System.Drawing.Point(322, 355);
+            this.lblDiasDeGracia.Location = new System.Drawing.Point(429, 437);
+            this.lblDiasDeGracia.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDiasDeGracia.Name = "lblDiasDeGracia";
-            this.lblDiasDeGracia.Size = new System.Drawing.Size(82, 13);
+            this.lblDiasDeGracia.Size = new System.Drawing.Size(100, 16);
             this.lblDiasDeGracia.TabIndex = 12;
             this.lblDiasDeGracia.Text = "Días de Gracia:";
             // 
@@ -166,9 +179,10 @@
             // 
             this.lblEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEstado.AutoSize = true;
-            this.lblEstado.Location = new System.Drawing.Point(361, 394);
+            this.lblEstado.Location = new System.Drawing.Point(481, 485);
+            this.lblEstado.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(43, 13);
+            this.lblEstado.Size = new System.Drawing.Size(53, 16);
             this.lblEstado.TabIndex = 14;
             this.lblEstado.Text = "Estado:";
             // 
@@ -176,35 +190,40 @@
             // 
             this.cbxTarifa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxTarifa.FormattingEnabled = true;
-            this.cbxTarifa.Location = new System.Drawing.Point(407, 312);
+            this.cbxTarifa.Location = new System.Drawing.Point(543, 384);
+            this.cbxTarifa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbxTarifa.Name = "cbxTarifa";
-            this.cbxTarifa.Size = new System.Drawing.Size(165, 21);
+            this.cbxTarifa.Size = new System.Drawing.Size(219, 24);
             this.cbxTarifa.TabIndex = 16;
+            this.cbxTarifa.SelectedIndexChanged += new System.EventHandler(this.cbxTarifa_SelectedIndexChanged);
             // 
             // cbxDiasDeGracia
             // 
             this.cbxDiasDeGracia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxDiasDeGracia.FormattingEnabled = true;
-            this.cbxDiasDeGracia.Location = new System.Drawing.Point(407, 351);
+            this.cbxDiasDeGracia.Location = new System.Drawing.Point(543, 432);
+            this.cbxDiasDeGracia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbxDiasDeGracia.Name = "cbxDiasDeGracia";
-            this.cbxDiasDeGracia.Size = new System.Drawing.Size(165, 21);
+            this.cbxDiasDeGracia.Size = new System.Drawing.Size(219, 24);
             this.cbxDiasDeGracia.TabIndex = 17;
             // 
             // cbxEstado
             // 
             this.cbxEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxEstado.FormattingEnabled = true;
-            this.cbxEstado.Location = new System.Drawing.Point(407, 390);
+            this.cbxEstado.Location = new System.Drawing.Point(543, 480);
+            this.cbxEstado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.cbxEstado.Name = "cbxEstado";
-            this.cbxEstado.Size = new System.Drawing.Size(165, 21);
+            this.cbxEstado.Size = new System.Drawing.Size(219, 24);
             this.cbxEstado.TabIndex = 18;
             // 
             // btnGuardar
             // 
             this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGuardar.Location = new System.Drawing.Point(507, 470);
+            this.btnGuardar.Location = new System.Drawing.Point(676, 578);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.Size = new System.Drawing.Size(100, 28);
             this.btnGuardar.TabIndex = 19;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
@@ -212,9 +231,10 @@
             // btnNuevo
             // 
             this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnNuevo.Location = new System.Drawing.Point(426, 470);
+            this.btnNuevo.Location = new System.Drawing.Point(568, 578);
+            this.btnNuevo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(75, 23);
+            this.btnNuevo.Size = new System.Drawing.Size(100, 28);
             this.btnNuevo.TabIndex = 20;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = true;
@@ -222,16 +242,17 @@
             // btnActualizar
             // 
             this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnActualizar.Location = new System.Drawing.Point(345, 470);
+            this.btnActualizar.Location = new System.Drawing.Point(460, 578);
+            this.btnActualizar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(75, 23);
+            this.btnActualizar.Size = new System.Drawing.Size(100, 28);
             this.btnActualizar.TabIndex = 21;
             this.btnActualizar.Text = "Actualizar";
             this.btnActualizar.UseVisualStyleBackColor = true;
             // 
             // ListaContribuyentes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnActualizar);
             this.Controls.Add(this.btnNuevo);
@@ -252,8 +273,9 @@
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.lblListadoDeContribuyentes);
             this.Controls.Add(this.dgvListaContribuyentes);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "ListaContribuyentes";
-            this.Size = new System.Drawing.Size(592, 504);
+            this.Size = new System.Drawing.Size(789, 620);
             this.Load += new System.EventHandler(this.ListaContribuyentes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaContribuyentes)).EndInit();
             this.ResumeLayout(false);
