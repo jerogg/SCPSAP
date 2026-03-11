@@ -28,5 +28,41 @@ namespace Negocio.Contribuyentes
             }
         }
 
+        public List<Tarifa> ObtenerTarifas()
+        {
+            try
+            {
+                return contribuyentesDatos.ObtenerTarifas();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<Estado> ObtenerEstados()
+        {
+            try
+            {
+                return contribuyentesDatos.ObtenerEstados();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+        }
+
+        public Contribuyente ObtenerContribuyentePorId(int id)
+        {
+            try
+            {
+                return contribuyentesDatos.ObtenerContribuyentePorId(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

@@ -114,12 +114,12 @@
       <Schema Namespace="SCPSAPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="SCPSAPEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Contribuyentes" EntityType="SCPSAPModel.Contribuyente" />
-          <EntitySet Name="Estadoes" EntityType="SCPSAPModel.Estado" />
+          <EntitySet Name="Estados" EntityType="SCPSAPModel.Estado" />
           <EntitySet Name="Tarifas" EntityType="SCPSAPModel.Tarifa" />
           <EntitySet Name="UsuarioRols" EntityType="SCPSAPModel.UsuarioRol" />
           <EntitySet Name="UsuarioSistemas" EntityType="SCPSAPModel.UsuarioSistema" />
           <AssociationSet Name="FK_Contribuyente_Estado" Association="SCPSAPModel.FK_Contribuyente_Estado">
-            <End Role="Estado" EntitySet="Estadoes" />
+            <End Role="Estado" EntitySet="Estados" />
             <End Role="Contribuyente" EntitySet="Contribuyentes" />
           </AssociationSet>
           <AssociationSet Name="FK_Contribuyente_Tarifa" Association="SCPSAPModel.FK_Contribuyente_Tarifa">
@@ -244,7 +244,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Estadoes">
+          <EntitySetMapping Name="Estados">
             <EntityTypeMapping TypeName="SCPSAPModel.Estado">
               <MappingFragment StoreEntitySet="Estado">
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />

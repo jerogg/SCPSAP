@@ -26,7 +26,7 @@ namespace Datos
         }
     
         public virtual DbSet<Contribuyente> Contribuyentes { get; set; }
-        public virtual DbSet<Estado> Estadoes { get; set; }
+        public virtual DbSet<Estado> Estados { get; set; }
         public virtual DbSet<Tarifa> Tarifas { get; set; }
         public virtual DbSet<UsuarioRol> UsuarioRols { get; set; }
         public virtual DbSet<UsuarioSistema> UsuarioSistemas { get; set; }

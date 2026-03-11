@@ -62,15 +62,15 @@ BEGIN
 (
     IdContribuyente INT NOT NULL PRIMARY KEY, -- Identificador único
     Nombre VARCHAR(150) NOT NULL,                           -- Nombre completo
-    Direccion VARCHAR(200) NULL,                            -- Dirección
+    Direccion VARCHAR(200) NOT NULL,                            -- Dirección
     Telefono VARCHAR(20) NULL,                              -- Teléfono
     FechaAlta DATETIME NOT NULL DEFAULT (GETDATE()),        -- Fecha de registro
     IdEstado INT NOT NULL,                                  -- FK a Estado (Activo/Suspendido/Baja)
-    IdTarifa INT NULL,                                      -- FK a Tarifa asignada
+    IdTarifa INT NOT NULL,                                      -- FK a Tarifa asignada
     Email VARCHAR(200) NULL,                                -- Correo electrónico para notificaciones
     FechaUltimoAviso DATETIME NULL,                         -- Fecha del último aviso enviado
     FechaLimitePago DATETIME NULL,                          -- Fecha máxima antes de suspensión
-    DiasGracia INT NULL,                                    -- Días permitidos antes de aplicar corte
+    DiasGracia INT NOT NULL,                                -- Días permitidos antes de aplicar corte
     CONSTRAINT FK_Contribuyente_Estado FOREIGN KEY (IdEstado) REFERENCES dbo.Estado(IdEstado),
     CONSTRAINT FK_Contribuyente_Tarifa FOREIGN KEY (IdTarifa) REFERENCES dbo.Tarifa(IdTarifa)
 );
