@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
+    <Compile Include="Configuracion\TarifaDatos.cs" />
     <Compile Include="Contribuyente.cs">
       <DependentUpon>ModelSCPSAP.tt</DependentUpon>
     </Compile>
