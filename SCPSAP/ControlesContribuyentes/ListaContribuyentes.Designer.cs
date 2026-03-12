@@ -48,9 +48,9 @@
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.pnlDatosUsuario = new System.Windows.Forms.Panel();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.lblFolio = new System.Windows.Forms.Label();
             this.txbFolio = new System.Windows.Forms.TextBox();
+            this.lblFolio = new System.Windows.Forms.Label();
+            this.btnCancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaContribuyentes)).BeginInit();
             this.pnlDatosUsuario.SuspendLayout();
             this.SuspendLayout();
@@ -273,17 +273,13 @@
             this.pnlDatosUsuario.Size = new System.Drawing.Size(584, 159);
             this.pnlDatosUsuario.TabIndex = 22;
             // 
-            // btnCancelar
+            // txbFolio
             // 
-            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnCancelar.Enabled = false;
-            this.btnCancelar.Location = new System.Drawing.Point(168, 459);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 23;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            this.txbFolio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbFolio.Location = new System.Drawing.Point(403, 127);
+            this.txbFolio.Name = "txbFolio";
+            this.txbFolio.Size = new System.Drawing.Size(165, 20);
+            this.txbFolio.TabIndex = 20;
             // 
             // lblFolio
             // 
@@ -295,13 +291,17 @@
             this.lblFolio.TabIndex = 19;
             this.lblFolio.Text = "Folio:";
             // 
-            // txbFolio
+            // btnCancelar
             // 
-            this.txbFolio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbFolio.Location = new System.Drawing.Point(403, 127);
-            this.txbFolio.Name = "txbFolio";
-            this.txbFolio.Size = new System.Drawing.Size(165, 20);
-            this.txbFolio.TabIndex = 20;
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCancelar.Enabled = false;
+            this.btnCancelar.Location = new System.Drawing.Point(168, 459);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 23;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // ListaContribuyentes
             // 

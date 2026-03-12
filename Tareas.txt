@@ -26,3 +26,14 @@ Tareas para martes 10 de marzo 2026
 7 - Al seleccionar un contribuyente y dar clic en el boton actualizar se deben mostrar los datos del contribuyente en su respectivo campo
 8 - Se debe guardar los cambios que se hagan al contribuyente
 9 - Se debe poder guardar nuevos contribuyentes y ver como se agregan en el grid.
+
+
+Tareas para jueves 12 de marzo 2026
+
+Contribuyentes
+1 - En contribuyentes implementar la funcionalidad para que se pueden eliminar los contribuyentes, para esto se debe agregar un boton de eliminar en cada fila del grid y al dar clic en el boton se debe eliminar el contribuyente seleccionado.
+2 - Agregar un campo de busqueda para filtrar los contribuyentes por nombre o por folio, el filtro se debe aplicar al dar clic en un boton de buscar y se deben mostrar los resultados en el grid.
+
+Configuracion
+1 - En configuracion implementar la funcionalidad para que se puedan agregar, editar y eliminar las tarifas. mostrar las tarifas en un grid y agregar un boton de eliminar en cada fila del grid para eliminar la tarifa seleccionada, agregar un boton de editar para editar la tarifa seleccionada y agregar un boton de agregar para agregar una nueva tarifa. similar a como se hace en contribuyentes.
+2 - En configuracion implementar la funcionalidad para que se puedan agregar, editar y eliminar los usuarios. mostrar los usuarios en un grid y agregar un boton de eliminar en cada fila del grid para eliminar el usuario seleccionado, agregar un boton de editar para editar el usuario seleccionado y agregar un boton de agregar para agregar un nuevo usuario. similar a como se hace en contribuyentes.

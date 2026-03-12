@@ -1,4 +1,8 @@
-﻿using System;
+﻿using Datos;
+using SCPSAP.Contribuyentes;
+using SCPSAP.ControlesConfiguracion;
+using SCPSAP.Reportes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,9 +11,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Datos;
-using SCPSAP.Contribuyentes;
-using SCPSAP.Reportes;
 
 
 
@@ -39,6 +40,14 @@ namespace SCPSAP
             UC_Reporte reporte = new UC_Reporte();
             reporte.Dock = DockStyle.Fill;
             splitContainerMenuPrincipal.Panel2.Controls.Add(reporte);
+        }
+
+        private void btnConfiguracion_Click(object sender, EventArgs e)
+        {
+            splitContainerMenuPrincipal.Panel2.Controls.Clear();
+            Configuracion configuracion = new Configuracion();
+            configuracion.Dock = DockStyle.Fill;
+            splitContainerMenuPrincipal.Panel2.Controls.Add(configuracion);
         }
     }
 }

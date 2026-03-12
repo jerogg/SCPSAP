@@ -204,6 +204,7 @@
             this.btnConfiguracion.TabIndex = 6;
             this.btnConfiguracion.Text = "Configuración";
             this.btnConfiguracion.UseVisualStyleBackColor = true;
+            this.btnConfiguracion.Click += new System.EventHandler(this.btnConfiguracion_Click);
             // 
             // lblMenu
             // 
