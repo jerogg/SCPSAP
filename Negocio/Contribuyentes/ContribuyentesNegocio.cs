@@ -64,5 +64,32 @@ namespace Negocio.Contribuyentes
                 throw new Exception(ex.Message);
             }
         }
+
+            public bool AgregarContribuyente(Contribuyente nuevoContribuyente)
+            {
+                try
+                {
+                    nuevoContribuyente.FechaAlta = DateTime.Now; // Establece la fecha de registro al momento de agregar
+                    nuevoContribuyente.FechaLimitePago = DateTime.Now.AddDays((double)nuevoContribuyente.DiasGracia); // Establece el estado inicial (activo)
+
+                return contribuyentesDatos.AgregarContribuyente(nuevoContribuyente);
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception(ex.Message);
+            }
+        }
+
+        public bool ActualizarContribuyente(Contribuyente contribuyenteActualizado)
+        {
+            try
+            {
+                return contribuyentesDatos.ActualizarContribuyente(contribuyenteActualizado);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

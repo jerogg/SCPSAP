@@ -59,7 +59,7 @@
             // txbUsuario
             // 
             this.txbUsuario.Location = new System.Drawing.Point(105, 28);
-            this.txbUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.txbUsuario.Name = "txbUsuario";
             this.txbUsuario.Size = new System.Drawing.Size(135, 20);
             this.txbUsuario.TabIndex = 2;
@@ -67,15 +67,16 @@
             // txbContraseña
             // 
             this.txbContraseña.Location = new System.Drawing.Point(105, 56);
-            this.txbContraseña.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbContraseña.Margin = new System.Windows.Forms.Padding(2);
             this.txbContraseña.Name = "txbContraseña";
+            this.txbContraseña.PasswordChar = '*';
             this.txbContraseña.Size = new System.Drawing.Size(135, 20);
             this.txbContraseña.TabIndex = 3;
             // 
             // btnOk
             // 
             this.btnOk.Location = new System.Drawing.Point(169, 92);
-            this.btnOk.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnOk.Margin = new System.Windows.Forms.Padding(2);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(50, 25);
             this.btnOk.TabIndex = 4;
@@ -86,7 +87,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Location = new System.Drawing.Point(223, 92);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(60, 25);
             this.btnCancelar.TabIndex = 5;
@@ -105,9 +106,10 @@
             this.Controls.Add(this.txbUsuario);
             this.Controls.Add(this.lblContraseña);
             this.Controls.Add(this.lblUsuario);
-            this.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
             this.Name = "Login";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();

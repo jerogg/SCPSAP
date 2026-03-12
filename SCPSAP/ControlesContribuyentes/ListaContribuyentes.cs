@@ -5,9 +5,11 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Datos;
 using Negocio.Contribuyentes;
 
 
@@ -19,6 +21,8 @@ namespace SCPSAP.Contribuyentes
 
         // Id seleccionado actualmente en el DataGridView
         private int _idContribuyenteSeleccionado = 0;
+
+        private bool esNuevo = false; // Para distinguir entre nuevo y actualización
 
         public ListaContribuyentes()
         {
@@ -104,7 +108,10 @@ namespace SCPSAP.Contribuyentes
                 {
                     _idContribuyenteSeleccionado = id;
                     pnlDatosUsuario.Enabled = true;
-
+                    btnNuevo.Enabled = false;
+                    btnActualizar.Enabled = false;
+                    btnCancelar.Enabled = true;
+                    btnGuardar.Enabled = true;
                     // Aquí podrías cargar los datos completos del contribuyente en los controles:
                     CargarContribuyenteEnControles(_idContribuyenteSeleccionado);
                 }
@@ -121,12 +128,48 @@ namespace SCPSAP.Contribuyentes
 
         private void btnNuevo_Click(object sender, EventArgs e)
         {
+            esNuevo = true;
             pnlDatosUsuario.Enabled = true;
+            btnActualizar.Enabled = false;
+            btnNuevo.Enabled = false;
+            btnCancelar.Enabled = true;
+            btnGuardar.Enabled = true;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
+            Contribuyente contribuyente = new Contribuyente();
+
             pnlDatosUsuario.Enabled = false;
+            btnNuevo.Enabled = true;
+            btnActualizar.Enabled = true;
+            btnCancelar.Enabled = false;
+
+            contribuyente.IdContribuyente = int.Parse(txbFolio.Text);
+            contribuyente.Nombre = txbNombre.Text;
+            contribuyente.Direccion = txbDireccion.Text;
+            contribuyente.Telefono = txbTelefono.Text;
+            contribuyente.Email = txbEmail.Text;
+            contribuyente.IdTarifa = cbxTarifa.SelectedValue != null ? (int?)cbxTarifa.SelectedValue : null;
+            contribuyente.IdEstado = cbxEstado.SelectedValue != null ? (int)cbxEstado.SelectedValue : 0;
+            contribuyente.DiasGracia = cbxDiasDeGracia.SelectedIndex >= 0 ? (int?)new[] { 30, 60, 90 }[cbxDiasDeGracia.SelectedIndex] : null;
+
+            // Aquí deberías implementar la lógica para guardar los datos del contribuyente (nuevo o actualizado)
+            if (esNuevo == false)
+            {
+                // Lógica para actualizar el contribuyente existente
+                contribuyentesNegocio.ActualizarContribuyente(contribuyente);
+
+                MessageBox.Show("Se actualizo correctamente datos del contribuyente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                // Lógica para agregar un nuevo contribuyente
+                contribuyentesNegocio.AgregarContribuyente(contribuyente);
+                MessageBox.Show("Se agrego nuevo contribuyente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            CargarContribuyentes();
+            LimpiarControles();
         }
 
         // Evento que dispara la actualización del estado del botón
@@ -216,6 +259,7 @@ namespace SCPSAP.Contribuyentes
                 var contribuyente = contribuyentesNegocio.ObtenerContribuyentePorId(idContribuyente);
                 if (contribuyente != null)
                 {
+                    txbFolio.Text = contribuyente.IdContribuyente.ToString();
                     txbNombre.Text = contribuyente.Nombre;
                     txbDireccion.Text = contribuyente.Direccion;
                     txbTelefono.Text = contribuyente.Telefono;
@@ -267,6 +311,30 @@ namespace SCPSAP.Contribuyentes
                 MessageBox.Show(ex.Message, "Error al cargar datos del contribuyente", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+        }
+
+        private void btnCancelar_Click(object sender, EventArgs e)
+        {
+            LimpiarControles();
+        }
+
+        private void LimpiarControles()
+        {
+            // Limpiar controles y restablecer estado
+            pnlDatosUsuario.Enabled = false;
+            btnNuevo.Enabled = true;
+            btnActualizar.Enabled = true;
+            btnCancelar.Enabled = false;
+            _idContribuyenteSeleccionado = 0;
+            txbNombre.Clear();
+            txbDireccion.Clear();
+            txbTelefono.Clear();
+            txbEmail.Clear();
+            cbxTarifa.SelectedIndex = -1;
+            cbxEstado.SelectedIndex = -1;
+            cbxDiasDeGracia.SelectedIndex = -1;
+            esNuevo = false;
+            btnGuardar.Enabled = false;
         }
     }
 }

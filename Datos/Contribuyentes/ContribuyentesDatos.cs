@@ -61,5 +61,44 @@ namespace Datos.Contribuyentes
                 throw new Exception(ex.Message);
             }
         }
+
+        public bool AgregarContribuyente(Contribuyente nuevoContribuyente)
+        {
+            try
+            {
+                SCPSAPEntities.Contribuyentes.Add(nuevoContribuyente);
+                SCPSAPEntities.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public bool ActualizarContribuyente(Contribuyente contribuyenteActualizado)
+        {
+            try
+            {
+                var contribuyenteExistente = SCPSAPEntities.Contribuyentes.FirstOrDefault(c => c.IdContribuyente == contribuyenteActualizado.IdContribuyente);
+                if (contribuyenteExistente != null)
+                {
+                    // Actualizar propiedades
+                    contribuyenteExistente.Nombre = contribuyenteActualizado.Nombre;
+                    contribuyenteExistente.Direccion = contribuyenteActualizado.Direccion;
+                    contribuyenteExistente.IdTarifa = contribuyenteActualizado.IdTarifa;
+                    contribuyenteExistente.IdEstado = contribuyenteActualizado.IdEstado;
+                    contribuyenteExistente.Telefono = contribuyenteActualizado.Telefono;
+                    contribuyenteExistente.Email = contribuyenteActualizado.Email;
+                    contribuyenteExistente.DiasGracia = contribuyenteActualizado.DiasGracia;
+                    SCPSAPEntities.SaveChanges();
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
