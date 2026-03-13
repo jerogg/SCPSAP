@@ -91,5 +91,17 @@ namespace Negocio.Contribuyentes
                 throw new Exception(ex.Message);
             }
         }
+
+        public bool ElimiContribuyente(int id)
+        {
+            try
+            {
+                return contribuyentesDatos.EliminarContribuyente(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
