@@ -1,22 +1,23 @@
-﻿using Datos;
-using Datos.Configuracion;
-using Datos.Contribuyentes;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Negocio.Configuracion
+namespace Datos.Configuracion
 {
-    public class TarifasNegocio
+    public class TarifasDatos
     {
-        TarifasDatos TarifasDatos = new TarifasDatos();
+        SCPSAPEntities SCPSAPEntities = new SCPSAPEntities();
+
+        /// <summary>
+        /// Obtiene todos los contribuyentes desde Entity Framework.
+        /// </summary>
         public List<Tarifa> ObtenerTarifas()
         {
             try
             {
-                return TarifasDatos.ObtenerTarifas();
+                return SCPSAPEntities.Tarifas.ToList();
             }
             catch (Exception ex)
             {

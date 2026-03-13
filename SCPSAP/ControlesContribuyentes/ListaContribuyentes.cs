@@ -336,5 +336,10 @@ namespace SCPSAP.Contribuyentes
             esNuevo = false;
             btnGuardar.Enabled = false;
         }
+
+        private void dgvListaContribuyentes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }
