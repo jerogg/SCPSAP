@@ -32,15 +32,29 @@
             this.tbcConfiguracion = new System.Windows.Forms.TabControl();
             this.tbTarifas = new System.Windows.Forms.TabPage();
             this.tbpUsuarios = new System.Windows.Forms.TabPage();
+            this.lblNombreUsuario = new System.Windows.Forms.Label();
+            this.dgvName = new System.Windows.Forms.DataGridView();
+            this.lblPassword = new System.Windows.Forms.Label();
+            this.lblRol = new System.Windows.Forms.Label();
+            this.txt_Nombre = new System.Windows.Forms.TextBox();
+            this.txt_Password = new System.Windows.Forms.TextBox();
+            this.txtRol = new System.Windows.Forms.TextBox();
+            this.btnActualizar = new System.Windows.Forms.Button();
+            this.btnNuevo = new System.Windows.Forms.Button();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
             this.tbcConfiguracion.SuspendLayout();
+            this.tbpUsuarios.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvName)).BeginInit();
             this.SuspendLayout();
             // 
             // lblConfiguracion
             // 
             this.lblConfiguracion.AutoSize = true;
-            this.lblConfiguracion.Location = new System.Drawing.Point(13, 9);
+            this.lblConfiguracion.Location = new System.Drawing.Point(17, 11);
+            this.lblConfiguracion.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblConfiguracion.Name = "lblConfiguracion";
-            this.lblConfiguracion.Size = new System.Drawing.Size(96, 13);
+            this.lblConfiguracion.Size = new System.Drawing.Size(118, 16);
             this.lblConfiguracion.TabIndex = 2;
             this.lblConfiguracion.Text = "CONFIGURACION";
             // 
@@ -51,41 +65,158 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.tbcConfiguracion.Controls.Add(this.tbTarifas);
             this.tbcConfiguracion.Controls.Add(this.tbpUsuarios);
-            this.tbcConfiguracion.Location = new System.Drawing.Point(3, 37);
+            this.tbcConfiguracion.Location = new System.Drawing.Point(4, 46);
+            this.tbcConfiguracion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbcConfiguracion.Name = "tbcConfiguracion";
             this.tbcConfiguracion.SelectedIndex = 0;
-            this.tbcConfiguracion.Size = new System.Drawing.Size(764, 467);
+            this.tbcConfiguracion.Size = new System.Drawing.Size(1019, 575);
             this.tbcConfiguracion.TabIndex = 3;
             // 
             // tbTarifas
             // 
-            this.tbTarifas.Location = new System.Drawing.Point(4, 22);
+            this.tbTarifas.Location = new System.Drawing.Point(4, 25);
+            this.tbTarifas.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbTarifas.Name = "tbTarifas";
-            this.tbTarifas.Padding = new System.Windows.Forms.Padding(3);
-            this.tbTarifas.Size = new System.Drawing.Size(756, 441);
+            this.tbTarifas.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbTarifas.Size = new System.Drawing.Size(1011, 546);
             this.tbTarifas.TabIndex = 0;
             this.tbTarifas.Text = "Tarifas";
             this.tbTarifas.UseVisualStyleBackColor = true;
             // 
             // tbpUsuarios
             // 
-            this.tbpUsuarios.Location = new System.Drawing.Point(4, 22);
+            this.tbpUsuarios.Controls.Add(this.btnGuardar);
+            this.tbpUsuarios.Controls.Add(this.btnCancelar);
+            this.tbpUsuarios.Controls.Add(this.btnNuevo);
+            this.tbpUsuarios.Controls.Add(this.btnActualizar);
+            this.tbpUsuarios.Controls.Add(this.txtRol);
+            this.tbpUsuarios.Controls.Add(this.txt_Password);
+            this.tbpUsuarios.Controls.Add(this.txt_Nombre);
+            this.tbpUsuarios.Controls.Add(this.lblRol);
+            this.tbpUsuarios.Controls.Add(this.lblPassword);
+            this.tbpUsuarios.Controls.Add(this.dgvName);
+            this.tbpUsuarios.Controls.Add(this.lblNombreUsuario);
+            this.tbpUsuarios.Location = new System.Drawing.Point(4, 25);
+            this.tbpUsuarios.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tbpUsuarios.Name = "tbpUsuarios";
-            this.tbpUsuarios.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpUsuarios.Size = new System.Drawing.Size(756, 441);
+            this.tbpUsuarios.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tbpUsuarios.Size = new System.Drawing.Size(1011, 546);
             this.tbpUsuarios.TabIndex = 1;
             this.tbpUsuarios.Text = "Usuarios";
             this.tbpUsuarios.UseVisualStyleBackColor = true;
             // 
+            // lblNombreUsuario
+            // 
+            this.lblNombreUsuario.AutoSize = true;
+            this.lblNombreUsuario.Location = new System.Drawing.Point(30, 239);
+            this.lblNombreUsuario.Name = "lblNombreUsuario";
+            this.lblNombreUsuario.Size = new System.Drawing.Size(56, 16);
+            this.lblNombreUsuario.TabIndex = 0;
+            this.lblNombreUsuario.Text = "Nombre";
+            this.lblNombreUsuario.Click += new System.EventHandler(this.lblNombreUsuario_Click);
+            // 
+            // dgvName
+            // 
+            this.dgvName.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvName.Location = new System.Drawing.Point(12, 19);
+            this.dgvName.Name = "dgvName";
+            this.dgvName.RowHeadersWidth = 51;
+            this.dgvName.RowTemplate.Height = 24;
+            this.dgvName.Size = new System.Drawing.Size(978, 166);
+            this.dgvName.TabIndex = 1;
+            this.dgvName.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvName_CellContentClick);
+            // 
+            // lblPassword
+            // 
+            this.lblPassword.AutoSize = true;
+            this.lblPassword.Location = new System.Drawing.Point(30, 280);
+            this.lblPassword.Name = "lblPassword";
+            this.lblPassword.Size = new System.Drawing.Size(67, 16);
+            this.lblPassword.TabIndex = 2;
+            this.lblPassword.Text = "Password";
+            // 
+            // lblRol
+            // 
+            this.lblRol.AutoSize = true;
+            this.lblRol.Location = new System.Drawing.Point(30, 332);
+            this.lblRol.Name = "lblRol";
+            this.lblRol.Size = new System.Drawing.Size(28, 16);
+            this.lblRol.TabIndex = 3;
+            this.lblRol.Text = "Rol";
+            this.lblRol.Click += new System.EventHandler(this.lblRol_Click);
+            // 
+            // txt_Nombre
+            // 
+            this.txt_Nombre.Location = new System.Drawing.Point(208, 232);
+            this.txt_Nombre.Name = "txt_Nombre";
+            this.txt_Nombre.Size = new System.Drawing.Size(216, 22);
+            this.txt_Nombre.TabIndex = 5;
+            this.txt_Nombre.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            // 
+            // txt_Password
+            // 
+            this.txt_Password.Location = new System.Drawing.Point(208, 274);
+            this.txt_Password.Name = "txt_Password";
+            this.txt_Password.Size = new System.Drawing.Size(216, 22);
+            this.txt_Password.TabIndex = 6;
+            // 
+            // txtRol
+            // 
+            this.txtRol.Location = new System.Drawing.Point(208, 326);
+            this.txtRol.Name = "txtRol";
+            this.txtRol.Size = new System.Drawing.Size(216, 22);
+            this.txtRol.TabIndex = 7;
+            this.txtRol.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            // 
+            // btnActualizar
+            // 
+            this.btnActualizar.Location = new System.Drawing.Point(76, 428);
+            this.btnActualizar.Name = "btnActualizar";
+            this.btnActualizar.Size = new System.Drawing.Size(75, 23);
+            this.btnActualizar.TabIndex = 8;
+            this.btnActualizar.Text = "Actualizar";
+            this.btnActualizar.UseVisualStyleBackColor = true;
+            // 
+            // btnNuevo
+            // 
+            this.btnNuevo.Location = new System.Drawing.Point(208, 428);
+            this.btnNuevo.Name = "btnNuevo";
+            this.btnNuevo.Size = new System.Drawing.Size(75, 23);
+            this.btnNuevo.TabIndex = 9;
+            this.btnNuevo.Text = "Nuevo";
+            this.btnNuevo.UseVisualStyleBackColor = true;
+            // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Location = new System.Drawing.Point(338, 428);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelar.TabIndex = 10;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Location = new System.Drawing.Point(473, 428);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardar.TabIndex = 11;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            // 
             // Configuracion
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.tbcConfiguracion);
             this.Controls.Add(this.lblConfiguracion);
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "Configuracion";
-            this.Size = new System.Drawing.Size(770, 507);
+            this.Size = new System.Drawing.Size(1027, 624);
             this.tbcConfiguracion.ResumeLayout(false);
+            this.tbpUsuarios.ResumeLayout(false);
+            this.tbpUsuarios.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvName)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -97,5 +228,16 @@
         private System.Windows.Forms.TabControl tbcConfiguracion;
         private System.Windows.Forms.TabPage tbTarifas;
         private System.Windows.Forms.TabPage tbpUsuarios;
+        private System.Windows.Forms.Label lblNombreUsuario;
+        private System.Windows.Forms.DataGridView dgvName;
+        private System.Windows.Forms.Label lblPassword;
+        private System.Windows.Forms.Label lblRol;
+        private System.Windows.Forms.TextBox txt_Nombre;
+        private System.Windows.Forms.TextBox txtRol;
+        private System.Windows.Forms.TextBox txt_Password;
+        private System.Windows.Forms.Button btnNuevo;
+        private System.Windows.Forms.Button btnActualizar;
+        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Negocio.Login;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -16,5 +17,30 @@ namespace SCPSAP.ControlesConfiguracion
         {
             InitializeComponent();
         }
+
+        private void lblNombreUsuario_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblRol_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvName_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        } 
     }
 }
