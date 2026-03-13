@@ -18,7 +18,7 @@ public class UsuarioDatos
     /// <summary>
     /// Obtiene todos los contribuyentes desde Entity Framework.
     /// </summary>
-    public List<Contribuyente> ObtenerUsuario()
+    public List<UsuarioRol> ObtenerUsuario()
     {
         try
         {

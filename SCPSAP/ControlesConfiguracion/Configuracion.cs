@@ -26,11 +26,6 @@ namespace SCPSAP.ControlesConfiguracion
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void dgvConfiguracion_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
 

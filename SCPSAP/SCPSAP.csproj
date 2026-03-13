@@ -127,17 +127,17 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Imagenes\" />
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\Datos\Datos.csproj">
-      <Project>{CFE59E18-6599-4870-935C-5CA51CF53064}</Project>
+      <Project>{cfe59e18-6599-4870-935c-5ca51cf53064}</Project>
       <Name>Datos</Name>
     </ProjectReference>
     <ProjectReference Include="..\Negocio\Negocio.csproj">
       <Project>{ec3530a9-4dd8-4c4d-8771-b4e9e984348d}</Project>
       <Name>Negocio</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Imagenes\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

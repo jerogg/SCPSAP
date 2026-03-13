@@ -48,10 +48,10 @@
             this.txt_Nombre = new System.Windows.Forms.TextBox();
             this.txt_Password = new System.Windows.Forms.TextBox();
             this.txtRol = new System.Windows.Forms.TextBox();
-            this.btnActualizar = new System.Windows.Forms.Button();
-            this.btnNuevo = new System.Windows.Forms.Button();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnGuardar = new System.Windows.Forms.Button();
+            this.btnActualizarUsuario = new System.Windows.Forms.Button();
+            this.btnNuevoUsuario = new System.Windows.Forms.Button();
+            this.btnCancelarUsuario = new System.Windows.Forms.Button();
+            this.btnGuardarUsuario = new System.Windows.Forms.Button();
             this.tbcConfiguracion.SuspendLayout();
             this.tbpUsuarios.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvName)).BeginInit();
@@ -115,10 +115,10 @@
             // 
             // tbpUsuarios
             // 
-            this.tbpUsuarios.Controls.Add(this.btnGuardar);
-            this.tbpUsuarios.Controls.Add(this.btnCancelar);
-            this.tbpUsuarios.Controls.Add(this.btnNuevo);
-            this.tbpUsuarios.Controls.Add(this.btnActualizar);
+            this.tbpUsuarios.Controls.Add(this.btnGuardarUsuario);
+            this.tbpUsuarios.Controls.Add(this.btnCancelarUsuario);
+            this.tbpUsuarios.Controls.Add(this.btnNuevoUsuario);
+            this.tbpUsuarios.Controls.Add(this.btnActualizarUsuario);
             this.tbpUsuarios.Controls.Add(this.txtRol);
             this.tbpUsuarios.Controls.Add(this.txt_Password);
             this.tbpUsuarios.Controls.Add(this.txt_Nombre);
@@ -204,39 +204,39 @@
             // 
             // btnActualizar
             // 
-            this.btnActualizar.Location = new System.Drawing.Point(76, 428);
-            this.btnActualizar.Name = "btnActualizar";
-            this.btnActualizar.Size = new System.Drawing.Size(75, 23);
-            this.btnActualizar.TabIndex = 8;
-            this.btnActualizar.Text = "Actualizar";
-            this.btnActualizar.UseVisualStyleBackColor = true;
+            this.btnActualizarUsuario.Location = new System.Drawing.Point(76, 428);
+            this.btnActualizarUsuario.Name = "btnActualizar";
+            this.btnActualizarUsuario.Size = new System.Drawing.Size(75, 23);
+            this.btnActualizarUsuario.TabIndex = 8;
+            this.btnActualizarUsuario.Text = "Actualizar";
+            this.btnActualizarUsuario.UseVisualStyleBackColor = true;
             // 
             // btnNuevo
             // 
-            this.btnNuevo.Location = new System.Drawing.Point(208, 428);
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(75, 23);
-            this.btnNuevo.TabIndex = 9;
-            this.btnNuevo.Text = "Nuevo";
-            this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevoUsuario.Location = new System.Drawing.Point(208, 428);
+            this.btnNuevoUsuario.Name = "btnNuevo";
+            this.btnNuevoUsuario.Size = new System.Drawing.Size(75, 23);
+            this.btnNuevoUsuario.TabIndex = 9;
+            this.btnNuevoUsuario.Text = "Nuevo";
+            this.btnNuevoUsuario.UseVisualStyleBackColor = true;
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(338, 428);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 23);
-            this.btnCancelar.TabIndex = 10;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelarUsuario.Location = new System.Drawing.Point(338, 428);
+            this.btnCancelarUsuario.Name = "btnCancelar";
+            this.btnCancelarUsuario.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelarUsuario.TabIndex = 10;
+            this.btnCancelarUsuario.Text = "Cancelar";
+            this.btnCancelarUsuario.UseVisualStyleBackColor = true;
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(473, 428);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(75, 23);
-            this.btnGuardar.TabIndex = 11;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardarUsuario.Location = new System.Drawing.Point(473, 428);
+            this.btnGuardarUsuario.Name = "btnGuardar";
+            this.btnGuardarUsuario.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardarUsuario.TabIndex = 11;
+            this.btnGuardarUsuario.Text = "Guardar";
+            this.btnGuardarUsuario.UseVisualStyleBackColor = true;
             // 
             // lblNombreTarifa
             // 
@@ -364,10 +364,10 @@
         private System.Windows.Forms.Label lblNombreTarifa;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox txtNombre;
-        private System.Windows.Forms.Button btnActualizar;
+        private System.Windows.Forms.Button btnActualizarUsuario;
         private System.Windows.Forms.TextBox txtMonto_mensual;
-        private System.Windows.Forms.Button btnNuevo;
-        private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.Button btnNuevoUsuario;
+        private System.Windows.Forms.Button btnCancelarUsuario;
+        private System.Windows.Forms.Button btnGuardarUsuario;
     }
 }
