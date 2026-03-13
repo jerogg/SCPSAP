@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SCPSAP.Reportes
 {
-    public partial class UC_Reporte : UserControl
+    public partial class Reportes : UserControl
     {
-        public UC_Reporte()
+        public Reportes()
         {
             InitializeComponent();
         }

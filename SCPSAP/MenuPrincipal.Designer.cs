@@ -127,6 +127,7 @@
             this.btnMenuCobranza.TabIndex = 2;
             this.btnMenuCobranza.Text = "Cobranza";
             this.btnMenuCobranza.UseVisualStyleBackColor = true;
+            this.btnMenuCobranza.Click += new System.EventHandler(this.btnMenuCobranza_Click);
             // 
             // pnlReportes
             // 

@@ -1,5 +1,6 @@
 ﻿using Datos;
 using SCPSAP.Contribuyentes;
+using SCPSAP.ControlesCobranza;
 using SCPSAP.ControlesConfiguracion;
 using SCPSAP.Reportes;
 using System;
@@ -37,7 +38,7 @@ namespace SCPSAP
         private void btnMenuReportes_Click(object sender, EventArgs e)
         {
             splitContainerMenuPrincipal.Panel2.Controls.Clear();
-            UC_Reporte reporte = new UC_Reporte();
+            Reportes.Reportes reporte = new Reportes.Reportes();
             reporte.Dock = DockStyle.Fill;
             splitContainerMenuPrincipal.Panel2.Controls.Add(reporte);
         }
@@ -48,6 +49,14 @@ namespace SCPSAP
             Configuracion configuracion = new Configuracion();
             configuracion.Dock = DockStyle.Fill;
             splitContainerMenuPrincipal.Panel2.Controls.Add(configuracion);
+        }
+
+        private void btnMenuCobranza_Click(object sender, EventArgs e)
+        {
+            splitContainerMenuPrincipal.Panel2.Controls.Clear();
+            Cobranza cobranza = new Cobranza();
+            cobranza.Dock = DockStyle.Fill;
+            splitContainerMenuPrincipal.Panel2.Controls.Add(cobranza);
         }
     }
 }

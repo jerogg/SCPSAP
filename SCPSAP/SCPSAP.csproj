@@ -56,6 +56,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControlesCobranza\Cobranza.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesCobranza\Cobranza.Designer.cs">
+      <DependentUpon>Cobranza.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlesConfiguracion\Configuracion.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -82,12 +88,15 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Reportes\UC_Reporte.cs">
+    <Compile Include="ControlesReportes\Reportes.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Reportes\UC_Reporte.Designer.cs">
-      <DependentUpon>UC_Reporte.cs</DependentUpon>
+    <Compile Include="ControlesReportes\Reportes.Designer.cs">
+      <DependentUpon>Reportes.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="ControlesCobranza\Cobranza.resx">
+      <DependentUpon>Cobranza.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ControlesConfiguracion\Configuracion.resx">
       <DependentUpon>Configuracion.cs</DependentUpon>
     </EmbeddedResource>
@@ -109,8 +118,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Reportes\UC_Reporte.resx">
-      <DependentUpon>UC_Reporte.cs</DependentUpon>
+    <EmbeddedResource Include="ControlesReportes\Reportes.resx">
+      <DependentUpon>Reportes.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

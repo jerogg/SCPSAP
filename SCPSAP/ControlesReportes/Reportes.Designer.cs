@@ -1,6 +1,6 @@
 ﻿namespace SCPSAP.Reportes
 {
-    partial class UC_Reporte
+    partial class Reportes
     {
         /// <summary> 
         /// Variable del diseñador necesaria.
