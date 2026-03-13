@@ -339,7 +339,34 @@ namespace SCPSAP.Contribuyentes
 
         private void dgvListaContribuyentes_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+        }
 
+        private void dgvListaContribuyentes_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dgvListaContribuyentes.Columns["Eliminar"].Index && e.RowIndex >= 0)
+            {
+                int id = Convert.ToInt32(
+                    dgvListaContribuyentes.Rows[e.RowIndex].Cells["Folio"].Value
+                );
+
+                contribuyentesNegocio.ElimiContribuyente(id);
+
+                CargarContribuyentes();
+            }
+        }
+        private void EliminarContribuyente(int id)
+        {
+            using (SqlConnection conn = new SqlConnection("tuCadenaDeConexion"))
+            {
+                conn.Open();
+                string query = "DELETE FROM Contribuyentes WHERE Id = @Id";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                cmd.Parameters.AddWithValue("@Id", id);
+                cmd.ExecuteNonQuery();
+            }
+
+            contribuyentesNegocio.ElimiContribuyente(id);
         }
     }
-}
+    }
+

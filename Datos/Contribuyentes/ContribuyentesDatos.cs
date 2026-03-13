@@ -100,5 +100,26 @@ namespace Datos.Contribuyentes
                 throw new Exception(ex.Message);
             }
         }
+
+        public bool EliminarContribuyente(int id)
+        {
+            try
+            {
+                var contribuyente = SCPSAPEntities.Contribuyentes
+                                  .FirstOrDefault(c => c.IdContribuyente == id);
+
+                if (contribuyente != null)
+                {
+                    SCPSAPEntities.Contribuyentes.Remove(contribuyente);
+                    SCPSAPEntities.SaveChanges();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
