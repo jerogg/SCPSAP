@@ -51,17 +51,8 @@ namespace SCPSAP.Contribuyentes
                 var lista = contribuyentesNegocio.ObtenerContribuyentes();
 
                 // Enlaza columnas útiles al DataGridView (evita exponer navegación completa)
-                dgvListaContribuyentes.DataSource = lista
-                    .Select(c => new
-                    {
-                        Folio = c.IdContribuyente,
-                        c.Nombre,
-                        c.Direccion,
-                        c.Telefono,
-                        c.Email,
-                        FechaAlta = c.FechaAlta
-                    })
-                    .ToList();
+                dgvListaContribuyentes.DataSource = lista;
+
             }
             catch (Exception ex)
             {
@@ -232,9 +223,9 @@ namespace SCPSAP.Contribuyentes
             object valor = null;
 
             // Intentar obtener por el nombre de columna que usamos en la proyección
-            if (dgvListaContribuyentes.Columns.Contains("Folio"))
+            if (dgvListaContribuyentes.Columns.Contains("IdContribuyente"))
             {
-                valor = fila.Cells["Folio"].Value;
+                valor = fila.Cells["IdContribuyente"].Value;
             }
             else
             {
@@ -346,7 +337,7 @@ namespace SCPSAP.Contribuyentes
             if (e.ColumnIndex == dgvListaContribuyentes.Columns["Eliminar"].Index && e.RowIndex >= 0)
             {
                 int id = Convert.ToInt32(
-                    dgvListaContribuyentes.Rows[e.RowIndex].Cells["Folio"].Value
+                    dgvListaContribuyentes.Rows[e.RowIndex].Cells["IdContribuyente"].Value
                 );
 
                 contribuyentesNegocio.ElimiContribuyente(id);
@@ -354,20 +345,6 @@ namespace SCPSAP.Contribuyentes
                 CargarContribuyentes();
             }
         }
-        private void EliminarContribuyente(int id)
-        {
-            using (SqlConnection conn = new SqlConnection("tuCadenaDeConexion"))
-            {
-                conn.Open();
-                string query = "DELETE FROM Contribuyentes WHERE Id = @Id";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Id", id);
-                cmd.ExecuteNonQuery();
-            }
-
-            contribuyentesNegocio.ElimiContribuyente(id);
-        }
-
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
         {

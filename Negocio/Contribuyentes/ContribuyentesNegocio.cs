@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Entidades.Modelos;
 
 namespace Negocio.Contribuyentes
 {
@@ -16,7 +17,7 @@ namespace Negocio.Contribuyentes
         /// <summary>
         /// Obtiene la lista de contribuyentes delegando a la capa de datos.
         /// </summary>
-        public List<Contribuyente> ObtenerContribuyentes()
+        public List<ContribuyenteDto> ObtenerContribuyentes()
         {
             try
             {

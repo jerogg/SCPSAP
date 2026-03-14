@@ -88,6 +88,7 @@
             // 
             // lblTotalAPagar
             // 
+            this.lblTotalAPagar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTotalAPagar.AutoSize = true;
             this.lblTotalAPagar.Location = new System.Drawing.Point(16, 375);
             this.lblTotalAPagar.Name = "lblTotalAPagar";
@@ -97,6 +98,7 @@
             // 
             // txbTotalPagar
             // 
+            this.txbTotalPagar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txbTotalPagar.Enabled = false;
             this.txbTotalPagar.Location = new System.Drawing.Point(114, 371);
             this.txbTotalPagar.Name = "txbTotalPagar";
@@ -105,6 +107,7 @@
             // 
             // lblMetodoPago
             // 
+            this.lblMetodoPago.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblMetodoPago.AutoSize = true;
             this.lblMetodoPago.Location = new System.Drawing.Point(64, 410);
             this.lblMetodoPago.Name = "lblMetodoPago";
@@ -114,6 +117,7 @@
             // 
             // cbxMetodoPago
             // 
+            this.cbxMetodoPago.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.cbxMetodoPago.FormattingEnabled = true;
             this.cbxMetodoPago.Items.AddRange(new object[] {
             "Efectivo",
@@ -126,6 +130,7 @@
             // 
             // btnPagar
             // 
+            this.btnPagar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnPagar.Location = new System.Drawing.Point(562, 475);
             this.btnPagar.Name = "btnPagar";
             this.btnPagar.Size = new System.Drawing.Size(72, 23);

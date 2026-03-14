@@ -3,6 +3,7 @@
     <File Path="Tareas.txt" />
   </Folder>
   <Project Path="Datos/Datos.csproj" Id="cfe59e18-6599-4870-935c-5ca51cf53064" />
+  <Project Path="Entidades/Entidades.csproj" Id="15a7d7e7-4b77-46b8-b847-f5973bb92b41" />
   <Project Path="Negocio/Negocio.csproj" Id="ec3530a9-4dd8-4c4d-8771-b4e9e984348d" />
   <Project Path="SCPSAP/SCPSAP.csproj" Id="41a7ef9f-568b-4100-aeb3-c18dfe1d8b95" />
 </Solution>

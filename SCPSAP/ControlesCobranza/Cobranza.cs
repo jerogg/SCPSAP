@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static Entidades.Modelos;
 
 namespace SCPSAP.ControlesCobranza
 {
@@ -20,7 +21,7 @@ namespace SCPSAP.ControlesCobranza
         private Timer _filterTimer;
         private ListBox _lstResultados;
         private ContribuyentesNegocio _contribNeg;
-        private List<Contribuyente> _cacheContribuyentes;
+        private List<ContribuyenteDto> _cacheContribuyentes;
 
         // Evento opcional para quien use este control
         public event Action<Contribuyente> ContribuyenteSeleccionado;

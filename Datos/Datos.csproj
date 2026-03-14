@@ -94,7 +94,12 @@
       <DependentUpon>ModelSCPSAP.tt</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Entidades\Entidades.csproj">
+      <Project>{15a7d7e7-4b77-46b8-b847-f5973bb92b41}</Project>
+      <Name>Entidades</Name>
+    </ProjectReference>
+  </ItemGroup>
   <ItemGroup>
     <Content Include="ModelSCPSAP.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
