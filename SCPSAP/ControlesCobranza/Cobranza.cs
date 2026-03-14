@@ -24,7 +24,7 @@ namespace SCPSAP.ControlesCobranza
         private List<ContribuyenteDto> _cacheContribuyentes;
 
         // Evento opcional para quien use este control
-        public event Action<Contribuyente> ContribuyenteSeleccionado;
+        public event Action<ContribuyenteDto> ContribuyenteSeleccionado;
 
         public Cobranza()
         {
@@ -170,7 +170,7 @@ namespace SCPSAP.ControlesCobranza
 
         private void SelectCurrent()
         {
-            if (_lstResultados.SelectedItem is Contribuyente seleccionado)
+            if (_lstResultados.SelectedItem is ContribuyenteDto seleccionado)
             {
                 txbName.Text = seleccionado.Nombre;
                 _lstResultados.Visible = false;

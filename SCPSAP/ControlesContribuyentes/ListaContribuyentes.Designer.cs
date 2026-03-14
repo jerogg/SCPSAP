@@ -189,11 +189,11 @@
             // 
             this.lblTarifa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTarifa.AutoSize = true;
-            this.lblTarifa.Location = new System.Drawing.Point(363, 15);
+            this.lblTarifa.Location = new System.Drawing.Point(321, 15);
             this.lblTarifa.Name = "lblTarifa";
-            this.lblTarifa.Size = new System.Drawing.Size(37, 13);
+            this.lblTarifa.Size = new System.Drawing.Size(79, 13);
             this.lblTarifa.TabIndex = 10;
-            this.lblTarifa.Text = "Tarifa:";
+            this.lblTarifa.Text = "Tarifa mensual:";
             // 
             // lblDiasDeGracia
             // 
@@ -209,11 +209,11 @@
             // 
             this.lblEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEstado.AutoSize = true;
-            this.lblEstado.Location = new System.Drawing.Point(357, 94);
+            this.lblEstado.Location = new System.Drawing.Point(346, 94);
             this.lblEstado.Name = "lblEstado";
-            this.lblEstado.Size = new System.Drawing.Size(43, 13);
+            this.lblEstado.Size = new System.Drawing.Size(54, 13);
             this.lblEstado.TabIndex = 14;
-            this.lblEstado.Text = "Estado:";
+            this.lblEstado.Text = "Situacion:";
             // 
             // cbxTarifa
             // 
@@ -319,11 +319,11 @@
             // 
             this.lblFolio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFolio.AutoSize = true;
-            this.lblFolio.Location = new System.Drawing.Point(367, 131);
+            this.lblFolio.Location = new System.Drawing.Point(333, 131);
             this.lblFolio.Name = "lblFolio";
-            this.lblFolio.Size = new System.Drawing.Size(32, 13);
+            this.lblFolio.Size = new System.Drawing.Size(67, 13);
             this.lblFolio.TabIndex = 19;
-            this.lblFolio.Text = "Folio:";
+            this.lblFolio.Text = "Folio/Boleta:";
             // 
             // btnCancelar
             // 
