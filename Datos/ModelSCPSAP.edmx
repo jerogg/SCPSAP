@@ -5,6 +5,22 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SCPSAPModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Adeudo">
+          <Key>
+            <PropertyRef Name="IdAdeudo" />
+          </Key>
+          <Property Name="IdAdeudo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdContribuyente" Type="int" Nullable="false" />
+          <Property Name="Periodo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Concepto" Type="varchar" MaxLength="100" />
+          <Property Name="MontoOriginal" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="Recargo" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="OtrosCargos" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="TotalAdeudo" Type="decimal" Precision="10" Scale="2" StoreGeneratedPattern="Computed" />
+          <Property Name="Estado" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="FechaGeneracion" Type="datetime" Nullable="false" />
+          <Property Name="FechaVencimiento" Type="datetime" />
+        </EntityType>
         <EntityType Name="Contribuyente">
           <Key>
             <PropertyRef Name="IdContribuyente" />
@@ -53,6 +69,18 @@
           <Property Name="IdRol" Type="int" />
           <Property Name="Activo" Type="bit" />
         </EntityType>
+        <Association Name="FK_Adeudo_Contribuyente">
+          <End Role="Contribuyente" Type="Self.Contribuyente" Multiplicity="1" />
+          <End Role="Adeudo" Type="Self.Adeudo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contribuyente">
+              <PropertyRef Name="IdContribuyente" />
+            </Principal>
+            <Dependent Role="Adeudo">
+              <PropertyRef Name="IdContribuyente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Contribuyente_Estado">
           <End Role="Estado" Type="Self.Estado" Multiplicity="1" />
           <End Role="Contribuyente" Type="Self.Contribuyente" Multiplicity="*" />
@@ -90,11 +118,16 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SCPSAPModelStoreContainer">
+          <EntitySet Name="Adeudo" EntityType="Self.Adeudo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contribuyente" EntityType="Self.Contribuyente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tarifa" EntityType="Self.Tarifa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsuarioRol" EntityType="Self.UsuarioRol" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsuarioSistema" EntityType="Self.UsuarioSistema" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Adeudo_Contribuyente" Association="Self.FK_Adeudo_Contribuyente">
+            <End Role="Contribuyente" EntitySet="Contribuyente" />
+            <End Role="Adeudo" EntitySet="Adeudo" />
+          </AssociationSet>
           <AssociationSet Name="FK_Contribuyente_Estado" Association="Self.FK_Contribuyente_Estado">
             <End Role="Estado" EntitySet="Estado" />
             <End Role="Contribuyente" EntitySet="Contribuyente" />
@@ -130,6 +163,11 @@
             <End Role="UsuarioRol" EntitySet="UsuarioRols" />
             <End Role="UsuarioSistema" EntitySet="UsuarioSistemas" />
           </AssociationSet>
+          <EntitySet Name="Adeudos" EntityType="SCPSAPModel.Adeudo" />
+          <AssociationSet Name="FK_Adeudo_Contribuyente" Association="SCPSAPModel.FK_Adeudo_Contribuyente">
+            <End Role="Contribuyente" EntitySet="Contribuyentes" />
+            <End Role="Adeudo" EntitySet="Adeudos" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Contribuyente">
           <Key>
@@ -148,6 +186,7 @@
           <Property Name="DiasGracia" Type="Int32" />
           <NavigationProperty Name="Estado" Relationship="SCPSAPModel.FK_Contribuyente_Estado" FromRole="Contribuyente" ToRole="Estado" />
           <NavigationProperty Name="Tarifa" Relationship="SCPSAPModel.FK_Contribuyente_Tarifa" FromRole="Contribuyente" ToRole="Tarifa" />
+          <NavigationProperty Name="Adeudoes" Relationship="SCPSAPModel.FK_Adeudo_Contribuyente" FromRole="Contribuyente" ToRole="Adeudo" />
         </EntityType>
         <EntityType Name="Estado">
           <Key>
@@ -221,6 +260,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Adeudo">
+          <Key>
+            <PropertyRef Name="IdAdeudo" />
+          </Key>
+          <Property Name="IdAdeudo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdContribuyente" Type="Int32" Nullable="false" />
+          <Property Name="Periodo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Concepto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="MontoOriginal" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="Recargo" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="OtrosCargos" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="TotalAdeudo" Type="Decimal" Precision="10" Scale="2" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Estado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FechaGeneracion" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FechaVencimiento" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Contribuyente" Relationship="SCPSAPModel.FK_Adeudo_Contribuyente" FromRole="Adeudo" ToRole="Contribuyente" />
+        </EntityType>
+        <Association Name="FK_Adeudo_Contribuyente">
+          <End Type="SCPSAPModel.Contribuyente" Role="Contribuyente" Multiplicity="1" />
+          <End Type="SCPSAPModel.Adeudo" Role="Adeudo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contribuyente">
+              <PropertyRef Name="IdContribuyente" />
+            </Principal>
+            <Dependent Role="Adeudo">
+              <PropertyRef Name="IdContribuyente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -277,6 +345,23 @@
                 <ScalarProperty Name="PasswordHash" ColumnName="PasswordHash" />
                 <ScalarProperty Name="NombreUsuario" ColumnName="NombreUsuario" />
                 <ScalarProperty Name="IdUsuarioSistema" ColumnName="IdUsuarioSistema" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Adeudos">
+            <EntityTypeMapping TypeName="SCPSAPModel.Adeudo">
+              <MappingFragment StoreEntitySet="Adeudo">
+                <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
+                <ScalarProperty Name="FechaGeneracion" ColumnName="FechaGeneracion" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+                <ScalarProperty Name="TotalAdeudo" ColumnName="TotalAdeudo" />
+                <ScalarProperty Name="OtrosCargos" ColumnName="OtrosCargos" />
+                <ScalarProperty Name="Recargo" ColumnName="Recargo" />
+                <ScalarProperty Name="MontoOriginal" ColumnName="MontoOriginal" />
+                <ScalarProperty Name="Concepto" ColumnName="Concepto" />
+                <ScalarProperty Name="Periodo" ColumnName="Periodo" />
+                <ScalarProperty Name="IdContribuyente" ColumnName="IdContribuyente" />
+                <ScalarProperty Name="IdAdeudo" ColumnName="IdAdeudo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Datos;
+using Negocio.Cobranza;
+using Negocio.Contribuyentes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,13 +10,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Negocio.Contribuyentes;
-using Datos;
 
 namespace SCPSAP.ControlesCobranza
 {
     public partial class Cobranza : UserControl
     {
+        CobranzaNegocio cobranzaNegocio = new CobranzaNegocio();
+
         private Timer _filterTimer;
         private ListBox _lstResultados;
         private ContribuyentesNegocio _contribNeg;
@@ -171,6 +174,7 @@ namespace SCPSAP.ControlesCobranza
                 txbName.Text = seleccionado.Nombre;
                 _lstResultados.Visible = false;
                 ContribuyenteSeleccionado?.Invoke(seleccionado);
+                obtenerAdeudos(seleccionado.IdContribuyente);
             }
         }
 
@@ -178,6 +182,22 @@ namespace SCPSAP.ControlesCobranza
         public void ClearCache()
         {
             _cacheContribuyentes = null;
+        }
+
+        public void obtenerAdeudos(int Idcontribuyente)
+        {
+            try
+            {
+                
+                var adeudos = cobranzaNegocio.ObtenerAdeudosPorContribuyente(Idcontribuyente);
+                // Aquí puedes agregar código para mostrar los adeudos en tu UI, por ejemplo en un DataGridView.\
+
+                dgvAdeudos.DataSource = adeudos;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error al obtener adeudos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
     }
 }

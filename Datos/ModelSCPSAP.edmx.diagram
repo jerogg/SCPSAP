@@ -13,6 +13,8 @@
         <AssociationConnector Association="SCPSAPModel.FK_Contribuyente_Estado" />
         <AssociationConnector Association="SCPSAPModel.FK_Contribuyente_Tarifa" />
         <AssociationConnector Association="SCPSAPModel.FK_UsuarioSistema_Rol" />
+        <EntityTypeShape EntityType="SCPSAPModel.Adeudo" Width="2" PointX="5.25" PointY="4.25" />
+        <AssociationConnector Association="SCPSAPModel.FK_Adeudo_Contribuyente" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

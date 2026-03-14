@@ -76,3 +76,30 @@ BEGIN
 );
 END
 GO
+
+-- Script para crear la tabla Adeudo
+IF OBJECT_ID(N'dbo.Adeudo', N'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.Adeudo
+    (
+        IdAdeudo INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+        IdContribuyente INT NOT NULL,
+        Periodo VARCHAR(20) NOT NULL,
+        Concepto VARCHAR(100) NULL,
+        MontoOriginal DECIMAL(10,2) NOT NULL CONSTRAINT DF_Adeudo_MontoOriginal DEFAULT (0.00),
+        Recargo DECIMAL(10,2) NOT NULL CONSTRAINT DF_Adeudo_Recargo DEFAULT (0.00),
+        OtrosCargos DECIMAL(10,2) NOT NULL CONSTRAINT DF_Adeudo_OtrosCargos DEFAULT (0.00),
+        -- Total calculado para evitar desincronías; si prefieres almacenarlo, cámbialo a columna normal.
+        TotalAdeudo AS (CONVERT(DECIMAL(10,2), ISNULL(MontoOriginal,0) + ISNULL(Recargo,0) + ISNULL(OtrosCargos,0))) PERSISTED,
+        Estado VARCHAR(20) NOT NULL CONSTRAINT DF_Adeudo_Estado DEFAULT ('Pendiente'),
+        FechaGeneracion DATETIME NOT NULL CONSTRAINT DF_Adeudo_FechaGeneracion DEFAULT (GETDATE()),
+        FechaVencimiento DATETIME NULL,
+        CONSTRAINT FK_Adeudo_Contribuyente FOREIGN KEY (IdContribuyente) REFERENCES dbo.Contribuyentes (IdContribuyente)
+    );
+
+    CREATE INDEX IX_Adeudo_IdContribuyente ON dbo.Adeudo (IdContribuyente);
+    CREATE INDEX IX_Adeudo_FechaVencimiento ON dbo.Adeudo (FechaVencimiento);
+
+    ALTER TABLE dbo.Adeudo
+        ADD CONSTRAINT CK_Adeudo_Estado CHECK (Estado IN ('Pendiente','Pagado','Vencido'));
+END;

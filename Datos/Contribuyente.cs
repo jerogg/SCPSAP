@@ -14,6 +14,12 @@ namespace Datos
     
     public partial class Contribuyente
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Contribuyente()
+        {
+            this.Adeudoes = new HashSet<Adeudo>();
+        }
+    
         public int IdContribuyente { get; set; }
         public string Nombre { get; set; }
         public string Direccion { get; set; }
@@ -28,5 +34,7 @@ namespace Datos
     
         public virtual Estado Estado { get; set; }
         public virtual Tarifa Tarifa { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Adeudo> Adeudoes { get; set; }
     }
 }

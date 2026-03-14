@@ -32,13 +32,13 @@
             this.lblNombre = new System.Windows.Forms.Label();
             this.txbName = new System.Windows.Forms.TextBox();
             this.lblAdeudosPendientes = new System.Windows.Forms.Label();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.dgvAdeudos = new System.Windows.Forms.DataGridView();
             this.lblTotalAPagar = new System.Windows.Forms.Label();
             this.txbTotalPagar = new System.Windows.Forms.TextBox();
             this.lblMetodoPago = new System.Windows.Forms.Label();
             this.cbxMetodoPago = new System.Windows.Forms.ComboBox();
             this.btnPagar = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAdeudos)).BeginInit();
             this.SuspendLayout();
             // 
             // lblBuscarContribuyente
@@ -75,16 +75,16 @@
             this.lblAdeudosPendientes.TabIndex = 3;
             this.lblAdeudosPendientes.Text = "ADEUDOS PENDIENTES";
             // 
-            // dataGridView1
+            // dgvAdeudos
             // 
-            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvAdeudos.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(19, 131);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(615, 218);
-            this.dataGridView1.TabIndex = 4;
+            this.dgvAdeudos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAdeudos.Location = new System.Drawing.Point(19, 131);
+            this.dgvAdeudos.Name = "dgvAdeudos";
+            this.dgvAdeudos.Size = new System.Drawing.Size(615, 218);
+            this.dgvAdeudos.TabIndex = 4;
             // 
             // lblTotalAPagar
             // 
@@ -142,14 +142,14 @@
             this.Controls.Add(this.lblMetodoPago);
             this.Controls.Add(this.txbTotalPagar);
             this.Controls.Add(this.lblTotalAPagar);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvAdeudos);
             this.Controls.Add(this.lblAdeudosPendientes);
             this.Controls.Add(this.txbName);
             this.Controls.Add(this.lblNombre);
             this.Controls.Add(this.lblBuscarContribuyente);
             this.Name = "Cobranza";
             this.Size = new System.Drawing.Size(655, 510);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvAdeudos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -161,7 +161,7 @@
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.TextBox txbName;
         private System.Windows.Forms.Label lblAdeudosPendientes;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridView dgvAdeudos;
         private System.Windows.Forms.Label lblTotalAPagar;
         private System.Windows.Forms.TextBox txbTotalPagar;
         private System.Windows.Forms.Label lblMetodoPago;
