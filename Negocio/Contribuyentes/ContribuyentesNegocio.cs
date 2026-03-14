@@ -103,5 +103,11 @@ namespace Negocio.Contribuyentes
                 throw new Exception(ex.Message);
             }
         }
+
+        public List<Contribuyente> BuscarContribuyentes(string criterio)
+        {
+            ContribuyentesDatos datos = new ContribuyentesDatos();
+            return datos.BuscarContribuyentes(criterio);
+        }
     }
 }

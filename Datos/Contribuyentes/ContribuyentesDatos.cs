@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -121,5 +122,15 @@ namespace Datos.Contribuyentes
                 throw new Exception(ex.Message);
             }
         }
+
+        public List<Contribuyente> BuscarContribuyentes(string criterio)
+        {
+            List<Contribuyente> lista = SCPSAPEntities.Contribuyentes
+                .Where(x => x.Nombre.StartsWith(criterio)) 
+                .ToList();
+
+            return lista;
+        }
+    
     }
 }

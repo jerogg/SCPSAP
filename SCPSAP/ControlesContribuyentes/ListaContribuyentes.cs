@@ -367,6 +367,23 @@ namespace SCPSAP.Contribuyentes
 
             contribuyentesNegocio.ElimiContribuyente(id);
         }
+
+
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        {
+            string criterio = txbBuscar.Text.Trim();
+            ContribuyentesNegocio negocio = new ContribuyentesNegocio();
+            var lista = negocio.BuscarContribuyentes(criterio);
+
+            dgvListaContribuyentes.DataSource = lista;
+        }
+
+        private void dgvListaContribuyentes_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+
+        }
+
     }
-    }
+}
+    
 

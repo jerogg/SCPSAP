@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.dgvListaContribuyentes = new System.Windows.Forms.DataGridView();
+            this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.lblListadoDeContribuyentes = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
             this.txbNombre = new System.Windows.Forms.TextBox();
@@ -53,23 +54,18 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lblBuscar = new System.Windows.Forms.Label();
             this.txbBuscar = new System.Windows.Forms.TextBox();
-            this.btn = new System.Windows.Forms.Button();
-            this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaContribuyentes)).BeginInit();
             this.pnlDatosUsuario.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgvListaContribuyentes
             // 
-            this.dgvListaContribuyentes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvListaContribuyentes.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvListaContribuyentes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListaContribuyentes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Eliminar});
             this.dgvListaContribuyentes.Location = new System.Drawing.Point(4, 65);
-            this.dgvListaContribuyentes.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvListaContribuyentes.Margin = new System.Windows.Forms.Padding(4);
             this.dgvListaContribuyentes.MultiSelect = false;
             this.dgvListaContribuyentes.Name = "dgvListaContribuyentes";
             this.dgvListaContribuyentes.ReadOnly = true;
@@ -78,6 +74,17 @@
             this.dgvListaContribuyentes.TabIndex = 0;
             this.dgvListaContribuyentes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaContribuyentes_CellClick);
             this.dgvListaContribuyentes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaContribuyentes_CellContentClick);
+            this.dgvListaContribuyentes.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvListaContribuyentes_CellPainting);
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Eliminar.DataPropertyName = "btnEliminar";
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.MinimumWidth = 6;
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.ReadOnly = true;
+            this.Eliminar.Width = 61;
             // 
             // lblListadoDeContribuyentes
             // 
@@ -104,7 +111,7 @@
             // 
             this.txbNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txbNombre.Location = new System.Drawing.Point(87, 14);
-            this.txbNombre.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbNombre.Margin = new System.Windows.Forms.Padding(4);
             this.txbNombre.Name = "txbNombre";
             this.txbNombre.Size = new System.Drawing.Size(273, 22);
             this.txbNombre.TabIndex = 3;
@@ -113,7 +120,7 @@
             // 
             this.txbDireccion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txbDireccion.Location = new System.Drawing.Point(87, 62);
-            this.txbDireccion.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbDireccion.Margin = new System.Windows.Forms.Padding(4);
             this.txbDireccion.Name = "txbDireccion";
             this.txbDireccion.Size = new System.Drawing.Size(273, 22);
             this.txbDireccion.TabIndex = 5;
@@ -133,7 +140,7 @@
             // 
             this.txbTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txbTelefono.Location = new System.Drawing.Point(87, 110);
-            this.txbTelefono.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbTelefono.Margin = new System.Windows.Forms.Padding(4);
             this.txbTelefono.Name = "txbTelefono";
             this.txbTelefono.Size = new System.Drawing.Size(273, 22);
             this.txbTelefono.TabIndex = 7;
@@ -153,7 +160,7 @@
             // 
             this.txbEmail.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.txbEmail.Location = new System.Drawing.Point(87, 158);
-            this.txbEmail.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txbEmail.Name = "txbEmail";
             this.txbEmail.Size = new System.Drawing.Size(273, 22);
             this.txbEmail.TabIndex = 9;
@@ -207,7 +214,7 @@
             this.cbxTarifa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxTarifa.FormattingEnabled = true;
             this.cbxTarifa.Location = new System.Drawing.Point(537, 15);
-            this.cbxTarifa.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxTarifa.Margin = new System.Windows.Forms.Padding(4);
             this.cbxTarifa.Name = "cbxTarifa";
             this.cbxTarifa.Size = new System.Drawing.Size(219, 24);
             this.cbxTarifa.TabIndex = 16;
@@ -221,7 +228,7 @@
             "60",
             "90"});
             this.cbxDiasDeGracia.Location = new System.Drawing.Point(537, 63);
-            this.cbxDiasDeGracia.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxDiasDeGracia.Margin = new System.Windows.Forms.Padding(4);
             this.cbxDiasDeGracia.Name = "cbxDiasDeGracia";
             this.cbxDiasDeGracia.Size = new System.Drawing.Size(219, 24);
             this.cbxDiasDeGracia.TabIndex = 17;
@@ -231,7 +238,7 @@
             this.cbxEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxEstado.FormattingEnabled = true;
             this.cbxEstado.Location = new System.Drawing.Point(537, 111);
-            this.cbxEstado.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cbxEstado.Margin = new System.Windows.Forms.Padding(4);
             this.cbxEstado.Name = "cbxEstado";
             this.cbxEstado.Size = new System.Drawing.Size(219, 24);
             this.cbxEstado.TabIndex = 18;
@@ -241,7 +248,7 @@
             this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGuardar.Enabled = false;
             this.btnGuardar.Location = new System.Drawing.Point(680, 565);
-            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(100, 28);
             this.btnGuardar.TabIndex = 19;
@@ -253,7 +260,7 @@
             // 
             this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnNuevo.Location = new System.Drawing.Point(116, 565);
-            this.btnNuevo.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnNuevo.Margin = new System.Windows.Forms.Padding(4);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(100, 28);
             this.btnNuevo.TabIndex = 20;
@@ -266,7 +273,7 @@
             this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnActualizar.Enabled = false;
             this.btnActualizar.Location = new System.Drawing.Point(8, 565);
-            this.btnActualizar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnActualizar.Margin = new System.Windows.Forms.Padding(4);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(100, 28);
             this.btnActualizar.TabIndex = 21;
@@ -296,7 +303,7 @@
             this.pnlDatosUsuario.Controls.Add(this.lblNombre);
             this.pnlDatosUsuario.Enabled = false;
             this.pnlDatosUsuario.Location = new System.Drawing.Point(7, 356);
-            this.pnlDatosUsuario.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlDatosUsuario.Margin = new System.Windows.Forms.Padding(4);
             this.pnlDatosUsuario.Name = "pnlDatosUsuario";
             this.pnlDatosUsuario.Size = new System.Drawing.Size(779, 196);
             this.pnlDatosUsuario.TabIndex = 22;
@@ -305,7 +312,7 @@
             // 
             this.txbFolio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.txbFolio.Location = new System.Drawing.Point(537, 156);
-            this.txbFolio.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txbFolio.Margin = new System.Windows.Forms.Padding(4);
             this.txbFolio.Name = "txbFolio";
             this.txbFolio.Size = new System.Drawing.Size(219, 22);
             this.txbFolio.TabIndex = 20;
@@ -326,7 +333,7 @@
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancelar.Enabled = false;
             this.btnCancelar.Location = new System.Drawing.Point(224, 565);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(4);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 28);
             this.btnCancelar.TabIndex = 23;
@@ -338,7 +345,7 @@
             // 
             this.lblBuscar.AutoSize = true;
             this.lblBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.lblBuscar.Location = new System.Drawing.Point(414, 26);
+            this.lblBuscar.Location = new System.Drawing.Point(476, 24);
             this.lblBuscar.Name = "lblBuscar";
             this.lblBuscar.Size = new System.Drawing.Size(148, 17);
             this.lblBuscar.TabIndex = 24;
@@ -346,34 +353,16 @@
             // 
             // txbBuscar
             // 
-            this.txbBuscar.Location = new System.Drawing.Point(568, 20);
+            this.txbBuscar.Location = new System.Drawing.Point(630, 21);
             this.txbBuscar.Name = "txbBuscar";
             this.txbBuscar.Size = new System.Drawing.Size(133, 22);
             this.txbBuscar.TabIndex = 25;
-            // 
-            // btn
-            // 
-            this.btn.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.btn.Location = new System.Drawing.Point(705, 19);
-            this.btn.Name = "btn";
-            this.btn.Size = new System.Drawing.Size(75, 23);
-            this.btn.TabIndex = 26;
-            this.btn.Text = "Buscar";
-            this.btn.UseVisualStyleBackColor = true;
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.DataPropertyName = "btnEliminar";
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.MinimumWidth = 6;
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.ReadOnly = true;
+            this.txbBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
             // 
             // ListaContribuyentes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.btn);
             this.Controls.Add(this.txbBuscar);
             this.Controls.Add(this.lblBuscar);
             this.Controls.Add(this.btnCancelar);
@@ -383,7 +372,7 @@
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.lblListadoDeContribuyentes);
             this.Controls.Add(this.dgvListaContribuyentes);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ListaContribuyentes";
             this.Size = new System.Drawing.Size(789, 607);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaContribuyentes)).EndInit();
@@ -421,7 +410,6 @@
         private System.Windows.Forms.Label lblFolio;
         private System.Windows.Forms.Label lblBuscar;
         private System.Windows.Forms.TextBox txbBuscar;
-        private System.Windows.Forms.Button btn;
         private System.Windows.Forms.DataGridViewButtonColumn Eliminar;
     }
 }
