@@ -31,6 +31,11 @@ namespace SCPSAP.ControlesCobranza
             InitializeComponent();
             _contribNeg = new ContribuyentesNegocio();
             InitializeSearchControls();
+
+            // Eventos para manejar la selección (checkbox) en la grilla de adeudos
+            dgvAdeudos.CurrentCellDirtyStateChanged += DgvAdeudos_CurrentCellDirtyStateChanged;
+            dgvAdeudos.CellValueChanged += DgvAdeudos_CellValueChanged;
+            dgvAdeudos.DataBindingComplete += DgvAdeudos_DataBindingComplete;
         }
 
         // Inicializa los controles usados para búsqueda sin usar DataGridView.
@@ -130,6 +135,7 @@ namespace SCPSAP.ControlesCobranza
             {
                 e.Handled = true;
                 SelectCurrent();
+                _lstResultados.Visible = false;
             }
             else if (e.KeyCode == Keys.Escape)
             {
@@ -173,9 +179,9 @@ namespace SCPSAP.ControlesCobranza
             if (_lstResultados.SelectedItem is ContribuyenteDto seleccionado)
             {
                 txbName.Text = seleccionado.Nombre;
-                _lstResultados.Visible = false;
                 ContribuyenteSeleccionado?.Invoke(seleccionado);
                 obtenerAdeudos(seleccionado.IdContribuyente);
+                _lstResultados.Visible = false;
             }
         }
 
@@ -193,11 +199,104 @@ namespace SCPSAP.ControlesCobranza
                 var adeudos = cobranzaNegocio.ObtenerAdeudosPorContribuyente(Idcontribuyente);
 
                 dgvAdeudos.DataSource = adeudos;
+
+                // Asegurar que el total se recalcula al cargar nueva fuente
+                RecalcularTotalSeleccionado();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error al obtener adeudos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        // Cuando el usuario está editando la celda checkbox, commit para que CellValueChanged se dispare inmediatamente.
+        private void DgvAdeudos_CurrentCellDirtyStateChanged(object sender, EventArgs e)
+        {
+            if (dgvAdeudos.IsCurrentCellDirty && dgvAdeudos.CurrentCell is DataGridViewCheckBoxCell)
+            {
+                dgvAdeudos.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            }
+        }
+
+        // Cuando cambia valor de celda (checkbox), recalcular total.
+        private void DgvAdeudos_CellValueChanged(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
+
+            var col = dgvAdeudos.Columns[e.ColumnIndex];
+            if (string.Equals(col.Name, "Pagar", StringComparison.OrdinalIgnoreCase) ||
+                string.Equals(col.DataPropertyName, "Pagar", StringComparison.OrdinalIgnoreCase))
+            {
+                RecalcularTotalSeleccionado();
+            }
+        }
+
+        // Al completar el binding (carga de datos), asegurar checkboxes en falso y recalcular
+        private void DgvAdeudos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
+        {
+            try
+            {
+                // Asegurar que ninguna fila venga seleccionada para pagar por defecto
+                if (dgvAdeudos.Columns.Contains("Pagar"))
+                {
+                    foreach (DataGridViewRow row in dgvAdeudos.Rows)
+                    {
+                        var cell = row.Cells["Pagar"];
+                        if (cell != null)
+                        {
+                            if (cell.Value == null) cell.Value = false;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                // silencioso
+            }
+            RecalcularTotalSeleccionado();
+        }
+
+        // Suma los valores de la columna "TotalAdeudo" para las filas marcadas en "Pagar"
+        private void RecalcularTotalSeleccionado()
+        {
+            decimal total = 0m;
+
+            foreach (DataGridViewRow row in dgvAdeudos.Rows)
+            {
+                if (row.IsNewRow) continue;
+
+                bool marcar = false;
+                // Intentar leer la celda Pagar (checkbox)
+                if (dgvAdeudos.Columns.Contains("Pagar"))
+                {
+                    var pagarCell = row.Cells["Pagar"];
+                    if (pagarCell != null && pagarCell.Value != null)
+                    {
+                        // puede ser bool o int/decimal/string
+                        bool.TryParse(Convert.ToString(pagarCell.Value), out marcar);
+                    }
+                }
+
+                if (marcar)
+                {
+                    // Leer TotalAdeudo
+                    if (dgvAdeudos.Columns.Contains("TotalAdeudo"))
+                    {
+                        var totalCell = row.Cells["TotalAdeudo"];
+                        if (totalCell != null && totalCell.Value != null)
+                        {
+                            decimal valor;
+                            // Aceptar formatos numéricos y strings
+                            if (decimal.TryParse(Convert.ToString(totalCell.Value), out valor))
+                            {
+                                total += valor;
+                            }
+                        }
+                    }
+                }
+            }
+
+            txbTotalPagar.Text = total.ToString("N2");
         }
     }
 }

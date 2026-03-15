@@ -14,6 +14,12 @@ namespace Datos
     
     public partial class Adeudo
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public Adeudo()
+        {
+            this.DetallePagoes = new HashSet<DetallePago>();
+        }
+    
         public int IdAdeudo { get; set; }
         public int IdContribuyente { get; set; }
         public string Periodo { get; set; }
@@ -27,5 +33,7 @@ namespace Datos
         public Nullable<System.DateTime> FechaVencimiento { get; set; }
     
         public virtual Contribuyente Contribuyente { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DetallePago> DetallePagoes { get; set; }
     }
 }

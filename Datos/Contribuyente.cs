@@ -18,6 +18,7 @@ namespace Datos
         public Contribuyente()
         {
             this.Adeudoes = new HashSet<Adeudo>();
+            this.Pagoes = new HashSet<Pago>();
         }
     
         public int IdContribuyente { get; set; }
@@ -36,5 +37,7 @@ namespace Datos
         public virtual Tarifa Tarifa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Adeudo> Adeudoes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Pago> Pagoes { get; set; }
     }
 }

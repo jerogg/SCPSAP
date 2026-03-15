@@ -103,3 +103,39 @@ BEGIN
     ALTER TABLE dbo.Adeudo
         ADD CONSTRAINT CK_Adeudo_Estado CHECK (Estado IN ('Pendiente','Pagado','Vencido'));
 END;
+
+-- Crea tablas Pago y DetallePago con claves foráneas, índices y defaults.
+IF OBJECT_ID(N'dbo.Pago', N'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.Pago
+    (
+        IdPago INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+        IdContribuyente INT NOT NULL,
+        FechaPago DATETIME NOT NULL CONSTRAINT DF_Pago_FechaPago DEFAULT (GETDATE()),
+        TotalPagado DECIMAL(18,2) NOT NULL CONSTRAINT DF_Pago_TotalPagado DEFAULT (0.00),
+        MetodoPago VARCHAR(50) NULL,
+        IdUsuarioSistema INT NULL,
+        CONSTRAINT FK_Pago_Contribuyente FOREIGN KEY (IdContribuyente) REFERENCES dbo.Contribuyente (IdContribuyente),
+        CONSTRAINT FK_Pago_UsuarioSistema FOREIGN KEY (IdUsuarioSistema) REFERENCES dbo.UsuarioSistema (IdUsuarioSistema),
+        CONSTRAINT CK_Pago_MetodoPago CHECK (MetodoPago IS NULL OR MetodoPago IN ('Efectivo','Transferencia','Tarjeta'))
+    );
+
+    CREATE INDEX IX_Pago_IdContribuyente ON dbo.Pago (IdContribuyente);
+    CREATE INDEX IX_Pago_FechaPago ON dbo.Pago (FechaPago);
+END
+
+IF OBJECT_ID(N'dbo.DetallePago', N'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.DetallePago
+    (
+        IdDetallePago INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+        IdPago INT NOT NULL,
+        IdAdeudo INT NOT NULL,
+        MontoAplicado DECIMAL(10,2) NOT NULL CONSTRAINT DF_DetallePago_MontoAplicado DEFAULT (0.00),
+        CONSTRAINT FK_DetallePago_Pago FOREIGN KEY (IdPago) REFERENCES dbo.Pago (IdPago),
+        CONSTRAINT FK_DetallePago_Adeudo FOREIGN KEY (IdAdeudo) REFERENCES dbo.Adeudo (IdAdeudo)
+    );
+
+    CREATE INDEX IX_DetallePago_IdPago ON dbo.DetallePago (IdPago);
+    CREATE INDEX IX_DetallePago_IdAdeudo ON dbo.DetallePago (IdAdeudo);
+END
