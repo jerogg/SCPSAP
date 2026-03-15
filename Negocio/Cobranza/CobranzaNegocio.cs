@@ -11,7 +11,7 @@ namespace Negocio.Cobranza
     public class CobranzaNegocio
     {
         CobranzaDatos CobranzaDatos = new CobranzaDatos();
-        public List<Adeudo> ObtenerAdeudosPorContribuyente(int Idcontribuyente, string Estado)
+        public List<AdeudoContribuyente> ObtenerAdeudosPorContribuyente(int Idcontribuyente, string Estado)
         {
             try
             {

@@ -16,10 +16,10 @@ namespace Datos
     {
         public int IdDetallePago { get; set; }
         public int IdPago { get; set; }
-        public int IdAdeudo { get; set; }
+        public int IdAdeudoContribuyente { get; set; }
         public decimal MontoAplicado { get; set; }
     
-        public virtual Adeudo Adeudo { get; set; }
+        public virtual AdeudoContribuyente AdeudoContribuyente { get; set; }
         public virtual Pago Pago { get; set; }
     }
 }

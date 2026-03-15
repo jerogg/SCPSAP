@@ -52,9 +52,9 @@ namespace SCPSAP.ControlesCobranza
             }
 
             // Eventos para manejar la selección (checkbox) en la grilla de adeudos
-            dgvAdeudos.CurrentCellDirtyStateChanged += DgvAdeudos_CurrentCellDirtyStateChanged;
-            dgvAdeudos.CellValueChanged += DgvAdeudos_CellValueChanged;
-            dgvAdeudos.DataBindingComplete += DgvAdeudos_DataBindingComplete;
+            dgvAdeudosPorContribuyente.CurrentCellDirtyStateChanged += DgvAdeudos_CurrentCellDirtyStateChanged;
+            dgvAdeudosPorContribuyente.CellValueChanged += DgvAdeudos_CellValueChanged;
+            dgvAdeudosPorContribuyente.DataBindingComplete += DgvAdeudos_DataBindingComplete;
 
             // Botón pagar
             btnPagar.Click += BtnPagar_Click;
@@ -224,7 +224,7 @@ namespace SCPSAP.ControlesCobranza
 
                 var adeudos = cobranzaNegocio.ObtenerAdeudosPorContribuyente(Idcontribuyente, "Pendiente");
 
-                dgvAdeudos.DataSource = adeudos;
+                dgvAdeudosPorContribuyente.DataSource = adeudos;
 
                 // Asegurar que el total se recalcula al cargar nueva fuente
                 RecalcularTotalSeleccionado();
@@ -246,12 +246,12 @@ namespace SCPSAP.ControlesCobranza
                 // Recopilar detalles seleccionados
                 var detalles = new List<Tuple<int, decimal>>();
 
-                foreach (DataGridViewRow row in dgvAdeudos.Rows)
+                foreach (DataGridViewRow row in dgvAdeudosPorContribuyente.Rows)
                 {
                     if (row.IsNewRow) continue;
 
                     bool marcar = false;
-                    if (dgvAdeudos.Columns.Contains("Pagar"))
+                    if (dgvAdeudosPorContribuyente.Columns.Contains("Pagar"))
                     {
                         var c = row.Cells["Pagar"];
                         if (c != null && c.Value != null)
@@ -264,7 +264,7 @@ namespace SCPSAP.ControlesCobranza
 
                     // Obtener IdAdeudo
                     int idAdeudo = 0;
-                    if (dgvAdeudos.Columns.Contains("IdAdeudo"))
+                    if (dgvAdeudosPorContribuyente.Columns.Contains("IdAdeudo"))
                     {
                         var cellId = row.Cells["IdAdeudo"].Value;
                         if (cellId != null && int.TryParse(Convert.ToString(cellId), out int tmpId))
@@ -273,7 +273,7 @@ namespace SCPSAP.ControlesCobranza
 
                     // Obtener TotalAdeudo
                     decimal monto = 0m;
-                    if (dgvAdeudos.Columns.Contains("TotalAdeudo"))
+                    if (dgvAdeudosPorContribuyente.Columns.Contains("TotalAdeudo"))
                     {
                         var cellMonto = row.Cells["TotalAdeudo"].Value;
                         if (cellMonto != null && decimal.TryParse(Convert.ToString(cellMonto), out decimal tmpMonto))
@@ -303,7 +303,7 @@ namespace SCPSAP.ControlesCobranza
                 {
                     IdContribuyente = _currentContribuyenteId,
                     MetodoPago = cbxMetodoPago.SelectedItem != null ? cbxMetodoPago.SelectedItem.ToString() : cbxMetodoPago.Text,
-                    IdUsuarioSistema = null // ajusta si el sistema tiene sesión de usuario
+                    IdUsuarioSistema = Session.UsuarioId
                 };
 
                 // Ejecutar guardado en hilo de fondo para no bloquear UI
@@ -330,9 +330,9 @@ namespace SCPSAP.ControlesCobranza
         // Cuando el usuario está editando la celda checkbox, commit para que CellValueChanged se dispare inmediatamente.
         private void DgvAdeudos_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            if (dgvAdeudos.IsCurrentCellDirty && dgvAdeudos.CurrentCell is DataGridViewCheckBoxCell)
+            if (dgvAdeudosPorContribuyente.IsCurrentCellDirty && dgvAdeudosPorContribuyente.CurrentCell is DataGridViewCheckBoxCell)
             {
-                dgvAdeudos.CommitEdit(DataGridViewDataErrorContexts.Commit);
+                dgvAdeudosPorContribuyente.CommitEdit(DataGridViewDataErrorContexts.Commit);
             }
         }
 
@@ -341,7 +341,7 @@ namespace SCPSAP.ControlesCobranza
         {
             if (e.RowIndex < 0 || e.ColumnIndex < 0) return;
 
-            var col = dgvAdeudos.Columns[e.ColumnIndex];
+            var col = dgvAdeudosPorContribuyente.Columns[e.ColumnIndex];
             if (string.Equals(col.Name, "Pagar", StringComparison.OrdinalIgnoreCase) ||
                 string.Equals(col.DataPropertyName, "Pagar", StringComparison.OrdinalIgnoreCase))
             {
@@ -355,9 +355,9 @@ namespace SCPSAP.ControlesCobranza
             try
             {
                 // Asegurar que ninguna fila venga seleccionada para pagar por defecto
-                if (dgvAdeudos.Columns.Contains("Pagar"))
+                if (dgvAdeudosPorContribuyente.Columns.Contains("Pagar"))
                 {
-                    foreach (DataGridViewRow row in dgvAdeudos.Rows)
+                    foreach (DataGridViewRow row in dgvAdeudosPorContribuyente.Rows)
                     {
                         var cell = row.Cells["Pagar"];
                         if (cell != null)
@@ -382,13 +382,13 @@ namespace SCPSAP.ControlesCobranza
         {
             decimal total = 0m;
 
-            foreach (DataGridViewRow row in dgvAdeudos.Rows)
+            foreach (DataGridViewRow row in dgvAdeudosPorContribuyente.Rows)
             {
                 if (row.IsNewRow) continue;
 
                 bool marcar = false;
                 // Intentar leer la celda Pagar (checkbox)
-                if (dgvAdeudos.Columns.Contains("Pagar"))
+                if (dgvAdeudosPorContribuyente.Columns.Contains("Pagar"))
                 {
                     var pagarCell = row.Cells["Pagar"];
                     if (pagarCell != null && pagarCell.Value != null)
@@ -401,7 +401,7 @@ namespace SCPSAP.ControlesCobranza
                 if (marcar)
                 {
                     // Leer TotalAdeudo
-                    if (dgvAdeudos.Columns.Contains("TotalAdeudo"))
+                    if (dgvAdeudosPorContribuyente.Columns.Contains("TotalAdeudo"))
                     {
                         var totalCell = row.Cells["TotalAdeudo"];
                         if (totalCell != null && totalCell.Value != null)
@@ -425,9 +425,9 @@ namespace SCPSAP.ControlesCobranza
         {
             try
             {
-                bool hasData = dgvAdeudos.Rows.Cast<DataGridViewRow>().Any(r => !r.IsNewRow);
+                bool hasData = dgvAdeudosPorContribuyente.Rows.Cast<DataGridViewRow>().Any(r => !r.IsNewRow);
 
-                dgvAdeudos.Enabled = hasData;
+                dgvAdeudosPorContribuyente.Enabled = hasData;
                 btnPagar.Enabled = hasData;
                 cbxMetodoPago.Enabled = hasData;
 
@@ -439,7 +439,7 @@ namespace SCPSAP.ControlesCobranza
             catch
             {
                 // Silencioso: si falla, desactivar para evitar acciones.
-                dgvAdeudos.Enabled = false;
+                dgvAdeudosPorContribuyente.Enabled = false;
                 btnPagar.Enabled = false;
                 cbxMetodoPago.Enabled = false;
                 txbTotalPagar.Text = 0m.ToString("N2");

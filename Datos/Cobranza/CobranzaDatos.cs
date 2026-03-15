@@ -11,9 +11,9 @@ namespace Datos.Cobranza
     {
         SCPSAPEntities SCPSAPEntities = new SCPSAPEntities();
 
-        public List<Adeudo> ObtenerAdeudosPorContribuyente(int Idcontribuyente, string estado ) 
+        public List<AdeudoContribuyente> ObtenerAdeudosPorContribuyente(int Idcontribuyente, string estado ) 
         {  
-            return SCPSAPEntities.Adeudos.Where(a => a.IdContribuyente == Idcontribuyente && a.Estado == estado).ToList();
+            return SCPSAPEntities.AdeudoContribuyentes.Where(a => a.IdContribuyente == Idcontribuyente && a.Estado == estado).ToList();
         }
 
         /// <summary>
@@ -44,13 +44,13 @@ namespace Datos.Cobranza
                     {
                         var detalle = new DetallePago
                         {
-                            IdAdeudo = d.Item1,
+                            IdAdeudoContribuyente = d.Item1,
                             MontoAplicado = d.Item2
                         };
                         pago.DetallePagoes.Add(detalle);
 
                         // Actualizar estado del adeudo aplicado
-                        var adeudo = SCPSAPEntities.Adeudos.FirstOrDefault(a => a.IdAdeudo == d.Item1);
+                        var adeudo = SCPSAPEntities.AdeudoContribuyentes.FirstOrDefault(a => a.IdAdeudoContribuyente == d.Item1);
                         if (adeudo != null)
                         {
                             adeudo.Estado = "Pagado";

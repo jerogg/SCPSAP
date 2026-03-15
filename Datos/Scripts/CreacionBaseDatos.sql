@@ -77,32 +77,48 @@ BEGIN
 END
 GO
 
--- Script para crear la tabla Adeudo
 IF OBJECT_ID(N'dbo.Adeudo', N'U') IS NULL
 BEGIN
     CREATE TABLE dbo.Adeudo
     (
         IdAdeudo INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
-        IdContribuyente INT NOT NULL,
         Periodo VARCHAR(20) NOT NULL,
         Concepto VARCHAR(100) NULL,
-        MontoOriginal DECIMAL(10,2) NOT NULL CONSTRAINT DF_Adeudo_MontoOriginal DEFAULT (0.00),
-        Recargo DECIMAL(10,2) NOT NULL CONSTRAINT DF_Adeudo_Recargo DEFAULT (0.00),
-        OtrosCargos DECIMAL(10,2) NOT NULL CONSTRAINT DF_Adeudo_OtrosCargos DEFAULT (0.00),
+        FechaGeneracion DATETIME NOT NULL CONSTRAINT DF_Adeudo_FechaGeneracion DEFAULT (GETDATE()),
+        FechaVencimiento DATETIME NULL
+    );
+END;
+
+-- Script para crear la tabla Adeudo
+IF OBJECT_ID(N'dbo.AdeudoContribuyente', N'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.AdeudoContribuyente
+    (
+        IdAdeudoContribuyente INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+        IdContribuyente INT NOT NULL,
+        IdAdeudo INT NOT NULL,
+        Periodo VARCHAR(20) NOT NULL,
+        Concepto VARCHAR(100) NULL,
+        MontoOriginal DECIMAL(10,2) NOT NULL CONSTRAINT DF_AdeudoContribuyente_MontoOriginal DEFAULT (0.00),
+        Recargo DECIMAL(10,2) NOT NULL CONSTRAINT DF_AdeudoContribuyente_Recargo DEFAULT (0.00),
+        OtrosCargos DECIMAL(10,2) NOT NULL CONSTRAINT DF_AdeudoContribuyente_OtrosCargos DEFAULT (0.00),
         -- Total calculado para evitar desincronías; si prefieres almacenarlo, cámbialo a columna normal.
         TotalAdeudo AS (CONVERT(DECIMAL(10,2), ISNULL(MontoOriginal,0) + ISNULL(Recargo,0) + ISNULL(OtrosCargos,0))) PERSISTED,
-        Estado VARCHAR(20) NOT NULL CONSTRAINT DF_Adeudo_Estado DEFAULT ('Pendiente'),
-        FechaGeneracion DATETIME NOT NULL CONSTRAINT DF_Adeudo_FechaGeneracion DEFAULT (GETDATE()),
+        Estado VARCHAR(20) NOT NULL CONSTRAINT DF_AdeudoContribuyente_Estado DEFAULT ('Pendiente'),
+        FechaGeneracion DATETIME NOT NULL CONSTRAINT DF_AdeudoContribuyente_FechaGeneracion DEFAULT (GETDATE()),
         FechaVencimiento DATETIME NULL,
-        CONSTRAINT FK_Adeudo_Contribuyente FOREIGN KEY (IdContribuyente) REFERENCES dbo.Contribuyentes (IdContribuyente)
+        CONSTRAINT FK_AdeudoContribuyente_Contribuyente FOREIGN KEY (IdContribuyente) REFERENCES dbo.Contribuyente (IdContribuyente),
+        CONSTRAINT FK_Adeudo_AdeudoContribuyente FOREIGN KEY (IdAdeudo) REFERENCES dbo.Adeudo (IdAdeudo)
     );
 
-    CREATE INDEX IX_Adeudo_IdContribuyente ON dbo.Adeudo (IdContribuyente);
-    CREATE INDEX IX_Adeudo_FechaVencimiento ON dbo.Adeudo (FechaVencimiento);
+    CREATE INDEX IX_AdeudoContribuyente_IdContribuyente ON dbo.AdeudoContribuyente (IdContribuyente);
+    CREATE INDEX IX_AdeudoContribuyente_FechaVencimiento ON dbo.AdeudoContribuyente (FechaVencimiento);
 
-    ALTER TABLE dbo.Adeudo
-        ADD CONSTRAINT CK_Adeudo_Estado CHECK (Estado IN ('Pendiente','Pagado','Vencido'));
+    ALTER TABLE dbo.AdeudoContribuyente
+        ADD CONSTRAINT CK_AdeudoContribuyente_Estado CHECK (Estado IN ('Pendiente','Pagado','Vencido'));
 END;
+
+
 
 -- Crea tablas Pago y DetallePago con claves foráneas, índices y defaults.
 IF OBJECT_ID(N'dbo.Pago', N'U') IS NULL
@@ -130,12 +146,12 @@ BEGIN
     (
         IdDetallePago INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
         IdPago INT NOT NULL,
-        IdAdeudo INT NOT NULL,
+        IdAdeudoContribuyente INT NOT NULL,
         MontoAplicado DECIMAL(10,2) NOT NULL CONSTRAINT DF_DetallePago_MontoAplicado DEFAULT (0.00),
         CONSTRAINT FK_DetallePago_Pago FOREIGN KEY (IdPago) REFERENCES dbo.Pago (IdPago),
-        CONSTRAINT FK_DetallePago_Adeudo FOREIGN KEY (IdAdeudo) REFERENCES dbo.Adeudo (IdAdeudo)
+        CONSTRAINT FK_DetallePago_AdeudoContribuyente FOREIGN KEY (IdAdeudoContribuyente) REFERENCES dbo.AdeudoContribuyente (IdAdeudoContribuyente)
     );
 
     CREATE INDEX IX_DetallePago_IdPago ON dbo.DetallePago (IdPago);
-    CREATE INDEX IX_DetallePago_IdAdeudo ON dbo.DetallePago (IdAdeudo);
+    CREATE INDEX IX_DetallePago_IdAdeudoContribuyente ON dbo.DetallePago (IdAdeudoContribuyente);
 END

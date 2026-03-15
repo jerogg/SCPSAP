@@ -13,7 +13,7 @@ namespace Negocio.Login
         //Es la clase de la capa de datos
         UsuariosDatos usuarios = new UsuariosDatos();
 
-        public bool ValidaUsuarios(string Nombre, string Contrasena)
+        public int ValidaUsuarios(string Nombre, string Contrasena)
         {
 
             try

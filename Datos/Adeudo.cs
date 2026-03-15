@@ -17,23 +17,16 @@ namespace Datos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Adeudo()
         {
-            this.DetallePagoes = new HashSet<DetallePago>();
+            this.AdeudoContribuyentes = new HashSet<AdeudoContribuyente>();
         }
     
         public int IdAdeudo { get; set; }
-        public int IdContribuyente { get; set; }
         public string Periodo { get; set; }
         public string Concepto { get; set; }
-        public decimal MontoOriginal { get; set; }
-        public decimal Recargo { get; set; }
-        public decimal OtrosCargos { get; set; }
-        public Nullable<decimal> TotalAdeudo { get; set; }
-        public string Estado { get; set; }
         public System.DateTime FechaGeneracion { get; set; }
         public Nullable<System.DateTime> FechaVencimiento { get; set; }
     
-        public virtual Contribuyente Contribuyente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DetallePago> DetallePagoes { get; set; }
+        public virtual ICollection<AdeudoContribuyente> AdeudoContribuyentes { get; set; }
     }
 }

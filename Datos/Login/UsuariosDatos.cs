@@ -9,18 +9,18 @@ namespace Datos.Login
     public class UsuariosDatos
     {
         SCPSAPEntities SCPSAPEntities = new SCPSAPEntities();
-        public bool ExisteUsuario(string Nombre, string Contrasena)
+        public int ExisteUsuario(string Nombre, string Contrasena)
         {
-            bool existeUsuario = false;
+            int usuarioId = 0;
             try
             {
 
             var usuario = SCPSAPEntities.UsuarioSistemas.FirstOrDefault(x => x.NombreUsuario == Nombre && x.PasswordHash == Contrasena);
 
             if(usuario != null)
-            existeUsuario = true;
+                    usuarioId = usuario.IdUsuarioSistema;
 
-            return existeUsuario;
+            return usuarioId;
             }
             catch (Exception ex)
             {
