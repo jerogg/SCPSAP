@@ -24,5 +24,20 @@ namespace Datos.Configuracion
                 throw new Exception(ex.Message);
             }
         }
+
+        public bool AgregarTarifas(Tarifa nuevaTarifa)
+        {
+            try
+            {
+                if (nuevaTarifa == null) throw new ArgumentNullException(nameof(nuevaTarifa));
+                SCPSAPEntities.Tarifas.Add(nuevaTarifa);
+                SCPSAPEntities.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
