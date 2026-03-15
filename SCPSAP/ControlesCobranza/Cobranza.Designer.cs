@@ -38,6 +38,19 @@
             this.lblMetodoPago = new System.Windows.Forms.Label();
             this.cbxMetodoPago = new System.Windows.Forms.ComboBox();
             this.btnPagar = new System.Windows.Forms.Button();
+            this.IdAdeudo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdContribuyente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Contribuyente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Periodo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Concepto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MontoOriginal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Recargo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OtrosCargos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TotalAdeudo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaGeneracion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaVencimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Pagar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdeudos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,6 +94,20 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvAdeudos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvAdeudos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdAdeudo,
+            this.IdContribuyente,
+            this.Contribuyente,
+            this.Periodo,
+            this.Concepto,
+            this.MontoOriginal,
+            this.Recargo,
+            this.OtrosCargos,
+            this.TotalAdeudo,
+            this.Estado,
+            this.FechaGeneracion,
+            this.FechaVencimiento,
+            this.Pagar});
             this.dgvAdeudos.Location = new System.Drawing.Point(19, 131);
             this.dgvAdeudos.Name = "dgvAdeudos";
             this.dgvAdeudos.Size = new System.Drawing.Size(615, 218);
@@ -138,6 +165,89 @@
             this.btnPagar.Text = "Pagar";
             this.btnPagar.UseVisualStyleBackColor = true;
             // 
+            // IdAdeudo
+            // 
+            this.IdAdeudo.DataPropertyName = "IdAdeudo";
+            this.IdAdeudo.HeaderText = "IdAdeudo";
+            this.IdAdeudo.Name = "IdAdeudo";
+            this.IdAdeudo.Visible = false;
+            // 
+            // IdContribuyente
+            // 
+            this.IdContribuyente.DataPropertyName = "IdContribuyente";
+            this.IdContribuyente.HeaderText = "IdContribuyente";
+            this.IdContribuyente.Name = "IdContribuyente";
+            this.IdContribuyente.Visible = false;
+            // 
+            // Contribuyente
+            // 
+            this.Contribuyente.DataPropertyName = "Contribuyente";
+            this.Contribuyente.HeaderText = "Contribuyente";
+            this.Contribuyente.Name = "Contribuyente";
+            this.Contribuyente.Visible = false;
+            // 
+            // Periodo
+            // 
+            this.Periodo.DataPropertyName = "Periodo";
+            this.Periodo.HeaderText = "Periodo";
+            this.Periodo.Name = "Periodo";
+            // 
+            // Concepto
+            // 
+            this.Concepto.DataPropertyName = "Concepto";
+            this.Concepto.HeaderText = "Concepto";
+            this.Concepto.Name = "Concepto";
+            // 
+            // MontoOriginal
+            // 
+            this.MontoOriginal.DataPropertyName = "MontoOriginal";
+            this.MontoOriginal.HeaderText = "MontoOriginal";
+            this.MontoOriginal.Name = "MontoOriginal";
+            this.MontoOriginal.Visible = false;
+            // 
+            // Recargo
+            // 
+            this.Recargo.DataPropertyName = "Recargo";
+            this.Recargo.HeaderText = "Recargo";
+            this.Recargo.Name = "Recargo";
+            this.Recargo.Visible = false;
+            // 
+            // OtrosCargos
+            // 
+            this.OtrosCargos.DataPropertyName = "OtrosCargos";
+            this.OtrosCargos.HeaderText = "OtrosCargos";
+            this.OtrosCargos.Name = "OtrosCargos";
+            this.OtrosCargos.Visible = false;
+            // 
+            // TotalAdeudo
+            // 
+            this.TotalAdeudo.DataPropertyName = "TotalAdeudo";
+            this.TotalAdeudo.HeaderText = "Adeudo";
+            this.TotalAdeudo.Name = "TotalAdeudo";
+            // 
+            // Estado
+            // 
+            this.Estado.DataPropertyName = "Estado";
+            this.Estado.HeaderText = "Estado";
+            this.Estado.Name = "Estado";
+            // 
+            // FechaGeneracion
+            // 
+            this.FechaGeneracion.DataPropertyName = "FechaGeneracion";
+            this.FechaGeneracion.HeaderText = "Fecha de generacion";
+            this.FechaGeneracion.Name = "FechaGeneracion";
+            // 
+            // FechaVencimiento
+            // 
+            this.FechaVencimiento.DataPropertyName = "FechaVencimiento";
+            this.FechaVencimiento.HeaderText = "Fecha de vencimiento";
+            this.FechaVencimiento.Name = "FechaVencimiento";
+            // 
+            // Pagar
+            // 
+            this.Pagar.HeaderText = "Pagar";
+            this.Pagar.Name = "Pagar";
+            // 
             // Cobranza
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -172,5 +282,18 @@
         private System.Windows.Forms.Label lblMetodoPago;
         private System.Windows.Forms.ComboBox cbxMetodoPago;
         private System.Windows.Forms.Button btnPagar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdAdeudo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdContribuyente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Contribuyente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Periodo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Concepto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MontoOriginal;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Recargo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn OtrosCargos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TotalAdeudo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaGeneracion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaVencimiento;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Pagar;
     }
 }

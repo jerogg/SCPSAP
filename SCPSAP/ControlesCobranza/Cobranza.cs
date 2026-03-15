@@ -191,7 +191,6 @@ namespace SCPSAP.ControlesCobranza
             {
                 
                 var adeudos = cobranzaNegocio.ObtenerAdeudosPorContribuyente(Idcontribuyente);
-                // Aquí puedes agregar código para mostrar los adeudos en tu UI, por ejemplo en un DataGridView.\
 
                 dgvAdeudos.DataSource = adeudos;
             }
