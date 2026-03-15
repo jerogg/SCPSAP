@@ -26,16 +26,41 @@ namespace SCPSAP.ControlesCobranza
         // Evento opcional para quien use este control
         public event Action<ContribuyenteDto> ContribuyenteSeleccionado;
 
+        // Id del contribuyente actualmente mostrado en la grilla de adeudos
+        private int _currentContribuyenteId = 0;
+
         public Cobranza()
         {
             InitializeComponent();
             _contribNeg = new ContribuyentesNegocio();
             InitializeSearchControls();
 
+            // Seleccionar método de pago por defecto ("Efectivo") si está en la lista.
+            try
+            {
+                if (cbxMetodoPago != null)
+                {
+                    if (cbxMetodoPago.Items.Contains("Efectivo"))
+                        cbxMetodoPago.SelectedItem = "Efectivo";
+                    else if (cbxMetodoPago.Items.Count > 0)
+                        cbxMetodoPago.SelectedIndex = 0;
+                }
+            }
+            catch
+            {
+                // Silencioso: no queremos romper la inicialización por este ajuste.
+            }
+
             // Eventos para manejar la selección (checkbox) en la grilla de adeudos
             dgvAdeudos.CurrentCellDirtyStateChanged += DgvAdeudos_CurrentCellDirtyStateChanged;
             dgvAdeudos.CellValueChanged += DgvAdeudos_CellValueChanged;
             dgvAdeudos.DataBindingComplete += DgvAdeudos_DataBindingComplete;
+
+            // Botón pagar
+            btnPagar.Click += BtnPagar_Click;
+
+            // Asegurar estado inicial de controles (deshabilitados si no hay datos)
+            UpdateAdeudosControlsState();
         }
 
         // Inicializa los controles usados para búsqueda sin usar DataGridView.
@@ -170,7 +195,7 @@ namespace SCPSAP.ControlesCobranza
             else if (e.KeyCode == Keys.Escape)
             {
                 _lstResultados.Visible = false;
-                e.Handled = true;
+                    
             }
         }
 
@@ -195,17 +220,110 @@ namespace SCPSAP.ControlesCobranza
         {
             try
             {
-                
-                var adeudos = cobranzaNegocio.ObtenerAdeudosPorContribuyente(Idcontribuyente);
+                _currentContribuyenteId = Idcontribuyente;
+
+                var adeudos = cobranzaNegocio.ObtenerAdeudosPorContribuyente(Idcontribuyente, "Pendiente");
 
                 dgvAdeudos.DataSource = adeudos;
 
                 // Asegurar que el total se recalcula al cargar nueva fuente
                 RecalcularTotalSeleccionado();
+
+                // Actualizar estado de controles
+                UpdateAdeudosControlsState();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error al obtener adeudos", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Al hacer click en Pagar: recopilar filas marcadas y guardar pago
+        private async void BtnPagar_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // Recopilar detalles seleccionados
+                var detalles = new List<Tuple<int, decimal>>();
+
+                foreach (DataGridViewRow row in dgvAdeudos.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    bool marcar = false;
+                    if (dgvAdeudos.Columns.Contains("Pagar"))
+                    {
+                        var c = row.Cells["Pagar"];
+                        if (c != null && c.Value != null)
+                        {
+                            bool.TryParse(Convert.ToString(c.Value), out marcar);
+                        }
+                    }
+
+                    if (!marcar) continue;
+
+                    // Obtener IdAdeudo
+                    int idAdeudo = 0;
+                    if (dgvAdeudos.Columns.Contains("IdAdeudo"))
+                    {
+                        var cellId = row.Cells["IdAdeudo"].Value;
+                        if (cellId != null && int.TryParse(Convert.ToString(cellId), out int tmpId))
+                            idAdeudo = tmpId;
+                    }
+
+                    // Obtener TotalAdeudo
+                    decimal monto = 0m;
+                    if (dgvAdeudos.Columns.Contains("TotalAdeudo"))
+                    {
+                        var cellMonto = row.Cells["TotalAdeudo"].Value;
+                        if (cellMonto != null && decimal.TryParse(Convert.ToString(cellMonto), out decimal tmpMonto))
+                            monto = tmpMonto;
+                    }
+
+                    if (idAdeudo > 0 && monto > 0m)
+                    {
+                        detalles.Add(Tuple.Create(idAdeudo, monto));
+                    }
+                }
+
+                if (detalles.Count == 0)
+                {
+                    MessageBox.Show("No hay adeudos seleccionados para pagar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                if (_currentContribuyenteId == 0)
+                {
+                    MessageBox.Show("No se ha identificado al contribuyente.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                // Construir entidad Pago
+                var pago = new Pago
+                {
+                    IdContribuyente = _currentContribuyenteId,
+                    MetodoPago = cbxMetodoPago.SelectedItem != null ? cbxMetodoPago.SelectedItem.ToString() : cbxMetodoPago.Text,
+                    IdUsuarioSistema = null // ajusta si el sistema tiene sesión de usuario
+                };
+
+                // Ejecutar guardado en hilo de fondo para no bloquear UI
+                bool ok = await Task.Run(() => cobranzaNegocio.GuardarPago(pago, detalles));
+
+                if (ok)
+                {
+                    MessageBox.Show("Pago registrado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Recargar adeudos y limpiar total
+                    obtenerAdeudos(_currentContribuyenteId);
+                    txbTotalPagar.Text = 0m.ToString("N2");
+                }
+                else
+                {
+                    MessageBox.Show("No fue posible registrar el pago.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error al registrar pago", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -254,6 +372,9 @@ namespace SCPSAP.ControlesCobranza
                 // silencioso
             }
             RecalcularTotalSeleccionado();
+
+            // Actualizar estado de controles según datos cargados
+            UpdateAdeudosControlsState();
         }
 
         // Suma los valores de la columna "TotalAdeudo" para las filas marcadas en "Pagar"
@@ -297,6 +418,32 @@ namespace SCPSAP.ControlesCobranza
             }
 
             txbTotalPagar.Text = total.ToString("N2");
+        }
+
+        // Actualiza Enabled de DataGridView, btnPagar y cbxMetodoPago según tenga filas válidas.
+        private void UpdateAdeudosControlsState()
+        {
+            try
+            {
+                bool hasData = dgvAdeudos.Rows.Cast<DataGridViewRow>().Any(r => !r.IsNewRow);
+
+                dgvAdeudos.Enabled = hasData;
+                btnPagar.Enabled = hasData;
+                cbxMetodoPago.Enabled = hasData;
+
+                if (!hasData)
+                {
+                    txbTotalPagar.Text = 0m.ToString("N2");
+                }
+            }
+            catch
+            {
+                // Silencioso: si falla, desactivar para evitar acciones.
+                dgvAdeudos.Enabled = false;
+                btnPagar.Enabled = false;
+                cbxMetodoPago.Enabled = false;
+                txbTotalPagar.Text = 0m.ToString("N2");
+            }
         }
     }
 }

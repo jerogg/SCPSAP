@@ -39,6 +39,7 @@
             this.cbxMetodoPago = new System.Windows.Forms.ComboBox();
             this.btnPagar = new System.Windows.Forms.Button();
             this.IdAdeudo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DetallePagoes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdContribuyente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Contribuyente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Periodo = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -97,6 +98,7 @@
             this.dgvAdeudos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAdeudos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdAdeudo,
+            this.DetallePagoes,
             this.IdContribuyente,
             this.Contribuyente,
             this.Periodo,
@@ -172,6 +174,13 @@
             this.IdAdeudo.HeaderText = "IdAdeudo";
             this.IdAdeudo.Name = "IdAdeudo";
             this.IdAdeudo.Visible = false;
+            // 
+            // DetallePagoes
+            // 
+            this.DetallePagoes.DataPropertyName = "DetallePagoes";
+            this.DetallePagoes.HeaderText = "DetallePagoes";
+            this.DetallePagoes.Name = "DetallePagoes";
+            this.DetallePagoes.Visible = false;
             // 
             // IdContribuyente
             // 
@@ -284,6 +293,7 @@
         private System.Windows.Forms.ComboBox cbxMetodoPago;
         private System.Windows.Forms.Button btnPagar;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdAdeudo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DetallePagoes;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdContribuyente;
         private System.Windows.Forms.DataGridViewTextBoxColumn Contribuyente;
         private System.Windows.Forms.DataGridViewTextBoxColumn Periodo;
