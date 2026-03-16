@@ -21,7 +21,7 @@
         <AssociationConnector Association="SCPSAPModel.FK_AdeudoContribuyente_Contribuyente" />
         <AssociationConnector Association="SCPSAPModel.FK_DetallePago_AdeudoContribuyente" />
         <AssociationConnector Association="SCPSAPModel.FK_DetallePago_Pago" />
-        <EntityTypeShape EntityType="SCPSAPModel.Adeudo" Width="2" PointX="3.25" PointY="8.875" />
+        <EntityTypeShape EntityType="SCPSAPModel.Adeudo" Width="1.875" PointX="3.625" PointY="8.75" />
         <AssociationConnector Association="SCPSAPModel.FK_Adeudo_AdeudoContribuyente" />
       </Diagram>
     </edmx:Diagrams>

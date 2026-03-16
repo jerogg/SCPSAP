@@ -50,41 +50,87 @@ namespace Datos.Cobranza
         /// <summary>
         /// Inserta o actualiza un adeudo (tabla Adeudo).
         /// Si IdAdeudo == 0 lo inserta; en otro caso actualiza los campos Periodo, Concepto y FechaGeneracion.
-        /// Devuelve la entidad guardada (con Id generado en caso de inserción).
+        /// Al insertar, genera un registro en AdeudoContribuyente para cada contribuyente.
+        /// Operación realizada dentro de una transacción.
         /// </summary>
         public Adeudo GuardarAdeudo(Adeudo adeudo)
         {
             if (adeudo == null) throw new ArgumentNullException(nameof(adeudo));
-            try
+
+            using (var tx = SCPSAPEntities.Database.BeginTransaction())
             {
-                if (adeudo.IdAdeudo == 0)
+                try
                 {
-                    if (adeudo.FechaGeneracion == default(DateTime))
-                        adeudo.FechaGeneracion = DateTime.Now;
+                    if (adeudo.IdAdeudo == 0)
+                    {
+                        if (adeudo.FechaGeneracion == default(DateTime))
+                            adeudo.FechaGeneracion = DateTime.Now;
 
-                    SCPSAPEntities.Adeudos.Add(adeudo);
+                        // Insertar adeudo
+                        SCPSAPEntities.Adeudos.Add(adeudo);
+                        SCPSAPEntities.SaveChanges(); // obtener Id generado
+
+                        // Generar AdeudoContribuyente para cada contribuyente existente
+                        var contribuyentes = SCPSAPEntities.Contribuyentes.Where(x=> x.IdEstado == 1).ToList();
+                        foreach (var c in contribuyentes)
+                        {
+                            Tarifa tarifa = SCPSAPEntities.Tarifas.FirstOrDefault(t => t.IdTarifa == c.IdTarifa);
+
+                            var ac = new AdeudoContribuyente
+                            {
+                                IdContribuyente = c.IdContribuyente,
+                                IdAdeudo = adeudo.IdAdeudo,
+                                Periodo = adeudo.Periodo,
+                                Concepto = adeudo.Concepto,
+                                MontoOriginal = tarifa.MontoMensual,
+                                Recargo = 0m,
+                                OtrosCargos = 0m,
+                                //TotalAdeudo = 0m,
+                                Estado = "Pendiente",
+                                FechaGeneracion = adeudo.FechaGeneracion,
+                                FechaVencimiento = adeudo.FechaVencimiento.AddDays((double)c.DiasGracia)
+                            };
+                            SCPSAPEntities.AdeudoContribuyentes.Add(ac);
+                        }
+
+                        SCPSAPEntities.SaveChanges();
+                    }
+                    else
+                    {
+                        // Actualizar adeudo existente
+                        var existente = SCPSAPEntities.Adeudos.FirstOrDefault(a => a.IdAdeudo == adeudo.IdAdeudo);
+                        if (existente == null)
+                            throw new InvalidOperationException("No se encontró el adeudo a actualizar.");
+
+                        existente.Periodo = adeudo.Periodo;
+                        existente.Concepto = adeudo.Concepto;
+                        existente.FechaGeneracion = adeudo.FechaGeneracion == default(DateTime) ? existente.FechaGeneracion : adeudo.FechaGeneracion;
+                        existente.FechaVencimiento = adeudo.FechaVencimiento;
+
+                        // Actualizar datos relacionados en AdeudoContribuyente (Periodo/Concepto/FechaGeneracion)
+                        var adeudosContrib = SCPSAPEntities.AdeudoContribuyentes.Where(ac => ac.IdAdeudo == adeudo.IdAdeudo).ToList();
+                        foreach (var ac in adeudosContrib)
+                        {
+                            ac.Periodo = adeudo.Periodo;
+                            ac.Concepto = adeudo.Concepto;
+                            if (adeudo.FechaGeneracion != default(DateTime))
+                                ac.FechaGeneracion = adeudo.FechaGeneracion;
+                            ac.FechaVencimiento = adeudo.FechaVencimiento.AddDays((double)SCPSAPEntities.Contribuyentes.Where(x=> x.IdContribuyente == ac.IdContribuyente).FirstOrDefault().DiasGracia);
+                        }
+
+                        SCPSAPEntities.SaveChanges();
+                    }
+
+                    tx.Commit();
+
+                    // Devolver entidad actualizada/insertada desde BD
+                    return SCPSAPEntities.Adeudos.FirstOrDefault(a => a.IdAdeudo == adeudo.IdAdeudo);
                 }
-                else
+                catch
                 {
-                    var existente = SCPSAPEntities.Adeudos.FirstOrDefault(a => a.IdAdeudo == adeudo.IdAdeudo);
-                    if (existente == null)
-                        throw new InvalidOperationException("No se encontró el adeudo a actualizar.");
-
-                    existente.Periodo = adeudo.Periodo;
-                    existente.Concepto = adeudo.Concepto;
-                    existente.FechaGeneracion = adeudo.FechaGeneracion == default(DateTime) ? existente.FechaGeneracion : adeudo.FechaGeneracion;
+                    tx.Rollback();
+                    throw;
                 }
-
-                SCPSAPEntities.SaveChanges();
-
-                // Si fue inserción, adeudo.IdAdeudo ya contiene el valor generado por EF.
-                return adeudo.IdAdeudo == 0
-                    ? SCPSAPEntities.Adeudos.OrderByDescending(a => a.IdAdeudo).FirstOrDefault()
-                    : SCPSAPEntities.Adeudos.FirstOrDefault(a => a.IdAdeudo == adeudo.IdAdeudo);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
             }
         }
 
@@ -142,7 +188,7 @@ namespace Datos.Cobranza
                         pago.DetallePagoes.Add(detalle);
 
                         // Actualizar estado del adeudo aplicado
-                        var adeudo = SCPSAPEntities.AdeudoContribuyentes.FirstOrDefault(a => a.IdAdeudoContribuyente == d.Item1);
+                        var adeudo = SCPSAPEntities.AdeudoContribuyentes.FirstOrDefault(a => a.IdAdeudo == d.Item1 && a.IdContribuyente == pago.IdContribuyente);
                         if (adeudo != null)
                         {
                             adeudo.Estado = "Pagado";

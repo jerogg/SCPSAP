@@ -303,17 +303,8 @@ namespace SCPSAP.ControlesCobranza
                 var adeudos = cobranzaNegocio.ObtenerAdeudosConfigurados();
 
                 // Proyección ligera para el DataGridView
-                dgvAdeudosConfigurados.DataSource = adeudos
-                    .Select(a => new
-                    {
-                        a.IdAdeudo,
-                        a.Periodo,
-                        a.Concepto,
-                        FechaGeneracion = a.FechaGeneracion
-                    })
-                    .ToList();
+                dgvAdeudosConfigurados.DataSource = adeudos;
 
-                // Opcional: ajustar columnas visibles / formato aquí si se requiere
             }
             catch (Exception ex)
             {
@@ -395,7 +386,7 @@ namespace SCPSAP.ControlesCobranza
                 _adeudoEnEdicion = adeudo;
                 txbPeriodo.Text = _adeudoEnEdicion.Periodo;
                 txbConcepto.Text = _adeudoEnEdicion.Concepto;
-
+                dtpFechaLimitePago.Value = _adeudoEnEdicion.FechaVencimiento;
             }
             catch (Exception ex)
             {
@@ -688,6 +679,7 @@ namespace SCPSAP.ControlesCobranza
             btnCancelarConfiguracionAdeudo.Enabled = true;
             txbConcepto.Enabled = true;
             txbPeriodo.Enabled = true;
+            dtpFechaLimitePago.Enabled = true;
             NuevoAdeudo();
         }
 
@@ -696,6 +688,7 @@ namespace SCPSAP.ControlesCobranza
             ActualizarAdeudoSeleccionado();
             txbConcepto.Enabled = true;
             txbPeriodo.Enabled = true;
+            dtpFechaLimitePago.Enabled = true;
             btnNuevoAdeudo.Enabled = false;
             btnActualizarAdeudo.Enabled = false;
             btnCancelarConfiguracionAdeudo.Enabled = true;
@@ -712,12 +705,15 @@ namespace SCPSAP.ControlesCobranza
         {
             txbConcepto.Enabled = false;
             txbPeriodo.Enabled = false;
+            dtpFechaLimitePago.Enabled = false;
             btnNuevoAdeudo.Enabled = true;
             btnActualizarAdeudo.Enabled = true;
             btnCancelarConfiguracionAdeudo.Enabled = false;
             _adeudoEnEdicion.Periodo = txbPeriodo.Text;
             _adeudoEnEdicion.Concepto = txbConcepto.Text;
-            
+            _adeudoEnEdicion.FechaVencimiento = dtpFechaLimitePago.Value.Date;
+
+
             GuardarAdeudo(_adeudoEnEdicion);
             LimpiarControles();
         }
@@ -739,6 +735,7 @@ namespace SCPSAP.ControlesCobranza
             txbPeriodo.Clear();
             txbConcepto.Clear();
             btnGuardarAdeudo.Enabled = false;
+            dtpFechaLimitePago.Value = DateTime.Now;
         }
     }
 }

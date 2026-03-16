@@ -67,10 +67,14 @@
             this.lblPeriodo = new System.Windows.Forms.Label();
             this.dgvAdeudosConfigurados = new System.Windows.Forms.DataGridView();
             this.lblAdeudos = new System.Windows.Forms.Label();
+            this.dtpFechaLimitePago = new System.Windows.Forms.DateTimePicker();
+            this.lblFechaLimitePago = new System.Windows.Forms.Label();
             this.IdConfiguracionAdeudo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AdeudoContribuyentes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaVencimientoAdeudo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EliminarAdeudo = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdeudosPorContribuyente)).BeginInit();
             this.tbCobranza.SuspendLayout();
@@ -331,6 +335,8 @@
             // 
             // tbPageConfiguraAdeudos
             // 
+            this.tbPageConfiguraAdeudos.Controls.Add(this.lblFechaLimitePago);
+            this.tbPageConfiguraAdeudos.Controls.Add(this.dtpFechaLimitePago);
             this.tbPageConfiguraAdeudos.Controls.Add(this.btnCancelarConfiguracionAdeudo);
             this.tbPageConfiguraAdeudos.Controls.Add(this.btnActualizarAdeudo);
             this.tbPageConfiguraAdeudos.Controls.Add(this.btnNuevoAdeudo);
@@ -443,9 +449,11 @@
             this.dgvAdeudosConfigurados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAdeudosConfigurados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdConfiguracionAdeudo,
+            this.AdeudoContribuyentes,
             this.dataGridViewTextBoxColumn5,
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn12,
+            this.FechaVencimientoAdeudo,
             this.EliminarAdeudo});
             this.dgvAdeudosConfigurados.Location = new System.Drawing.Point(14, 44);
             this.dgvAdeudosConfigurados.Name = "dgvAdeudosConfigurados";
@@ -462,12 +470,38 @@
             this.lblAdeudos.TabIndex = 1;
             this.lblAdeudos.Text = "ADEUDOS CONFIGURADOS";
             // 
+            // dtpFechaLimitePago
+            // 
+            this.dtpFechaLimitePago.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpFechaLimitePago.Enabled = false;
+            this.dtpFechaLimitePago.Location = new System.Drawing.Point(432, 359);
+            this.dtpFechaLimitePago.Name = "dtpFechaLimitePago";
+            this.dtpFechaLimitePago.Size = new System.Drawing.Size(200, 20);
+            this.dtpFechaLimitePago.TabIndex = 28;
+            // 
+            // lblFechaLimitePago
+            // 
+            this.lblFechaLimitePago.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFechaLimitePago.AutoSize = true;
+            this.lblFechaLimitePago.Location = new System.Drawing.Point(321, 363);
+            this.lblFechaLimitePago.Name = "lblFechaLimitePago";
+            this.lblFechaLimitePago.Size = new System.Drawing.Size(108, 13);
+            this.lblFechaLimitePago.TabIndex = 29;
+            this.lblFechaLimitePago.Text = "Fecha limite de pago:";
+            // 
             // IdConfiguracionAdeudo
             // 
             this.IdConfiguracionAdeudo.DataPropertyName = "IdAdeudo";
             this.IdConfiguracionAdeudo.HeaderText = "IdAdeudo";
             this.IdConfiguracionAdeudo.Name = "IdConfiguracionAdeudo";
             this.IdConfiguracionAdeudo.Visible = false;
+            // 
+            // AdeudoContribuyentes
+            // 
+            this.AdeudoContribuyentes.DataPropertyName = "AdeudoContribuyentes";
+            this.AdeudoContribuyentes.HeaderText = "AdeudoContribuyentes";
+            this.AdeudoContribuyentes.Name = "AdeudoContribuyentes";
+            this.AdeudoContribuyentes.Visible = false;
             // 
             // dataGridViewTextBoxColumn5
             // 
@@ -486,6 +520,12 @@
             this.dataGridViewTextBoxColumn12.DataPropertyName = "FechaGeneracion";
             this.dataGridViewTextBoxColumn12.HeaderText = "Fecha de generacion";
             this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            // 
+            // FechaVencimientoAdeudo
+            // 
+            this.FechaVencimientoAdeudo.DataPropertyName = "FechaVencimiento";
+            this.FechaVencimientoAdeudo.HeaderText = "Fecha limite de pago";
+            this.FechaVencimientoAdeudo.Name = "FechaVencimientoAdeudo";
             // 
             // EliminarAdeudo
             // 
@@ -551,10 +591,14 @@
         private System.Windows.Forms.Button btnActualizarAdeudo;
         private System.Windows.Forms.Button btnNuevoAdeudo;
         private System.Windows.Forms.Button btnGuardarAdeudo;
+        private System.Windows.Forms.DateTimePicker dtpFechaLimitePago;
+        private System.Windows.Forms.Label lblFechaLimitePago;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdConfiguracionAdeudo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AdeudoContribuyentes;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaVencimientoAdeudo;
         private System.Windows.Forms.DataGridViewButtonColumn EliminarAdeudo;
     }
 }
