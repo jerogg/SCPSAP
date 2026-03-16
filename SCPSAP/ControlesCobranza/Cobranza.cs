@@ -574,7 +574,7 @@ namespace SCPSAP.ControlesCobranza
             }
         }
 
-        // Al completar el binding (carga de datos), asegurar checkboxes en falso y recalcular
+        // Al completar el binding (carga de datos), asegurar checkboxes en falso, recalcular y colorear filas vencidas.
         private void DgvAdeudos_DataBindingComplete(object sender, DataGridViewBindingCompleteEventArgs e)
         {
             try
@@ -596,6 +596,58 @@ namespace SCPSAP.ControlesCobranza
             {
                 // silencioso
             }
+
+            // Colorear filas vencidas (FechaVencimiento < hoy)
+            try
+            {
+                if (dgvAdeudosPorContribuyente != null && dgvAdeudosPorContribuyente.Rows != null)
+                {
+                    var today = DateTime.Today;
+
+                    foreach (DataGridViewRow row in dgvAdeudosPorContribuyente.Rows)
+                    {
+                        if (row.IsNewRow) continue;
+
+                        object val = null;
+                        string estado = null;
+
+                        // Preferir columna con nombre conocido
+                        if (dgvAdeudosPorContribuyente.Columns.Contains("FechaVencimiento"))
+                        {
+                            val = row.Cells["FechaVencimiento"].Value;
+                            estado = row.Cells["Estado"].Value.ToString();
+                        }
+
+                        DateTime fecha;
+                        if (val != null && DateTime.TryParse(Convert.ToString(val), out fecha))
+                        {
+                            if (fecha.Date < today && estado == "Pendiente")
+                            { 
+                                // vence antes de hoy => marcar en rojo claro
+                                row.DefaultCellStyle.BackColor = Color.LightCoral;
+                                row.DefaultCellStyle.ForeColor = Color.White;
+                            }
+                            else
+                            {
+                                // restaurar estilo por defecto
+                                row.DefaultCellStyle.BackColor = dgvAdeudosPorContribuyente.DefaultCellStyle.BackColor;
+                                row.DefaultCellStyle.ForeColor = dgvAdeudosPorContribuyente.DefaultCellStyle.ForeColor;
+                            }
+                        }
+                        else
+                        {
+                            // si no hay fecha válida, restaurar estilo por defecto
+                            row.DefaultCellStyle.BackColor = dgvAdeudosPorContribuyente.DefaultCellStyle.BackColor;
+                            row.DefaultCellStyle.ForeColor = dgvAdeudosPorContribuyente.DefaultCellStyle.ForeColor;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                // silencioso: no queremos romper la carga por un fallo de coloreado
+            }
+
             RecalcularTotalSeleccionado();
 
             // Actualizar estado de controles según datos cargados
