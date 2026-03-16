@@ -17,6 +17,98 @@ namespace Datos.Cobranza
         }
 
         /// <summary>
+        /// Obtiene los adeudos configurados (tabla Adeudo).
+        /// </summary>
+        public List<Adeudo> ObtenerAdeudosConfigurados()
+        {
+            try
+            {
+                // Orden descendente por fecha de generación para mostrar los más recientes primero
+                return SCPSAPEntities.Adeudos.OrderByDescending(a => a.FechaGeneracion).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Obtiene un adeudo por Id.
+        /// </summary>
+        public Adeudo ObtenerAdeudoPorId(int id)
+        {
+            try
+            {
+                return SCPSAPEntities.Adeudos.FirstOrDefault(a => a.IdAdeudo == id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Inserta o actualiza un adeudo (tabla Adeudo).
+        /// Si IdAdeudo == 0 lo inserta; en otro caso actualiza los campos Periodo, Concepto y FechaGeneracion.
+        /// Devuelve la entidad guardada (con Id generado en caso de inserción).
+        /// </summary>
+        public Adeudo GuardarAdeudo(Adeudo adeudo)
+        {
+            if (adeudo == null) throw new ArgumentNullException(nameof(adeudo));
+            try
+            {
+                if (adeudo.IdAdeudo == 0)
+                {
+                    if (adeudo.FechaGeneracion == default(DateTime))
+                        adeudo.FechaGeneracion = DateTime.Now;
+
+                    SCPSAPEntities.Adeudos.Add(adeudo);
+                }
+                else
+                {
+                    var existente = SCPSAPEntities.Adeudos.FirstOrDefault(a => a.IdAdeudo == adeudo.IdAdeudo);
+                    if (existente == null)
+                        throw new InvalidOperationException("No se encontró el adeudo a actualizar.");
+
+                    existente.Periodo = adeudo.Periodo;
+                    existente.Concepto = adeudo.Concepto;
+                    existente.FechaGeneracion = adeudo.FechaGeneracion == default(DateTime) ? existente.FechaGeneracion : adeudo.FechaGeneracion;
+                }
+
+                SCPSAPEntities.SaveChanges();
+
+                // Si fue inserción, adeudo.IdAdeudo ya contiene el valor generado por EF.
+                return adeudo.IdAdeudo == 0
+                    ? SCPSAPEntities.Adeudos.OrderByDescending(a => a.IdAdeudo).FirstOrDefault()
+                    : SCPSAPEntities.Adeudos.FirstOrDefault(a => a.IdAdeudo == adeudo.IdAdeudo);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Elimina un adeudo configurado por Id.
+        /// </summary>
+        public bool EliminarAdeudo(int id)
+        {
+            try
+            {
+                var adeudo = SCPSAPEntities.Adeudos.FirstOrDefault(a => a.IdAdeudo == id);
+                if (adeudo == null) return false;
+
+                SCPSAPEntities.Adeudos.Remove(adeudo);
+                SCPSAPEntities.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
         /// Guarda un pago y sus detalles, actualiza estado de los adeudos y lo hace en una transacción.
         /// </summary>
         /// <param name="pago">Entidad Pago con IdContribuyente, MetodoPago e IdUsuarioSistema (opcional).</param>

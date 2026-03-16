@@ -29,11 +29,21 @@ namespace SCPSAP.ControlesCobranza
         // Id del contribuyente actualmente mostrado en la grilla de adeudos
         private int _currentContribuyenteId = 0;
 
+        // Adeudo en edición (puede ser null si no se está editando)
+        private Adeudo _adeudoEnEdicion = null;
+
         public Cobranza()
         {
             InitializeComponent();
             _contribNeg = new ContribuyentesNegocio();
             InitializeSearchControls();
+
+            // Suscribir eventos
+            if (dgvAdeudosConfigurados != null)
+            {
+                dgvAdeudosConfigurados.SelectionChanged += dgvAdeudosConfigurados_SelectionChanged;
+                dgvAdeudosConfigurados.CellClick += dgvAdeudosConfigurados_SelectionChanged; // para clicks en celdas
+            }
 
             // Seleccionar método de pago por defecto ("Efectivo") si está en la lista.
             try
@@ -61,8 +71,53 @@ namespace SCPSAP.ControlesCobranza
 
             // Asegurar estado inicial de controles (deshabilitados si no hay datos)
             UpdateAdeudosControlsState();
+
+            // Cargar adeudos configurados inicialmente
+            CargarAdeudosConfigurados();
+
+            // Recargar lista de adeudos configurados al cambiar a la pestaña de configuración
+            tbCobranza.SelectedIndexChanged += (s, e) =>
+            {
+                if (tbCobranza.SelectedTab == tbPageConfiguraAdeudos)
+                {
+                    CargarAdeudosConfigurados();
+                }
+            };
         }
 
+        private void dgvAdeudosConfigurados_SelectionChanged(object sender, EventArgs e)
+        {
+            ActualizarEstadoBotonActualizar();
+        }
+
+        private void ActualizarEstadoBotonActualizar()
+        {
+            try
+            {
+                bool tieneSeleccion = false;
+
+                if (dgvAdeudosConfigurados != null)
+                {
+                    // Preferir SelectedRows cuando el SelectionMode lo permita
+                    if (dgvAdeudosConfigurados.SelectedRows != null && dgvAdeudosConfigurados.SelectedRows.Count > 0)
+                    {
+                        tieneSeleccion = dgvAdeudosConfigurados.SelectedRows.Cast<DataGridViewRow>()
+                            .Any(r => r != null && r.Index >= 0);
+                    }
+                    else
+                    {
+                        // Fallback a CurrentRow / CurrentCell
+                        tieneSeleccion = dgvAdeudosConfigurados.CurrentRow != null && dgvAdeudosConfigurados.CurrentRow.Index >= 0;
+                    }
+                }
+
+                btnActualizarAdeudo.Enabled = tieneSeleccion;
+            }
+            catch
+            {
+                btnActualizarAdeudo.Enabled = false;
+            }
+        }
         // Inicializa los controles usados para búsqueda sin usar DataGridView.
         private void InitializeSearchControls()
         {
@@ -205,7 +260,7 @@ namespace SCPSAP.ControlesCobranza
             {
                 txbName.Text = seleccionado.Nombre;
                 ContribuyenteSeleccionado?.Invoke(seleccionado);
-                obtenerAdeudos(seleccionado.IdContribuyente);
+                ObtenerAdeudosPorContribuyente(seleccionado.IdContribuyente);
                 _lstResultados.Visible = false;
             }
         }
@@ -216,7 +271,7 @@ namespace SCPSAP.ControlesCobranza
             _cacheContribuyentes = null;
         }
 
-        public void obtenerAdeudos(int Idcontribuyente)
+        public void ObtenerAdeudosPorContribuyente(int Idcontribuyente)
         {
             try
             {
@@ -237,6 +292,185 @@ namespace SCPSAP.ControlesCobranza
                 MessageBox.Show(ex.Message, "Error al obtener adeudos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        /// <summary>
+        /// Carga la grilla de "ADEUDOS CONFIGURADOS" (tabla Adeudo).
+        /// </summary>
+        private void CargarAdeudosConfigurados()
+        {
+            try
+            {
+                var adeudos = cobranzaNegocio.ObtenerAdeudosConfigurados();
+
+                // Proyección ligera para el DataGridView
+                dgvAdeudosConfigurados.DataSource = adeudos
+                    .Select(a => new
+                    {
+                        a.IdAdeudo,
+                        a.Periodo,
+                        a.Concepto,
+                        FechaGeneracion = a.FechaGeneracion
+                    })
+                    .ToList();
+
+                // Opcional: ajustar columnas visibles / formato aquí si se requiere
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error al cargar adeudos configurados", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // ------------------------------
+        // Métodos públicos para los botones
+        // ------------------------------
+
+        // Obtiene el IdAdeudo desde la fila seleccionada en dgvAdeudosConfigurados (0 si no hay selección)
+        public int ObtenerIdAdeudoSeleccionadoDesdeGrid()
+        {
+            if (dgvAdeudosConfigurados == null) return 0;
+
+            DataGridViewRow fila = null;
+            if (dgvAdeudosConfigurados.SelectedRows != null && dgvAdeudosConfigurados.SelectedRows.Count > 0)
+            {
+                fila = dgvAdeudosConfigurados.SelectedRows[0];
+            }
+            else if (dgvAdeudosConfigurados.CurrentRow != null)
+            {
+                fila = dgvAdeudosConfigurados.CurrentRow;
+            }
+
+            if (fila == null) return 0;
+
+            object valor = null;
+            if (dgvAdeudosConfigurados.Columns.Contains("IdConfiguracionAdeudo"))
+            {
+                valor = fila.Cells["IdConfiguracionAdeudo"].Value;
+            }
+            else if (dgvAdeudosConfigurados.Columns.Count > 0)
+            {
+                valor = fila.Cells[0].Value;
+            }
+
+            if (valor == null) return 0;
+            int id;
+            return int.TryParse(Convert.ToString(valor), out id) ? id : 0;
+        }
+
+        // Nuevo: prepara una nueva entidad Adeudo para edición.
+        // UI debe tomar _adeudoEnEdicion y mostrar los campos en el editor (panel propio).
+        public void NuevoAdeudo()
+        {
+            _adeudoEnEdicion = new Adeudo
+            {
+                IdAdeudo = 0,
+                Periodo = txbPeriodo.Text,
+                Concepto = txbConcepto.Text,
+                FechaGeneracion = DateTime.Now
+            };
+
+            // Dejar que la UI habilite el panel de edición para completar datos.
+            // Ejemplo: pnlEditor.Visible = true; txbPeriodo.Text = ""; ...
+        }
+
+        // Actualizar: carga la entidad seleccionada para edición.
+        public void ActualizarAdeudoSeleccionado()
+        {
+            int id = ObtenerIdAdeudoSeleccionadoDesdeGrid();
+            if (id <= 0)
+            {
+                MessageBox.Show("Seleccione un adeudo para actualizar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+
+            try
+            {
+                var adeudo = cobranzaNegocio.ObtenerAdeudoPorId(id);
+                if (adeudo == null)
+                {
+                    MessageBox.Show("No se encontró el adeudo seleccionado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                _adeudoEnEdicion = adeudo;
+                txbPeriodo.Text = _adeudoEnEdicion.Periodo;
+                txbConcepto.Text = _adeudoEnEdicion.Concepto;
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error al cargar adeudo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // Cancelar: descarta la edición actual.
+        public void CancelarEdicionAdeudo()
+        {
+            _adeudoEnEdicion = null;
+            // UI: limpiar y ocultar panel de edición.
+        }
+
+        // Guardar: recibe una entidad Adeudo (p. ej. creada por la UI desde controles) y la persiste.
+        // Devuelve true si se guardó correctamente y recarga la grilla de adeudos configurados.
+        public bool GuardarAdeudo(Adeudo adeudo)
+        {
+            try
+            {
+                var guardado = cobranzaNegocio.GuardarAdeudo(adeudo);
+                if (guardado == null)
+                {
+                    MessageBox.Show("No fue posible guardar el adeudo.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+
+                // Recargar grilla
+                CargarAdeudosConfigurados();
+
+                // actualizar estado interno
+                _adeudoEnEdicion = null;
+                return true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error al guardar adeudo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        // Eliminar: elimina el adeudo seleccionado (si existe) y recarga la grilla.
+        public bool EliminarAdeudoSeleccionado()
+        {
+            int id = ObtenerIdAdeudoSeleccionadoDesdeGrid();
+            if (id <= 0)
+            {
+                MessageBox.Show("Seleccione un adeudo para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return false;
+            }
+
+            try
+            {
+                var ok = cobranzaNegocio.EliminarAdeudo(id);
+                if (ok)
+                {
+                    CargarAdeudosConfigurados();
+                    return true;
+                }
+                else
+                {
+                    MessageBox.Show("No se pudo eliminar el adeudo seleccionado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error al eliminar adeudo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        // ------------------------------
+        // Resto del código existente (pagar, recalcular, etc.) se mantiene...
+        // ------------------------------
 
         // Al hacer click en Pagar: recopilar filas marcadas y guardar pago
         private async void BtnPagar_Click(object sender, EventArgs e)
@@ -313,7 +547,7 @@ namespace SCPSAP.ControlesCobranza
                 {
                     MessageBox.Show("Pago registrado correctamente.", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     // Recargar adeudos y limpiar total
-                    obtenerAdeudos(_currentContribuyenteId);
+                    ObtenerAdeudosPorContribuyente(_currentContribuyenteId);
                     txbTotalPagar.Text = 0m.ToString("N2");
                 }
                 else
@@ -444,6 +678,67 @@ namespace SCPSAP.ControlesCobranza
                 cbxMetodoPago.Enabled = false;
                 txbTotalPagar.Text = 0m.ToString("N2");
             }
+        }
+
+        private void btnNuevoAdeudo_Click(object sender, EventArgs e)
+        {
+            btnGuardarAdeudo.Enabled = true; // Asegurar que el botón de guardar esté habilitado para un nuevo adeudo
+            btnActualizarAdeudo.Enabled = false;
+            btnNuevoAdeudo.Enabled = false;
+            btnCancelarConfiguracionAdeudo.Enabled = true;
+            txbConcepto.Enabled = true;
+            txbPeriodo.Enabled = true;
+            NuevoAdeudo();
+        }
+
+        private void btnActualizarAdeudo_Click(object sender, EventArgs e)
+        {
+            ActualizarAdeudoSeleccionado();
+            txbConcepto.Enabled = true;
+            txbPeriodo.Enabled = true;
+            btnNuevoAdeudo.Enabled = false;
+            btnActualizarAdeudo.Enabled = false;
+            btnCancelarConfiguracionAdeudo.Enabled = true;
+            btnGuardarAdeudo.Enabled = true;
+        }
+
+        private void btnCancelarConfiguracionAdeudo_Click(object sender, EventArgs e)
+        {
+            CancelarEdicionAdeudo();
+            LimpiarControles();
+        }
+
+        private void btnGuardarAdeudo_Click(object sender, EventArgs e)
+        {
+            txbConcepto.Enabled = false;
+            txbPeriodo.Enabled = false;
+            btnNuevoAdeudo.Enabled = true;
+            btnActualizarAdeudo.Enabled = true;
+            btnCancelarConfiguracionAdeudo.Enabled = false;
+            _adeudoEnEdicion.Periodo = txbPeriodo.Text;
+            _adeudoEnEdicion.Concepto = txbConcepto.Text;
+            
+            GuardarAdeudo(_adeudoEnEdicion);
+            LimpiarControles();
+        }
+
+        private void dgvAdeudosConfigurados_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == dgvAdeudosConfigurados.Columns["EliminarAdeudo"].Index && e.RowIndex >= 0)
+            {           
+                EliminarAdeudoSeleccionado();
+            }
+        }
+
+        private void LimpiarControles()
+        {
+            // Limpiar controles y restablecer estado
+            btnNuevoAdeudo.Enabled = true;
+            btnActualizarAdeudo.Enabled = true;
+            btnCancelarConfiguracionAdeudo.Enabled = false;
+            txbPeriodo.Clear();
+            txbConcepto.Clear();
+            btnGuardarAdeudo.Enabled = false;
         }
     }
 }

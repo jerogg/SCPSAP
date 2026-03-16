@@ -29,6 +29,20 @@
         private void InitializeComponent()
         {
             this.dgvListaContribuyentes = new System.Windows.Forms.DataGridView();
+            this.IdContribuyente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdTarifa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaUltimoAviso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaLimitePago = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DiasGracia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaAlta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tarifa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             this.lblListadoDeContribuyentes = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
             this.txbNombre = new System.Windows.Forms.TextBox();
@@ -53,20 +67,6 @@
             this.btnCancelar = new System.Windows.Forms.Button();
             this.lblBuscar = new System.Windows.Forms.Label();
             this.txbBuscar = new System.Windows.Forms.TextBox();
-            this.IdContribuyente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdTarifa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaUltimoAviso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaLimitePago = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DiasGracia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaAlta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tarifa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Eliminar = new System.Windows.Forms.DataGridViewButtonColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaContribuyentes)).BeginInit();
             this.pnlDatosUsuario.SuspendLayout();
             this.SuspendLayout();
@@ -103,6 +103,112 @@
             this.dgvListaContribuyentes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaContribuyentes_CellClick);
             this.dgvListaContribuyentes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaContribuyentes_CellContentClick);
             this.dgvListaContribuyentes.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvListaContribuyentes_CellPainting);
+            // 
+            // IdContribuyente
+            // 
+            this.IdContribuyente.DataPropertyName = "IdContribuyente";
+            this.IdContribuyente.HeaderText = "Folio";
+            this.IdContribuyente.Name = "IdContribuyente";
+            this.IdContribuyente.ReadOnly = true;
+            // 
+            // IdEstado
+            // 
+            this.IdEstado.DataPropertyName = "IdEstado";
+            this.IdEstado.HeaderText = "IdEstado";
+            this.IdEstado.Name = "IdEstado";
+            this.IdEstado.ReadOnly = true;
+            this.IdEstado.Visible = false;
+            // 
+            // IdTarifa
+            // 
+            this.IdTarifa.DataPropertyName = "IdTarifa";
+            this.IdTarifa.HeaderText = "IdTarifa";
+            this.IdTarifa.Name = "IdTarifa";
+            this.IdTarifa.ReadOnly = true;
+            this.IdTarifa.Visible = false;
+            // 
+            // FechaUltimoAviso
+            // 
+            this.FechaUltimoAviso.DataPropertyName = "FechaUltimoAviso";
+            this.FechaUltimoAviso.HeaderText = "FechaUltimoAviso";
+            this.FechaUltimoAviso.Name = "FechaUltimoAviso";
+            this.FechaUltimoAviso.ReadOnly = true;
+            this.FechaUltimoAviso.Visible = false;
+            // 
+            // FechaLimitePago
+            // 
+            this.FechaLimitePago.DataPropertyName = "FechaLimitePago";
+            this.FechaLimitePago.HeaderText = "FechaLimitePago";
+            this.FechaLimitePago.Name = "FechaLimitePago";
+            this.FechaLimitePago.ReadOnly = true;
+            this.FechaLimitePago.Visible = false;
+            // 
+            // DiasGracia
+            // 
+            this.DiasGracia.DataPropertyName = "DiasGracia";
+            this.DiasGracia.HeaderText = "DiasGracia";
+            this.DiasGracia.Name = "DiasGracia";
+            this.DiasGracia.ReadOnly = true;
+            this.DiasGracia.Visible = false;
+            // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // Direccion
+            // 
+            this.Direccion.DataPropertyName = "Direccion";
+            this.Direccion.HeaderText = "Direccion";
+            this.Direccion.Name = "Direccion";
+            this.Direccion.ReadOnly = true;
+            // 
+            // Telefono
+            // 
+            this.Telefono.DataPropertyName = "Telefono";
+            this.Telefono.HeaderText = "Telefono";
+            this.Telefono.Name = "Telefono";
+            this.Telefono.ReadOnly = true;
+            // 
+            // FechaAlta
+            // 
+            this.FechaAlta.DataPropertyName = "FechaAlta";
+            this.FechaAlta.HeaderText = "Fecha de alta";
+            this.FechaAlta.Name = "FechaAlta";
+            this.FechaAlta.ReadOnly = true;
+            // 
+            // Estado
+            // 
+            this.Estado.DataPropertyName = "EstadoDescripcion";
+            this.Estado.HeaderText = "Situacion";
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            // 
+            // Tarifa
+            // 
+            this.Tarifa.DataPropertyName = "Tarifa";
+            this.Tarifa.HeaderText = "Tarifa mensual";
+            this.Tarifa.Name = "Tarifa";
+            this.Tarifa.ReadOnly = true;
+            // 
+            // Email
+            // 
+            this.Email.DataPropertyName = "Email";
+            this.Email.HeaderText = "Email";
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Eliminar.DataPropertyName = "btnEliminar";
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.MinimumWidth = 6;
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.ReadOnly = true;
+            this.Eliminar.Width = 49;
             // 
             // lblListadoDeContribuyentes
             // 
@@ -351,117 +457,11 @@
             // txbBuscar
             // 
             this.txbBuscar.Location = new System.Drawing.Point(472, 17);
-            this.txbBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.txbBuscar.Name = "txbBuscar";
             this.txbBuscar.Size = new System.Drawing.Size(101, 20);
             this.txbBuscar.TabIndex = 25;
             this.txbBuscar.TextChanged += new System.EventHandler(this.txtBuscar_TextChanged);
-            // 
-            // IdContribuyente
-            // 
-            this.IdContribuyente.DataPropertyName = "IdContribuyente";
-            this.IdContribuyente.HeaderText = "Folio";
-            this.IdContribuyente.Name = "IdContribuyente";
-            this.IdContribuyente.ReadOnly = true;
-            // 
-            // IdEstado
-            // 
-            this.IdEstado.DataPropertyName = "IdEstado";
-            this.IdEstado.HeaderText = "IdEstado";
-            this.IdEstado.Name = "IdEstado";
-            this.IdEstado.ReadOnly = true;
-            this.IdEstado.Visible = false;
-            // 
-            // IdTarifa
-            // 
-            this.IdTarifa.DataPropertyName = "IdTarifa";
-            this.IdTarifa.HeaderText = "IdTarifa";
-            this.IdTarifa.Name = "IdTarifa";
-            this.IdTarifa.ReadOnly = true;
-            this.IdTarifa.Visible = false;
-            // 
-            // FechaUltimoAviso
-            // 
-            this.FechaUltimoAviso.DataPropertyName = "FechaUltimoAviso";
-            this.FechaUltimoAviso.HeaderText = "FechaUltimoAviso";
-            this.FechaUltimoAviso.Name = "FechaUltimoAviso";
-            this.FechaUltimoAviso.ReadOnly = true;
-            this.FechaUltimoAviso.Visible = false;
-            // 
-            // FechaLimitePago
-            // 
-            this.FechaLimitePago.DataPropertyName = "FechaLimitePago";
-            this.FechaLimitePago.HeaderText = "FechaLimitePago";
-            this.FechaLimitePago.Name = "FechaLimitePago";
-            this.FechaLimitePago.ReadOnly = true;
-            this.FechaLimitePago.Visible = false;
-            // 
-            // DiasGracia
-            // 
-            this.DiasGracia.DataPropertyName = "DiasGracia";
-            this.DiasGracia.HeaderText = "DiasGracia";
-            this.DiasGracia.Name = "DiasGracia";
-            this.DiasGracia.ReadOnly = true;
-            this.DiasGracia.Visible = false;
-            // 
-            // Nombre
-            // 
-            this.Nombre.DataPropertyName = "Nombre";
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            // 
-            // Direccion
-            // 
-            this.Direccion.DataPropertyName = "Direccion";
-            this.Direccion.HeaderText = "Direccion";
-            this.Direccion.Name = "Direccion";
-            this.Direccion.ReadOnly = true;
-            // 
-            // Telefono
-            // 
-            this.Telefono.DataPropertyName = "Telefono";
-            this.Telefono.HeaderText = "Telefono";
-            this.Telefono.Name = "Telefono";
-            this.Telefono.ReadOnly = true;
-            // 
-            // FechaAlta
-            // 
-            this.FechaAlta.DataPropertyName = "FechaAlta";
-            this.FechaAlta.HeaderText = "Fecha de alta";
-            this.FechaAlta.Name = "FechaAlta";
-            this.FechaAlta.ReadOnly = true;
-            // 
-            // Estado
-            // 
-            this.Estado.DataPropertyName = "EstadoDescripcion";
-            this.Estado.HeaderText = "Situacion";
-            this.Estado.Name = "Estado";
-            this.Estado.ReadOnly = true;
-            // 
-            // Tarifa
-            // 
-            this.Tarifa.DataPropertyName = "Tarifa";
-            this.Tarifa.HeaderText = "Tarifa mensual";
-            this.Tarifa.Name = "Tarifa";
-            this.Tarifa.ReadOnly = true;
-            // 
-            // Email
-            // 
-            this.Email.DataPropertyName = "Email";
-            this.Email.HeaderText = "Email";
-            this.Email.Name = "Email";
-            this.Email.ReadOnly = true;
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Eliminar.DataPropertyName = "btnEliminar";
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.MinimumWidth = 6;
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.ReadOnly = true;
-            this.Eliminar.Width = 49;
             // 
             // ListaContribuyentes
             // 

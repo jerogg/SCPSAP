@@ -33,9 +33,9 @@ namespace Datos
         public System.DateTime FechaGeneracion { get; set; }
         public Nullable<System.DateTime> FechaVencimiento { get; set; }
     
-        public virtual Adeudo Adeudo { get; set; }
         public virtual Contribuyente Contribuyente { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetallePago> DetallePagoes { get; set; }
+        public virtual Adeudo Adeudo { get; set; }
     }
 }

@@ -13,7 +13,6 @@
           <Property Name="Periodo" Type="varchar" MaxLength="20" Nullable="false" />
           <Property Name="Concepto" Type="varchar" MaxLength="100" />
           <Property Name="FechaGeneracion" Type="datetime" Nullable="false" />
-          <Property Name="FechaVencimiento" Type="datetime" />
         </EntityType>
         <EntityType Name="AdeudoContribuyente">
           <Key>
@@ -286,13 +285,8 @@
             <End Role="UsuarioSistema" EntitySet="UsuarioSistemas" />
             <End Role="Pago" EntitySet="Pagos" />
           </AssociationSet>
-          <EntitySet Name="Adeudos" EntityType="SCPSAPModel.Adeudo" />
           <EntitySet Name="AdeudoContribuyentes" EntityType="SCPSAPModel.AdeudoContribuyente" />
           <EntitySet Name="DetallePagos" EntityType="SCPSAPModel.DetallePago" />
-          <AssociationSet Name="FK_Adeudo_AdeudoContribuyente" Association="SCPSAPModel.FK_Adeudo_AdeudoContribuyente">
-            <End Role="Adeudo" EntitySet="Adeudos" />
-            <End Role="AdeudoContribuyente" EntitySet="AdeudoContribuyentes" />
-          </AssociationSet>
           <AssociationSet Name="FK_AdeudoContribuyente_Contribuyente" Association="SCPSAPModel.FK_AdeudoContribuyente_Contribuyente">
             <End Role="Contribuyente" EntitySet="Contribuyentes" />
             <End Role="AdeudoContribuyente" EntitySet="AdeudoContribuyentes" />
@@ -304,6 +298,11 @@
           <AssociationSet Name="FK_DetallePago_Pago" Association="SCPSAPModel.FK_DetallePago_Pago">
             <End Role="Pago" EntitySet="Pagos" />
             <End Role="DetallePago" EntitySet="DetallePagos" />
+          </AssociationSet>
+          <EntitySet Name="Adeudos" EntityType="SCPSAPModel.Adeudo" />
+          <AssociationSet Name="FK_Adeudo_AdeudoContribuyente" Association="SCPSAPModel.FK_Adeudo_AdeudoContribuyente">
+            <End Role="Adeudo" EntitySet="Adeudos" />
+            <End Role="AdeudoContribuyente" EntitySet="AdeudoContribuyentes" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Contribuyente">
@@ -437,17 +436,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Adeudo">
-          <Key>
-            <PropertyRef Name="IdAdeudo" />
-          </Key>
-          <Property Name="IdAdeudo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Periodo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="Concepto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="FechaGeneracion" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FechaVencimiento" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="AdeudoContribuyentes" Relationship="SCPSAPModel.FK_Adeudo_AdeudoContribuyente" FromRole="Adeudo" ToRole="AdeudoContribuyente" />
-        </EntityType>
         <EntityType Name="AdeudoContribuyente">
           <Key>
             <PropertyRef Name="IdAdeudoContribuyente" />
@@ -464,9 +452,9 @@
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="FechaGeneracion" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FechaVencimiento" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Adeudo" Relationship="SCPSAPModel.FK_Adeudo_AdeudoContribuyente" FromRole="AdeudoContribuyente" ToRole="Adeudo" />
           <NavigationProperty Name="Contribuyente" Relationship="SCPSAPModel.FK_AdeudoContribuyente_Contribuyente" FromRole="AdeudoContribuyente" ToRole="Contribuyente" />
           <NavigationProperty Name="DetallePagoes" Relationship="SCPSAPModel.FK_DetallePago_AdeudoContribuyente" FromRole="AdeudoContribuyente" ToRole="DetallePago" />
+          <NavigationProperty Name="Adeudo" Relationship="SCPSAPModel.FK_Adeudo_AdeudoContribuyente" FromRole="AdeudoContribuyente" ToRole="Adeudo" />
         </EntityType>
         <EntityType Name="DetallePago">
           <Key>
@@ -479,18 +467,6 @@
           <NavigationProperty Name="AdeudoContribuyente" Relationship="SCPSAPModel.FK_DetallePago_AdeudoContribuyente" FromRole="DetallePago" ToRole="AdeudoContribuyente" />
           <NavigationProperty Name="Pago" Relationship="SCPSAPModel.FK_DetallePago_Pago" FromRole="DetallePago" ToRole="Pago" />
         </EntityType>
-        <Association Name="FK_Adeudo_AdeudoContribuyente">
-          <End Type="SCPSAPModel.Adeudo" Role="Adeudo" Multiplicity="1" />
-          <End Type="SCPSAPModel.AdeudoContribuyente" Role="AdeudoContribuyente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Adeudo">
-              <PropertyRef Name="IdAdeudo" />
-            </Principal>
-            <Dependent Role="AdeudoContribuyente">
-              <PropertyRef Name="IdAdeudo" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_AdeudoContribuyente_Contribuyente">
           <End Type="SCPSAPModel.Contribuyente" Role="Contribuyente" Multiplicity="1" />
           <End Type="SCPSAPModel.AdeudoContribuyente" Role="AdeudoContribuyente" Multiplicity="*" />
@@ -524,6 +500,28 @@
             </Principal>
             <Dependent Role="DetallePago">
               <PropertyRef Name="IdPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Adeudo">
+          <Key>
+            <PropertyRef Name="IdAdeudo" />
+          </Key>
+          <Property Name="IdAdeudo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Periodo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="Concepto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="FechaGeneracion" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="AdeudoContribuyentes" Relationship="SCPSAPModel.FK_Adeudo_AdeudoContribuyente" FromRole="Adeudo" ToRole="AdeudoContribuyente" />
+        </EntityType>
+        <Association Name="FK_Adeudo_AdeudoContribuyente">
+          <End Type="SCPSAPModel.Adeudo" Role="Adeudo" Multiplicity="1" />
+          <End Type="SCPSAPModel.AdeudoContribuyente" Role="AdeudoContribuyente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Adeudo">
+              <PropertyRef Name="IdAdeudo" />
+            </Principal>
+            <Dependent Role="AdeudoContribuyente">
+              <PropertyRef Name="IdAdeudo" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -598,17 +596,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Adeudos">
-            <EntityTypeMapping TypeName="SCPSAPModel.Adeudo">
-              <MappingFragment StoreEntitySet="Adeudo">
-                <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
-                <ScalarProperty Name="FechaGeneracion" ColumnName="FechaGeneracion" />
-                <ScalarProperty Name="Concepto" ColumnName="Concepto" />
-                <ScalarProperty Name="Periodo" ColumnName="Periodo" />
-                <ScalarProperty Name="IdAdeudo" ColumnName="IdAdeudo" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AdeudoContribuyentes">
             <EntityTypeMapping TypeName="SCPSAPModel.AdeudoContribuyente">
               <MappingFragment StoreEntitySet="AdeudoContribuyente">
@@ -634,6 +621,16 @@
                 <ScalarProperty Name="IdAdeudoContribuyente" ColumnName="IdAdeudoContribuyente" />
                 <ScalarProperty Name="IdPago" ColumnName="IdPago" />
                 <ScalarProperty Name="IdDetallePago" ColumnName="IdDetallePago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Adeudos">
+            <EntityTypeMapping TypeName="SCPSAPModel.Adeudo">
+              <MappingFragment StoreEntitySet="Adeudo">
+                <ScalarProperty Name="FechaGeneracion" ColumnName="FechaGeneracion" />
+                <ScalarProperty Name="Concepto" ColumnName="Concepto" />
+                <ScalarProperty Name="Periodo" ColumnName="Periodo" />
+                <ScalarProperty Name="IdAdeudo" ColumnName="IdAdeudo" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

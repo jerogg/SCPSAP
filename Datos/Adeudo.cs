@@ -24,7 +24,6 @@ namespace Datos
         public string Periodo { get; set; }
         public string Concepto { get; set; }
         public System.DateTime FechaGeneracion { get; set; }
-        public Nullable<System.DateTime> FechaVencimiento { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdeudoContribuyente> AdeudoContribuyentes { get; set; }

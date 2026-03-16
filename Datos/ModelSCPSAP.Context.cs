@@ -31,8 +31,8 @@ namespace Datos
         public virtual DbSet<UsuarioRol> UsuarioRols { get; set; }
         public virtual DbSet<UsuarioSistema> UsuarioSistemas { get; set; }
         public virtual DbSet<Pago> Pagos { get; set; }
-        public virtual DbSet<Adeudo> Adeudos { get; set; }
         public virtual DbSet<AdeudoContribuyente> AdeudoContribuyentes { get; set; }
         public virtual DbSet<DetallePago> DetallePagos { get; set; }
+        public virtual DbSet<Adeudo> Adeudos { get; set; }
     }
 }

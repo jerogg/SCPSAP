@@ -24,6 +24,71 @@ namespace Negocio.Cobranza
         }
 
         /// <summary>
+        /// Obtiene la lista de adeudos configurados (tabla Adeudo) delegando a la capa de datos.
+        /// </summary>
+        public List<Adeudo> ObtenerAdeudosConfigurados()
+        {
+            try
+            {
+                return CobranzaDatos.ObtenerAdeudosConfigurados();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Obtiene un adeudo configurado por Id.
+        /// </summary>
+        public Adeudo ObtenerAdeudoPorId(int id)
+        {
+            try
+            {
+                return CobranzaDatos.ObtenerAdeudoPorId(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Inserta o actualiza un adeudo configurado.
+        /// </summary>
+        public Adeudo GuardarAdeudo(Adeudo adeudo)
+        {
+            try
+            {
+                if (adeudo == null) throw new ArgumentNullException(nameof(adeudo));
+                if (string.IsNullOrWhiteSpace(adeudo.Periodo)) throw new ArgumentException("Periodo es requerido.");
+                if (string.IsNullOrWhiteSpace(adeudo.Concepto)) throw new ArgumentException("Concepto es requerido.");
+
+                return CobranzaDatos.GuardarAdeudo(adeudo);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Elimina un adeudo configurado por Id.
+        /// </summary>
+        public bool EliminarAdeudo(int id)
+        {
+            try
+            {
+                if (id <= 0) throw new ArgumentException("Id de adeudo inválido.");
+                return CobranzaDatos.EliminarAdeudo(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
         /// Guarda el pago y sus detalles (wrapping a la capa de datos).
         /// Valida que el método de pago esté presente y que el total > 0.
         /// </summary>
