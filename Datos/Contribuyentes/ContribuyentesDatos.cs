@@ -148,13 +148,31 @@ namespace Datos.Contribuyentes
             }
         }
 
-        public List<Contribuyente> BuscarContribuyentes(string criterio)
+        public List<ContribuyenteDto> BuscarContribuyentes(string criterio)
         {
-            List<Contribuyente> lista = SCPSAPEntities.Contribuyentes
-                .Where(x => x.Nombre.StartsWith(criterio)) 
-                .ToList();
+            var lista = from c in SCPSAPEntities.Contribuyentes
+                        join t in SCPSAPEntities.Tarifas on c.IdTarifa equals t.IdTarifa into tj
+                        from t in tj.DefaultIfEmpty()
+                        join e in SCPSAPEntities.Estados on c.IdEstado equals e.IdEstado into ej
+                        from e in ej.DefaultIfEmpty() where c.Nombre.Contains(criterio)
+                        select new ContribuyenteDto
+                        {
+                            IdContribuyente = c.IdContribuyente,
+                            Nombre = c.Nombre,
+                            Direccion = c.Direccion,
+                            Telefono = c.Telefono,
+                            FechaAlta = c.FechaAlta,
+                            IdEstado = c.IdEstado,
+                            EstadoDescripcion = e != null ? e.Descripcion : null,
+                            IdTarifa = c.IdTarifa,
+                            Tarifa = t.MontoMensual,
+                            Email = c.Email,
+                            FechaUltimoAviso = c.FechaUltimoAviso,
+                            FechaLimitePago = c.FechaLimitePago,
+                            DiasGracia = c.DiasGracia
+                        };
 
-            return lista;
+            return lista.ToList();
         }
     
     }

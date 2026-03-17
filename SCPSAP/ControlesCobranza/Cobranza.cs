@@ -300,10 +300,21 @@ namespace SCPSAP.ControlesCobranza
         {
             try
             {
+                // Desactivar generación automática de columnas para respetar las columnas definidas en el Designer
+                dgvAdeudosConfigurados.AutoGenerateColumns = false;
+
                 var adeudos = cobranzaNegocio.ObtenerAdeudosConfigurados();
 
                 // Proyección ligera para el DataGridView
                 dgvAdeudosConfigurados.DataSource = adeudos;
+
+                // Forzar que la columna "Eliminar" quede en la última posición visual
+                if (dgvAdeudosConfigurados.Columns.Contains("Eliminar"))
+                {
+                    dgvAdeudosConfigurados.Columns["Eliminar"].DisplayIndex = dgvAdeudosConfigurados.Columns.Count - 1;
+                    // Asegurar que el AutoSizeMode no provoque reordenamientos inesperados
+                    dgvAdeudosConfigurados.Columns["Eliminar"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                }
 
             }
             catch (Exception ex)

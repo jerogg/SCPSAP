@@ -105,7 +105,7 @@ namespace Negocio.Contribuyentes
             }
         }
 
-        public List<Contribuyente> BuscarContribuyentes(string criterio)
+        public List<ContribuyenteDto> BuscarContribuyentes(string criterio)
         {
             ContribuyentesDatos datos = new ContribuyentesDatos();
             return datos.BuscarContribuyentes(criterio);

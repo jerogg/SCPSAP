@@ -48,10 +48,21 @@ namespace SCPSAP.Contribuyentes
         {
             try
             {
+                // Desactivar generación automática de columnas para respetar las columnas definidas en el Designer
+                dgvListaContribuyentes.AutoGenerateColumns = false;
+
                 var lista = contribuyentesNegocio.ObtenerContribuyentes();
 
                 // Enlaza columnas útiles al DataGridView (evita exponer navegación completa)
                 dgvListaContribuyentes.DataSource = lista;
+
+                // Forzar que la columna "Eliminar" quede en la última posición visual
+                if (dgvListaContribuyentes.Columns.Contains("Eliminar"))
+                {
+                    dgvListaContribuyentes.Columns["Eliminar"].DisplayIndex = dgvListaContribuyentes.Columns.Count - 1;
+                    // Asegurar que el AutoSizeMode no provoque reordenamientos inesperados
+                    dgvListaContribuyentes.Columns["Eliminar"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                }
 
             }
             catch (Exception ex)
