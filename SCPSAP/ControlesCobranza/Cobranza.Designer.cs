@@ -57,6 +57,8 @@
             this.tbCobranza = new System.Windows.Forms.TabControl();
             this.tbPageCobranza = new System.Windows.Forms.TabPage();
             this.tbPageConfiguraAdeudos = new System.Windows.Forms.TabPage();
+            this.lblFechaLimitePago = new System.Windows.Forms.Label();
+            this.dtpFechaLimitePago = new System.Windows.Forms.DateTimePicker();
             this.btnCancelarConfiguracionAdeudo = new System.Windows.Forms.Button();
             this.btnActualizarAdeudo = new System.Windows.Forms.Button();
             this.btnNuevoAdeudo = new System.Windows.Forms.Button();
@@ -66,9 +68,6 @@
             this.txbPeriodo = new System.Windows.Forms.TextBox();
             this.lblPeriodo = new System.Windows.Forms.Label();
             this.dgvAdeudosConfigurados = new System.Windows.Forms.DataGridView();
-            this.lblAdeudos = new System.Windows.Forms.Label();
-            this.dtpFechaLimitePago = new System.Windows.Forms.DateTimePicker();
-            this.lblFechaLimitePago = new System.Windows.Forms.Label();
             this.IdConfiguracionAdeudo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AdeudoContribuyentes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,6 +75,11 @@
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaVencimientoAdeudo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EliminarAdeudo = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.lblAdeudos = new System.Windows.Forms.Label();
+            this.lblFolio = new System.Windows.Forms.Label();
+            this.txbFolio = new System.Windows.Forms.TextBox();
+            this.txbDireccion = new System.Windows.Forms.TextBox();
+            this.lblDireccion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdeudosPorContribuyente)).BeginInit();
             this.tbCobranza.SuspendLayout();
             this.tbPageCobranza.SuspendLayout();
@@ -315,6 +319,10 @@
             // 
             // tbPageCobranza
             // 
+            this.tbPageCobranza.Controls.Add(this.txbDireccion);
+            this.tbPageCobranza.Controls.Add(this.lblDireccion);
+            this.tbPageCobranza.Controls.Add(this.txbFolio);
+            this.tbPageCobranza.Controls.Add(this.lblFolio);
             this.tbPageCobranza.Controls.Add(this.lblBuscarContribuyente);
             this.tbPageCobranza.Controls.Add(this.btnPagar);
             this.tbPageCobranza.Controls.Add(this.txbName);
@@ -354,6 +362,25 @@
             this.tbPageConfiguraAdeudos.TabIndex = 1;
             this.tbPageConfiguraAdeudos.Text = "Configura adeudos";
             this.tbPageConfiguraAdeudos.UseVisualStyleBackColor = true;
+            // 
+            // lblFechaLimitePago
+            // 
+            this.lblFechaLimitePago.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFechaLimitePago.AutoSize = true;
+            this.lblFechaLimitePago.Location = new System.Drawing.Point(321, 363);
+            this.lblFechaLimitePago.Name = "lblFechaLimitePago";
+            this.lblFechaLimitePago.Size = new System.Drawing.Size(108, 13);
+            this.lblFechaLimitePago.TabIndex = 29;
+            this.lblFechaLimitePago.Text = "Fecha limite de pago:";
+            // 
+            // dtpFechaLimitePago
+            // 
+            this.dtpFechaLimitePago.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.dtpFechaLimitePago.Enabled = false;
+            this.dtpFechaLimitePago.Location = new System.Drawing.Point(432, 359);
+            this.dtpFechaLimitePago.Name = "dtpFechaLimitePago";
+            this.dtpFechaLimitePago.Size = new System.Drawing.Size(200, 20);
+            this.dtpFechaLimitePago.TabIndex = 28;
             // 
             // btnCancelarConfiguracionAdeudo
             // 
@@ -461,34 +488,6 @@
             this.dgvAdeudosConfigurados.TabIndex = 5;
             this.dgvAdeudosConfigurados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAdeudosConfigurados_CellClick);
             // 
-            // lblAdeudos
-            // 
-            this.lblAdeudos.AutoSize = true;
-            this.lblAdeudos.Location = new System.Drawing.Point(11, 18);
-            this.lblAdeudos.Name = "lblAdeudos";
-            this.lblAdeudos.Size = new System.Drawing.Size(149, 13);
-            this.lblAdeudos.TabIndex = 1;
-            this.lblAdeudos.Text = "ADEUDOS CONFIGURADOS";
-            // 
-            // dtpFechaLimitePago
-            // 
-            this.dtpFechaLimitePago.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.dtpFechaLimitePago.Enabled = false;
-            this.dtpFechaLimitePago.Location = new System.Drawing.Point(432, 359);
-            this.dtpFechaLimitePago.Name = "dtpFechaLimitePago";
-            this.dtpFechaLimitePago.Size = new System.Drawing.Size(200, 20);
-            this.dtpFechaLimitePago.TabIndex = 28;
-            // 
-            // lblFechaLimitePago
-            // 
-            this.lblFechaLimitePago.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblFechaLimitePago.AutoSize = true;
-            this.lblFechaLimitePago.Location = new System.Drawing.Point(321, 363);
-            this.lblFechaLimitePago.Name = "lblFechaLimitePago";
-            this.lblFechaLimitePago.Size = new System.Drawing.Size(108, 13);
-            this.lblFechaLimitePago.TabIndex = 29;
-            this.lblFechaLimitePago.Text = "Fecha limite de pago:";
-            // 
             // IdConfiguracionAdeudo
             // 
             this.IdConfiguracionAdeudo.DataPropertyName = "IdAdeudo";
@@ -531,6 +530,49 @@
             // 
             this.EliminarAdeudo.HeaderText = "Eliminar adeudo";
             this.EliminarAdeudo.Name = "EliminarAdeudo";
+            // 
+            // lblAdeudos
+            // 
+            this.lblAdeudos.AutoSize = true;
+            this.lblAdeudos.Location = new System.Drawing.Point(11, 18);
+            this.lblAdeudos.Name = "lblAdeudos";
+            this.lblAdeudos.Size = new System.Drawing.Size(149, 13);
+            this.lblAdeudos.TabIndex = 1;
+            this.lblAdeudos.Text = "ADEUDOS CONFIGURADOS";
+            // 
+            // lblFolio
+            // 
+            this.lblFolio.AutoSize = true;
+            this.lblFolio.Location = new System.Drawing.Point(236, 49);
+            this.lblFolio.Name = "lblFolio";
+            this.lblFolio.Size = new System.Drawing.Size(32, 13);
+            this.lblFolio.TabIndex = 10;
+            this.lblFolio.Text = "Folio:";
+            // 
+            // txbFolio
+            // 
+            this.txbFolio.Enabled = false;
+            this.txbFolio.Location = new System.Drawing.Point(272, 46);
+            this.txbFolio.Name = "txbFolio";
+            this.txbFolio.Size = new System.Drawing.Size(63, 20);
+            this.txbFolio.TabIndex = 11;
+            // 
+            // txbDireccion
+            // 
+            this.txbDireccion.Enabled = false;
+            this.txbDireccion.Location = new System.Drawing.Point(406, 45);
+            this.txbDireccion.Name = "txbDireccion";
+            this.txbDireccion.Size = new System.Drawing.Size(198, 20);
+            this.txbDireccion.TabIndex = 13;
+            // 
+            // lblDireccion
+            // 
+            this.lblDireccion.AutoSize = true;
+            this.lblDireccion.Location = new System.Drawing.Point(348, 48);
+            this.lblDireccion.Name = "lblDireccion";
+            this.lblDireccion.Size = new System.Drawing.Size(55, 13);
+            this.lblDireccion.TabIndex = 12;
+            this.lblDireccion.Text = "Direccion:";
             // 
             // Cobranza
             // 
@@ -600,5 +642,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaVencimientoAdeudo;
         private System.Windows.Forms.DataGridViewButtonColumn EliminarAdeudo;
+        private System.Windows.Forms.TextBox txbDireccion;
+        private System.Windows.Forms.Label lblDireccion;
+        private System.Windows.Forms.TextBox txbFolio;
+        private System.Windows.Forms.Label lblFolio;
     }
 }

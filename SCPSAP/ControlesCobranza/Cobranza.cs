@@ -23,6 +23,9 @@ namespace SCPSAP.ControlesCobranza
         private ContribuyentesNegocio _contribNeg;
         private List<ContribuyenteDto> _cacheContribuyentes;
 
+        // Evita que el TextChanged dispare el filtrado cuando actualizamos programáticamente el TextBox
+        private bool _suppressFilter = false;
+
         // Evento opcional para quien use este control
         public event Action<ContribuyenteDto> ContribuyenteSeleccionado;
 
@@ -148,8 +151,14 @@ namespace SCPSAP.ControlesCobranza
 
         private void TxbName_TextChanged(object sender, EventArgs e)
         {
-            _filterTimer.Stop();
-            _filterTimer.Start();
+            // Si estamos actualizando el TextBox desde código (selección), no disparar filtrado.
+            if (_suppressFilter) return;
+
+            if (_filterTimer != null)
+            {
+                _filterTimer.Stop();
+                _filterTimer.Start();
+            }
         }
 
         private void FilterTimer_Tick(object sender, EventArgs e)
@@ -189,6 +198,9 @@ namespace SCPSAP.ControlesCobranza
 
                 BeginInvoke(new Action(() =>
                 {
+                    // No mostrar si en este instante hemos suprimido el filtrado
+                    if (_suppressFilter) return;
+
                     _lstResultados.DisplayMember = "Nombre";
                     _lstResultados.ValueMember = "IdContribuyente";
                     _lstResultados.DataSource = coincidencias;
@@ -258,10 +270,21 @@ namespace SCPSAP.ControlesCobranza
         {
             if (_lstResultados.SelectedItem is ContribuyenteDto seleccionado)
             {
+                // Detener timer y suprimir filtrado mientras actualizamos el TextBox para evitar reentradas.
+                if (_filterTimer != null) _filterTimer.Stop();
+                _suppressFilter = true;
+
                 txbName.Text = seleccionado.Nombre;
+                txbFolio.Text = seleccionado.IdContribuyente.ToString();    
+                txbDireccion.Text = seleccionado.Direccion;
+
+                _lstResultados.Visible = false;
+
+                // Restaurar la supresión en el siguiente ciclo de mensajes (más robusto frente a reentradas).
+                BeginInvoke(new Action(() => _suppressFilter = false));
+
                 ContribuyenteSeleccionado?.Invoke(seleccionado);
                 ObtenerAdeudosPorContribuyente(seleccionado.IdContribuyente);
-                _lstResultados.Visible = false;
             }
         }
 
