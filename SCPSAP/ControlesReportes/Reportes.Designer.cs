@@ -46,9 +46,10 @@
             // 
             this.lblfiltros.AutoSize = true;
             this.lblfiltros.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.lblfiltros.Location = new System.Drawing.Point(47, 47);
+            this.lblfiltros.Location = new System.Drawing.Point(35, 38);
+            this.lblfiltros.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblfiltros.Name = "lblfiltros";
-            this.lblfiltros.Size = new System.Drawing.Size(66, 17);
+            this.lblfiltros.Size = new System.Drawing.Size(52, 13);
             this.lblfiltros.TabIndex = 0;
             this.lblfiltros.Text = "FILTROS";
             this.lblfiltros.Click += new System.EventHandler(this.label1_Click);
@@ -57,9 +58,10 @@
             // 
             this.lblFeachainicio.AutoSize = true;
             this.lblFeachainicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.lblFeachainicio.Location = new System.Drawing.Point(50, 82);
+            this.lblFeachainicio.Location = new System.Drawing.Point(38, 67);
+            this.lblFeachainicio.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblFeachainicio.Name = "lblFeachainicio";
-            this.lblFeachainicio.Size = new System.Drawing.Size(87, 17);
+            this.lblFeachainicio.Size = new System.Drawing.Size(68, 13);
             this.lblFeachainicio.TabIndex = 1;
             this.lblFeachainicio.Text = "Fecha Inicio:";
             // 
@@ -67,34 +69,38 @@
             // 
             this.lblfechafin.AutoSize = true;
             this.lblfechafin.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.lblfechafin.Location = new System.Drawing.Point(50, 122);
+            this.lblfechafin.Location = new System.Drawing.Point(38, 99);
+            this.lblfechafin.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblfechafin.Name = "lblfechafin";
-            this.lblfechafin.Size = new System.Drawing.Size(74, 17);
+            this.lblfechafin.Size = new System.Drawing.Size(57, 13);
             this.lblfechafin.TabIndex = 2;
             this.lblfechafin.Text = "Fecha Fin:";
             // 
             // dtpfechainicio
             // 
             this.dtpfechainicio.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.dtpfechainicio.Location = new System.Drawing.Point(138, 77);
+            this.dtpfechainicio.Location = new System.Drawing.Point(104, 63);
+            this.dtpfechainicio.Margin = new System.Windows.Forms.Padding(2);
             this.dtpfechainicio.Name = "dtpfechainicio";
-            this.dtpfechainicio.Size = new System.Drawing.Size(261, 23);
+            this.dtpfechainicio.Size = new System.Drawing.Size(197, 20);
             this.dtpfechainicio.TabIndex = 3;
             // 
             // dtpfechafin
             // 
-            this.dtpfechafin.Location = new System.Drawing.Point(138, 116);
+            this.dtpfechafin.Location = new System.Drawing.Point(104, 94);
+            this.dtpfechafin.Margin = new System.Windows.Forms.Padding(2);
             this.dtpfechafin.Name = "dtpfechafin";
-            this.dtpfechafin.Size = new System.Drawing.Size(261, 22);
+            this.dtpfechafin.Size = new System.Drawing.Size(197, 20);
             this.dtpfechafin.TabIndex = 4;
             // 
             // lbltiporeporte
             // 
             this.lbltiporeporte.AutoSize = true;
             this.lbltiporeporte.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.lbltiporeporte.Location = new System.Drawing.Point(50, 156);
+            this.lbltiporeporte.Location = new System.Drawing.Point(38, 127);
+            this.lbltiporeporte.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lbltiporeporte.Name = "lbltiporeporte";
-            this.lbltiporeporte.Size = new System.Drawing.Size(110, 17);
+            this.lbltiporeporte.Size = new System.Drawing.Size(82, 13);
             this.lbltiporeporte.TabIndex = 5;
             this.lbltiporeporte.Text = "Tipo de reporte:";
             // 
@@ -102,27 +108,30 @@
             // 
             this.cmbTiporeporte.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.cmbTiporeporte.FormattingEnabled = true;
-            this.cmbTiporeporte.Location = new System.Drawing.Point(166, 153);
+            this.cmbTiporeporte.Location = new System.Drawing.Point(124, 124);
+            this.cmbTiporeporte.Margin = new System.Windows.Forms.Padding(2);
             this.cmbTiporeporte.Name = "cmbTiporeporte";
-            this.cmbTiporeporte.Size = new System.Drawing.Size(233, 24);
+            this.cmbTiporeporte.Size = new System.Drawing.Size(176, 21);
             this.cmbTiporeporte.TabIndex = 6;
             // 
             // dgvReporte
             // 
             this.dgvReporte.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvReporte.Location = new System.Drawing.Point(3, 183);
+            this.dgvReporte.Location = new System.Drawing.Point(2, 149);
+            this.dgvReporte.Margin = new System.Windows.Forms.Padding(2);
             this.dgvReporte.Name = "dgvReporte";
             this.dgvReporte.RowHeadersWidth = 51;
             this.dgvReporte.RowTemplate.Height = 24;
-            this.dgvReporte.Size = new System.Drawing.Size(756, 384);
+            this.dgvReporte.Size = new System.Drawing.Size(567, 312);
             this.dgvReporte.TabIndex = 7;
             // 
             // btngenerar
             // 
             this.btngenerar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.btngenerar.Location = new System.Drawing.Point(414, 590);
+            this.btngenerar.Location = new System.Drawing.Point(318, 479);
+            this.btngenerar.Margin = new System.Windows.Forms.Padding(2);
             this.btngenerar.Name = "btngenerar";
-            this.btngenerar.Size = new System.Drawing.Size(75, 23);
+            this.btngenerar.Size = new System.Drawing.Size(56, 25);
             this.btngenerar.TabIndex = 8;
             this.btngenerar.Text = "Generar";
             this.btngenerar.UseVisualStyleBackColor = true;
@@ -130,26 +139,28 @@
             // btnExpopdf
             // 
             this.btnExpopdf.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.btnExpopdf.Location = new System.Drawing.Point(495, 590);
+            this.btnExpopdf.Location = new System.Drawing.Point(384, 479);
+            this.btnExpopdf.Margin = new System.Windows.Forms.Padding(2);
             this.btnExpopdf.Name = "btnExpopdf";
-            this.btnExpopdf.Size = new System.Drawing.Size(123, 23);
+            this.btnExpopdf.Size = new System.Drawing.Size(92, 25);
             this.btnExpopdf.TabIndex = 9;
             this.btnExpopdf.Text = "Exportar PDF";
             this.btnExpopdf.UseVisualStyleBackColor = true;
             // 
             // btnExpoexcel
             // 
-            this.btnExpoexcel.Location = new System.Drawing.Point(633, 590);
+            this.btnExpoexcel.Location = new System.Drawing.Point(486, 479);
+            this.btnExpoexcel.Margin = new System.Windows.Forms.Padding(2);
             this.btnExpoexcel.Name = "btnExpoexcel";
-            this.btnExpoexcel.Size = new System.Drawing.Size(110, 23);
+            this.btnExpoexcel.Size = new System.Drawing.Size(82, 25);
             this.btnExpoexcel.TabIndex = 10;
             this.btnExpoexcel.Text = "Exportar Excel";
             this.btnExpoexcel.UseVisualStyleBackColor = true;
             this.btnExpoexcel.Click += new System.EventHandler(this.btnExpoexcel_Click);
             // 
-            // UC_Reporte
+            // Reportes
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.btnExpoexcel);
             this.Controls.Add(this.btnExpopdf);
@@ -162,8 +173,9 @@
             this.Controls.Add(this.lblfechafin);
             this.Controls.Add(this.lblFeachainicio);
             this.Controls.Add(this.lblfiltros);
-            this.Name = "UC_Reporte";
-            this.Size = new System.Drawing.Size(762, 627);
+            this.Margin = new System.Windows.Forms.Padding(2);
+            this.Name = "Reportes";
+            this.Size = new System.Drawing.Size(572, 509);
             ((System.ComponentModel.ISupportInitialize)(this.dgvReporte)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

@@ -356,7 +356,7 @@
             // 
             this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGuardar.Enabled = false;
-            this.btnGuardar.Location = new System.Drawing.Point(511, 459);
+            this.btnGuardar.Location = new System.Drawing.Point(513, 463);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 25);
             this.btnGuardar.TabIndex = 19;
@@ -367,7 +367,7 @@
             // btnNuevo
             // 
             this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnNuevo.Location = new System.Drawing.Point(87, 459);
+            this.btnNuevo.Location = new System.Drawing.Point(85, 462);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(75, 25);
             this.btnNuevo.TabIndex = 20;
@@ -379,7 +379,7 @@
             // 
             this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnActualizar.Enabled = false;
-            this.btnActualizar.Location = new System.Drawing.Point(6, 459);
+            this.btnActualizar.Location = new System.Drawing.Point(3, 462);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(75, 25);
             this.btnActualizar.TabIndex = 21;
@@ -435,7 +435,7 @@
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancelar.Enabled = false;
-            this.btnCancelar.Location = new System.Drawing.Point(168, 459);
+            this.btnCancelar.Location = new System.Drawing.Point(166, 462);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(75, 25);
             this.btnCancelar.TabIndex = 23;
