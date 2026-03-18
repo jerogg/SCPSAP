@@ -94,6 +94,7 @@
     <Compile Include="ControlesReportes\Reportes.Designer.cs">
       <DependentUpon>Reportes.cs</DependentUpon>
     </Compile>
+    <Compile Include="Theme.cs" />
     <EmbeddedResource Include="ControlesCobranza\Cobranza.resx">
       <DependentUpon>Cobranza.cs</DependentUpon>
     </EmbeddedResource>

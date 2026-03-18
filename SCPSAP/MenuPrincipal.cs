@@ -1,4 +1,5 @@
-﻿using Datos;
+﻿using CapaUI;
+using Datos;
 using SCPSAP.Contribuyentes;
 using SCPSAP.ControlesCobranza;
 using SCPSAP.ControlesConfiguracion;
@@ -22,6 +23,7 @@ namespace SCPSAP
         public MenuPrincipal()
         {
             InitializeComponent();
+            Theme.ApplyTo(this);
         }
 
         private void btnMenuContribuyentes_Click(object sender, EventArgs e)

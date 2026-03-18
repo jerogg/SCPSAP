@@ -1,4 +1,5 @@
-﻿using Datos;
+﻿using CapaUI;
+using Datos;
 using Negocio.Cobranza;
 using Negocio.Contribuyentes;
 using System;
@@ -38,6 +39,8 @@ namespace SCPSAP.ControlesCobranza
         public Cobranza()
         {
             InitializeComponent();
+            Theme.ApplyTo(this);
+
             _contribNeg = new ContribuyentesNegocio();
             InitializeSearchControls();
 

@@ -1,4 +1,5 @@
-﻿using Negocio.Login;
+﻿using CapaUI;
+using Negocio.Login;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,7 @@ namespace SCPSAP
         public Login()
         {
             InitializeComponent();
+            Theme.ApplyTo(this);
         }
 
         private void btnCancelar_Click(object sender, EventArgs e)

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using CapaUI;
+using Datos;
+using Negocio.Contribuyentes;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,8 +12,6 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using Datos;
-using Negocio.Contribuyentes;
 
 
 namespace SCPSAP.Contribuyentes
@@ -27,6 +28,7 @@ namespace SCPSAP.Contribuyentes
         public ListaContribuyentes()
         {
             InitializeComponent();
+            Theme.ApplyTo(this);
 
             // Suscribir eventos
             if (dgvListaContribuyentes != null)

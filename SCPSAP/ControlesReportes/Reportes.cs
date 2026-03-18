@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapaUI;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -15,6 +16,7 @@ namespace SCPSAP.Reportes
         public Reportes()
         {
             InitializeComponent();
+            Theme.ApplyTo(this);
         }
 
         private void label1_Click(object sender, EventArgs e)

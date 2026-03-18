@@ -1,4 +1,5 @@
-﻿using Datos;
+﻿using CapaUI;
+using Datos;
 using Datos.Configuracion;
 using Negocio.Configuracion;
 using System;
@@ -19,6 +20,7 @@ namespace SCPSAP.ControlesConfiguracion
         public Configuracion()
         {
             InitializeComponent();
+            Theme.ApplyTo(this);
             CargarTarifas();
         }
 

@@ -56,6 +56,10 @@
             this.btnPagar = new System.Windows.Forms.Button();
             this.tbCobranza = new System.Windows.Forms.TabControl();
             this.tbPageCobranza = new System.Windows.Forms.TabPage();
+            this.txbDireccion = new System.Windows.Forms.TextBox();
+            this.lblDireccion = new System.Windows.Forms.Label();
+            this.txbFolio = new System.Windows.Forms.TextBox();
+            this.lblFolio = new System.Windows.Forms.Label();
             this.tbPageConfiguraAdeudos = new System.Windows.Forms.TabPage();
             this.lblFechaLimitePago = new System.Windows.Forms.Label();
             this.dtpFechaLimitePago = new System.Windows.Forms.DateTimePicker();
@@ -76,10 +80,6 @@
             this.FechaVencimientoAdeudo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EliminarAdeudo = new System.Windows.Forms.DataGridViewButtonColumn();
             this.lblAdeudos = new System.Windows.Forms.Label();
-            this.lblFolio = new System.Windows.Forms.Label();
-            this.txbFolio = new System.Windows.Forms.TextBox();
-            this.txbDireccion = new System.Windows.Forms.TextBox();
-            this.lblDireccion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdeudosPorContribuyente)).BeginInit();
             this.tbCobranza.SuspendLayout();
             this.tbPageCobranza.SuspendLayout();
@@ -299,9 +299,9 @@
             // btnPagar
             // 
             this.btnPagar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPagar.Location = new System.Drawing.Point(559, 450);
+            this.btnPagar.Location = new System.Drawing.Point(566, 451);
             this.btnPagar.Name = "btnPagar";
-            this.btnPagar.Size = new System.Drawing.Size(72, 23);
+            this.btnPagar.Size = new System.Drawing.Size(72, 25);
             this.btnPagar.TabIndex = 9;
             this.btnPagar.Text = "Pagar";
             this.btnPagar.UseVisualStyleBackColor = true;
@@ -340,6 +340,40 @@
             this.tbPageCobranza.TabIndex = 0;
             this.tbPageCobranza.Text = "Cobranza";
             this.tbPageCobranza.UseVisualStyleBackColor = true;
+            // 
+            // txbDireccion
+            // 
+            this.txbDireccion.Enabled = false;
+            this.txbDireccion.Location = new System.Drawing.Point(406, 45);
+            this.txbDireccion.Name = "txbDireccion";
+            this.txbDireccion.Size = new System.Drawing.Size(198, 20);
+            this.txbDireccion.TabIndex = 13;
+            // 
+            // lblDireccion
+            // 
+            this.lblDireccion.AutoSize = true;
+            this.lblDireccion.Location = new System.Drawing.Point(348, 48);
+            this.lblDireccion.Name = "lblDireccion";
+            this.lblDireccion.Size = new System.Drawing.Size(55, 13);
+            this.lblDireccion.TabIndex = 12;
+            this.lblDireccion.Text = "Direccion:";
+            // 
+            // txbFolio
+            // 
+            this.txbFolio.Enabled = false;
+            this.txbFolio.Location = new System.Drawing.Point(272, 46);
+            this.txbFolio.Name = "txbFolio";
+            this.txbFolio.Size = new System.Drawing.Size(63, 20);
+            this.txbFolio.TabIndex = 11;
+            // 
+            // lblFolio
+            // 
+            this.lblFolio.AutoSize = true;
+            this.lblFolio.Location = new System.Drawing.Point(236, 49);
+            this.lblFolio.Name = "lblFolio";
+            this.lblFolio.Size = new System.Drawing.Size(32, 13);
+            this.lblFolio.TabIndex = 10;
+            this.lblFolio.Text = "Folio:";
             // 
             // tbPageConfiguraAdeudos
             // 
@@ -539,40 +573,6 @@
             this.lblAdeudos.Size = new System.Drawing.Size(149, 13);
             this.lblAdeudos.TabIndex = 1;
             this.lblAdeudos.Text = "ADEUDOS CONFIGURADOS";
-            // 
-            // lblFolio
-            // 
-            this.lblFolio.AutoSize = true;
-            this.lblFolio.Location = new System.Drawing.Point(236, 49);
-            this.lblFolio.Name = "lblFolio";
-            this.lblFolio.Size = new System.Drawing.Size(32, 13);
-            this.lblFolio.TabIndex = 10;
-            this.lblFolio.Text = "Folio:";
-            // 
-            // txbFolio
-            // 
-            this.txbFolio.Enabled = false;
-            this.txbFolio.Location = new System.Drawing.Point(272, 46);
-            this.txbFolio.Name = "txbFolio";
-            this.txbFolio.Size = new System.Drawing.Size(63, 20);
-            this.txbFolio.TabIndex = 11;
-            // 
-            // txbDireccion
-            // 
-            this.txbDireccion.Enabled = false;
-            this.txbDireccion.Location = new System.Drawing.Point(406, 45);
-            this.txbDireccion.Name = "txbDireccion";
-            this.txbDireccion.Size = new System.Drawing.Size(198, 20);
-            this.txbDireccion.TabIndex = 13;
-            // 
-            // lblDireccion
-            // 
-            this.lblDireccion.AutoSize = true;
-            this.lblDireccion.Location = new System.Drawing.Point(348, 48);
-            this.lblDireccion.Name = "lblDireccion";
-            this.lblDireccion.Size = new System.Drawing.Size(55, 13);
-            this.lblDireccion.TabIndex = 12;
-            this.lblDireccion.Text = "Direccion:";
             // 
             // Cobranza
             // 
