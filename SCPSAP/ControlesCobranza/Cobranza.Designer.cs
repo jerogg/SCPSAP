@@ -420,9 +420,9 @@
             // 
             this.btnCancelarConfiguracionAdeudo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancelarConfiguracionAdeudo.Enabled = false;
-            this.btnCancelarConfiguracionAdeudo.Location = new System.Drawing.Point(182, 445);
+            this.btnCancelarConfiguracionAdeudo.Location = new System.Drawing.Point(169, 452);
             this.btnCancelarConfiguracionAdeudo.Name = "btnCancelarConfiguracionAdeudo";
-            this.btnCancelarConfiguracionAdeudo.Size = new System.Drawing.Size(75, 23);
+            this.btnCancelarConfiguracionAdeudo.Size = new System.Drawing.Size(75, 25);
             this.btnCancelarConfiguracionAdeudo.TabIndex = 27;
             this.btnCancelarConfiguracionAdeudo.Text = "Cancelar";
             this.btnCancelarConfiguracionAdeudo.UseVisualStyleBackColor = true;
@@ -432,9 +432,9 @@
             // 
             this.btnActualizarAdeudo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnActualizarAdeudo.Enabled = false;
-            this.btnActualizarAdeudo.Location = new System.Drawing.Point(20, 445);
+            this.btnActualizarAdeudo.Location = new System.Drawing.Point(7, 452);
             this.btnActualizarAdeudo.Name = "btnActualizarAdeudo";
-            this.btnActualizarAdeudo.Size = new System.Drawing.Size(75, 23);
+            this.btnActualizarAdeudo.Size = new System.Drawing.Size(75, 25);
             this.btnActualizarAdeudo.TabIndex = 26;
             this.btnActualizarAdeudo.Text = "Actualizar";
             this.btnActualizarAdeudo.UseVisualStyleBackColor = true;
@@ -443,9 +443,9 @@
             // btnNuevoAdeudo
             // 
             this.btnNuevoAdeudo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.btnNuevoAdeudo.Location = new System.Drawing.Point(101, 445);
+            this.btnNuevoAdeudo.Location = new System.Drawing.Point(88, 452);
             this.btnNuevoAdeudo.Name = "btnNuevoAdeudo";
-            this.btnNuevoAdeudo.Size = new System.Drawing.Size(75, 23);
+            this.btnNuevoAdeudo.Size = new System.Drawing.Size(75, 25);
             this.btnNuevoAdeudo.TabIndex = 25;
             this.btnNuevoAdeudo.Text = "Nuevo";
             this.btnNuevoAdeudo.UseVisualStyleBackColor = true;
@@ -455,9 +455,9 @@
             // 
             this.btnGuardarAdeudo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGuardarAdeudo.Enabled = false;
-            this.btnGuardarAdeudo.Location = new System.Drawing.Point(554, 445);
+            this.btnGuardarAdeudo.Location = new System.Drawing.Point(565, 452);
             this.btnGuardarAdeudo.Name = "btnGuardarAdeudo";
-            this.btnGuardarAdeudo.Size = new System.Drawing.Size(75, 23);
+            this.btnGuardarAdeudo.Size = new System.Drawing.Size(75, 25);
             this.btnGuardarAdeudo.TabIndex = 24;
             this.btnGuardarAdeudo.Text = "Guardar";
             this.btnGuardarAdeudo.UseVisualStyleBackColor = true;

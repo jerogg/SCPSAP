@@ -34,12 +34,13 @@
             this.txbContraseña = new System.Windows.Forms.TextBox();
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancelar = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // lblUsuario
             // 
             this.lblUsuario.AutoSize = true;
-            this.lblUsuario.Location = new System.Drawing.Point(59, 32);
+            this.lblUsuario.Location = new System.Drawing.Point(126, 53);
             this.lblUsuario.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(43, 13);
@@ -49,7 +50,7 @@
             // lblContraseña
             // 
             this.lblContraseña.AutoSize = true;
-            this.lblContraseña.Location = new System.Drawing.Point(41, 60);
+            this.lblContraseña.Location = new System.Drawing.Point(108, 81);
             this.lblContraseña.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblContraseña.Name = "lblContraseña";
             this.lblContraseña.Size = new System.Drawing.Size(61, 13);
@@ -58,7 +59,7 @@
             // 
             // txbUsuario
             // 
-            this.txbUsuario.Location = new System.Drawing.Point(105, 28);
+            this.txbUsuario.Location = new System.Drawing.Point(172, 49);
             this.txbUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.txbUsuario.Name = "txbUsuario";
             this.txbUsuario.Size = new System.Drawing.Size(135, 20);
@@ -66,7 +67,7 @@
             // 
             // txbContraseña
             // 
-            this.txbContraseña.Location = new System.Drawing.Point(105, 56);
+            this.txbContraseña.Location = new System.Drawing.Point(172, 77);
             this.txbContraseña.Margin = new System.Windows.Forms.Padding(2);
             this.txbContraseña.Name = "txbContraseña";
             this.txbContraseña.PasswordChar = '*';
@@ -75,7 +76,7 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(169, 92);
+            this.btnOk.Location = new System.Drawing.Point(309, 111);
             this.btnOk.Margin = new System.Windows.Forms.Padding(2);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(50, 25);
@@ -86,7 +87,7 @@
             // 
             // btnCancelar
             // 
-            this.btnCancelar.Location = new System.Drawing.Point(223, 92);
+            this.btnCancelar.Location = new System.Drawing.Point(367, 111);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(60, 25);
@@ -95,11 +96,22 @@
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
+            // label1
+            // 
+            this.label1.Location = new System.Drawing.Point(1, 15);
+            this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(426, 18);
+            this.label1.TabIndex = 6;
+            this.label1.Text = "SISTEMA DE COBRO DE SERVICIO DE AGUA POTABLE TLALMINULPA";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(289, 123);
+            this.ClientSize = new System.Drawing.Size(433, 142);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.txbContraseña);
@@ -108,9 +120,10 @@
             this.Controls.Add(this.lblUsuario);
             this.Margin = new System.Windows.Forms.Padding(2);
             this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Login";
+            this.Text = "Acceso";
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -124,6 +137,7 @@
         private System.Windows.Forms.TextBox txbContraseña;
         private System.Windows.Forms.Button btnOk;
         private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Label label1;
     }
 }
 

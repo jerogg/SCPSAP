@@ -19,6 +19,12 @@ namespace SCPSAP
         public Login()
         {
             InitializeComponent();
+            // Evitar redimensionar el formulario de login
+            this.FormBorderStyle = FormBorderStyle.FixedSingle; // bordes fijos
+            this.MaximizeBox = false;                            // deshabilita botón Maximizar
+            this.MinimizeBox = true;                             // opcional: mantener minimizar
+            this.StartPosition = FormStartPosition.CenterScreen; // centra la ventana al iniciar
+
             Theme.ApplyTo(this);
         }
 

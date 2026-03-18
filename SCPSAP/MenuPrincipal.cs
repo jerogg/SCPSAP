@@ -23,6 +23,21 @@ namespace SCPSAP
         public MenuPrincipal()
         {
             InitializeComponent();
+            // Inicia maximizado
+            this.WindowState = FormWindowState.Maximized;
+
+            // Evita redimensionar arrastrando bordes
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
+            // Permitir o no el botón maximizar:
+            // - true: permite maximizar (necesario si quieres que arranque maximizado)
+            // - false: deshabilita el botón Maximizar
+            this.MaximizeBox = true;
+
+            // Opcional: controla el botón minimizar y posición inicial
+            this.MinimizeBox = true;
+            this.StartPosition = FormStartPosition.CenterScreen;
+
             Theme.ApplyTo(this);
         }
 
