@@ -172,6 +172,20 @@ namespace SCPSAP.Contribuyentes
                 contribuyentesNegocio.AgregarContribuyente(contribuyente);
                 MessageBox.Show("Se agrego nuevo contribuyente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
+
+            // VALIDAR SI EL FOLIO YA EXISTE
+            if (esNuevo)
+            {
+                int folio = int.Parse(txbFolio.Text);
+
+                var existente = contribuyentesNegocio.ObtenerContribuyentePorId(folio);
+
+                if (existente != null)
+                {
+                    MessageBox.Show("El folio ya existe, ingresa uno diferente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // DETIENE EL GUARDADO
+                }
+            }
             CargarContribuyentes();
             LimpiarControles();
         }
@@ -370,7 +384,7 @@ namespace SCPSAP.Contribuyentes
 
         private void dgvListaContribuyentes_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
-
+            //Aqui pondre algunas cosas 
         }
 
     }

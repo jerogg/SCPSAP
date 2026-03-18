@@ -66,18 +66,18 @@ namespace Negocio.Contribuyentes
             }
         }
 
-            public bool AgregarContribuyente(Contribuyente nuevoContribuyente)
+        public bool AgregarContribuyente(Contribuyente nuevoContribuyente)
+        {
+            try
             {
-                try
-                {
-                    nuevoContribuyente.FechaAlta = DateTime.Now; // Establece la fecha de registro al momento de agregar
-                    nuevoContribuyente.FechaLimitePago = DateTime.Now.AddDays((double)nuevoContribuyente.DiasGracia); // Establece el estado inicial (activo)
+                nuevoContribuyente.FechaAlta = DateTime.Now; // Establece la fecha de registro al momento de agregar
+                nuevoContribuyente.FechaLimitePago = DateTime.Now.AddDays((double)nuevoContribuyente.DiasGracia); // Establece el estado inicial (activo)
 
                 return contribuyentesDatos.AgregarContribuyente(nuevoContribuyente);
-                }
-                catch (Exception ex)
-                {
-                    throw new Exception(ex.Message);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);//AQUI PONDRE UN MENSAJEEEEEE
             }
         }
 
@@ -109,6 +109,12 @@ namespace Negocio.Contribuyentes
         {
             ContribuyentesDatos datos = new ContribuyentesDatos();
             return datos.BuscarContribuyentes(criterio);
+        }
+
+        public bool ExisteFolio(int id)
+        {
+            var contribuyente = contribuyentesDatos.ObtenerContribuyentePorId(id);
+            return contribuyente != null;
         }
     }
 }

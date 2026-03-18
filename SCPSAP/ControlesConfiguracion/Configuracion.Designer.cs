@@ -80,7 +80,7 @@
             this.tbcConfiguracion.Margin = new System.Windows.Forms.Padding(4);
             this.tbcConfiguracion.Name = "tbcConfiguracion";
             this.tbcConfiguracion.SelectedIndex = 0;
-            this.tbcConfiguracion.Size = new System.Drawing.Size(1146, 718);
+            this.tbcConfiguracion.Size = new System.Drawing.Size(888, 585);
             this.tbcConfiguracion.TabIndex = 3;
             // 
             // tbTarifas
@@ -98,16 +98,18 @@
             this.tbTarifas.Margin = new System.Windows.Forms.Padding(4);
             this.tbTarifas.Name = "tbTarifas";
             this.tbTarifas.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbTarifas.Size = new System.Drawing.Size(1138, 685);
+            this.tbTarifas.Size = new System.Drawing.Size(880, 552);
             this.tbTarifas.TabIndex = 0;
             this.tbTarifas.Text = "Tarifas";
             this.tbTarifas.UseVisualStyleBackColor = true;
             // 
             // btnGuardar
             // 
-            this.btnGuardar.Location = new System.Drawing.Point(997, 495);
+            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGuardar.Location = new System.Drawing.Point(756, 498);
+            this.btnGuardar.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(121, 36);
+            this.btnGuardar.Size = new System.Drawing.Size(112, 35);
             this.btnGuardar.TabIndex = 8;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
@@ -115,6 +117,7 @@
             // 
             // btnCancelar
             // 
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancelar.Location = new System.Drawing.Point(252, 495);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(111, 37);
@@ -124,6 +127,7 @@
             // 
             // btnNuevo
             // 
+            this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnNuevo.Location = new System.Drawing.Point(128, 495);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(112, 38);
@@ -133,6 +137,7 @@
             // 
             // btnActualizar
             // 
+            this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnActualizar.Location = new System.Drawing.Point(10, 495);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(107, 38);
@@ -142,14 +147,14 @@
             // 
             // txbMontoMensual
             // 
-            this.txbMontoMensual.Location = new System.Drawing.Point(741, 344);
+            this.txbMontoMensual.Location = new System.Drawing.Point(743, 344);
             this.txbMontoMensual.Name = "txbMontoMensual";
-            this.txbMontoMensual.Size = new System.Drawing.Size(325, 26);
+            this.txbMontoMensual.Size = new System.Drawing.Size(122, 26);
             this.txbMontoMensual.TabIndex = 4;
             // 
             // txbNombre
             // 
-            this.txbNombre.Location = new System.Drawing.Point(132, 342);
+            this.txbNombre.Location = new System.Drawing.Point(105, 342);
             this.txbNombre.Name = "txbNombre";
             this.txbNombre.Size = new System.Drawing.Size(310, 26);
             this.txbNombre.TabIndex = 3;
@@ -158,7 +163,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(588, 344);
+            this.label1.Location = new System.Drawing.Point(600, 347);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(122, 20);
             this.label1.TabIndex = 2;
@@ -172,14 +177,14 @@
             this.dgvConfiguracion.Name = "dgvConfiguracion";
             this.dgvConfiguracion.RowHeadersWidth = 62;
             this.dgvConfiguracion.RowTemplate.Height = 28;
-            this.dgvConfiguracion.Size = new System.Drawing.Size(1135, 306);
+            this.dgvConfiguracion.Size = new System.Drawing.Size(880, 306);
             this.dgvConfiguracion.TabIndex = 1;
             this.dgvConfiguracion.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConfiguracion_CellContentClick);
             // 
             // lblNombreTarifa
             // 
             this.lblNombreTarifa.AutoSize = true;
-            this.lblNombreTarifa.Location = new System.Drawing.Point(44, 345);
+            this.lblNombreTarifa.Location = new System.Drawing.Point(17, 345);
             this.lblNombreTarifa.Name = "lblNombreTarifa";
             this.lblNombreTarifa.Size = new System.Drawing.Size(65, 20);
             this.lblNombreTarifa.TabIndex = 0;
@@ -202,7 +207,7 @@
             this.tbpUsuarios.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.tbpUsuarios.Name = "tbpUsuarios";
             this.tbpUsuarios.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.tbpUsuarios.Size = new System.Drawing.Size(1138, 685);
+            this.tbpUsuarios.Size = new System.Drawing.Size(850, 490);
             this.tbpUsuarios.TabIndex = 1;
             this.tbpUsuarios.Text = "Usuarios";
             this.tbpUsuarios.UseVisualStyleBackColor = true;
@@ -314,7 +319,7 @@
             this.Controls.Add(this.lblConfiguracion);
             this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Configuracion";
-            this.Size = new System.Drawing.Size(1155, 780);
+            this.Size = new System.Drawing.Size(897, 647);
             this.tbcConfiguracion.ResumeLayout(false);
             this.tbTarifas.ResumeLayout(false);
             this.tbTarifas.PerformLayout();
