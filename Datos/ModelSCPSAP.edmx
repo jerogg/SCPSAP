@@ -14,6 +14,8 @@
           <Property Name="Concepto" Type="varchar" MaxLength="100" />
           <Property Name="FechaGeneracion" Type="datetime" Nullable="false" />
           <Property Name="FechaVencimiento" Type="datetime" Nullable="false" />
+          <Property Name="Monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="EsMontoDiferente" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="AdeudoContribuyente">
           <Key>
@@ -513,6 +515,8 @@
           <Property Name="Concepto" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="FechaGeneracion" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FechaVencimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Monto" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="EsMontoDiferente" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="AdeudoContribuyentes" Relationship="SCPSAPModel.FK_Adeudo_AdeudoContribuyente" FromRole="Adeudo" ToRole="AdeudoContribuyente" />
         </EntityType>
         <Association Name="FK_Adeudo_AdeudoContribuyente">
@@ -629,6 +633,8 @@
           <EntitySetMapping Name="Adeudos">
             <EntityTypeMapping TypeName="SCPSAPModel.Adeudo">
               <MappingFragment StoreEntitySet="Adeudo">
+                <ScalarProperty Name="EsMontoDiferente" ColumnName="EsMontoDiferente" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
                 <ScalarProperty Name="FechaVencimiento" ColumnName="FechaVencimiento" />
                 <ScalarProperty Name="FechaGeneracion" ColumnName="FechaGeneracion" />
                 <ScalarProperty Name="Concepto" ColumnName="Concepto" />

@@ -25,6 +25,8 @@ namespace Datos
         public string Concepto { get; set; }
         public System.DateTime FechaGeneracion { get; set; }
         public System.DateTime FechaVencimiento { get; set; }
+        public decimal Monto { get; set; }
+        public bool EsMontoDiferente { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdeudoContribuyente> AdeudoContribuyentes { get; set; }

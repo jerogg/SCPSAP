@@ -394,6 +394,8 @@ namespace SCPSAP.ControlesCobranza
                 IdAdeudo = 0,
                 Periodo = txbPeriodo.Text,
                 Concepto = txbConcepto.Text,
+                EsMontoDiferente = false,
+                Monto = 0m,
                 FechaGeneracion = DateTime.Now
             };
 
@@ -454,8 +456,11 @@ namespace SCPSAP.ControlesCobranza
                 // Recargar grilla
                 CargarAdeudosConfigurados();
 
+                LimpiarControles();
+
                 // actualizar estado interno
                 _adeudoEnEdicion = null;
+
                 return true;
             }
             catch (Exception ex)
@@ -769,6 +774,7 @@ namespace SCPSAP.ControlesCobranza
             txbConcepto.Enabled = true;
             txbPeriodo.Enabled = true;
             dtpFechaLimitePago.Enabled = true;
+            cbxMontoDiferente.Enabled = true;
             NuevoAdeudo();
         }
 
@@ -782,6 +788,7 @@ namespace SCPSAP.ControlesCobranza
             btnActualizarAdeudo.Enabled = false;
             btnCancelarConfiguracionAdeudo.Enabled = true;
             btnGuardarAdeudo.Enabled = true;
+            cbxMontoDiferente.Enabled = true;
         }
 
         private void btnCancelarConfiguracionAdeudo_Click(object sender, EventArgs e)
@@ -792,19 +799,25 @@ namespace SCPSAP.ControlesCobranza
 
         private void btnGuardarAdeudo_Click(object sender, EventArgs e)
         {
-            txbConcepto.Enabled = false;
-            txbPeriodo.Enabled = false;
-            dtpFechaLimitePago.Enabled = false;
-            btnNuevoAdeudo.Enabled = true;
-            btnActualizarAdeudo.Enabled = true;
-            btnCancelarConfiguracionAdeudo.Enabled = false;
-            _adeudoEnEdicion.Periodo = txbPeriodo.Text;
-            _adeudoEnEdicion.Concepto = txbConcepto.Text;
-            _adeudoEnEdicion.FechaVencimiento = dtpFechaLimitePago.Value.Date;
+            var result = GuardarAdeudo(_adeudoEnEdicion);
 
-
-            GuardarAdeudo(_adeudoEnEdicion);
-            LimpiarControles();
+            if (result)
+            {
+                txbConcepto.Enabled = false;
+                txbPeriodo.Enabled = false;
+                dtpFechaLimitePago.Enabled = false;
+                cbxMontoDiferente.Enabled = false;
+                btnNuevoAdeudo.Enabled = true;
+                btnActualizarAdeudo.Enabled = true;
+                btnCancelarConfiguracionAdeudo.Enabled = false;
+                _adeudoEnEdicion.Periodo = txbPeriodo.Text;
+                _adeudoEnEdicion.Concepto = txbConcepto.Text;
+                _adeudoEnEdicion.FechaVencimiento = dtpFechaLimitePago.Value.Date;
+                _adeudoEnEdicion.EsMontoDiferente = cbxMontoDiferente.Checked;
+                txbMonto.Text = txbMonto.Text != "" ? txbMonto.Text : "0";
+                _adeudoEnEdicion.Monto = cbxMontoDiferente.Checked ? decimal.Parse(txbMonto.Text) : 0;
+                MessageBox.Show("Se agrego correctamente el adeudo", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }             
         }
 
         private void dgvAdeudosConfigurados_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -821,10 +834,27 @@ namespace SCPSAP.ControlesCobranza
             btnNuevoAdeudo.Enabled = true;
             btnActualizarAdeudo.Enabled = true;
             btnCancelarConfiguracionAdeudo.Enabled = false;
+            cbxMontoDiferente.Enabled = false;
             txbPeriodo.Clear();
             txbConcepto.Clear();
+            txbMonto.Clear();
+            cbxMontoDiferente.Checked = false;
             btnGuardarAdeudo.Enabled = false;
             dtpFechaLimitePago.Value = DateTime.Now;
+        }
+
+        private void cbxMontoDiferente_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxMontoDiferente.Checked)
+            {
+                txbMonto.Enabled = true;
+                txbMonto.Focus();
+            }
+            else
+            {
+                txbMonto.Enabled = false;
+                txbMonto.Clear();
+            }
         }
     }
 }

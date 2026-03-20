@@ -84,6 +84,8 @@ BEGIN
         IdAdeudo INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
         Periodo VARCHAR(20) NOT NULL,
         Concepto VARCHAR(100) NULL,
+        EsMontoDiferente BIT NOT NULL DEFAULT 0,
+        Monto DECIMAL(10,2) NOT NULL CONSTRAINT DF_Adeudo_Monto DEFAULT (0.00),
         FechaGeneracion DATETIME NOT NULL CONSTRAINT DF_Adeudo_FechaGeneracion DEFAULT (GETDATE()),
         FechaVencimiento DATETIME NOT NULL CONSTRAINT DF_Adeudo_FechaVencimiento DEFAULT (GETDATE())
     );

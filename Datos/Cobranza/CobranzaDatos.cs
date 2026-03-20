@@ -55,6 +55,8 @@ namespace Datos.Cobranza
         /// </summary>
         public Adeudo GuardarAdeudo(Adeudo adeudo)
         {
+            decimal monto = 0m;
+
             if (adeudo == null) throw new ArgumentNullException(nameof(adeudo));
 
             using (var tx = SCPSAPEntities.Database.BeginTransaction())
@@ -74,7 +76,14 @@ namespace Datos.Cobranza
                         var contribuyentes = SCPSAPEntities.Contribuyentes.Where(x=> x.IdEstado == 1).ToList();
                         foreach (var c in contribuyentes)
                         {
-                            Tarifa tarifa = SCPSAPEntities.Tarifas.FirstOrDefault(t => t.IdTarifa == c.IdTarifa);
+                            if (adeudo.EsMontoDiferente == true)
+                                monto = adeudo.Monto;
+                            else
+                            {
+                                Tarifa tarifa = SCPSAPEntities.Tarifas.FirstOrDefault(t => t.IdTarifa == c.IdTarifa);
+                                monto = tarifa != null ? tarifa.MontoMensual : 0m;
+                            }
+                                
 
                             var ac = new AdeudoContribuyente
                             {
@@ -82,7 +91,7 @@ namespace Datos.Cobranza
                                 IdAdeudo = adeudo.IdAdeudo,
                                 Periodo = adeudo.Periodo,
                                 Concepto = adeudo.Concepto,
-                                MontoOriginal = tarifa.MontoMensual,
+                                MontoOriginal = monto,
                                 Recargo = 0m,
                                 OtrosCargos = 0m,
                                 //TotalAdeudo = 0m,
@@ -111,6 +120,15 @@ namespace Datos.Cobranza
                         var adeudosContrib = SCPSAPEntities.AdeudoContribuyentes.Where(ac => ac.IdAdeudo == adeudo.IdAdeudo).ToList();
                         foreach (var ac in adeudosContrib)
                         {
+                            if (adeudo.EsMontoDiferente == true)
+                                monto = adeudo.Monto;
+                            else
+                            {
+                                Contribuyente contribuyente = SCPSAPEntities.Contribuyentes.FirstOrDefault(c => c.IdContribuyente == ac.IdContribuyente);
+                                Tarifa tarifa = SCPSAPEntities.Tarifas.FirstOrDefault(t => t.IdTarifa == contribuyente.IdTarifa);
+                                monto = tarifa != null ? tarifa.MontoMensual : 0m;
+                            }
+                            ac.MontoOriginal = monto;
                             ac.Periodo = adeudo.Periodo;
                             ac.Concepto = adeudo.Concepto;
                             if (adeudo.FechaGeneracion != default(DateTime))

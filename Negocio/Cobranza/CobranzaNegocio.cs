@@ -63,6 +63,7 @@ namespace Negocio.Cobranza
                 if (adeudo == null) throw new ArgumentNullException(nameof(adeudo));
                 if (string.IsNullOrWhiteSpace(adeudo.Periodo)) throw new ArgumentException("Periodo es requerido.");
                 if (string.IsNullOrWhiteSpace(adeudo.Concepto)) throw new ArgumentException("Concepto es requerido.");
+                if (adeudo.EsMontoDiferente && adeudo.Monto <= 0) throw new ArgumentException("Monto es requerido.");
 
                 return CobranzaDatos.GuardarAdeudo(adeudo);
             }

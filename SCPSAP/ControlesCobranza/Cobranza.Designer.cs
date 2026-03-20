@@ -80,6 +80,9 @@
             this.FechaVencimientoAdeudo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EliminarAdeudo = new System.Windows.Forms.DataGridViewButtonColumn();
             this.lblAdeudos = new System.Windows.Forms.Label();
+            this.cbxMontoDiferente = new System.Windows.Forms.CheckBox();
+            this.lblMonto = new System.Windows.Forms.Label();
+            this.txbMonto = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdeudosPorContribuyente)).BeginInit();
             this.tbCobranza.SuspendLayout();
             this.tbPageCobranza.SuspendLayout();
@@ -377,6 +380,9 @@
             // 
             // tbPageConfiguraAdeudos
             // 
+            this.tbPageConfiguraAdeudos.Controls.Add(this.txbMonto);
+            this.tbPageConfiguraAdeudos.Controls.Add(this.lblMonto);
+            this.tbPageConfiguraAdeudos.Controls.Add(this.cbxMontoDiferente);
             this.tbPageConfiguraAdeudos.Controls.Add(this.lblFechaLimitePago);
             this.tbPageConfiguraAdeudos.Controls.Add(this.dtpFechaLimitePago);
             this.tbPageConfiguraAdeudos.Controls.Add(this.btnCancelarConfiguracionAdeudo);
@@ -574,6 +580,38 @@
             this.lblAdeudos.TabIndex = 1;
             this.lblAdeudos.Text = "ADEUDOS CONFIGURADOS";
             // 
+            // cbxMontoDiferente
+            // 
+            this.cbxMontoDiferente.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxMontoDiferente.AutoSize = true;
+            this.cbxMontoDiferente.Enabled = false;
+            this.cbxMontoDiferente.Location = new System.Drawing.Point(392, 401);
+            this.cbxMontoDiferente.Name = "cbxMontoDiferente";
+            this.cbxMontoDiferente.Size = new System.Drawing.Size(100, 17);
+            this.cbxMontoDiferente.TabIndex = 31;
+            this.cbxMontoDiferente.Text = "Monto diferente";
+            this.cbxMontoDiferente.UseVisualStyleBackColor = true;
+            this.cbxMontoDiferente.CheckedChanged += new System.EventHandler(this.cbxMontoDiferente_CheckedChanged);
+            // 
+            // lblMonto
+            // 
+            this.lblMonto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblMonto.AutoSize = true;
+            this.lblMonto.Location = new System.Drawing.Point(508, 401);
+            this.lblMonto.Name = "lblMonto";
+            this.lblMonto.Size = new System.Drawing.Size(40, 13);
+            this.lblMonto.TabIndex = 32;
+            this.lblMonto.Text = "Monto:";
+            // 
+            // txbMonto
+            // 
+            this.txbMonto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbMonto.Enabled = false;
+            this.txbMonto.Location = new System.Drawing.Point(551, 397);
+            this.txbMonto.Name = "txbMonto";
+            this.txbMonto.Size = new System.Drawing.Size(81, 20);
+            this.txbMonto.TabIndex = 33;
+            // 
             // Cobranza
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -646,5 +684,8 @@
         private System.Windows.Forms.Label lblDireccion;
         private System.Windows.Forms.TextBox txbFolio;
         private System.Windows.Forms.Label lblFolio;
+        private System.Windows.Forms.CheckBox cbxMontoDiferente;
+        private System.Windows.Forms.TextBox txbMonto;
+        private System.Windows.Forms.Label lblMonto;
     }
 }
