@@ -72,6 +72,10 @@ namespace SCPSAP.ControlesCobranza
             dgvAdeudosPorContribuyente.CellValueChanged += DgvAdeudos_CellValueChanged;
             dgvAdeudosPorContribuyente.DataBindingComplete += DgvAdeudos_DataBindingComplete;
 
+            // Mostrar cursor de mano al posar sobre la columna de eliminar (imagen)
+            dgvAdeudosConfigurados.CellMouseEnter += dgvAdeudosConfigurados_CellMouseEnter;
+            dgvAdeudosConfigurados.CellMouseLeave += dgvAdeudosConfigurados_CellMouseLeave;
+
             // Botón pagar
             btnPagar.Click += BtnPagar_Click;
 
@@ -335,11 +339,11 @@ namespace SCPSAP.ControlesCobranza
                 dgvAdeudosConfigurados.DataSource = adeudos;
 
                 // Forzar que la columna "Eliminar" quede en la última posición visual
-                if (dgvAdeudosConfigurados.Columns.Contains("Eliminar"))
+                if (dgvAdeudosConfigurados.Columns.Contains("EliminarAdeudo"))
                 {
-                    dgvAdeudosConfigurados.Columns["Eliminar"].DisplayIndex = dgvAdeudosConfigurados.Columns.Count - 1;
+                    dgvAdeudosConfigurados.Columns["EliminarAdeudo"].DisplayIndex = dgvAdeudosConfigurados.Columns.Count - 1;
                     // Asegurar que el AutoSizeMode no provoque reordenamientos inesperados
-                    dgvAdeudosConfigurados.Columns["Eliminar"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                    dgvAdeudosConfigurados.Columns["EliminarAdeudo"].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
                 }
 
             }
@@ -471,33 +475,38 @@ namespace SCPSAP.ControlesCobranza
         }
 
         // Eliminar: elimina el adeudo seleccionado (si existe) y recarga la grilla.
-        public bool EliminarAdeudoSeleccionado()
+        public void EliminarAdeudoSeleccionado(DataGridViewCellEventArgs e)
         {
             int id = ObtenerIdAdeudoSeleccionadoDesdeGrid();
             if (id <= 0)
             {
                 MessageBox.Show("Seleccione un adeudo para eliminar.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                return false;
             }
 
             try
             {
-                var ok = cobranzaNegocio.EliminarAdeudo(id);
+                // Confirmación antes de eliminar
+                var fila = dgvAdeudosConfigurados.Rows[e.RowIndex];
+                string concepto = fila.Cells["ConceptoAdeudo"].Value != null ? fila.Cells["ConceptoAdeudo"].Value.ToString() : string.Empty;
+                var pregunta = $"¿Desea eliminar el adeudo con concepto de '"+ concepto + "'?";
+                var dr = MessageBox.Show(pregunta, "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+
+                if (dr == DialogResult.Yes)
+                {
+                    var ok = cobranzaNegocio.EliminarAdeudo(id);
                 if (ok)
                 {
                     CargarAdeudosConfigurados();
-                    return true;
                 }
                 else
                 {
                     MessageBox.Show("No se pudo eliminar el adeudo seleccionado.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return false;
+                }
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error al eliminar adeudo", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
             }
         }
 
@@ -824,7 +833,7 @@ namespace SCPSAP.ControlesCobranza
         {
             if (e.ColumnIndex == dgvAdeudosConfigurados.Columns["EliminarAdeudo"].Index && e.RowIndex >= 0)
             {           
-                EliminarAdeudoSeleccionado();
+                EliminarAdeudoSeleccionado(e);
             }
         }
 
@@ -854,6 +863,43 @@ namespace SCPSAP.ControlesCobranza
             {
                 txbMonto.Enabled = false;
                 txbMonto.Clear();
+            }
+        }
+
+        // Cambia el cursor cuando el ratón entra en una celda; pone mano si es la columna Eliminar
+        private void dgvAdeudosConfigurados_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                {
+                    var col = dgvAdeudosConfigurados.Columns[e.ColumnIndex];
+                    if (string.Equals(col.Name, "EliminarAdeudo", StringComparison.OrdinalIgnoreCase))
+                    {
+                        dgvAdeudosConfigurados.Cursor = Cursors.Hand;
+                    }
+                    else
+                    {
+                        dgvAdeudosConfigurados.Cursor = Cursors.Default;
+                    }
+                }
+            }
+            catch
+            {
+                // silencioso
+            }
+        }
+
+        // Restaurar cursor al salir de la celda
+        private void dgvAdeudosConfigurados_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                dgvAdeudosConfigurados.Cursor = Cursors.Default;
+            }
+            catch
+            {
+                // silencioso
             }
         }
     }
