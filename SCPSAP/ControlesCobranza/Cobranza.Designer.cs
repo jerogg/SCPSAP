@@ -72,6 +72,10 @@
             this.txbPeriodo = new System.Windows.Forms.TextBox();
             this.lblPeriodo = new System.Windows.Forms.Label();
             this.dgvAdeudosConfigurados = new System.Windows.Forms.DataGridView();
+            this.lblAdeudos = new System.Windows.Forms.Label();
+            this.cbxMontoDiferente = new System.Windows.Forms.CheckBox();
+            this.lblMonto = new System.Windows.Forms.Label();
+            this.txbMonto = new System.Windows.Forms.TextBox();
             this.IdConfiguracionAdeudo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AdeudoContribuyentes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,10 +83,6 @@
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaVencimientoAdeudo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EliminarAdeudo = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.lblAdeudos = new System.Windows.Forms.Label();
-            this.cbxMontoDiferente = new System.Windows.Forms.CheckBox();
-            this.lblMonto = new System.Windows.Forms.Label();
-            this.txbMonto = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdeudosPorContribuyente)).BeginInit();
             this.tbCobranza.SuspendLayout();
             this.tbPageCobranza.SuspendLayout();
@@ -528,49 +528,6 @@
             this.dgvAdeudosConfigurados.TabIndex = 5;
             this.dgvAdeudosConfigurados.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvAdeudosConfigurados_CellClick);
             // 
-            // IdConfiguracionAdeudo
-            // 
-            this.IdConfiguracionAdeudo.DataPropertyName = "IdAdeudo";
-            this.IdConfiguracionAdeudo.HeaderText = "IdAdeudo";
-            this.IdConfiguracionAdeudo.Name = "IdConfiguracionAdeudo";
-            this.IdConfiguracionAdeudo.Visible = false;
-            // 
-            // AdeudoContribuyentes
-            // 
-            this.AdeudoContribuyentes.DataPropertyName = "AdeudoContribuyentes";
-            this.AdeudoContribuyentes.HeaderText = "AdeudoContribuyentes";
-            this.AdeudoContribuyentes.Name = "AdeudoContribuyentes";
-            this.AdeudoContribuyentes.Visible = false;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Periodo";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Periodo";
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            // 
-            // dataGridViewTextBoxColumn6
-            // 
-            this.dataGridViewTextBoxColumn6.DataPropertyName = "Concepto";
-            this.dataGridViewTextBoxColumn6.HeaderText = "Concepto";
-            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
-            // 
-            // dataGridViewTextBoxColumn12
-            // 
-            this.dataGridViewTextBoxColumn12.DataPropertyName = "FechaGeneracion";
-            this.dataGridViewTextBoxColumn12.HeaderText = "Fecha de generacion";
-            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
-            // 
-            // FechaVencimientoAdeudo
-            // 
-            this.FechaVencimientoAdeudo.DataPropertyName = "FechaVencimiento";
-            this.FechaVencimientoAdeudo.HeaderText = "Fecha limite de pago";
-            this.FechaVencimientoAdeudo.Name = "FechaVencimientoAdeudo";
-            // 
-            // EliminarAdeudo
-            // 
-            this.EliminarAdeudo.HeaderText = "Eliminar adeudo";
-            this.EliminarAdeudo.Name = "EliminarAdeudo";
-            // 
             // lblAdeudos
             // 
             this.lblAdeudos.AutoSize = true;
@@ -611,6 +568,59 @@
             this.txbMonto.Name = "txbMonto";
             this.txbMonto.Size = new System.Drawing.Size(81, 20);
             this.txbMonto.TabIndex = 33;
+            // 
+            // IdConfiguracionAdeudo
+            // 
+            this.IdConfiguracionAdeudo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.IdConfiguracionAdeudo.DataPropertyName = "IdAdeudo";
+            this.IdConfiguracionAdeudo.HeaderText = "IdAdeudo";
+            this.IdConfiguracionAdeudo.Name = "IdConfiguracionAdeudo";
+            this.IdConfiguracionAdeudo.Visible = false;
+            this.IdConfiguracionAdeudo.Width = 78;
+            // 
+            // AdeudoContribuyentes
+            // 
+            this.AdeudoContribuyentes.DataPropertyName = "AdeudoContribuyentes";
+            this.AdeudoContribuyentes.HeaderText = "AdeudoContribuyentes";
+            this.AdeudoContribuyentes.Name = "AdeudoContribuyentes";
+            this.AdeudoContribuyentes.Visible = false;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Periodo";
+            this.dataGridViewTextBoxColumn5.FillWeight = 105.9645F;
+            this.dataGridViewTextBoxColumn5.HeaderText = "Periodo";
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            // 
+            // dataGridViewTextBoxColumn6
+            // 
+            this.dataGridViewTextBoxColumn6.DataPropertyName = "Concepto";
+            this.dataGridViewTextBoxColumn6.FillWeight = 105.9645F;
+            this.dataGridViewTextBoxColumn6.HeaderText = "Concepto";
+            this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
+            // 
+            // dataGridViewTextBoxColumn12
+            // 
+            this.dataGridViewTextBoxColumn12.DataPropertyName = "FechaGeneracion";
+            this.dataGridViewTextBoxColumn12.FillWeight = 105.9645F;
+            this.dataGridViewTextBoxColumn12.HeaderText = "Fecha de generacion";
+            this.dataGridViewTextBoxColumn12.Name = "dataGridViewTextBoxColumn12";
+            // 
+            // FechaVencimientoAdeudo
+            // 
+            this.FechaVencimientoAdeudo.DataPropertyName = "FechaVencimiento";
+            this.FechaVencimientoAdeudo.FillWeight = 105.9645F;
+            this.FechaVencimientoAdeudo.HeaderText = "Fecha limite de pago";
+            this.FechaVencimientoAdeudo.Name = "FechaVencimientoAdeudo";
+            // 
+            // EliminarAdeudo
+            // 
+            this.EliminarAdeudo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.EliminarAdeudo.FillWeight = 76.14214F;
+            this.EliminarAdeudo.HeaderText = "Eliminar";
+            this.EliminarAdeudo.Name = "EliminarAdeudo";
+            this.EliminarAdeudo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.EliminarAdeudo.Width = 49;
             // 
             // Cobranza
             // 
@@ -673,13 +683,6 @@
         private System.Windows.Forms.Button btnGuardarAdeudo;
         private System.Windows.Forms.DateTimePicker dtpFechaLimitePago;
         private System.Windows.Forms.Label lblFechaLimitePago;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdConfiguracionAdeudo;
-        private System.Windows.Forms.DataGridViewTextBoxColumn AdeudoContribuyentes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
-        private System.Windows.Forms.DataGridViewTextBoxColumn FechaVencimientoAdeudo;
-        private System.Windows.Forms.DataGridViewButtonColumn EliminarAdeudo;
         private System.Windows.Forms.TextBox txbDireccion;
         private System.Windows.Forms.Label lblDireccion;
         private System.Windows.Forms.TextBox txbFolio;
@@ -687,5 +690,12 @@
         private System.Windows.Forms.CheckBox cbxMontoDiferente;
         private System.Windows.Forms.TextBox txbMonto;
         private System.Windows.Forms.Label lblMonto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdConfiguracionAdeudo;
+        private System.Windows.Forms.DataGridViewTextBoxColumn AdeudoContribuyentes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
+        private System.Windows.Forms.DataGridViewTextBoxColumn FechaVencimientoAdeudo;
+        private System.Windows.Forms.DataGridViewButtonColumn EliminarAdeudo;
     }
 }

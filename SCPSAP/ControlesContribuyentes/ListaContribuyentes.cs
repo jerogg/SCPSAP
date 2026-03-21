@@ -35,6 +35,10 @@ namespace SCPSAP.Contribuyentes
             {
                 dgvListaContribuyentes.SelectionChanged += DgvListaContribuyentes_SelectionChanged;
                 dgvListaContribuyentes.CellClick += DgvListaContribuyentes_SelectionChanged; // para clicks en celdas
+
+                // Mostrar cursor de mano al posar sobre la columna de eliminar (imagen)
+                dgvListaContribuyentes.CellMouseEnter += DgvListaContribuyentes_CellMouseEnter;
+                dgvListaContribuyentes.CellMouseLeave += DgvListaContribuyentes_CellMouseLeave;
             }
 
 
@@ -361,15 +365,31 @@ namespace SCPSAP.Contribuyentes
 
         private void dgvListaContribuyentes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == dgvListaContribuyentes.Columns["Eliminar"].Index && e.RowIndex >= 0)
+            try
             {
-                int id = Convert.ToInt32(
-                    dgvListaContribuyentes.Rows[e.RowIndex].Cells["IdContribuyente"].Value
-                );
+                if (e.ColumnIndex == dgvListaContribuyentes.Columns["Eliminar"].Index && e.RowIndex >= 0)
+                {
+                    int id = Convert.ToInt32(
+                        dgvListaContribuyentes.Rows[e.RowIndex].Cells["IdContribuyente"].Value
+                    );
 
-                contribuyentesNegocio.ElimiContribuyente(id);
+                    // Confirmación antes de eliminar
+                    var fila = dgvListaContribuyentes.Rows[e.RowIndex];
+                    string nombre = fila.Cells["Nombre"].Value != null ? fila.Cells["Nombre"].Value.ToString() : string.Empty;
+                    var pregunta = $"¿Desea eliminar al contribuyente {(!string.IsNullOrEmpty(nombre) ? $"\"{nombre}\" (Folio {id})" : $"Folio {id}")}?";
+                    var dr = MessageBox.Show(pregunta, "Confirmar eliminación", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
 
-                CargarContribuyentes();
+                    if (dr == DialogResult.Yes)
+                    {
+                        contribuyentesNegocio.ElimiContribuyente(id);
+                        MessageBox.Show("Contribuyente eliminado correctamente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        CargarContribuyentes();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error al eliminar el contribuyente", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -387,7 +407,42 @@ namespace SCPSAP.Contribuyentes
             //Aqui pondre algunas cosas 
         }
 
+        // Cambia el cursor cuando el ratón entra en una celda; pone mano si es la columna Eliminar
+        private void DgvListaContribuyentes_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+                {
+                    var col = dgvListaContribuyentes.Columns[e.ColumnIndex];
+                    if (string.Equals(col.Name, "Eliminar", StringComparison.OrdinalIgnoreCase))
+                    {
+                        dgvListaContribuyentes.Cursor = Cursors.Hand;
+                      }
+                    else
+                    {
+                        dgvListaContribuyentes.Cursor = Cursors.Default;
+                    }
+                }
+            }
+            catch
+            {
+                // silencioso
+            }
+        }
+
+        // Restaurar cursor al salir de la celda
+        private void DgvListaContribuyentes_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                dgvListaContribuyentes.Cursor = Cursors.Default;
+            }
+            catch
+            {
+                // silencioso
+            }
+        }
     }
 }
-    
 
