@@ -62,6 +62,12 @@
     <Compile Include="ControlesCobranza\Cobranza.Designer.cs">
       <DependentUpon>Cobranza.cs</DependentUpon>
     </Compile>
+    <Compile Include="ControlesCobranza\CobranzaPrincipal.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesCobranza\CobranzaPrincipal.Designer.cs">
+      <DependentUpon>CobranzaPrincipal.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlesCobranza\ConfiguraAdeudo.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -103,6 +109,9 @@
     <Compile Include="Theme.cs" />
     <EmbeddedResource Include="ControlesCobranza\Cobranza.resx">
       <DependentUpon>Cobranza.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlesCobranza\CobranzaPrincipal.resx">
+      <DependentUpon>CobranzaPrincipal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ControlesCobranza\ConfiguraAdeudo.resx">
       <DependentUpon>ConfiguraAdeudo.cs</DependentUpon>

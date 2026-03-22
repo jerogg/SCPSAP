@@ -71,7 +71,7 @@ namespace SCPSAP
         private void btnMenuCobranza_Click(object sender, EventArgs e)
         {
             splitContainerMenuPrincipal.Panel2.Controls.Clear();
-            Cobranza cobranza = new Cobranza();
+            CobranzaPrincipal cobranza = new CobranzaPrincipal();
             cobranza.Dock = DockStyle.Fill;
             splitContainerMenuPrincipal.Panel2.Controls.Add(cobranza);
         }

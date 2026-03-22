@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
-using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -33,12 +32,10 @@ namespace SCPSAP.ControlesCobranza
         // Id del contribuyente actualmente mostrado en la grilla de adeudos
         private int _currentContribuyenteId = 0;
 
-        // Adeudo en edición (puede ser null si no se está editando)
-        private Adeudo _adeudoEnEdicion = null;
-
         public Cobranza()
         {
             InitializeComponent();
+
             Theme.ApplyTo(this);
 
             _contribNeg = new ContribuyentesNegocio();
@@ -70,11 +67,6 @@ namespace SCPSAP.ControlesCobranza
 
             // Asegurar estado inicial de controles (deshabilitados si no hay datos)
             UpdateAdeudosControlsState();
-
-            pnlConfigurarAdeudos.Controls.Clear();
-            ConfiguraAdeudo configuraAdeudo = new ConfiguraAdeudo();
-            configuraAdeudo.Dock = DockStyle.Fill;
-            pnlConfigurarAdeudos.Controls.Add(configuraAdeudo);
         }
 
         // Inicializa los controles usados para búsqueda sin usar DataGridView.
@@ -218,7 +210,7 @@ namespace SCPSAP.ControlesCobranza
             else if (e.KeyCode == Keys.Escape)
             {
                 _lstResultados.Visible = false;
-                    
+
             }
         }
 
@@ -231,7 +223,7 @@ namespace SCPSAP.ControlesCobranza
                 _suppressFilter = true;
 
                 txbName.Text = seleccionado.Nombre;
-                txbFolio.Text = seleccionado.IdContribuyente.ToString();    
+                txbFolio.Text = seleccionado.IdContribuyente.ToString();
                 txbDireccion.Text = seleccionado.Direccion;
 
                 _lstResultados.Visible = false;
@@ -271,14 +263,7 @@ namespace SCPSAP.ControlesCobranza
                 MessageBox.Show(ex.Message, "Error al obtener adeudos", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-    
-        // Cancelar: descarta la edición actual.
-        public void CancelarEdicionAdeudo()
-        {
-            _adeudoEnEdicion = null;
-            // UI: limpiar y ocultar panel de edición.
-        }
-
+     
         // ------------------------------
         // Resto del código existente (pagar, recalcular, etc.) se mantiene...
         // ------------------------------
@@ -442,7 +427,7 @@ namespace SCPSAP.ControlesCobranza
                         if (val != null && DateTime.TryParse(Convert.ToString(val), out fecha))
                         {
                             if (fecha.Date < today && estado == "Pendiente")
-                            { 
+                            {
                                 // vence antes de hoy => marcar en rojo claro
                                 row.DefaultCellStyle.BackColor = Color.LightCoral;
                                 row.DefaultCellStyle.ForeColor = Color.White;
