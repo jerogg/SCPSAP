@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Cobranza\CobranzaNegocio.cs" />
+    <Compile Include="Cobranza\ConfiguraAdeudoNegocio.cs" />
     <Compile Include="Configuracion\TarifasNegocio.cs" />
     <Compile Include="Contribuyentes\ContribuyentesNegocio.cs" />
     <Compile Include="Login\UsuariosNegocio.cs" />
