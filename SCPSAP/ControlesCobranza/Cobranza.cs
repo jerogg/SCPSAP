@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 using static Entidades.Modelos;
 
 namespace SCPSAP.ControlesCobranza
@@ -808,6 +809,62 @@ namespace SCPSAP.ControlesCobranza
 
         private void btnGuardarAdeudo_Click(object sender, EventArgs e)
         {
+            try { 
+
+            // Validaciones:
+            // 1) Fecha límite debe ser mayor al día de hoy
+            DateTime fechaLimite = dtpFechaLimitePago.Value.Date;
+            if (fechaLimite <= DateTime.Today)
+            {
+                MessageBox.Show("La fecha límite de pago debe ser mayor al día de hoy.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                dtpFechaLimitePago.Focus();
+                return;
+            }
+
+            // 2) Si el monto es diferente, debe ser numérico (decimal)
+            decimal monto = 0m;
+            if (cbxMontoDiferente.Checked)
+            {
+                string montoText = txbMonto.Text?.Trim() ?? string.Empty;
+                if (string.IsNullOrEmpty(montoText))
+                {
+                    MessageBox.Show("Ingrese el monto cuando la opción 'Monto diferente' está activada.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txbMonto.Focus();
+                    return;
+                }
+
+                // Intentar parsear con la cultura actual
+                if (!decimal.TryParse(montoText, NumberStyles.Number, CultureInfo.CurrentCulture, out monto))
+                {
+                    // Intentar con InvariantCulture como fallback
+                    if (!decimal.TryParse(montoText, NumberStyles.Number, CultureInfo.InvariantCulture, out monto))
+                    {
+                        MessageBox.Show("El monto debe ser un valor numérico válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        txbMonto.Focus();
+                        return;
+                    }
+                }
+
+                if (monto < 0m)
+                {
+                    MessageBox.Show("El monto no puede ser negativo.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txbMonto.Focus();
+                    return;
+                }
+            }
+
+            // Preparar la entidad Adeudo para guardar
+            if (_adeudoEnEdicion == null)
+            {
+                NuevoAdeudo();
+            }
+
+            _adeudoEnEdicion.Periodo = txbPeriodo.Text.Trim();
+            _adeudoEnEdicion.Concepto = txbConcepto.Text.Trim();
+            _adeudoEnEdicion.FechaVencimiento = fechaLimite;
+            _adeudoEnEdicion.EsMontoDiferente = cbxMontoDiferente.Checked;
+            _adeudoEnEdicion.Monto = cbxMontoDiferente.Checked ? monto : 0m;
+
             var result = GuardarAdeudo(_adeudoEnEdicion);
 
             if (result)
@@ -819,14 +876,18 @@ namespace SCPSAP.ControlesCobranza
                 btnNuevoAdeudo.Enabled = true;
                 btnActualizarAdeudo.Enabled = true;
                 btnCancelarConfiguracionAdeudo.Enabled = false;
-                _adeudoEnEdicion.Periodo = txbPeriodo.Text;
-                _adeudoEnEdicion.Concepto = txbConcepto.Text;
-                _adeudoEnEdicion.FechaVencimiento = dtpFechaLimitePago.Value.Date;
-                _adeudoEnEdicion.EsMontoDiferente = cbxMontoDiferente.Checked;
+                //_adeudoEnEdicion.Periodo = txbPeriodo.Text;
+                //_adeudoEnEdicion.Concepto = txbConcepto.Text;
+                //_adeudoEnEdicion.FechaVencimiento = dtpFechaLimitePago.Value.Date;
+                //_adeudoEnEdicion.EsMontoDiferente = cbxMontoDiferente.Checked;
                 txbMonto.Text = txbMonto.Text != "" ? txbMonto.Text : "0";
-                _adeudoEnEdicion.Monto = cbxMontoDiferente.Checked ? decimal.Parse(txbMonto.Text) : 0;
-                MessageBox.Show("Se agrego correctamente el adeudo", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }             
+                //_adeudoEnEdicion.Monto = cbxMontoDiferente.Checked ? decimal.Parse(txbMonto.Text, CultureInfo.CurrentCulture) : 0;
+                MessageBox.Show("Se agregó correctamente el adeudo", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            }catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error al guardar adeudo", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void dgvAdeudosConfigurados_CellClick(object sender, DataGridViewCellEventArgs e)

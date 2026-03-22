@@ -2,15 +2,9 @@
 using Datos;
 using Negocio.Contribuyentes;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Data;
-using System.Data.SqlClient;
-using System.Drawing;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 
@@ -118,6 +112,7 @@ namespace SCPSAP.Contribuyentes
                     pnlDatosUsuario.Enabled = true;
                     btnNuevo.Enabled = false;
                     btnActualizar.Enabled = false;
+                    txbBuscar.Enabled = false;
                     btnCancelar.Enabled = true;
                     btnGuardar.Enabled = true;
                     // Aquí podrías cargar los datos completos del contribuyente en los controles:
@@ -139,59 +134,174 @@ namespace SCPSAP.Contribuyentes
             esNuevo = true;
             pnlDatosUsuario.Enabled = true;
             btnActualizar.Enabled = false;
+            txbBuscar.Enabled = false;
             btnNuevo.Enabled = false;
             btnCancelar.Enabled = true;
             btnGuardar.Enabled = true;
+            cbxDiasDeGracia.SelectedIndex = 1;
         }
 
         private void btnGuardar_Click(object sender, EventArgs e)
         {
-            Contribuyente contribuyente = new Contribuyente();
+            // Validar campos y construir entidad
+            Contribuyente contribuyente;
+            if (!TryBuildAndValidateContribuyente(out contribuyente))
+                return; // si no valida, se detiene
 
-            pnlDatosUsuario.Enabled = false;
-            btnNuevo.Enabled = true;
-            btnActualizar.Enabled = true;
-            btnCancelar.Enabled = false;
-
-            contribuyente.IdContribuyente = int.Parse(txbFolio.Text);
-            contribuyente.Nombre = txbNombre.Text;
-            contribuyente.Direccion = txbDireccion.Text;
-            contribuyente.Telefono = txbTelefono.Text;
-            contribuyente.Email = txbEmail.Text;
-            contribuyente.IdTarifa = cbxTarifa.SelectedValue != null ? (int?)cbxTarifa.SelectedValue : null;
-            contribuyente.IdEstado = cbxEstado.SelectedValue != null ? (int)cbxEstado.SelectedValue : 0;
-            contribuyente.DiasGracia = cbxDiasDeGracia.SelectedIndex >= 0 ? (int?)new[] { 30, 60, 90 }[cbxDiasDeGracia.SelectedIndex] : null;
-
-            // Aquí deberías implementar la lógica para guardar los datos del contribuyente (nuevo o actualizado)
-            if (esNuevo == false)
-            {
-                // Lógica para actualizar el contribuyente existente
-                contribuyentesNegocio.ActualizarContribuyente(contribuyente);
-
-                MessageBox.Show("Se actualizo correctamente datos del contribuyente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                // Lógica para agregar un nuevo contribuyente
-                contribuyentesNegocio.AgregarContribuyente(contribuyente);
-                MessageBox.Show("Se agrego nuevo contribuyente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-
-            // VALIDAR SI EL FOLIO YA EXISTE
+            // VALIDAR SI EL FOLIO YA EXISTE (solo si es nuevo)
             if (esNuevo)
             {
-                int folio = int.Parse(txbFolio.Text);
-
-                var existente = contribuyentesNegocio.ObtenerContribuyentePorId(folio);
-
+                var existente = contribuyentesNegocio.ObtenerContribuyentePorId(contribuyente.IdContribuyente);
                 if (existente != null)
                 {
                     MessageBox.Show("El folio ya existe, ingresa uno diferente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txbFolio.Focus();
                     return; // DETIENE EL GUARDADO
                 }
             }
-            CargarContribuyentes();
-            LimpiarControles();
+
+            // Guardar según modo
+            try
+            {
+                pnlDatosUsuario.Enabled = false;
+                btnNuevo.Enabled = true;
+                btnActualizar.Enabled = true;
+                txbBuscar.Enabled = true;
+                btnCancelar.Enabled = false;
+
+                if (esNuevo == false)
+                {
+                    contribuyentesNegocio.ActualizarContribuyente(contribuyente);
+                    MessageBox.Show("Se actualizó correctamente datos del contribuyente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    contribuyentesNegocio.AgregarContribuyente(contribuyente);
+                    MessageBox.Show("Se agregó nuevo contribuyente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+
+                CargarContribuyentes();
+                LimpiarControles();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error al guardar contribuyente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        /// <summary>
+        /// Valida los campos del formulario y construye la entidad Contribuyente.
+        /// Retorna true si los datos son válidos; en caso contrario muestra el error y devuelve false.
+        /// </summary>
+        private bool TryBuildAndValidateContribuyente(out Contribuyente contribuyente)
+        {
+            contribuyente = null;
+
+            // Folio
+            string folioText = txbFolio.Text.Trim();
+            if (string.IsNullOrEmpty(folioText))
+            {
+                MessageBox.Show("El folio es requerido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txbFolio.Focus();
+                return false;
+            }
+            if (!int.TryParse(folioText, out int folio) || folio <= 0)
+            {
+                MessageBox.Show("El folio debe ser un número entero positivo.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txbFolio.Focus();
+                return false;
+            }
+
+            // Nombre
+            string nombre = txbNombre.Text?.Trim() ?? string.Empty;
+            if (string.IsNullOrEmpty(nombre) || nombre.Length < 3)
+            {
+                MessageBox.Show("El nombre es requerido (mínimo 3 caracteres).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txbNombre.Focus();
+                return false;
+            }
+            if (nombre.Length > 150)
+            {
+                MessageBox.Show("El nombre es demasiado largo (máximo 150 caracteres).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txbNombre.Focus();
+                return false;
+            }
+
+            // Dirección
+            string direccion = txbDireccion.Text?.Trim() ?? string.Empty;
+            if (string.IsNullOrEmpty(direccion) || direccion.Length < 5)
+            {
+                MessageBox.Show("La dirección es requerida (mínimo 5 caracteres).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txbDireccion.Focus();
+                return false;
+            }
+            if (direccion.Length > 200)
+            {
+                MessageBox.Show("La dirección es demasiado larga (máximo 200 caracteres).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                txbDireccion.Focus();
+                return false;
+            }
+
+            // Teléfono (opcional pero si se ingresa validar formato)
+            string telefono = txbTelefono.Text?.Trim() ?? string.Empty;
+            if (!string.IsNullOrEmpty(telefono))
+            {
+                // acepta dígitos, espacios, '+', '-', '(', ')', entre 7 y 20 caracteres
+                var phonePattern = @"^[\d\+\-\s\(\)]{7,20}$";
+                if (!Regex.IsMatch(telefono, phonePattern))
+                {
+                    MessageBox.Show("Teléfono inválido. Use solo números, espacios, +, -, ( ).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txbTelefono.Focus();
+                    return false;
+                }
+            }
+
+            // Email (opcional pero si se ingresa validar formato básico)
+            string email = txbEmail.Text?.Trim() ?? string.Empty;
+            if (!string.IsNullOrEmpty(email))
+            {
+                var emailPattern = @"^[^@\s]+@[^@\s]+\.[^@\s]+$";
+                if (!Regex.IsMatch(email, emailPattern, RegexOptions.IgnoreCase))
+                {
+                    MessageBox.Show("Correo electrónico inválido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txbEmail.Focus();
+                    return false;
+                }
+                if (email.Length > 200)
+                {
+                    MessageBox.Show("El correo electrónico es demasiado largo (máximo 200 caracteres).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txbEmail.Focus();
+                    return false;
+                }
+            }
+
+            // Tarifa y estado: asegurar selección si son requeridos por tu lógica (aquí los dejamos opcionales pero coherentes)
+            int? idTarifa = cbxTarifa.SelectedValue != null && int.TryParse(cbxTarifa.SelectedValue.ToString(), out int t) ? (int?)t : null;
+            int idEstado = cbxEstado.SelectedValue != null && int.TryParse(cbxEstado.SelectedValue.ToString(), out int s) ? s : 0;
+
+            // Dias de gracia (opcional)
+            int? diasGracia = null;
+            if (cbxDiasDeGracia.SelectedIndex >= 0)
+            {
+                var map = new[] { 30, 60, 90 };
+                if (cbxDiasDeGracia.SelectedIndex < map.Length)
+                    diasGracia = map[cbxDiasDeGracia.SelectedIndex];
+            }
+
+            // Construir entidad
+            contribuyente = new Contribuyente
+            {
+                IdContribuyente = folio,
+                Nombre = nombre,
+                Direccion = direccion,
+                Telefono = telefono,
+                Email = email,
+                IdTarifa = idTarifa,
+                IdEstado = idEstado,
+                DiasGracia = diasGracia
+            };
+
+            return true;
         }
 
         // Evento que dispara la actualización del estado del botón
@@ -346,17 +456,20 @@ namespace SCPSAP.Contribuyentes
             pnlDatosUsuario.Enabled = false;
             btnNuevo.Enabled = true;
             btnActualizar.Enabled = true;
+            txbBuscar.Enabled = true;
+            txbBuscar.Text = string.Empty;
             btnCancelar.Enabled = false;
             _idContribuyenteSeleccionado = 0;
             txbNombre.Clear();
             txbDireccion.Clear();
             txbTelefono.Clear();
             txbEmail.Clear();
-            cbxTarifa.SelectedIndex = -1;
-            cbxEstado.SelectedIndex = -1;
-            cbxDiasDeGracia.SelectedIndex = -1;
+            cbxTarifa.SelectedIndex = 0;
+            cbxEstado.SelectedIndex = 0;
+            cbxDiasDeGracia.SelectedIndex = 0;
             esNuevo = false;
             btnGuardar.Enabled = false;
+
         }
 
         private void dgvListaContribuyentes_CellContentClick(object sender, DataGridViewCellEventArgs e)
