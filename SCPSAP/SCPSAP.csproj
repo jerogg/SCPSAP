@@ -56,6 +56,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ControlesCobranza\AgregarPorContribuyente.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesCobranza\AgregarPorContribuyente.Designer.cs">
+      <DependentUpon>AgregarPorContribuyente.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlesCobranza\Cobranza.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -107,6 +113,9 @@
       <DependentUpon>Reportes.cs</DependentUpon>
     </Compile>
     <Compile Include="Theme.cs" />
+    <EmbeddedResource Include="ControlesCobranza\AgregarPorContribuyente.resx">
+      <DependentUpon>AgregarPorContribuyente.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ControlesCobranza\Cobranza.resx">
       <DependentUpon>Cobranza.cs</DependentUpon>
     </EmbeddedResource>

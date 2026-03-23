@@ -52,6 +52,10 @@
             this.lblPassword = new System.Windows.Forms.Label();
             this.dgvName = new System.Windows.Forms.DataGridView();
             this.lblNombreUsuario = new System.Windows.Forms.Label();
+            this.IdTarifa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreTarifa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Contribuyentes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MontoMensual = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbcConfiguracion.SuspendLayout();
             this.tbTarifas.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvConfiguracion)).BeginInit();
@@ -94,7 +98,7 @@
             this.tbTarifas.Controls.Add(this.lblNombreTarifa);
             this.tbTarifas.Location = new System.Drawing.Point(4, 22);
             this.tbTarifas.Name = "tbTarifas";
-            this.tbTarifas.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbTarifas.Padding = new System.Windows.Forms.Padding(3);
             this.tbTarifas.Size = new System.Drawing.Size(584, 354);
             this.tbTarifas.TabIndex = 0;
             this.tbTarifas.Text = "Tarifas";
@@ -115,7 +119,7 @@
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnCancelar.Location = new System.Drawing.Point(168, 322);
-            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(74, 24);
             this.btnCancelar.TabIndex = 7;
@@ -126,7 +130,7 @@
             // 
             this.btnNuevo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnNuevo.Location = new System.Drawing.Point(85, 322);
-            this.btnNuevo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNuevo.Margin = new System.Windows.Forms.Padding(2);
             this.btnNuevo.Name = "btnNuevo";
             this.btnNuevo.Size = new System.Drawing.Size(75, 25);
             this.btnNuevo.TabIndex = 6;
@@ -137,7 +141,7 @@
             // 
             this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.btnActualizar.Location = new System.Drawing.Point(6, 322);
-            this.btnActualizar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnActualizar.Margin = new System.Windows.Forms.Padding(2);
             this.btnActualizar.Name = "btnActualizar";
             this.btnActualizar.Size = new System.Drawing.Size(71, 25);
             this.btnActualizar.TabIndex = 5;
@@ -146,16 +150,16 @@
             // 
             // txbMontoMensual
             // 
-            this.txbMontoMensual.Location = new System.Drawing.Point(395, 222);
-            this.txbMontoMensual.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbMontoMensual.Location = new System.Drawing.Point(392, 274);
+            this.txbMontoMensual.Margin = new System.Windows.Forms.Padding(2);
             this.txbMontoMensual.Name = "txbMontoMensual";
             this.txbMontoMensual.Size = new System.Drawing.Size(83, 20);
             this.txbMontoMensual.TabIndex = 4;
             // 
             // txbNombre
             // 
-            this.txbNombre.Location = new System.Drawing.Point(63, 222);
-            this.txbNombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbNombre.Location = new System.Drawing.Point(60, 274);
+            this.txbNombre.Margin = new System.Windows.Forms.Padding(2);
             this.txbNombre.Name = "txbNombre";
             this.txbNombre.Size = new System.Drawing.Size(208, 20);
             this.txbNombre.TabIndex = 3;
@@ -164,7 +168,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(309, 226);
+            this.label1.Location = new System.Drawing.Point(306, 278);
             this.label1.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(82, 13);
@@ -174,20 +178,26 @@
             // 
             // dgvConfiguracion
             // 
+            this.dgvConfiguracion.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvConfiguracion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvConfiguracion.Location = new System.Drawing.Point(0, 3);
-            this.dgvConfiguracion.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvConfiguracion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.IdTarifa,
+            this.NombreTarifa,
+            this.Contribuyentes,
+            this.MontoMensual});
+            this.dgvConfiguracion.Location = new System.Drawing.Point(6, 3);
+            this.dgvConfiguracion.Margin = new System.Windows.Forms.Padding(2);
             this.dgvConfiguracion.Name = "dgvConfiguracion";
             this.dgvConfiguracion.RowHeadersWidth = 62;
             this.dgvConfiguracion.RowTemplate.Height = 28;
-            this.dgvConfiguracion.Size = new System.Drawing.Size(587, 199);
+            this.dgvConfiguracion.Size = new System.Drawing.Size(571, 249);
             this.dgvConfiguracion.TabIndex = 1;
             this.dgvConfiguracion.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvConfiguracion_CellContentClick);
             // 
             // lblNombreTarifa
             // 
             this.lblNombreTarifa.AutoSize = true;
-            this.lblNombreTarifa.Location = new System.Drawing.Point(15, 226);
+            this.lblNombreTarifa.Location = new System.Drawing.Point(12, 278);
             this.lblNombreTarifa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNombreTarifa.Name = "lblNombreTarifa";
             this.lblNombreTarifa.Size = new System.Drawing.Size(44, 13);
@@ -209,7 +219,7 @@
             this.tbpUsuarios.Controls.Add(this.lblNombreUsuario);
             this.tbpUsuarios.Location = new System.Drawing.Point(4, 22);
             this.tbpUsuarios.Name = "tbpUsuarios";
-            this.tbpUsuarios.Padding = new System.Windows.Forms.Padding(3, 3, 3, 3);
+            this.tbpUsuarios.Padding = new System.Windows.Forms.Padding(3);
             this.tbpUsuarios.Size = new System.Drawing.Size(584, 354);
             this.tbpUsuarios.TabIndex = 1;
             this.tbpUsuarios.Text = "Usuarios";
@@ -218,7 +228,7 @@
             // btnGuardarUsuario
             // 
             this.btnGuardarUsuario.Location = new System.Drawing.Point(315, 278);
-            this.btnGuardarUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnGuardarUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.btnGuardarUsuario.Name = "btnGuardarUsuario";
             this.btnGuardarUsuario.Size = new System.Drawing.Size(50, 15);
             this.btnGuardarUsuario.TabIndex = 11;
@@ -228,7 +238,7 @@
             // btnCancelarUsuario
             // 
             this.btnCancelarUsuario.Location = new System.Drawing.Point(225, 278);
-            this.btnCancelarUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnCancelarUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancelarUsuario.Name = "btnCancelarUsuario";
             this.btnCancelarUsuario.Size = new System.Drawing.Size(50, 15);
             this.btnCancelarUsuario.TabIndex = 10;
@@ -238,7 +248,7 @@
             // btnNuevoUsuario
             // 
             this.btnNuevoUsuario.Location = new System.Drawing.Point(139, 278);
-            this.btnNuevoUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnNuevoUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.btnNuevoUsuario.Name = "btnNuevoUsuario";
             this.btnNuevoUsuario.Size = new System.Drawing.Size(50, 15);
             this.btnNuevoUsuario.TabIndex = 9;
@@ -248,7 +258,7 @@
             // btnActualizarUsuario
             // 
             this.btnActualizarUsuario.Location = new System.Drawing.Point(51, 278);
-            this.btnActualizarUsuario.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.btnActualizarUsuario.Margin = new System.Windows.Forms.Padding(2);
             this.btnActualizarUsuario.Name = "btnActualizarUsuario";
             this.btnActualizarUsuario.Size = new System.Drawing.Size(50, 15);
             this.btnActualizarUsuario.TabIndex = 8;
@@ -258,7 +268,7 @@
             // txtRol
             // 
             this.txtRol.Location = new System.Drawing.Point(139, 212);
-            this.txtRol.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txtRol.Margin = new System.Windows.Forms.Padding(2);
             this.txtRol.Name = "txtRol";
             this.txtRol.Size = new System.Drawing.Size(145, 20);
             this.txtRol.TabIndex = 7;
@@ -267,7 +277,7 @@
             // txt_Password
             // 
             this.txt_Password.Location = new System.Drawing.Point(139, 178);
-            this.txt_Password.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_Password.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Password.Name = "txt_Password";
             this.txt_Password.Size = new System.Drawing.Size(145, 20);
             this.txt_Password.TabIndex = 6;
@@ -275,7 +285,7 @@
             // txt_Nombre
             // 
             this.txt_Nombre.Location = new System.Drawing.Point(139, 151);
-            this.txt_Nombre.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txt_Nombre.Margin = new System.Windows.Forms.Padding(2);
             this.txt_Nombre.Name = "txt_Nombre";
             this.txt_Nombre.Size = new System.Drawing.Size(145, 20);
             this.txt_Nombre.TabIndex = 5;
@@ -306,7 +316,7 @@
             // 
             this.dgvName.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvName.Location = new System.Drawing.Point(8, 12);
-            this.dgvName.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.dgvName.Margin = new System.Windows.Forms.Padding(2);
             this.dgvName.Name = "dgvName";
             this.dgvName.RowHeadersWidth = 51;
             this.dgvName.RowTemplate.Height = 24;
@@ -324,6 +334,32 @@
             this.lblNombreUsuario.TabIndex = 0;
             this.lblNombreUsuario.Text = "Nombre";
             this.lblNombreUsuario.Click += new System.EventHandler(this.lblNombreUsuario_Click);
+            // 
+            // IdTarifa
+            // 
+            this.IdTarifa.DataPropertyName = "IdTarifa";
+            this.IdTarifa.HeaderText = "IdTarifa";
+            this.IdTarifa.Name = "IdTarifa";
+            this.IdTarifa.Visible = false;
+            // 
+            // NombreTarifa
+            // 
+            this.NombreTarifa.DataPropertyName = "NombreTarifa";
+            this.NombreTarifa.HeaderText = "Nombre tarifa";
+            this.NombreTarifa.Name = "NombreTarifa";
+            // 
+            // Contribuyentes
+            // 
+            this.Contribuyentes.DataPropertyName = "Contribuyentes";
+            this.Contribuyentes.HeaderText = "Contribuyentes";
+            this.Contribuyentes.Name = "Contribuyentes";
+            this.Contribuyentes.Visible = false;
+            // 
+            // MontoMensual
+            // 
+            this.MontoMensual.DataPropertyName = "MontoMensual";
+            this.MontoMensual.HeaderText = "Monto mensual";
+            this.MontoMensual.Name = "MontoMensual";
             // 
             // Configuracion
             // 
@@ -371,5 +407,9 @@
         private System.Windows.Forms.Button btnNuevoUsuario;
         private System.Windows.Forms.Button btnCancelarUsuario;
         private System.Windows.Forms.Button btnGuardarUsuario;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdTarifa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreTarifa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Contribuyentes;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MontoMensual;
     }
 }

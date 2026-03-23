@@ -4,15 +4,15 @@ using System.Linq;
 
 namespace Datos.Cobranza
 {
-    public class CobranzaDatos
+    public class AgregarAdeudoPorContribuyenteDatos
     {
         SCPSAPEntities SCPSAPEntities = new SCPSAPEntities();
 
-        public List<AdeudoContribuyente> ObtenerAdeudosPorContribuyente(int Idcontribuyente, string estado ) 
+        public List<Adeudo> ObtenerAdeudosNoRelacionadosConContribuyente(int contribuyenteId)
         {
             try
             {
-                return SCPSAPEntities.AdeudoContribuyentes.Where(a => a.IdContribuyente == Idcontribuyente && a.Estado == estado).ToList();
+                return SCPSAPEntities.Adeudos.Where(a => !SCPSAPEntities.AdeudoContribuyentes.Any(ac => ac.IdAdeudo == a.IdAdeudo && ac.IdContribuyente == contribuyenteId)).ToList();
             }
             catch (Exception ex)
             {

@@ -122,4 +122,8 @@
     <value>..\Imagenes\Borrar2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
     <comment>Icono para borrar</comment>
   </data>
+  <data name="botonAgregar" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Imagenes\botonAgregar.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+    <comment>Botón para agregar elementos</comment>
+  </data>
 </root>

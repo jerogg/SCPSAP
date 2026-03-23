@@ -1,6 +1,7 @@
 ﻿using CapaUI;
 using Datos;
 using Negocio.Contribuyentes;
+using SCPSAP.ControlesCobranza;
 using System;
 using System.Data;
 using System.Linq;
@@ -504,6 +505,47 @@ namespace SCPSAP.Contribuyentes
             {
                 MessageBox.Show(ex.Message, "Error al eliminar el contribuyente", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            try
+            {
+                if (e.ColumnIndex == dgvListaContribuyentes.Columns["AgregarAdeudo"].Index && e.RowIndex >= 0)
+                {
+                    int id = Convert.ToInt32(
+                        dgvListaContribuyentes.Rows[e.RowIndex].Cells["IdContribuyente"].Value
+                    );
+
+                    // Confirmación antes de eliminar
+                    var fila = dgvListaContribuyentes.Rows[e.RowIndex];
+                    string nombre = fila.Cells["Nombre"].Value != null ? fila.Cells["Nombre"].Value.ToString() : string.Empty;
+                    string folio = fila.Cells["IdContribuyente"].Value != null ? fila.Cells["IdContribuyente"].Value.ToString() : string.Empty;
+                    string direccion = fila.Cells["Direccion"].Value != null ? fila.Cells["Direccion"].Value.ToString() : string.Empty;
+
+                    var control = new AgregarPorContribuyente();
+                    control.CargarContribuyente(id, nombre, folio, direccion);
+
+                    // Mostrar en un Form modal
+                    using (var frm = new Form())
+                    {
+                        frm.Text = "Agregar adeudo - " + (nombre ?? "Contribuyente");
+                        frm.StartPosition = FormStartPosition.CenterParent;
+                        frm.FormBorderStyle = FormBorderStyle.FixedDialog;
+                        frm.MinimizeBox = false;
+                        frm.MaximizeBox = false;
+                        frm.ShowInTaskbar = false;
+
+                        control.Dock = DockStyle.Fill;
+                        frm.Controls.Add(control);
+                        frm.ClientSize = new System.Drawing.Size(800, 600); // ajustar tamaño según control
+
+                        frm.ShowDialog(this.FindForm());
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error al agregar adeudos al contribuyente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void txtBuscar_TextChanged(object sender, EventArgs e)
@@ -520,7 +562,7 @@ namespace SCPSAP.Contribuyentes
             //Aqui pondre algunas cosas 
         }
 
-        // Cambia el cursor cuando el ratón entra en una celda; pone mano si es la columna Eliminar
+        // Cambia el cursor cuando el ratón entra en una celda; pone mano si es la columna Eliminar o AgregarAdeudo
         private void DgvListaContribuyentes_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
         {
             try
@@ -528,7 +570,7 @@ namespace SCPSAP.Contribuyentes
                 if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
                 {
                     var col = dgvListaContribuyentes.Columns[e.ColumnIndex];
-                    if (string.Equals(col.Name, "Eliminar", StringComparison.OrdinalIgnoreCase))
+                    if (string.Equals(col.Name, "Eliminar", StringComparison.OrdinalIgnoreCase) || string.Equals(col.Name, "AgregarAdeudo", StringComparison.OrdinalIgnoreCase))
                     {
                         dgvListaContribuyentes.Cursor = Cursors.Hand;
                       }

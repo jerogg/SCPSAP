@@ -42,6 +42,7 @@
             this.txbTotalPagar = new System.Windows.Forms.TextBox();
             this.lblTotalAPagar = new System.Windows.Forms.Label();
             this.dgvAdeudosPorContribuyente = new System.Windows.Forms.DataGridView();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.IdAdeudoContribuyente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DetallePagoes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdContribuyente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -213,6 +214,17 @@
             this.dgvAdeudosPorContribuyente.Size = new System.Drawing.Size(618, 293);
             this.dgvAdeudosPorContribuyente.TabIndex = 18;
             // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewImageColumn1.FillWeight = 96.8818F;
+            this.dataGridViewImageColumn1.HeaderText = "Agregar aduedo";
+            this.dataGridViewImageColumn1.Image = global::SCPSAP.Properties.Resources.botonAgregar;
+            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ToolTipText = "Agregar adeudo especifico para el contribuyente";
+            this.dataGridViewImageColumn1.Width = 80;
+            // 
             // IdAdeudoContribuyente
             // 
             this.IdAdeudoContribuyente.DataPropertyName = "IdAdeudoContribuyente";
@@ -256,6 +268,7 @@
             // Periodo
             // 
             this.Periodo.DataPropertyName = "Periodo";
+            this.Periodo.FillWeight = 96.8818F;
             this.Periodo.HeaderText = "Periodo";
             this.Periodo.Name = "Periodo";
             this.Periodo.ReadOnly = true;
@@ -263,6 +276,7 @@
             // Concepto
             // 
             this.Concepto.DataPropertyName = "Concepto";
+            this.Concepto.FillWeight = 96.8818F;
             this.Concepto.HeaderText = "Concepto";
             this.Concepto.Name = "Concepto";
             this.Concepto.ReadOnly = true;
@@ -294,6 +308,7 @@
             // TotalAdeudo
             // 
             this.TotalAdeudo.DataPropertyName = "TotalAdeudo";
+            this.TotalAdeudo.FillWeight = 96.8818F;
             this.TotalAdeudo.HeaderText = "Adeudo";
             this.TotalAdeudo.Name = "TotalAdeudo";
             this.TotalAdeudo.ReadOnly = true;
@@ -309,6 +324,7 @@
             // Estado
             // 
             this.Estado.DataPropertyName = "Estado";
+            this.Estado.FillWeight = 96.8818F;
             this.Estado.HeaderText = "Estado";
             this.Estado.Name = "Estado";
             this.Estado.ReadOnly = true;
@@ -316,6 +332,7 @@
             // FechaGeneracion
             // 
             this.FechaGeneracion.DataPropertyName = "FechaGeneracion";
+            this.FechaGeneracion.FillWeight = 96.8818F;
             this.FechaGeneracion.HeaderText = "Fecha de generacion";
             this.FechaGeneracion.Name = "FechaGeneracion";
             this.FechaGeneracion.ReadOnly = true;
@@ -323,14 +340,18 @@
             // FechaVencimiento
             // 
             this.FechaVencimiento.DataPropertyName = "FechaVencimiento";
+            this.FechaVencimiento.FillWeight = 96.8818F;
             this.FechaVencimiento.HeaderText = "Fecha de vencimiento";
             this.FechaVencimiento.Name = "FechaVencimiento";
             this.FechaVencimiento.ReadOnly = true;
             // 
             // Pagar
             // 
+            this.Pagar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Pagar.FillWeight = 121.8274F;
             this.Pagar.HeaderText = "Pagar";
             this.Pagar.Name = "Pagar";
+            this.Pagar.Width = 41;
             // 
             // Cobranza
             // 
@@ -390,5 +411,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaGeneracion;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaVencimiento;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Pagar;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
     }
 }

@@ -60,6 +60,7 @@
       <DependentUpon>ModelSCPSAP.tt</DependentUpon>
     </Compile>
     <Compile Include="Class1.cs" />
+    <Compile Include="Cobranza\AgregarAdeudoPorContribuyenteDatos.cs" />
     <Compile Include="Cobranza\CobranzaDatos.cs" />
     <Compile Include="Cobranza\ConfiguraAdeudoDatos.cs" />
     <Compile Include="Configuracion\TarifasDatos.cs" />
