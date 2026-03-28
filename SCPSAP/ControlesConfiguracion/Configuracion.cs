@@ -1,98 +1,26 @@
-﻿using CapaUI;
-using Datos;
-using Datos.Configuracion;
-using Negocio.Configuracion;
+﻿using SCPSAP.ControlesCobranza;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SCPSAP.ControlesConfiguracion
 {
     public partial class Configuracion : UserControl
     {
-        TarifasNegocio TarifasNegocio = new TarifasNegocio();
+        
         public Configuracion()
         {
             InitializeComponent();
-            Theme.ApplyTo(this);
-            CargarTarifas();
+
+            pnlTarifas.Controls.Clear();
+            Tarifas tarifa = new Tarifas();
+            tarifa.Dock = DockStyle.Fill;
+            pnlTarifas.Controls.Add(tarifa);
+
+            pnlUsuariosSistema.Controls.Clear();
+            UsuariosDeSistema usuariosDeSistema = new UsuariosDeSistema();
+            usuariosDeSistema.Dock = DockStyle.Fill;
+            pnlUsuariosSistema.Controls.Add(usuariosDeSistema);
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgvConfiguracion_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-        private void CargarTarifas()
-        {
-            try
-            {
-                var lista = TarifasNegocio.ObtenerTarifas();
-                dgvConfiguracion.DataSource = lista;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error al cargar tarifas", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
-
-        private void lblNombreUsuario_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void textBox3_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void lblRol_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void dgvName_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        } 
-
-        public void AgregarTarifas(Tarifa tarifa)
-        {
-            try
-            {
-                TarifasNegocio.AgregarTarifas(tarifa);
-                MessageBox.Show("Se agrego una nueva tarifa", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error al agregar tarifa", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void btnGuardar_Click(object sender, EventArgs e)
-        {
-            Tarifa tarifa = new Tarifa();
-            tarifa.NombreTarifa = txbNombre.Text;
-            tarifa.MontoMensual=decimal.Parse(txbMontoMensual.Text); 
-            AgregarTarifas( tarifa);
-            CargarTarifas();
-        }
     }
 }
