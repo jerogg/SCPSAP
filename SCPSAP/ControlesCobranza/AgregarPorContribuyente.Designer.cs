@@ -37,15 +37,17 @@
             this.lblNombre = new System.Windows.Forms.Label();
             this.dgvAdeudosConfiguradosNoRelacionados = new System.Windows.Forms.DataGridView();
             this.lblAdeudos = new System.Windows.Forms.Label();
-            this.IdConfiguracionAdeudo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCancelar = new System.Windows.Forms.Button();
+            this.btnGuardar = new System.Windows.Forms.Button();
+            this.IdAdeudo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AdeudoContribuyentes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ConceptoAdeudo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaVencimientoAdeudo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MontoDiferente = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.RelacionarAdeudo = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.btnCancelar = new System.Windows.Forms.Button();
-            this.btnGuardar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdeudosConfiguradosNoRelacionados)).BeginInit();
             this.SuspendLayout();
             // 
@@ -119,16 +121,17 @@
             this.dgvAdeudosConfiguradosNoRelacionados.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dgvAdeudosConfiguradosNoRelacionados.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvAdeudosConfiguradosNoRelacionados.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.IdConfiguracionAdeudo,
+            this.IdAdeudo,
             this.AdeudoContribuyentes,
             this.dataGridViewTextBoxColumn5,
             this.ConceptoAdeudo,
             this.dataGridViewTextBoxColumn12,
             this.FechaVencimientoAdeudo,
+            this.MontoDiferente,
+            this.Monto,
             this.RelacionarAdeudo});
             this.dgvAdeudosConfiguradosNoRelacionados.Location = new System.Drawing.Point(16, 104);
             this.dgvAdeudosConfiguradosNoRelacionados.Name = "dgvAdeudosConfiguradosNoRelacionados";
-            this.dgvAdeudosConfiguradosNoRelacionados.ReadOnly = true;
             this.dgvAdeudosConfiguradosNoRelacionados.Size = new System.Drawing.Size(618, 318);
             this.dgvAdeudosConfiguradosNoRelacionados.TabIndex = 37;
             // 
@@ -141,22 +144,44 @@
             this.lblAdeudos.TabIndex = 36;
             this.lblAdeudos.Text = "ADEUDOS CONFIGURADOS NO RELACIONADOS AL CONTRIBUYENTE";
             // 
-            // IdConfiguracionAdeudo
+            // btnCancelar
             // 
-            this.IdConfiguracionAdeudo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.IdConfiguracionAdeudo.DataPropertyName = "IdAdeudo";
-            this.IdConfiguracionAdeudo.HeaderText = "IdAdeudo";
-            this.IdConfiguracionAdeudo.Name = "IdConfiguracionAdeudo";
-            this.IdConfiguracionAdeudo.ReadOnly = true;
-            this.IdConfiguracionAdeudo.Visible = false;
-            this.IdConfiguracionAdeudo.Width = 78;
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.Enabled = false;
+            this.btnCancelar.Location = new System.Drawing.Point(471, 440);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 25);
+            this.btnCancelar.TabIndex = 45;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
+            // btnGuardar
+            // 
+            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGuardar.Enabled = false;
+            this.btnGuardar.Location = new System.Drawing.Point(559, 440);
+            this.btnGuardar.Name = "btnGuardar";
+            this.btnGuardar.Size = new System.Drawing.Size(75, 25);
+            this.btnGuardar.TabIndex = 44;
+            this.btnGuardar.Text = "Guardar";
+            this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
+            // 
+            // IdAdeudo
+            // 
+            this.IdAdeudo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.IdAdeudo.DataPropertyName = "IdAdeudo";
+            this.IdAdeudo.HeaderText = "IdAdeudo";
+            this.IdAdeudo.Name = "IdAdeudo";
+            this.IdAdeudo.Visible = false;
+            this.IdAdeudo.Width = 78;
             // 
             // AdeudoContribuyentes
             // 
             this.AdeudoContribuyentes.DataPropertyName = "AdeudoContribuyentes";
             this.AdeudoContribuyentes.HeaderText = "AdeudoContribuyentes";
             this.AdeudoContribuyentes.Name = "AdeudoContribuyentes";
-            this.AdeudoContribuyentes.ReadOnly = true;
             this.AdeudoContribuyentes.Visible = false;
             // 
             // dataGridViewTextBoxColumn5
@@ -191,39 +216,29 @@
             this.FechaVencimientoAdeudo.Name = "FechaVencimientoAdeudo";
             this.FechaVencimientoAdeudo.ReadOnly = true;
             // 
+            // MontoDiferente
+            // 
+            this.MontoDiferente.DataPropertyName = "EsMontoDiferente";
+            this.MontoDiferente.HeaderText = "Monto diferente";
+            this.MontoDiferente.Name = "MontoDiferente";
+            this.MontoDiferente.ReadOnly = true;
+            // 
+            // Monto
+            // 
+            this.Monto.DataPropertyName = "Monto";
+            this.Monto.HeaderText = "Monto";
+            this.Monto.Name = "Monto";
+            this.Monto.ReadOnly = true;
+            // 
             // RelacionarAdeudo
             // 
             this.RelacionarAdeudo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.RelacionarAdeudo.FillWeight = 76.14214F;
             this.RelacionarAdeudo.HeaderText = "Relacionar";
             this.RelacionarAdeudo.Name = "RelacionarAdeudo";
-            this.RelacionarAdeudo.ReadOnly = true;
             this.RelacionarAdeudo.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.RelacionarAdeudo.ToolTipText = "Relacionar un adeudo existente al contribuyente";
             this.RelacionarAdeudo.Width = 64;
-            // 
-            // btnCancelar
-            // 
-            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCancelar.Enabled = false;
-            this.btnCancelar.Location = new System.Drawing.Point(471, 440);
-            this.btnCancelar.Name = "btnCancelar";
-            this.btnCancelar.Size = new System.Drawing.Size(75, 25);
-            this.btnCancelar.TabIndex = 45;
-            this.btnCancelar.Text = "Cancelar";
-            this.btnCancelar.UseVisualStyleBackColor = true;
-            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
-            // 
-            // btnGuardar
-            // 
-            this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnGuardar.Enabled = false;
-            this.btnGuardar.Location = new System.Drawing.Point(559, 440);
-            this.btnGuardar.Name = "btnGuardar";
-            this.btnGuardar.Size = new System.Drawing.Size(75, 25);
-            this.btnGuardar.TabIndex = 44;
-            this.btnGuardar.Text = "Guardar";
-            this.btnGuardar.UseVisualStyleBackColor = true;
             // 
             // AgregarPorContribuyente
             // 
@@ -259,14 +274,16 @@
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.DataGridView dgvAdeudosConfiguradosNoRelacionados;
         private System.Windows.Forms.Label lblAdeudos;
-        private System.Windows.Forms.DataGridViewTextBoxColumn IdConfiguracionAdeudo;
+        private System.Windows.Forms.Button btnCancelar;
+        private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.DataGridViewTextBoxColumn IdAdeudo;
         private System.Windows.Forms.DataGridViewTextBoxColumn AdeudoContribuyentes;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn ConceptoAdeudo;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn12;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaVencimientoAdeudo;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn MontoDiferente;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Monto;
         private System.Windows.Forms.DataGridViewCheckBoxColumn RelacionarAdeudo;
-        private System.Windows.Forms.Button btnCancelar;
-        private System.Windows.Forms.Button btnGuardar;
     }
 }

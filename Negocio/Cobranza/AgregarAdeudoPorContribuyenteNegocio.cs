@@ -23,5 +23,18 @@ namespace Negocio.Cobranza
                 throw new Exception(ex.Message);
             }
         }
+
+
+        public bool RelacionarAdeudos(List<int> ids, int contribuyenteId)
+        {
+            try
+            {
+                return agregarAdeudoPorContribuyenteDatos.RelacionarAdeudos(ids, contribuyenteId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
