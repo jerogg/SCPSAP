@@ -37,3 +37,18 @@ Contribuyentes
 Configuracion
 1 - En configuracion implementar la funcionalidad para que se puedan agregar, editar y eliminar las tarifas. mostrar las tarifas en un grid y agregar un boton de eliminar en cada fila del grid para eliminar la tarifa seleccionada, agregar un boton de editar para editar la tarifa seleccionada y agregar un boton de agregar para agregar una nueva tarifa. similar a como se hace en contribuyentes.
 2 - En configuracion implementar la funcionalidad para que se puedan agregar, editar y eliminar los usuarios. mostrar los usuarios en un grid y agregar un boton de eliminar en cada fila del grid para eliminar el usuario seleccionado, agregar un boton de editar para editar el usuario seleccionado y agregar un boton de agregar para agregar un nuevo usuario. similar a como se hace en contribuyentes.
+
+
+Tareas 29 marzo
+
+Contribuyentes
+1 - Implementar un spinner o progressbar que se muestre cuando se buscan los contribuyentes o cuando se guardan los datos del contribuyente - Pendiente por que lo trajaben
+2 - Bloquear todos elemento en la pantalla cuando el spínner se esta mostroando. - Pendiente por que lo trajaben
+
+
+Menu principal
+1 - Agregar iconos para cada opcion de menu a la izquierda del texto. - Pendiente por que lo trajaben
+
+Configuracion
+
+2 - Obtener los usuarios desde y listarlos en el grid - Pendiente por que lo trajaben
