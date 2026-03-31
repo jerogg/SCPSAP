@@ -177,8 +177,8 @@ namespace Datos.Cobranza
             if (pago == null) throw new ArgumentNullException(nameof(pago));
             if (detalles == null || detalles.Count == 0) throw new ArgumentException("No hay detalles de pago.", nameof(detalles));
 
-            using (var ctx = new SCPSAPEntities())
-            using (var tx = ctx.Database.BeginTransaction())
+            //using (var ctx = new SCPSAPEntities())
+            using (var tx = SCPSAPEntities.Database.BeginTransaction())
             {
                 try
                 {
@@ -197,13 +197,13 @@ namespace Datos.Cobranza
                         };
                         pago.DetallePagoes.Add(detalle);
 
-                        var adeudo = ctx.AdeudoContribuyentes.FirstOrDefault(a => a.IdAdeudo == d.Item1 && a.IdContribuyente == pago.IdContribuyente);
+                        var adeudo = SCPSAPEntities.AdeudoContribuyentes.FirstOrDefault(a => a.IdAdeudo == d.Item1 && a.IdContribuyente == pago.IdContribuyente);
                         if (adeudo != null)
                             adeudo.Estado = "Pagado";
                     }
 
-                    ctx.Pagos.Add(pago);
-                    ctx.SaveChanges();
+                    SCPSAPEntities.Pagos.Add(pago);
+                    SCPSAPEntities.SaveChanges();
 
                     tx.Commit();
                     return true;

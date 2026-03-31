@@ -42,7 +42,6 @@
             this.txbTotalPagar = new System.Windows.Forms.TextBox();
             this.lblTotalAPagar = new System.Windows.Forms.Label();
             this.dgvAdeudosPorContribuyente = new System.Windows.Forms.DataGridView();
-            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.IdAdeudoContribuyente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DetallePagoes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IdContribuyente = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,6 +58,11 @@
             this.FechaGeneracion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaVencimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Pagar = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.lblPagaCon = new System.Windows.Forms.Label();
+            this.txbPagaCon = new System.Windows.Forms.TextBox();
+            this.txbCambio = new System.Windows.Forms.TextBox();
+            this.lblCambio = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvAdeudosPorContribuyente)).BeginInit();
             this.SuspendLayout();
             // 
@@ -133,7 +137,7 @@
             "Tarjeta"});
             this.cbxMetodoPago.Location = new System.Drawing.Point(106, 448);
             this.cbxMetodoPago.Name = "cbxMetodoPago";
-            this.cbxMetodoPago.Size = new System.Drawing.Size(161, 21);
+            this.cbxMetodoPago.Size = new System.Drawing.Size(115, 21);
             this.cbxMetodoPago.TabIndex = 22;
             // 
             // lblNombre
@@ -170,14 +174,14 @@
             this.txbTotalPagar.Enabled = false;
             this.txbTotalPagar.Location = new System.Drawing.Point(106, 412);
             this.txbTotalPagar.Name = "txbTotalPagar";
-            this.txbTotalPagar.Size = new System.Drawing.Size(161, 20);
+            this.txbTotalPagar.Size = new System.Drawing.Size(115, 20);
             this.txbTotalPagar.TabIndex = 20;
             // 
             // lblTotalAPagar
             // 
             this.lblTotalAPagar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTotalAPagar.AutoSize = true;
-            this.lblTotalAPagar.Location = new System.Drawing.Point(8, 416);
+            this.lblTotalAPagar.Location = new System.Drawing.Point(7, 416);
             this.lblTotalAPagar.Name = "lblTotalAPagar";
             this.lblTotalAPagar.Size = new System.Drawing.Size(95, 13);
             this.lblTotalAPagar.TabIndex = 19;
@@ -213,17 +217,6 @@
             this.dgvAdeudosPorContribuyente.Name = "dgvAdeudosPorContribuyente";
             this.dgvAdeudosPorContribuyente.Size = new System.Drawing.Size(618, 293);
             this.dgvAdeudosPorContribuyente.TabIndex = 18;
-            // 
-            // dataGridViewImageColumn1
-            // 
-            this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.dataGridViewImageColumn1.FillWeight = 96.8818F;
-            this.dataGridViewImageColumn1.HeaderText = "Agregar aduedo";
-            this.dataGridViewImageColumn1.Image = global::SCPSAP.Properties.Resources.botonAgregar;
-            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
-            this.dataGridViewImageColumn1.ToolTipText = "Agregar adeudo especifico para el contribuyente";
-            this.dataGridViewImageColumn1.Width = 80;
             // 
             // IdAdeudoContribuyente
             // 
@@ -353,10 +346,63 @@
             this.Pagar.Name = "Pagar";
             this.Pagar.Width = 41;
             // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewImageColumn1.FillWeight = 96.8818F;
+            this.dataGridViewImageColumn1.HeaderText = "Agregar aduedo";
+            this.dataGridViewImageColumn1.Image = global::SCPSAP.Properties.Resources.botonAgregar;
+            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.ToolTipText = "Agregar adeudo especifico para el contribuyente";
+            // 
+            // lblPagaCon
+            // 
+            this.lblPagaCon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblPagaCon.AutoSize = true;
+            this.lblPagaCon.Location = new System.Drawing.Point(245, 417);
+            this.lblPagaCon.Name = "lblPagaCon";
+            this.lblPagaCon.Size = new System.Drawing.Size(65, 13);
+            this.lblPagaCon.TabIndex = 28;
+            this.lblPagaCon.Text = "PAGA CON:";
+            // 
+            // txbPagaCon
+            // 
+            this.txbPagaCon.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txbPagaCon.Enabled = false;
+            this.txbPagaCon.Location = new System.Drawing.Point(313, 413);
+            this.txbPagaCon.Name = "txbPagaCon";
+            this.txbPagaCon.Size = new System.Drawing.Size(115, 20);
+            this.txbPagaCon.TabIndex = 29;
+            this.txbPagaCon.TextChanged += new System.EventHandler(this.txbPagaCon_TextChanged);
+            // 
+            // txbCambio
+            // 
+            this.txbCambio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txbCambio.Enabled = false;
+            this.txbCambio.Location = new System.Drawing.Point(505, 412);
+            this.txbCambio.Name = "txbCambio";
+            this.txbCambio.Size = new System.Drawing.Size(126, 20);
+            this.txbCambio.TabIndex = 31;
+            // 
+            // lblCambio
+            // 
+            this.lblCambio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblCambio.AutoSize = true;
+            this.lblCambio.Location = new System.Drawing.Point(451, 416);
+            this.lblCambio.Name = "lblCambio";
+            this.lblCambio.Size = new System.Drawing.Size(51, 13);
+            this.lblCambio.TabIndex = 30;
+            this.lblCambio.Text = "CAMBIO:";
+            // 
             // Cobranza
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.txbCambio);
+            this.Controls.Add(this.lblCambio);
+            this.Controls.Add(this.txbPagaCon);
+            this.Controls.Add(this.lblPagaCon);
             this.Controls.Add(this.txbDireccion);
             this.Controls.Add(this.lblDireccion);
             this.Controls.Add(this.txbFolio);
@@ -412,5 +458,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaVencimiento;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Pagar;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.Label lblPagaCon;
+        private System.Windows.Forms.TextBox txbPagaCon;
+        private System.Windows.Forms.TextBox txbCambio;
+        private System.Windows.Forms.Label lblCambio;
     }
 }

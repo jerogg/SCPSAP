@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -252,6 +253,9 @@ namespace SCPSAP.ControlesCobranza
 
                 dgvAdeudosPorContribuyente.DataSource = adeudos;
 
+                txbPagaCon.Text = "0.0";
+                txbCambio.Text = "0.0";
+
                 // Asegurar que el total se recalcula al cargar nueva fuente
                 RecalcularTotalSeleccionado();
 
@@ -333,11 +337,13 @@ namespace SCPSAP.ControlesCobranza
                 {
                     IdContribuyente = _currentContribuyenteId,
                     MetodoPago = cbxMetodoPago.SelectedItem != null ? cbxMetodoPago.SelectedItem.ToString() : cbxMetodoPago.Text,
-                    IdUsuarioSistema = Session.UsuarioId
+                    IdUsuarioSistema = Session.UsuarioId,
+                    PagaCon = decimal.Parse(txbPagaCon.Text),
+                    Cambio = decimal.Parse(txbCambio.Text),
                 };
 
                 // Ejecutar guardado en hilo de fondo para no bloquear UI
-                bool ok = await Task.Run(() => configuraAdeudoNegocio.GuardarPago(pago, detalles));
+                bool ok = configuraAdeudoNegocio.GuardarPago(pago, detalles);
 
                 if (ok)
                 {
@@ -492,12 +498,15 @@ namespace SCPSAP.ControlesCobranza
                             // Aceptar formatos numéricos y strings
                             if (decimal.TryParse(Convert.ToString(totalCell.Value), out valor))
                             {
-                                total += valor;
+                                total += valor;                               
                             }
                         }
                     }
                 }
             }
+            if (total > 0)
+                txbPagaCon.Enabled = true;
+            else txbPagaCon.Enabled = false;
 
             txbTotalPagar.Text = total.ToString("N2");
         }
@@ -526,6 +535,25 @@ namespace SCPSAP.ControlesCobranza
                 cbxMetodoPago.Enabled = false;
                 txbTotalPagar.Text = 0m.ToString("N2");
             }
+        }
+
+        private void txbPagaCon_TextChanged(object sender, EventArgs e)
+        {
+            decimal PagaCon = 0m;
+            string PagaConText = txbPagaCon.Text?.Trim() ?? string.Empty;
+            // Intentar parsear con la cultura actual
+            if (!decimal.TryParse(PagaConText, NumberStyles.Number, CultureInfo.CurrentCulture, out PagaCon))
+            {
+                // Intentar con InvariantCulture como fallback
+                if (!decimal.TryParse(PagaConText, NumberStyles.Number, CultureInfo.InvariantCulture, out PagaCon))
+                {
+                    MessageBox.Show("El monto debe ser un valor numérico válido.", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txbPagaCon.Focus();
+                    return;
+                }
+            }
+            //Calcula el cambio
+            txbCambio.Text = (decimal.Parse(PagaConText) - decimal.Parse(txbTotalPagar.Text)).ToString();
         }
     }
 }

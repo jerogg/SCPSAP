@@ -76,6 +76,8 @@
           <Property Name="TotalPagado" Type="decimal" Precision="18" Scale="2" Nullable="false" />
           <Property Name="MetodoPago" Type="varchar" MaxLength="50" />
           <Property Name="IdUsuarioSistema" Type="int" />
+          <Property Name="PagaCon" Type="decimal" Precision="18" Scale="2" Nullable="false" />
+          <Property Name="Cambio" Type="decimal" Precision="18" Scale="2" Nullable="false" />
         </EntityType>
         <EntityType Name="Tarifa">
           <Key>
@@ -279,15 +281,6 @@
             <End Role="UsuarioRol" EntitySet="UsuarioRols" />
             <End Role="UsuarioSistema" EntitySet="UsuarioSistemas" />
           </AssociationSet>
-          <EntitySet Name="Pagos" EntityType="SCPSAPModel.Pago" />
-          <AssociationSet Name="FK_Pago_Contribuyente" Association="SCPSAPModel.FK_Pago_Contribuyente">
-            <End Role="Contribuyente" EntitySet="Contribuyentes" />
-            <End Role="Pago" EntitySet="Pagos" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Pago_UsuarioSistema" Association="SCPSAPModel.FK_Pago_UsuarioSistema">
-            <End Role="UsuarioSistema" EntitySet="UsuarioSistemas" />
-            <End Role="Pago" EntitySet="Pagos" />
-          </AssociationSet>
           <EntitySet Name="AdeudoContribuyentes" EntityType="SCPSAPModel.AdeudoContribuyente" />
           <EntitySet Name="DetallePagos" EntityType="SCPSAPModel.DetallePago" />
           <AssociationSet Name="FK_AdeudoContribuyente_Contribuyente" Association="SCPSAPModel.FK_AdeudoContribuyente_Contribuyente">
@@ -298,14 +291,23 @@
             <End Role="AdeudoContribuyente" EntitySet="AdeudoContribuyentes" />
             <End Role="DetallePago" EntitySet="DetallePagos" />
           </AssociationSet>
-          <AssociationSet Name="FK_DetallePago_Pago" Association="SCPSAPModel.FK_DetallePago_Pago">
-            <End Role="Pago" EntitySet="Pagos" />
-            <End Role="DetallePago" EntitySet="DetallePagos" />
-          </AssociationSet>
           <EntitySet Name="Adeudos" EntityType="SCPSAPModel.Adeudo" />
           <AssociationSet Name="FK_Adeudo_AdeudoContribuyente" Association="SCPSAPModel.FK_Adeudo_AdeudoContribuyente">
             <End Role="Adeudo" EntitySet="Adeudos" />
             <End Role="AdeudoContribuyente" EntitySet="AdeudoContribuyentes" />
+          </AssociationSet>
+          <EntitySet Name="Pagos" EntityType="SCPSAPModel.Pago" />
+          <AssociationSet Name="FK_Pago_Contribuyente" Association="SCPSAPModel.FK_Pago_Contribuyente">
+            <End Role="Contribuyente" EntitySet="Contribuyentes" />
+            <End Role="Pago" EntitySet="Pagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DetallePago_Pago" Association="SCPSAPModel.FK_DetallePago_Pago">
+            <End Role="Pago" EntitySet="Pagos" />
+            <End Role="DetallePago" EntitySet="DetallePagos" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pago_UsuarioSistema" Association="SCPSAPModel.FK_Pago_UsuarioSistema">
+            <End Role="UsuarioSistema" EntitySet="UsuarioSistemas" />
+            <End Role="Pago" EntitySet="Pagos" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="Contribuyente">
@@ -325,8 +327,8 @@
           <Property Name="DiasGracia" Type="Int32" />
           <NavigationProperty Name="Estado" Relationship="SCPSAPModel.FK_Contribuyente_Estado" FromRole="Contribuyente" ToRole="Estado" />
           <NavigationProperty Name="Tarifa" Relationship="SCPSAPModel.FK_Contribuyente_Tarifa" FromRole="Contribuyente" ToRole="Tarifa" />
-          <NavigationProperty Name="Pagoes" Relationship="SCPSAPModel.FK_Pago_Contribuyente" FromRole="Contribuyente" ToRole="Pago" />
           <NavigationProperty Name="AdeudoContribuyentes" Relationship="SCPSAPModel.FK_AdeudoContribuyente_Contribuyente" FromRole="Contribuyente" ToRole="AdeudoContribuyente" />
+          <NavigationProperty Name="Pagoes" Relationship="SCPSAPModel.FK_Pago_Contribuyente" FromRole="Contribuyente" ToRole="Pago" />
         </EntityType>
         <EntityType Name="Estado">
           <Key>
@@ -401,44 +403,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="Pago">
-          <Key>
-            <PropertyRef Name="IdPago" />
-          </Key>
-          <Property Name="IdPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="IdContribuyente" Type="Int32" Nullable="false" />
-          <Property Name="FechaPago" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="TotalPagado" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <Property Name="MetodoPago" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="IdUsuarioSistema" Type="Int32" />
-          <NavigationProperty Name="Contribuyente" Relationship="SCPSAPModel.FK_Pago_Contribuyente" FromRole="Pago" ToRole="Contribuyente" />
-          <NavigationProperty Name="UsuarioSistema" Relationship="SCPSAPModel.FK_Pago_UsuarioSistema" FromRole="Pago" ToRole="UsuarioSistema" />
-          <NavigationProperty Name="DetallePagoes" Relationship="SCPSAPModel.FK_DetallePago_Pago" FromRole="Pago" ToRole="DetallePago" />
-        </EntityType>
-        <Association Name="FK_Pago_Contribuyente">
-          <End Type="SCPSAPModel.Contribuyente" Role="Contribuyente" Multiplicity="1" />
-          <End Type="SCPSAPModel.Pago" Role="Pago" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Contribuyente">
-              <PropertyRef Name="IdContribuyente" />
-            </Principal>
-            <Dependent Role="Pago">
-              <PropertyRef Name="IdContribuyente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Pago_UsuarioSistema">
-          <End Type="SCPSAPModel.UsuarioSistema" Role="UsuarioSistema" Multiplicity="0..1" />
-          <End Type="SCPSAPModel.Pago" Role="Pago" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="UsuarioSistema">
-              <PropertyRef Name="IdUsuarioSistema" />
-            </Principal>
-            <Dependent Role="Pago">
-              <PropertyRef Name="IdUsuarioSistema" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="AdeudoContribuyente">
           <Key>
             <PropertyRef Name="IdAdeudoContribuyente" />
@@ -494,18 +458,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_DetallePago_Pago">
-          <End Type="SCPSAPModel.Pago" Role="Pago" Multiplicity="1" />
-          <End Type="SCPSAPModel.DetallePago" Role="DetallePago" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Pago">
-              <PropertyRef Name="IdPago" />
-            </Principal>
-            <Dependent Role="DetallePago">
-              <PropertyRef Name="IdPago" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="Adeudo">
           <Key>
             <PropertyRef Name="IdAdeudo" />
@@ -528,6 +480,58 @@
             </Principal>
             <Dependent Role="AdeudoContribuyente">
               <PropertyRef Name="IdAdeudo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Pago">
+          <Key>
+            <PropertyRef Name="IdPago" />
+          </Key>
+          <Property Name="IdPago" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdContribuyente" Type="Int32" Nullable="false" />
+          <Property Name="FechaPago" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TotalPagado" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="MetodoPago" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IdUsuarioSistema" Type="Int32" />
+          <Property Name="PagaCon" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <Property Name="Cambio" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
+          <NavigationProperty Name="Contribuyente" Relationship="SCPSAPModel.FK_Pago_Contribuyente" FromRole="Pago" ToRole="Contribuyente" />
+          <NavigationProperty Name="DetallePagoes" Relationship="SCPSAPModel.FK_DetallePago_Pago" FromRole="Pago" ToRole="DetallePago" />
+          <NavigationProperty Name="UsuarioSistema" Relationship="SCPSAPModel.FK_Pago_UsuarioSistema" FromRole="Pago" ToRole="UsuarioSistema" />
+        </EntityType>
+        <Association Name="FK_Pago_Contribuyente">
+          <End Type="SCPSAPModel.Contribuyente" Role="Contribuyente" Multiplicity="1" />
+          <End Type="SCPSAPModel.Pago" Role="Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contribuyente">
+              <PropertyRef Name="IdContribuyente" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="IdContribuyente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DetallePago_Pago">
+          <End Type="SCPSAPModel.Pago" Role="Pago" Multiplicity="1" />
+          <End Type="SCPSAPModel.DetallePago" Role="DetallePago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Pago">
+              <PropertyRef Name="IdPago" />
+            </Principal>
+            <Dependent Role="DetallePago">
+              <PropertyRef Name="IdPago" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pago_UsuarioSistema">
+          <End Type="SCPSAPModel.UsuarioSistema" Role="UsuarioSistema" Multiplicity="0..1" />
+          <End Type="SCPSAPModel.Pago" Role="Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsuarioSistema">
+              <PropertyRef Name="IdUsuarioSistema" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="IdUsuarioSistema" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -590,18 +594,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Pagos">
-            <EntityTypeMapping TypeName="SCPSAPModel.Pago">
-              <MappingFragment StoreEntitySet="Pago">
-                <ScalarProperty Name="IdUsuarioSistema" ColumnName="IdUsuarioSistema" />
-                <ScalarProperty Name="MetodoPago" ColumnName="MetodoPago" />
-                <ScalarProperty Name="TotalPagado" ColumnName="TotalPagado" />
-                <ScalarProperty Name="FechaPago" ColumnName="FechaPago" />
-                <ScalarProperty Name="IdContribuyente" ColumnName="IdContribuyente" />
-                <ScalarProperty Name="IdPago" ColumnName="IdPago" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="AdeudoContribuyentes">
             <EntityTypeMapping TypeName="SCPSAPModel.AdeudoContribuyente">
               <MappingFragment StoreEntitySet="AdeudoContribuyente">
@@ -640,6 +632,20 @@
                 <ScalarProperty Name="Concepto" ColumnName="Concepto" />
                 <ScalarProperty Name="Periodo" ColumnName="Periodo" />
                 <ScalarProperty Name="IdAdeudo" ColumnName="IdAdeudo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Pagos">
+            <EntityTypeMapping TypeName="SCPSAPModel.Pago">
+              <MappingFragment StoreEntitySet="Pago">
+                <ScalarProperty Name="Cambio" ColumnName="Cambio" />
+                <ScalarProperty Name="PagaCon" ColumnName="PagaCon" />
+                <ScalarProperty Name="IdUsuarioSistema" ColumnName="IdUsuarioSistema" />
+                <ScalarProperty Name="MetodoPago" ColumnName="MetodoPago" />
+                <ScalarProperty Name="TotalPagado" ColumnName="TotalPagado" />
+                <ScalarProperty Name="FechaPago" ColumnName="FechaPago" />
+                <ScalarProperty Name="IdContribuyente" ColumnName="IdContribuyente" />
+                <ScalarProperty Name="IdPago" ColumnName="IdPago" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

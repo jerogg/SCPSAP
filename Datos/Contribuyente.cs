@@ -17,8 +17,8 @@ namespace Datos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Contribuyente()
         {
-            this.Pagoes = new HashSet<Pago>();
             this.AdeudoContribuyentes = new HashSet<AdeudoContribuyente>();
+            this.Pagoes = new HashSet<Pago>();
         }
     
         public int IdContribuyente { get; set; }
@@ -36,8 +36,8 @@ namespace Datos
         public virtual Estado Estado { get; set; }
         public virtual Tarifa Tarifa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pago> Pagoes { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdeudoContribuyente> AdeudoContribuyentes { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<Pago> Pagoes { get; set; }
     }
 }

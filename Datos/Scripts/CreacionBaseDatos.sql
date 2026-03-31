@@ -132,6 +132,8 @@ BEGIN
         FechaPago DATETIME NOT NULL CONSTRAINT DF_Pago_FechaPago DEFAULT (GETDATE()),
         TotalPagado DECIMAL(18,2) NOT NULL CONSTRAINT DF_Pago_TotalPagado DEFAULT (0.00),
         MetodoPago VARCHAR(50) NULL,
+        PagaCon DECIMAL(18,2) NOT NULL DEFAULT (0.00),
+        Cambio DECIMAL(18,2) NOT NULL DEFAULT (0.00),
         IdUsuarioSistema INT NULL,
         CONSTRAINT FK_Pago_Contribuyente FOREIGN KEY (IdContribuyente) REFERENCES dbo.Contribuyente (IdContribuyente),
         CONSTRAINT FK_Pago_UsuarioSistema FOREIGN KEY (IdUsuarioSistema) REFERENCES dbo.UsuarioSistema (IdUsuarioSistema),

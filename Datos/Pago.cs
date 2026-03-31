@@ -26,10 +26,12 @@ namespace Datos
         public decimal TotalPagado { get; set; }
         public string MetodoPago { get; set; }
         public Nullable<int> IdUsuarioSistema { get; set; }
+        public decimal PagaCon { get; set; }
+        public decimal Cambio { get; set; }
     
         public virtual Contribuyente Contribuyente { get; set; }
-        public virtual UsuarioSistema UsuarioSistema { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DetallePago> DetallePagoes { get; set; }
+        public virtual UsuarioSistema UsuarioSistema { get; set; }
     }
 }

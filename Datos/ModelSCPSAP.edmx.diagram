@@ -13,16 +13,16 @@
         <AssociationConnector Association="SCPSAPModel.FK_Contribuyente_Estado" />
         <AssociationConnector Association="SCPSAPModel.FK_Contribuyente_Tarifa" />
         <AssociationConnector Association="SCPSAPModel.FK_UsuarioSistema_Rol" />
-        <EntityTypeShape EntityType="SCPSAPModel.Pago" Width="1.5" PointX="10.25" PointY="1.5" />
-        <AssociationConnector Association="SCPSAPModel.FK_Pago_Contribuyente" />
-        <AssociationConnector Association="SCPSAPModel.FK_Pago_UsuarioSistema" />
         <EntityTypeShape EntityType="SCPSAPModel.AdeudoContribuyente" Width="1.875" PointX="6.125" PointY="4" />
         <EntityTypeShape EntityType="SCPSAPModel.DetallePago" Width="1.875" PointX="12.5" PointY="1.75" />
         <AssociationConnector Association="SCPSAPModel.FK_AdeudoContribuyente_Contribuyente" />
         <AssociationConnector Association="SCPSAPModel.FK_DetallePago_AdeudoContribuyente" />
-        <AssociationConnector Association="SCPSAPModel.FK_DetallePago_Pago" />
         <EntityTypeShape EntityType="SCPSAPModel.Adeudo" Width="2" PointX="3.125" PointY="8.5" />
         <AssociationConnector Association="SCPSAPModel.FK_Adeudo_AdeudoContribuyente" />
+        <EntityTypeShape EntityType="SCPSAPModel.Pago" Width="1.5" PointX="10.25" PointY="1.375" />
+        <AssociationConnector Association="SCPSAPModel.FK_Pago_Contribuyente" />
+        <AssociationConnector Association="SCPSAPModel.FK_DetallePago_Pago" />
+        <AssociationConnector Association="SCPSAPModel.FK_Pago_UsuarioSistema" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
