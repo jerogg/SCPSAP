@@ -39,5 +39,17 @@ namespace Datos.Configuracion
                 throw new Exception(ex.Message);
             }
         }
+        public Tarifa ObtenerTarifasPorId(int id)
+        {
+            try
+            {
+                return SCPSAPEntities.Tarifas.FirstOrDefault(c => c.IdTarifa == id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

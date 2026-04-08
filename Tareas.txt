@@ -44,9 +44,9 @@ Tareas 29 marzo
 Contribuyentes
 1 - Implementar un spinner o progressbar que se muestre cuando se buscan los contribuyentes o cuando se guardan los datos del contribuyente - Pendiente por que lo trajaben
 2 - Bloquear todos elemento en la pantalla cuando el spínner se esta mostroando. - Pendiente por que lo trajaben
-3 - En el dropdown de las tarifas que se vean con formato de moneda
-4 - En la busqueda tambien filtre por Folio
-
+3 - En el dropdown de las tarifas que se vean con formato de moneda - Pendiente por que lo trajaben
+4 - En la busqueda tambien filtre por Folio - Pendiente por que lo trajaben
+ 
 Menu principal
 1 - Agregar iconos para cada opcion de menu a la izquierda del texto. - Pendiente por que lo trajaben
 

@@ -35,13 +35,13 @@
             this.txbMontoMensual = new System.Windows.Forms.TextBox();
             this.txbNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.dgvConfiguracion = new System.Windows.Forms.DataGridView();
+            this.dgvListaTarifas = new System.Windows.Forms.DataGridView();
             this.IdTarifa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreTarifa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Contribuyentes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MontoMensual = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblNombreTarifa = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvConfiguracion)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaTarifas)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGuardar
@@ -65,6 +65,7 @@
             this.btnCancelar.TabIndex = 16;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnNuevo
             // 
@@ -76,6 +77,7 @@
             this.btnNuevo.TabIndex = 15;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // btnActualizar
             // 
@@ -87,6 +89,7 @@
             this.btnActualizar.TabIndex = 14;
             this.btnActualizar.Text = "Actualizar";
             this.btnActualizar.UseVisualStyleBackColor = true;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // txbMontoMensual
             // 
@@ -117,25 +120,25 @@
             this.label1.TabIndex = 11;
             this.label1.Text = "Monto mensual:";
             // 
-            // dgvConfiguracion
+            // dgvListaTarifas
             // 
-            this.dgvConfiguracion.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.dgvListaTarifas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvConfiguracion.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dgvConfiguracion.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvConfiguracion.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvListaTarifas.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dgvListaTarifas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvListaTarifas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdTarifa,
             this.NombreTarifa,
             this.Contribuyentes,
             this.MontoMensual});
-            this.dgvConfiguracion.Location = new System.Drawing.Point(7, 5);
-            this.dgvConfiguracion.Margin = new System.Windows.Forms.Padding(2);
-            this.dgvConfiguracion.Name = "dgvConfiguracion";
-            this.dgvConfiguracion.RowHeadersWidth = 62;
-            this.dgvConfiguracion.RowTemplate.Height = 28;
-            this.dgvConfiguracion.Size = new System.Drawing.Size(571, 249);
-            this.dgvConfiguracion.TabIndex = 10;
+            this.dgvListaTarifas.Location = new System.Drawing.Point(7, 5);
+            this.dgvListaTarifas.Margin = new System.Windows.Forms.Padding(2);
+            this.dgvListaTarifas.Name = "dgvListaTarifas";
+            this.dgvListaTarifas.RowHeadersWidth = 62;
+            this.dgvListaTarifas.RowTemplate.Height = 28;
+            this.dgvListaTarifas.Size = new System.Drawing.Size(571, 249);
+            this.dgvListaTarifas.TabIndex = 10;
             // 
             // IdTarifa
             // 
@@ -185,11 +188,11 @@
             this.Controls.Add(this.txbMontoMensual);
             this.Controls.Add(this.txbNombre);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dgvConfiguracion);
+            this.Controls.Add(this.dgvListaTarifas);
             this.Controls.Add(this.lblNombreTarifa);
             this.Name = "Tarifas";
             this.Size = new System.Drawing.Size(584, 354);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvConfiguracion)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListaTarifas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -204,7 +207,7 @@
         private System.Windows.Forms.TextBox txbMontoMensual;
         private System.Windows.Forms.TextBox txbNombre;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.DataGridView dgvConfiguracion;
+        private System.Windows.Forms.DataGridView dgvListaTarifas;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdTarifa;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreTarifa;
         private System.Windows.Forms.DataGridViewTextBoxColumn Contribuyentes;
