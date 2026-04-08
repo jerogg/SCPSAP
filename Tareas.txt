@@ -46,7 +46,9 @@ Contribuyentes
 2 - Bloquear todos elemento en la pantalla cuando el spínner se esta mostroando. - Pendiente por que lo trajaben
 3 - En el dropdown de las tarifas que se vean con formato de moneda - Pendiente por que lo trajaben
 4 - En la busqueda tambien filtre por Folio - Pendiente por que lo trajaben
- 
+5 - Implementar un spinner cuando se eliminan los contribuyentes - Pendiente por que lo trajaben
+6 - al agregar adeudo al contribuyente, sleccionar los adeudos y dar clic en guardar tambien colocar el progress - Pendiente por que lo trajaben
+
 Menu principal
 1 - Agregar iconos para cada opcion de menu a la izquierda del texto. - Pendiente por que lo trajaben
 
