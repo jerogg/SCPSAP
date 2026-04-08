@@ -1,12 +1,14 @@
-﻿using CapaUI;
-using Datos;
-using Negocio.Contribuyentes;
-using SCPSAP.ControlesCobranza;
-using System;
+﻿using System;
 using System.Data;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+using CapaUI;
+using Datos;
+using Negocio.Contribuyentes;
+using SCPSAP.ControlesCobranza;
 
 
 namespace SCPSAP.Contribuyentes
@@ -142,14 +144,14 @@ namespace SCPSAP.Contribuyentes
             cbxDiasDeGracia.SelectedIndex = 1;
         }
 
-        private void btnGuardar_Click(object sender, EventArgs e)
+        private async void btnGuardar_Click(object sender, EventArgs e)
         {
-            // Validar campos y construir entidad
+            // Validar campos
             Contribuyente contribuyente;
             if (!TryBuildAndValidateContribuyente(out contribuyente))
-                return; // si no valida, se detiene
+                return;
 
-            // VALIDAR SI EL FOLIO YA EXISTE (solo si es nuevo)
+            // Validar folio
             if (esNuevo)
             {
                 var existente = contribuyentesNegocio.ObtenerContribuyentePorId(contribuyente.IdContribuyente);
@@ -157,36 +159,51 @@ namespace SCPSAP.Contribuyentes
                 {
                     MessageBox.Show("El folio ya existe, ingresa uno diferente", "Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     txbFolio.Focus();
-                    return; // DETIENE EL GUARDADO
+                    return;
                 }
             }
 
-            // Guardar según modo
             try
             {
-                pnlDatosUsuario.Enabled = false;
-                btnNuevo.Enabled = true;
-                btnActualizar.Enabled = true;
-                txbBuscar.Enabled = true;
-                btnCancelar.Enabled = false;
+                // 🔵 ACTIVAR CARGA
+                proBarCarga.Visible = true;
+                btnGuardar.Enabled = false;
 
-                if (esNuevo == false)
+                bool resultado = await Task.Run(() =>
                 {
-                    contribuyentesNegocio.ActualizarContribuyente(contribuyente);
-                    MessageBox.Show("Se actualizó correctamente datos del contribuyente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    if (esNuevo)
+                        return contribuyentesNegocio.AgregarContribuyente(contribuyente);
+                    else
+                    {
+                        contribuyentesNegocio.ActualizarContribuyente(contribuyente);
+                        return true;
+                    }
+                });
+
+                // 🔴 SOLO UN MENSAJE
+                if (resultado)
+                {
+                    MessageBox.Show(esNuevo
+                        ? "Se agregó nuevo contribuyente"
+                        : "Se actualizó correctamente");
+
+                    CargarContribuyentes();
+                    LimpiarControles();
                 }
                 else
                 {
-                    contribuyentesNegocio.AgregarContribuyente(contribuyente);
-                    MessageBox.Show("Se agregó nuevo contribuyente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Error al guardar");
                 }
-
-                CargarContribuyentes();
-                LimpiarControles();
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error al guardar contribuyente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error");
+            }
+            finally
+            {
+                // 🔵 DESACTIVAR CARGA
+                proBarCarga.Visible = false;
+                btnGuardar.Enabled = true;
             }
         }
 
@@ -548,11 +565,26 @@ namespace SCPSAP.Contribuyentes
             }
         }
 
-        private void txtBuscar_TextChanged(object sender, EventArgs e)
+        private CancellationTokenSource cts;
+        private async void txtBuscar_TextChanged(object sender, EventArgs e)
         {
+            proBarCarga.Visible = true;
+
+            await Task.Delay(1000);
+
+            string texto = txbBuscar.Text;
+
+            var lista = await Task.Run(() =>
+            {
+                return new ContribuyentesNegocio().BuscarContribuyentes(texto);
+            });
+
+            dgvListaContribuyentes.DataSource = lista;
+
+            proBarCarga.Visible = false;
+
             string criterio = txbBuscar.Text.Trim();
             ContribuyentesNegocio negocio = new ContribuyentesNegocio();
-            var lista = negocio.BuscarContribuyentes(criterio);
 
             dgvListaContribuyentes.DataSource = lista;
         }
@@ -598,6 +630,12 @@ namespace SCPSAP.Contribuyentes
                 // silencioso
             }
         }
+
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
+
+        }
+
     }
 }
 
