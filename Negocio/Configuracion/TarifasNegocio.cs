@@ -24,11 +24,11 @@ namespace Negocio.Configuracion
             }
         }
 
-        public void AgregarTarifas(Tarifa nuevaTarifa)
+        public void AgregarTarifas(Tarifa tarifa)
         {
             try
             {
-                TarifasDatos.AgregarTarifas(nuevaTarifa);
+                TarifasDatos.AgregarTarifas(tarifa);
             }
             catch (Exception ex)
             {

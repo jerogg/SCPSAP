@@ -26,6 +26,9 @@ namespace SCPSAP.ControlesConfiguracion
             {
                 var lista = TarifasNegocio.ObtenerTarifas();
                 dgvListaTarifas.DataSource = lista;
+                txbNombre.Enabled = false;
+                txbMontoMensual.Enabled = false;
+                LimpiarControles();
             }
             catch (Exception ex)
             {
@@ -39,6 +42,7 @@ namespace SCPSAP.ControlesConfiguracion
             {
                 TarifasNegocio.AgregarTarifas(tarifa);
                 MessageBox.Show("Se agrego una nueva tarifa", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                CargarTarifas();
             }
             catch (Exception ex)
             {
@@ -49,10 +53,10 @@ namespace SCPSAP.ControlesConfiguracion
         private void btnGuardar_Click(object sender, EventArgs e)
         {
             Tarifa tarifa = new Tarifa();
+            tarifa.IdTarifa = _idTarifaSeleccionada;
             tarifa.NombreTarifa = txbNombre.Text;
             tarifa.MontoMensual = decimal.Parse(txbMontoMensual.Text);
             AgregarTarifas(tarifa);
-            CargarTarifas();
         }
 
         private void LimpiarControles()
@@ -63,6 +67,8 @@ namespace SCPSAP.ControlesConfiguracion
             txbNombre.Clear();
             txbMontoMensual.Clear();
             btnGuardar.Enabled = false;
+            txbNombre.Enabled = false;
+            txbMontoMensual.Enabled = false;
         }
 
         private void btnActualizar_Click(object sender, EventArgs e)
@@ -77,6 +83,8 @@ namespace SCPSAP.ControlesConfiguracion
                     btnActualizar.Enabled = false;
                     btnCancelar.Enabled = true;
                     btnGuardar.Enabled = true;
+                    txbNombre.Enabled = true;
+                    txbMontoMensual.Enabled = true;
 
                     // Aquí podrías cargar los datos completos del contribuyente en los controles:
                     CargarTarifasEnControles(_idTarifaSeleccionada);
@@ -166,6 +174,8 @@ namespace SCPSAP.ControlesConfiguracion
             btnNuevo.Enabled = false;
             btnCancelar.Enabled = true;
             btnGuardar.Enabled = true;
+            txbNombre.Enabled = true;
+            txbMontoMensual.Enabled = true;
         }
     }
 }

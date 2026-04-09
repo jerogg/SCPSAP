@@ -53,5 +53,4 @@ Menu principal
 1 - Agregar iconos para cada opcion de menu a la izquierda del texto. - Pendiente por que lo trajaben
 
 Configuracion
-
 2 - Obtener los usuarios desde y listarlos en el grid - Pendiente por que lo trajaben

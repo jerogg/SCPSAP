@@ -47,6 +47,7 @@
             // btnGuardar
             // 
             this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnGuardar.Enabled = false;
             this.btnGuardar.Location = new System.Drawing.Point(503, 324);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 25);
@@ -58,6 +59,7 @@
             // btnCancelar
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnCancelar.Enabled = false;
             this.btnCancelar.Location = new System.Drawing.Point(169, 324);
             this.btnCancelar.Margin = new System.Windows.Forms.Padding(2);
             this.btnCancelar.Name = "btnCancelar";
@@ -94,6 +96,7 @@
             // txbMontoMensual
             // 
             this.txbMontoMensual.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txbMontoMensual.Enabled = false;
             this.txbMontoMensual.Location = new System.Drawing.Point(366, 277);
             this.txbMontoMensual.Margin = new System.Windows.Forms.Padding(2);
             this.txbMontoMensual.Name = "txbMontoMensual";
@@ -103,6 +106,7 @@
             // txbNombre
             // 
             this.txbNombre.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txbNombre.Enabled = false;
             this.txbNombre.Location = new System.Drawing.Point(54, 276);
             this.txbNombre.Margin = new System.Windows.Forms.Padding(2);
             this.txbNombre.Name = "txbNombre";
