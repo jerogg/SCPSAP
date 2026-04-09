@@ -36,11 +36,12 @@
             this.txbNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvListaTarifas = new System.Windows.Forms.DataGridView();
+            this.lblNombreTarifa = new System.Windows.Forms.Label();
             this.IdTarifa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreTarifa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Contribuyentes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MontoMensual = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblNombreTarifa = new System.Windows.Forms.Label();
+            this.Contribuyentes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaTarifas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -84,6 +85,7 @@
             // btnActualizar
             // 
             this.btnActualizar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.btnActualizar.Enabled = false;
             this.btnActualizar.Location = new System.Drawing.Point(7, 324);
             this.btnActualizar.Margin = new System.Windows.Forms.Padding(2);
             this.btnActualizar.Name = "btnActualizar";
@@ -134,8 +136,9 @@
             this.dgvListaTarifas.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.IdTarifa,
             this.NombreTarifa,
+            this.MontoMensual,
             this.Contribuyentes,
-            this.MontoMensual});
+            this.Eliminar});
             this.dgvListaTarifas.Location = new System.Drawing.Point(7, 5);
             this.dgvListaTarifas.Margin = new System.Windows.Forms.Padding(2);
             this.dgvListaTarifas.Name = "dgvListaTarifas";
@@ -143,32 +146,7 @@
             this.dgvListaTarifas.RowTemplate.Height = 28;
             this.dgvListaTarifas.Size = new System.Drawing.Size(571, 249);
             this.dgvListaTarifas.TabIndex = 10;
-            // 
-            // IdTarifa
-            // 
-            this.IdTarifa.DataPropertyName = "IdTarifa";
-            this.IdTarifa.HeaderText = "IdTarifa";
-            this.IdTarifa.Name = "IdTarifa";
-            this.IdTarifa.Visible = false;
-            // 
-            // NombreTarifa
-            // 
-            this.NombreTarifa.DataPropertyName = "NombreTarifa";
-            this.NombreTarifa.HeaderText = "Nombre tarifa";
-            this.NombreTarifa.Name = "NombreTarifa";
-            // 
-            // Contribuyentes
-            // 
-            this.Contribuyentes.DataPropertyName = "Contribuyentes";
-            this.Contribuyentes.HeaderText = "Contribuyentes";
-            this.Contribuyentes.Name = "Contribuyentes";
-            this.Contribuyentes.Visible = false;
-            // 
-            // MontoMensual
-            // 
-            this.MontoMensual.DataPropertyName = "MontoMensual";
-            this.MontoMensual.HeaderText = "Monto mensual";
-            this.MontoMensual.Name = "MontoMensual";
+            this.dgvListaTarifas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaTarifas_CellClick);
             // 
             // lblNombreTarifa
             // 
@@ -180,6 +158,44 @@
             this.lblNombreTarifa.Size = new System.Drawing.Size(44, 13);
             this.lblNombreTarifa.TabIndex = 9;
             this.lblNombreTarifa.Text = "Nombre";
+            // 
+            // IdTarifa
+            // 
+            this.IdTarifa.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.IdTarifa.DataPropertyName = "IdTarifa";
+            this.IdTarifa.HeaderText = "IdTarifa";
+            this.IdTarifa.Name = "IdTarifa";
+            this.IdTarifa.Visible = false;
+            this.IdTarifa.Width = 68;
+            // 
+            // NombreTarifa
+            // 
+            this.NombreTarifa.DataPropertyName = "NombreTarifa";
+            this.NombreTarifa.HeaderText = "Nombre tarifa";
+            this.NombreTarifa.Name = "NombreTarifa";
+            // 
+            // MontoMensual
+            // 
+            this.MontoMensual.DataPropertyName = "MontoMensual";
+            this.MontoMensual.HeaderText = "Monto mensual";
+            this.MontoMensual.Name = "MontoMensual";
+            // 
+            // Contribuyentes
+            // 
+            this.Contribuyentes.DataPropertyName = "Contribuyentes";
+            this.Contribuyentes.HeaderText = "Contribuyentes";
+            this.Contribuyentes.Name = "Contribuyentes";
+            this.Contribuyentes.Visible = false;
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Image = global::SCPSAP.Properties.Resources.Borrar;
+            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.ToolTipText = "Eliminar tarifa";
+            this.Eliminar.Width = 49;
             // 
             // Tarifas
             // 
@@ -212,10 +228,11 @@
         private System.Windows.Forms.TextBox txbNombre;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvListaTarifas;
+        private System.Windows.Forms.Label lblNombreTarifa;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdTarifa;
         private System.Windows.Forms.DataGridViewTextBoxColumn NombreTarifa;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Contribuyentes;
         private System.Windows.Forms.DataGridViewTextBoxColumn MontoMensual;
-        private System.Windows.Forms.Label lblNombreTarifa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Contribuyentes;
+        private System.Windows.Forms.DataGridViewImageColumn Eliminar;
     }
 }

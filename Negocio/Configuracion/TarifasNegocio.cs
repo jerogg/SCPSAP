@@ -47,6 +47,18 @@ namespace Negocio.Configuracion
                 throw new Exception(ex.Message);
             }
         }
+
+        public bool EliminaTarifa(int id)
+        {
+            try
+            {
+                return TarifasDatos.EliminaTarifa(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
 

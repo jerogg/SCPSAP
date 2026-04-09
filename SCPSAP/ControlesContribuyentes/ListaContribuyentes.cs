@@ -521,7 +521,7 @@ namespace SCPSAP.Contribuyentes
 
                         await Task.Run(() =>
                         {
-                            contribuyentesNegocio.ElimiContribuyente(id);
+                            contribuyentesNegocio.EliminaContribuyente(id);
                         });
 
                         MessageBox.Show("Contribuyente eliminado correctamente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);

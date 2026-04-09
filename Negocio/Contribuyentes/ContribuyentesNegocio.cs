@@ -93,7 +93,7 @@ namespace Negocio.Contribuyentes
             }
         }
 
-        public bool ElimiContribuyente(int id)
+        public bool EliminaContribuyente(int id)
         {
             try
             {

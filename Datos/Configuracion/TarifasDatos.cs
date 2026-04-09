@@ -62,5 +62,26 @@ namespace Datos.Configuracion
             }
         }
 
+        public bool EliminaTarifa(int id)
+        {
+            try
+            {
+                var tarifa = SCPSAPEntities.Tarifas
+                                  .FirstOrDefault(c => c.IdTarifa == id);
+
+                if (tarifa != null)
+                {
+                    SCPSAPEntities.Tarifas.Remove(tarifa);
+                    SCPSAPEntities.SaveChanges();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }
