@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -166,7 +167,9 @@ namespace SCPSAP.Contribuyentes
             try
             {
                 // 🔵 ACTIVAR CARGA
+                this.Enabled = false;              // 🔒 BLOQUEA TODO
                 proBarCarga.Visible = true;
+                proBarCarga.Enabled = true;        // 👈 importante para que siga animando
                 btnGuardar.Enabled = false;
 
                 bool resultado = await Task.Run(() =>
@@ -180,7 +183,6 @@ namespace SCPSAP.Contribuyentes
                     }
                 });
 
-                // 🔴 SOLO UN MENSAJE
                 if (resultado)
                 {
                     MessageBox.Show(esNuevo
@@ -201,7 +203,8 @@ namespace SCPSAP.Contribuyentes
             }
             finally
             {
-                // 🔵 DESACTIVAR CARGA
+                // 🔴 DESACTIVAR CARGA
+                this.Enabled = true;               // 🔓 DESBLOQUEA TODO
                 proBarCarga.Visible = false;
                 btnGuardar.Enabled = true;
             }
@@ -494,7 +497,7 @@ namespace SCPSAP.Contribuyentes
         {
         }
 
-        private void dgvListaContribuyentes_CellClick(object sender, DataGridViewCellEventArgs e)
+        private async void dgvListaContribuyentes_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
             {
@@ -512,7 +515,15 @@ namespace SCPSAP.Contribuyentes
 
                     if (dr == DialogResult.Yes)
                     {
-                        contribuyentesNegocio.ElimiContribuyente(id);
+                        this.Enabled = false;
+                        proBarCarga.Visible = true;
+                        proBarCarga.Enabled = true;
+
+                        await Task.Run(() =>
+                        {
+                            contribuyentesNegocio.ElimiContribuyente(id);
+                        });
+
                         MessageBox.Show("Contribuyente eliminado correctamente", "Información", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         CargarContribuyentes();
                     }
@@ -521,6 +532,11 @@ namespace SCPSAP.Contribuyentes
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error al eliminar el contribuyente", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.Enabled = true;
+                proBarCarga.Visible = false;
             }
 
             try
@@ -531,16 +547,19 @@ namespace SCPSAP.Contribuyentes
                         dgvListaContribuyentes.Rows[e.RowIndex].Cells["IdContribuyente"].Value
                     );
 
-                    // Confirmación antes de eliminar
                     var fila = dgvListaContribuyentes.Rows[e.RowIndex];
                     string nombre = fila.Cells["Nombre"].Value != null ? fila.Cells["Nombre"].Value.ToString() : string.Empty;
                     string folio = fila.Cells["IdContribuyente"].Value != null ? fila.Cells["IdContribuyente"].Value.ToString() : string.Empty;
                     string direccion = fila.Cells["Direccion"].Value != null ? fila.Cells["Direccion"].Value.ToString() : string.Empty;
 
+                    // 🔒 BLOQUEAR + SPINNER (TAREA 6)
+                    this.Enabled = false;
+                    proBarCarga.Visible = true;
+                    proBarCarga.Enabled = true;
+
                     var control = new AgregarPorContribuyente();
                     control.CargarContribuyente(id, nombre, folio, direccion);
 
-                    // Mostrar en un Form modal
                     using (var frm = new Form())
                     {
                         frm.Text = "Agregar adeudo - " + (nombre ?? "Contribuyente");
@@ -552,42 +571,52 @@ namespace SCPSAP.Contribuyentes
 
                         control.Dock = DockStyle.Fill;
                         frm.Controls.Add(control);
-                        frm.ClientSize = new System.Drawing.Size(800, 600); // ajustar tamaño según control
+                        frm.ClientSize = new System.Drawing.Size(800, 600);
 
                         frm.ShowDialog(this.FindForm());
                     }
-
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error al agregar adeudos al contribuyente", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            finally
+            {
+                this.Enabled = true;
+                proBarCarga.Visible = false;
+            }
         }
 
         private CancellationTokenSource cts;
-        private async void txtBuscar_TextChanged(object sender, EventArgs e)
+       private async void txtBuscar_TextChanged(object sender, EventArgs e)
+{
+    try
+    {
+        this.Enabled = false;
+        proBarCarga.Visible = true;
+        proBarCarga.Enabled = true;
+
+
+        string texto = txbBuscar.Text;
+
+        var lista = await Task.Run(() =>
         {
-            proBarCarga.Visible = true;
+            return new ContribuyentesNegocio().BuscarContribuyentes(texto);
+        });
 
-            await Task.Delay(1000);
-
-            string texto = txbBuscar.Text;
-
-            var lista = await Task.Run(() =>
-            {
-                return new ContribuyentesNegocio().BuscarContribuyentes(texto);
-            });
-
-            dgvListaContribuyentes.DataSource = lista;
-
-            proBarCarga.Visible = false;
-
-            string criterio = txbBuscar.Text.Trim();
-            ContribuyentesNegocio negocio = new ContribuyentesNegocio();
-
-            dgvListaContribuyentes.DataSource = lista;
-        }
+        dgvListaContribuyentes.DataSource = lista;
+    }
+    catch (Exception ex)
+    {
+        MessageBox.Show(ex.Message, "Error");
+    }
+    finally
+    {
+        this.Enabled = true;
+        proBarCarga.Visible = false;
+    }
+}
 
         private void dgvListaContribuyentes_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
@@ -636,6 +665,7 @@ namespace SCPSAP.Contribuyentes
 
         }
 
+       
     }
 }
 
