@@ -17,7 +17,7 @@ namespace Datos
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public UsuarioSistema()
         {
-            this.Pagoes = new HashSet<Pago>();
+            this.Pagos = new HashSet<Pago>();
         }
     
         public int IdUsuarioSistema { get; set; }
@@ -28,6 +28,6 @@ namespace Datos
     
         public virtual UsuarioRol UsuarioRol { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pago> Pagoes { get; set; }
+        public virtual ICollection<Pago> Pagos { get; set; }
     }
 }

@@ -1,10 +1,6 @@
-﻿using Datos;
+﻿using Compartido;
 using Datos.Login;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Negocio.Login
 {
@@ -18,7 +14,7 @@ namespace Negocio.Login
 
             try
             {
-                var contrasenaConvertida = convertirSHA256(Contrasena);
+                var contrasenaConvertida = Compartido.Compartido.CifrarAES(Contrasena, "SCPSAP");
 
                 //Se valida si el nombre o contrasenia del usuario esta vacio
                 if (Nombre == string.Empty && Contrasena == string.Empty)
@@ -37,28 +33,6 @@ namespace Negocio.Login
                 throw new Exception(ex.Message);
             }
 
-        }
-
-        public string convertirSHA256(string texto)
-        {
-            //Se convierte la contraseña a SHA256 para compararla con la contraseña almacenada en la base de datos
-            StringBuilder Sb = new StringBuilder();
-            using (var hash = System.Security.Cryptography.SHA256.Create())
-            {
-                Encoding enc = Encoding.UTF8;
-                byte[] result = hash.ComputeHash(enc.GetBytes(texto));
-                foreach (byte b in result)
-                    Sb.Append(b.ToString("x2"));
-            }
-            return Sb.ToString();
-        }
-
-        public string decodificarSHA256(string texto)
-        {
-            //Se decodifica la contraseña para mostrarla en caso de ser necesario
-            byte[] data = Convert.FromBase64String(texto);
-            string decodedString = Encoding.UTF8.GetString(data);
-            return decodedString;
         }
     }
     }

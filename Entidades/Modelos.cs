@@ -29,5 +29,14 @@ namespace Entidades
             public int? DiasGracia { get; set; }
         }
 
+        public class UsuarioSistemaDto
+        {
+            public int IdUsuarioSistema { get; set; }
+            public string NombreUsuario { get; set; }
+            public string PasswordHash { get; set; }
+            public string Rol { get; set; }
+            public bool Activo { get; set; }
+        }
+
     }
 }

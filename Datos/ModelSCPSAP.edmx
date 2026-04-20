@@ -365,7 +365,7 @@
           <Property Name="IdRol" Type="Int32" />
           <Property Name="Activo" Type="Boolean" />
           <NavigationProperty Name="UsuarioRol" Relationship="SCPSAPModel.FK_UsuarioSistema_Rol" FromRole="UsuarioSistema" ToRole="UsuarioRol" />
-          <NavigationProperty Name="Pagoes" Relationship="SCPSAPModel.FK_Pago_UsuarioSistema" FromRole="UsuarioSistema" ToRole="Pago" />
+          <NavigationProperty Name="Pagos" Relationship="SCPSAPModel.FK_Pago_UsuarioSistema" FromRole="UsuarioSistema" ToRole="Pago" />
         </EntityType>
         <Association Name="FK_Contribuyente_Estado">
           <End Type="SCPSAPModel.Estado" Role="Estado" Multiplicity="1" />
