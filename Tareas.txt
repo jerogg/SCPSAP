@@ -42,11 +42,11 @@ Configuracion
 Tareas 29 marzo
 
 Contribuyentes
-1 - Implementar un spinner o progressbar que se muestre cuando se buscan los contribuyentes o cuando se guardan los datos del contribuyente - Pendiente por que lo trajaben
-2 - Bloquear todos elemento en la pantalla cuando el spínner se esta mostroando. - Pendiente por que lo trajaben
+1 - Implementar un spinner o progressbar que se muestre cuando se buscan los contribuyentes o cuando se guardan los datos del contribuyente - trabajado
+2 - Bloquear todos elemento en la pantalla cuando el spínner se esta mostroando. - trabajado
 3 - En el dropdown de las tarifas que se vean con formato de moneda - Pendiente por que lo trajaben
 4 - En la busqueda tambien filtre por Folio - Pendiente por que lo trajaben
-5 - Implementar un spinner cuando se eliminan los contribuyentes - Pendiente por que lo trajaben
+5 - Implementar un spinner cuando se eliminan los contribuyentes - trabajado
 6 - al agregar adeudo al contribuyente, sleccionar los adeudos y dar clic en guardar tambien colocar el progress - Pendiente por que lo trajaben
 
 Menu principal
