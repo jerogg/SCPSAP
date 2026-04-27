@@ -50,5 +50,31 @@ namespace Negocio.Configuracion
                 throw new Exception(ex.Message);
             }
         }
+
+        public void AgregarUsuarios(UsuarioSistema usuarioSistema)
+        {
+            try
+            {
+                usuarioSistema.PasswordHash = Compartido.Compartido.CifrarAES(usuarioSistema.PasswordHash, "SCPSAP");
+                usuarioDatos.AgregarUsuarios(usuarioSistema);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public bool EliminarUsuario(int id)
+        {
+            try
+            {
+                return usuarioDatos.EliminarUsuario(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

@@ -62,6 +62,54 @@ namespace Datos.Configuracion
             }
         }
 
+        public bool AgregarUsuarios(UsuarioSistema usuarioSistema)
+        {
+            try
+            {
+                if (usuarioSistema == null) throw new ArgumentNullException(nameof(usuarioSistema));
+                UsuarioSistema usuarioExistente = SCPSAPEntities.UsuarioSistemas.Where(x => x.IdUsuarioSistema != usuarioSistema.IdUsuarioSistema && x.NombreUsuario == usuarioSistema.NombreUsuario).FirstOrDefault();
+                if (usuarioExistente != null)
+                    throw new Exception("Ya existe un usuario con el mismo nombre");
+                if (usuarioSistema.IdUsuarioSistema <= 0)
+                    SCPSAPEntities.UsuarioSistemas.Add(usuarioSistema);
+                else
+                {
+                    UsuarioSistema actualizarUsuario = SCPSAPEntities.UsuarioSistemas.Where(x => x.IdUsuarioSistema == usuarioSistema.IdUsuarioSistema).FirstOrDefault();
+                    actualizarUsuario.NombreUsuario = usuarioSistema.NombreUsuario;
+                    actualizarUsuario.PasswordHash = usuarioSistema.PasswordHash;
+                    actualizarUsuario.UsuarioRol = usuarioSistema.UsuarioRol;
+                    actualizarUsuario.Activo = usuarioSistema.Activo;
+                }
+
+                SCPSAPEntities.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public bool EliminarUsuario(int id)
+        {
+            try
+            {
+                var usuario = SCPSAPEntities.UsuarioSistemas
+                                  .FirstOrDefault(c => c.IdUsuarioSistema == id);
+
+                if (usuario != null)
+                {
+                    SCPSAPEntities.UsuarioSistemas.Remove(usuario);
+                    SCPSAPEntities.SaveChanges();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }
 

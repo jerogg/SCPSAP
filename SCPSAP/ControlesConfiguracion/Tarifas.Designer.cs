@@ -36,12 +36,12 @@
             this.txbNombre = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.dgvListaTarifas = new System.Windows.Forms.DataGridView();
-            this.lblNombreTarifa = new System.Windows.Forms.Label();
             this.IdTarifa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NombreTarifa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MontoMensual = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Contribuyentes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
+            this.lblNombreTarifa = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaTarifas)).BeginInit();
             this.SuspendLayout();
             // 
@@ -128,6 +128,8 @@
             // 
             // dgvListaTarifas
             // 
+            this.dgvListaTarifas.AllowUserToAddRows = false;
+            this.dgvListaTarifas.AllowUserToDeleteRows = false;
             this.dgvListaTarifas.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
@@ -142,22 +144,12 @@
             this.dgvListaTarifas.Location = new System.Drawing.Point(7, 5);
             this.dgvListaTarifas.Margin = new System.Windows.Forms.Padding(2);
             this.dgvListaTarifas.Name = "dgvListaTarifas";
+            this.dgvListaTarifas.ReadOnly = true;
             this.dgvListaTarifas.RowHeadersWidth = 62;
             this.dgvListaTarifas.RowTemplate.Height = 28;
             this.dgvListaTarifas.Size = new System.Drawing.Size(571, 249);
             this.dgvListaTarifas.TabIndex = 10;
             this.dgvListaTarifas.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaTarifas_CellClick);
-            // 
-            // lblNombreTarifa
-            // 
-            this.lblNombreTarifa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblNombreTarifa.AutoSize = true;
-            this.lblNombreTarifa.Location = new System.Drawing.Point(6, 280);
-            this.lblNombreTarifa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
-            this.lblNombreTarifa.Name = "lblNombreTarifa";
-            this.lblNombreTarifa.Size = new System.Drawing.Size(44, 13);
-            this.lblNombreTarifa.TabIndex = 9;
-            this.lblNombreTarifa.Text = "Nombre";
             // 
             // IdTarifa
             // 
@@ -166,7 +158,6 @@
             this.IdTarifa.HeaderText = "IdTarifa";
             this.IdTarifa.Name = "IdTarifa";
             this.IdTarifa.Visible = false;
-            this.IdTarifa.Width = 68;
             // 
             // NombreTarifa
             // 
@@ -196,6 +187,17 @@
             this.Eliminar.Name = "Eliminar";
             this.Eliminar.ToolTipText = "Eliminar tarifa";
             this.Eliminar.Width = 49;
+            // 
+            // lblNombreTarifa
+            // 
+            this.lblNombreTarifa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblNombreTarifa.AutoSize = true;
+            this.lblNombreTarifa.Location = new System.Drawing.Point(6, 280);
+            this.lblNombreTarifa.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
+            this.lblNombreTarifa.Name = "lblNombreTarifa";
+            this.lblNombreTarifa.Size = new System.Drawing.Size(44, 13);
+            this.lblNombreTarifa.TabIndex = 9;
+            this.lblNombreTarifa.Text = "Nombre";
             // 
             // Tarifas
             // 

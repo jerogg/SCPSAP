@@ -243,7 +243,7 @@ namespace SCPSAP.ControlesConfiguracion
                 if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
                 {
                     var col = dgvListaTarifas.Columns[e.ColumnIndex];
-                    if (string.Equals(col.Name, "Eliminar", StringComparison.OrdinalIgnoreCase) || string.Equals(col.Name, "AgregarAdeudo", StringComparison.OrdinalIgnoreCase))
+                    if (string.Equals(col.Name, "Eliminar", StringComparison.OrdinalIgnoreCase))
                     {
                         dgvListaTarifas.Cursor = Cursors.Hand;
                     }
