@@ -54,3 +54,6 @@ Menu principal
 
 Configuracion
 2 - Obtener los usuarios desde y listarlos en el grid - Pendiente por que lo trajaben
+
+Inventario - Materiales
+1 - Implementar la busqueda de materiales por nombre - Pendiente por que lo trajaben
