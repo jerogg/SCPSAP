@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="0e09c79e70eb4288ad88bee88c57b556" Name="Diagram1">
+      <Diagram DiagramId="0e09c79e70eb4288ad88bee88c57b556" Name="Diagram1" ZoomLevel="74">
         <EntityTypeShape EntityType="SCPSAPModel.Contribuyente" Width="1.5" PointX="3" PointY="1" />
         <EntityTypeShape EntityType="SCPSAPModel.Estado" Width="1.5" PointX="0.75" PointY="2" />
         <EntityTypeShape EntityType="SCPSAPModel.Tarifa" Width="1.5" PointX="0.75" PointY="5.875" />
@@ -23,6 +23,10 @@
         <AssociationConnector Association="SCPSAPModel.FK_Pago_Contribuyente" />
         <AssociationConnector Association="SCPSAPModel.FK_DetallePago_Pago" />
         <AssociationConnector Association="SCPSAPModel.FK_Pago_UsuarioSistema" />
+        <EntityTypeShape EntityType="SCPSAPModel.Material" Width="2.25" PointX="12.625" PointY="5.625" />
+        <EntityTypeShape EntityType="SCPSAPModel.MovimientoInventario" Width="2.25" PointX="9.375" PointY="5.625" />
+        <AssociationConnector Association="SCPSAPModel.FK_MovimientoInventario_Material" />
+        <AssociationConnector Association="SCPSAPModel.FK_MovimientoInventario_UsuarioSistema" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

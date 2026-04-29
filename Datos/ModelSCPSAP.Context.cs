@@ -34,5 +34,7 @@ namespace Datos
         public virtual DbSet<DetallePago> DetallePagos { get; set; }
         public virtual DbSet<Adeudo> Adeudos { get; set; }
         public virtual DbSet<Pago> Pagos { get; set; }
+        public virtual DbSet<Material> Materiales { get; set; }
+        public virtual DbSet<MovimientoInventario> MovimientoInventarios { get; set; }
     }
 }

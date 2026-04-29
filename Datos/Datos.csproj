@@ -76,6 +76,9 @@
       <DependentUpon>ModelSCPSAP.tt</DependentUpon>
     </Compile>
     <Compile Include="Login\UsuariosDatos.cs" />
+    <Compile Include="Material.cs">
+      <DependentUpon>ModelSCPSAP.tt</DependentUpon>
+    </Compile>
     <Compile Include="ModelSCPSAP.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -90,6 +93,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ModelSCPSAP.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="MovimientoInventario.cs">
+      <DependentUpon>ModelSCPSAP.tt</DependentUpon>
     </Compile>
     <Compile Include="Pago.cs">
       <DependentUpon>ModelSCPSAP.tt</DependentUpon>

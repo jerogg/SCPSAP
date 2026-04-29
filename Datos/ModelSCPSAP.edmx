@@ -66,6 +66,29 @@
           <Property Name="IdEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Descripcion" Type="varchar" MaxLength="50" Nullable="false" />
         </EntityType>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="IdMaterial" />
+          </Key>
+          <Property Name="IdMaterial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="UnidadMedida" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="StockActual" Type="int" Nullable="false" />
+          <Property Name="StockMinimo" Type="int" Nullable="false" />
+          <Property Name="Activo" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MovimientoInventario">
+          <Key>
+            <PropertyRef Name="IdMovimiento" />
+          </Key>
+          <Property Name="IdMovimiento" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="IdMaterial" Type="int" Nullable="false" />
+          <Property Name="TipoMovimiento" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Observaciones" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Cantidad" Type="int" Nullable="false" />
+          <Property Name="FechaMovimiento" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuarioSistema" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Pago">
           <Key>
             <PropertyRef Name="IdPago" />
@@ -176,6 +199,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_MovimientoInventario_Material">
+          <End Role="Material" Type="Self.Material" Multiplicity="1" />
+          <End Role="MovimientoInventario" Type="Self.MovimientoInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="IdMaterial" />
+            </Principal>
+            <Dependent Role="MovimientoInventario">
+              <PropertyRef Name="IdMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MovimientoInventario_UsuarioSistema">
+          <End Role="UsuarioSistema" Type="Self.UsuarioSistema" Multiplicity="1" />
+          <End Role="MovimientoInventario" Type="Self.MovimientoInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsuarioSistema">
+              <PropertyRef Name="IdUsuarioSistema" />
+            </Principal>
+            <Dependent Role="MovimientoInventario">
+              <PropertyRef Name="IdUsuarioSistema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Pago_Contribuyente">
           <End Role="Contribuyente" Type="Self.Contribuyente" Multiplicity="1" />
           <End Role="Pago" Type="Self.Pago" Multiplicity="*" />
@@ -218,6 +265,8 @@
           <EntitySet Name="Contribuyente" EntityType="Self.Contribuyente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DetallePago" EntityType="Self.DetallePago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MovimientoInventario" EntityType="Self.MovimientoInventario" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Pago" EntityType="Self.Pago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tarifa" EntityType="Self.Tarifa" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UsuarioRol" EntityType="Self.UsuarioRol" Schema="dbo" store:Type="Tables" />
@@ -245,6 +294,14 @@
           <AssociationSet Name="FK_DetallePago_Pago" Association="Self.FK_DetallePago_Pago">
             <End Role="Pago" EntitySet="Pago" />
             <End Role="DetallePago" EntitySet="DetallePago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MovimientoInventario_Material" Association="Self.FK_MovimientoInventario_Material">
+            <End Role="Material" EntitySet="Material" />
+            <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MovimientoInventario_UsuarioSistema" Association="Self.FK_MovimientoInventario_UsuarioSistema">
+            <End Role="UsuarioSistema" EntitySet="UsuarioSistema" />
+            <End Role="MovimientoInventario" EntitySet="MovimientoInventario" />
           </AssociationSet>
           <AssociationSet Name="FK_Pago_Contribuyente" Association="Self.FK_Pago_Contribuyente">
             <End Role="Contribuyente" EntitySet="Contribuyente" />
@@ -309,6 +366,16 @@
             <End Role="UsuarioSistema" EntitySet="UsuarioSistemas" />
             <End Role="Pago" EntitySet="Pagos" />
           </AssociationSet>
+          <EntitySet Name="Materiales" EntityType="SCPSAPModel.Material" />
+          <EntitySet Name="MovimientoInventarios" EntityType="SCPSAPModel.MovimientoInventario" />
+          <AssociationSet Name="FK_MovimientoInventario_Material" Association="SCPSAPModel.FK_MovimientoInventario_Material">
+            <End Role="Material" EntitySet="Materiales" />
+            <End Role="MovimientoInventario" EntitySet="MovimientoInventarios" />
+          </AssociationSet>
+          <AssociationSet Name="FK_MovimientoInventario_UsuarioSistema" Association="SCPSAPModel.FK_MovimientoInventario_UsuarioSistema">
+            <End Role="UsuarioSistema" EntitySet="UsuarioSistemas" />
+            <End Role="MovimientoInventario" EntitySet="MovimientoInventarios" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Contribuyente">
           <Key>
@@ -366,6 +433,7 @@
           <Property Name="Activo" Type="Boolean" />
           <NavigationProperty Name="UsuarioRol" Relationship="SCPSAPModel.FK_UsuarioSistema_Rol" FromRole="UsuarioSistema" ToRole="UsuarioRol" />
           <NavigationProperty Name="Pagos" Relationship="SCPSAPModel.FK_Pago_UsuarioSistema" FromRole="UsuarioSistema" ToRole="Pago" />
+          <NavigationProperty Name="MovimientoInventarios" Relationship="SCPSAPModel.FK_MovimientoInventario_UsuarioSistema" FromRole="UsuarioSistema" ToRole="MovimientoInventario" />
         </EntityType>
         <Association Name="FK_Contribuyente_Estado">
           <End Type="SCPSAPModel.Estado" Role="Estado" Multiplicity="1" />
@@ -535,6 +603,56 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Material">
+          <Key>
+            <PropertyRef Name="IdMaterial" />
+          </Key>
+          <Property Name="IdMaterial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="UnidadMedida" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="StockActual" Type="Int32" Nullable="false" />
+          <Property Name="StockMinimo" Type="Int32" Nullable="false" />
+          <Property Name="Activo" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="MovimientoInventarios" Relationship="SCPSAPModel.FK_MovimientoInventario_Material" FromRole="Material" ToRole="MovimientoInventario" />
+        </EntityType>
+        <EntityType Name="MovimientoInventario">
+          <Key>
+            <PropertyRef Name="IdMovimiento" />
+          </Key>
+          <Property Name="IdMovimiento" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="IdMaterial" Type="Int32" Nullable="false" />
+          <Property Name="TipoMovimiento" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Observaciones" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cantidad" Type="Int32" Nullable="false" />
+          <Property Name="FechaMovimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdUsuarioSistema" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Material" Relationship="SCPSAPModel.FK_MovimientoInventario_Material" FromRole="MovimientoInventario" ToRole="Material" />
+          <NavigationProperty Name="UsuarioSistema" Relationship="SCPSAPModel.FK_MovimientoInventario_UsuarioSistema" FromRole="MovimientoInventario" ToRole="UsuarioSistema" />
+        </EntityType>
+        <Association Name="FK_MovimientoInventario_Material">
+          <End Type="SCPSAPModel.Material" Role="Material" Multiplicity="1" />
+          <End Type="SCPSAPModel.MovimientoInventario" Role="MovimientoInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Material">
+              <PropertyRef Name="IdMaterial" />
+            </Principal>
+            <Dependent Role="MovimientoInventario">
+              <PropertyRef Name="IdMaterial" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_MovimientoInventario_UsuarioSistema">
+          <End Type="SCPSAPModel.UsuarioSistema" Role="UsuarioSistema" Multiplicity="1" />
+          <End Type="SCPSAPModel.MovimientoInventario" Role="MovimientoInventario" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsuarioSistema">
+              <PropertyRef Name="IdUsuarioSistema" />
+            </Principal>
+            <Dependent Role="MovimientoInventario">
+              <PropertyRef Name="IdUsuarioSistema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -646,6 +764,31 @@
                 <ScalarProperty Name="FechaPago" ColumnName="FechaPago" />
                 <ScalarProperty Name="IdContribuyente" ColumnName="IdContribuyente" />
                 <ScalarProperty Name="IdPago" ColumnName="IdPago" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Materiales">
+            <EntityTypeMapping TypeName="SCPSAPModel.Material">
+              <MappingFragment StoreEntitySet="Material">
+                <ScalarProperty Name="Activo" ColumnName="Activo" />
+                <ScalarProperty Name="StockMinimo" ColumnName="StockMinimo" />
+                <ScalarProperty Name="StockActual" ColumnName="StockActual" />
+                <ScalarProperty Name="UnidadMedida" ColumnName="UnidadMedida" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MovimientoInventarios">
+            <EntityTypeMapping TypeName="SCPSAPModel.MovimientoInventario">
+              <MappingFragment StoreEntitySet="MovimientoInventario">
+                <ScalarProperty Name="IdUsuarioSistema" ColumnName="IdUsuarioSistema" />
+                <ScalarProperty Name="FechaMovimiento" ColumnName="FechaMovimiento" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Observaciones" ColumnName="Observaciones" />
+                <ScalarProperty Name="TipoMovimiento" ColumnName="TipoMovimiento" />
+                <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
+                <ScalarProperty Name="IdMovimiento" ColumnName="IdMovimiento" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

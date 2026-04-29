@@ -134,7 +134,7 @@ BEGIN
         MetodoPago VARCHAR(50) NULL,
         PagaCon DECIMAL(18,2) NOT NULL DEFAULT (0.00),
         Cambio DECIMAL(18,2) NOT NULL DEFAULT (0.00),
-        IdUsuarioSistema INT NULL,
+        IdUsuarioSistema INT NOT NULL,
         CONSTRAINT FK_Pago_Contribuyente FOREIGN KEY (IdContribuyente) REFERENCES dbo.Contribuyente (IdContribuyente),
         CONSTRAINT FK_Pago_UsuarioSistema FOREIGN KEY (IdUsuarioSistema) REFERENCES dbo.UsuarioSistema (IdUsuarioSistema),
         CONSTRAINT CK_Pago_MetodoPago CHECK (MetodoPago IS NULL OR MetodoPago IN ('Efectivo','Transferencia','Tarjeta'))
@@ -159,3 +159,40 @@ BEGIN
     CREATE INDEX IX_DetallePago_IdPago ON dbo.DetallePago (IdPago);
     CREATE INDEX IX_DetallePago_IdAdeudoContribuyente ON dbo.DetallePago (IdAdeudoContribuyente);
 END
+
+IF OBJECT_ID(N'dbo.Material', N'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.Material
+    (
+        IdMaterial INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+        Nombre VARCHAR(150) NOT NULL,
+        UnidadMedida VARCHAR(50) NOT NULL,
+        StockActual INT NOT NULL CONSTRAINT DF_Material_StockActual DEFAULT (0),
+        StockMinimo INT NOT NULL CONSTRAINT DF_Material_StockMinimo DEFAULT (0),
+        Activo BIT NOT NULL CONSTRAINT DF_Material_Activo DEFAULT (1)
+    );
+
+    CREATE INDEX IX_Material_Nombre ON dbo.Material (Nombre);
+END
+GO
+
+
+IF OBJECT_ID(N'dbo.MovimientoInventario', N'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.MovimientoInventario
+    (
+        IdMovimiento INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+        IdMaterial INT NOT NULL,
+        TipoMovimiento VARCHAR(50) NOT NULL,
+        Observaciones VARCHAR(50) NOT NULL,
+        Cantidad INT NOT NULL,
+        FechaMovimiento DATETIME NOT NULL CONSTRAINT DF_MovimientoInventario_FechaMovimiento DEFAULT (GETDATE()),
+        IdUsuarioSistema INT NOT NULL,
+        CONSTRAINT FK_MovimientoInventario_Material FOREIGN KEY (IdMaterial) REFERENCES dbo.Material (IdMaterial),
+        CONSTRAINT FK_MovimientoInventario_UsuarioSistema FOREIGN KEY (IdUsuarioSistema) REFERENCES dbo.UsuarioSistema (IdUsuarioSistema)
+    );
+
+    CREATE INDEX IX_MovimientoInventario_IdMaterial ON dbo.MovimientoInventario (IdMaterial);
+    CREATE INDEX IX_MovimientoInventario_FechaMovimiento ON dbo.MovimientoInventario (FechaMovimiento);
+END
+GO

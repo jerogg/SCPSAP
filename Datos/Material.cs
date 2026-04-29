@@ -12,24 +12,21 @@ namespace Datos
     using System;
     using System.Collections.Generic;
     
-    public partial class UsuarioSistema
+    public partial class Material
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public UsuarioSistema()
+        public Material()
         {
-            this.Pagos = new HashSet<Pago>();
             this.MovimientoInventarios = new HashSet<MovimientoInventario>();
         }
     
-        public int IdUsuarioSistema { get; set; }
-        public string NombreUsuario { get; set; }
-        public string PasswordHash { get; set; }
-        public Nullable<int> IdRol { get; set; }
-        public Nullable<bool> Activo { get; set; }
+        public int IdMaterial { get; set; }
+        public string Nombre { get; set; }
+        public string UnidadMedida { get; set; }
+        public int StockActual { get; set; }
+        public int StockMinimo { get; set; }
+        public bool Activo { get; set; }
     
-        public virtual UsuarioRol UsuarioRol { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pago> Pagos { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<MovimientoInventario> MovimientoInventarios { get; set; }
     }

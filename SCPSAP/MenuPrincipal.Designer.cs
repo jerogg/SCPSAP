@@ -167,6 +167,7 @@
             this.btnMenuInventario.TabIndex = 4;
             this.btnMenuInventario.Text = "Inventario";
             this.btnMenuInventario.UseVisualStyleBackColor = true;
+            this.btnMenuInventario.Click += new System.EventHandler(this.btnMenuInventario_Click);
             // 
             // pnlEgresos
             // 

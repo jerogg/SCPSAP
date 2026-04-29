@@ -3,6 +3,7 @@ using Datos;
 using SCPSAP.Contribuyentes;
 using SCPSAP.ControlesCobranza;
 using SCPSAP.ControlesConfiguracion;
+using SCPSAP.ControlesInventario;
 using SCPSAP.Reportes;
 using System;
 using System.Collections.Generic;
@@ -43,12 +44,10 @@ namespace SCPSAP
 
         private void btnMenuContribuyentes_Click(object sender, EventArgs e)
         {
-            
             splitContainerMenuPrincipal.Panel2.Controls.Clear();
             ListaContribuyentes contribuyentes = new ListaContribuyentes();
             contribuyentes.Dock = DockStyle.Fill;
             splitContainerMenuPrincipal.Panel2.Controls.Add(contribuyentes);
-
         }
 
 
@@ -74,6 +73,14 @@ namespace SCPSAP
             CobranzaPrincipal cobranza = new CobranzaPrincipal();
             cobranza.Dock = DockStyle.Fill;
             splitContainerMenuPrincipal.Panel2.Controls.Add(cobranza);
+        }
+
+        private void btnMenuInventario_Click(object sender, EventArgs e)
+        {
+            splitContainerMenuPrincipal.Panel2.Controls.Clear();
+            ListaInventario inventario = new ListaInventario();
+            inventario.Dock = DockStyle.Fill;
+            splitContainerMenuPrincipal.Panel2.Controls.Add(inventario);
         }
     }
 }
