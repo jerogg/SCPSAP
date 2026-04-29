@@ -48,6 +48,7 @@
     <Compile Include="Configuracion\TarifasNegocio.cs" />
     <Compile Include="Configuracion\UsuariosNegocio.cs" />
     <Compile Include="Contribuyentes\ContribuyentesNegocio.cs" />
+    <Compile Include="Inventario\MaterialesNegocio.cs" />
     <Compile Include="Login\UsuariosNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -65,5 +66,6 @@
       <Name>Entidades</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

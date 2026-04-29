@@ -39,7 +39,6 @@
             this.StockMinimo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Activo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MovimientoInventarios = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
             this.pnlDatosUsuario = new System.Windows.Forms.Panel();
             this.cbxUnidadMedida = new System.Windows.Forms.ComboBox();
             this.lblStockMinimo = new System.Windows.Forms.Label();
@@ -53,6 +52,8 @@
             this.btnActualizar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
+            this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaMateriales)).BeginInit();
             this.pnlDatosUsuario.SuspendLayout();
             this.SuspendLayout();
@@ -68,7 +69,7 @@
             // 
             // txbBuscar
             // 
-            this.txbBuscar.Location = new System.Drawing.Point(472, 9);
+            this.txbBuscar.Location = new System.Drawing.Point(488, 9);
             this.txbBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.txbBuscar.Name = "txbBuscar";
             this.txbBuscar.Size = new System.Drawing.Size(101, 20);
@@ -78,7 +79,7 @@
             // 
             this.lblBuscar.AutoSize = true;
             this.lblBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.lblBuscar.Location = new System.Drawing.Point(390, 13);
+            this.lblBuscar.Location = new System.Drawing.Point(406, 13);
             this.lblBuscar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblBuscar.Name = "lblBuscar";
             this.lblBuscar.Size = new System.Drawing.Size(79, 13);
@@ -170,20 +171,6 @@
             this.MovimientoInventarios.ReadOnly = true;
             this.MovimientoInventarios.Visible = false;
             // 
-            // Eliminar
-            // 
-            this.Eliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Eliminar.DataPropertyName = "btnEliminar";
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.Image = global::SCPSAP.Properties.Resources.Borrar;
-            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Eliminar.MinimumWidth = 6;
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.ReadOnly = true;
-            this.Eliminar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Eliminar.ToolTipText = "Eliminar contribuyente";
-            this.Eliminar.Width = 49;
-            // 
             // pnlDatosUsuario
             // 
             this.pnlDatosUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -197,9 +184,9 @@
             this.pnlDatosUsuario.Controls.Add(this.txbNombre);
             this.pnlDatosUsuario.Controls.Add(this.lblNombre);
             this.pnlDatosUsuario.Enabled = false;
-            this.pnlDatosUsuario.Location = new System.Drawing.Point(5, 374);
+            this.pnlDatosUsuario.Location = new System.Drawing.Point(0, 374);
             this.pnlDatosUsuario.Name = "pnlDatosUsuario";
-            this.pnlDatosUsuario.Size = new System.Drawing.Size(584, 77);
+            this.pnlDatosUsuario.Size = new System.Drawing.Size(589, 77);
             this.pnlDatosUsuario.TabIndex = 29;
             // 
             // cbxUnidadMedida
@@ -221,7 +208,7 @@
             "Amperio (A)",
             "Voltio (V)",
             "Ohmio (Ω)"});
-            this.cbxUnidadMedida.Location = new System.Drawing.Point(403, 9);
+            this.cbxUnidadMedida.Location = new System.Drawing.Point(408, 9);
             this.cbxUnidadMedida.Name = "cbxUnidadMedida";
             this.cbxUnidadMedida.Size = new System.Drawing.Size(165, 21);
             this.cbxUnidadMedida.TabIndex = 16;
@@ -230,7 +217,7 @@
             // 
             this.lblStockMinimo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblStockMinimo.AutoSize = true;
-            this.lblStockMinimo.Location = new System.Drawing.Point(318, 52);
+            this.lblStockMinimo.Location = new System.Drawing.Point(323, 52);
             this.lblStockMinimo.Name = "lblStockMinimo";
             this.lblStockMinimo.Size = new System.Drawing.Size(73, 13);
             this.lblStockMinimo.TabIndex = 12;
@@ -240,7 +227,7 @@
             // 
             this.lblUnidadMedida.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblUnidadMedida.AutoSize = true;
-            this.lblUnidadMedida.Location = new System.Drawing.Point(319, 12);
+            this.lblUnidadMedida.Location = new System.Drawing.Point(324, 12);
             this.lblUnidadMedida.Name = "lblUnidadMedida";
             this.lblUnidadMedida.Size = new System.Drawing.Size(81, 13);
             this.lblUnidadMedida.TabIndex = 10;
@@ -285,7 +272,7 @@
             // txbStockMinimo
             // 
             this.txbStockMinimo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbStockMinimo.Location = new System.Drawing.Point(403, 48);
+            this.txbStockMinimo.Location = new System.Drawing.Point(408, 48);
             this.txbStockMinimo.Name = "txbStockMinimo";
             this.txbStockMinimo.Size = new System.Drawing.Size(165, 20);
             this.txbStockMinimo.TabIndex = 21;
@@ -332,6 +319,33 @@
             this.btnGuardar.TabIndex = 30;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            // 
+            // dataGridViewImageColumn1
+            // 
+            this.dataGridViewImageColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.dataGridViewImageColumn1.DataPropertyName = "btnEliminar";
+            this.dataGridViewImageColumn1.HeaderText = "Eliminar";
+            this.dataGridViewImageColumn1.Image = global::SCPSAP.Properties.Resources.Borrar;
+            this.dataGridViewImageColumn1.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.dataGridViewImageColumn1.MinimumWidth = 6;
+            this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
+            this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewImageColumn1.ToolTipText = "Eliminar contribuyente";
+            this.dataGridViewImageColumn1.Width = 49;
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Eliminar.DataPropertyName = "btnEliminar";
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Image = global::SCPSAP.Properties.Resources.Borrar;
+            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Eliminar.MinimumWidth = 6;
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.ReadOnly = true;
+            this.Eliminar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Eliminar.ToolTipText = "Eliminar contribuyente";
+            this.Eliminar.Width = 49;
             // 
             // ListaInventario
             // 
@@ -383,5 +397,6 @@
         private System.Windows.Forms.Button btnActualizar;
         private System.Windows.Forms.Button btnNuevo;
         private System.Windows.Forms.Button btnGuardar;
+        private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
     }
 }

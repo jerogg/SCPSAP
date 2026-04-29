@@ -75,6 +75,7 @@
     <Compile Include="Estado.cs">
       <DependentUpon>ModelSCPSAP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Inventario\MaterialesDatos.cs" />
     <Compile Include="Login\UsuariosDatos.cs" />
     <Compile Include="Material.cs">
       <DependentUpon>ModelSCPSAP.tt</DependentUpon>

@@ -78,7 +78,7 @@ namespace SCPSAP
         private void btnMenuInventario_Click(object sender, EventArgs e)
         {
             splitContainerMenuPrincipal.Panel2.Controls.Clear();
-            ListaInventario inventario = new ListaInventario();
+            Inventario inventario = new Inventario();
             inventario.Dock = DockStyle.Fill;
             splitContainerMenuPrincipal.Panel2.Controls.Add(inventario);
         }
