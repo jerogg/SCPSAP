@@ -20,5 +20,67 @@ namespace Datos.Inventario
                 throw new Exception(ex.Message);
             }
         }
+
+        public Material ObtenerMaterialesPorId(int id)
+        {
+            try
+            {
+                return SCPSAPEntities.Materiales.Where(x => x.IdMaterial == id).FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public bool AgregarMateriales(Material material)
+        {
+            try
+            {
+                if (material == null) throw new ArgumentNullException(nameof(material));
+                Material materialExistente = SCPSAPEntities.Materiales.Where(x => x.IdMaterial != material.IdMaterial && x.Nombre == material.Nombre).FirstOrDefault();
+                if (materialExistente != null)
+                    throw new Exception("Ya existe un material con el mismo nombre");
+                if (material.IdMaterial <= 0)
+                    SCPSAPEntities.Materiales.Add(material);
+                else
+                {
+                    Material actualizarMaterial = SCPSAPEntities.Materiales.Where(x => x.IdMaterial == material.IdMaterial).FirstOrDefault();
+                    actualizarMaterial.Nombre = material.Nombre;
+                    actualizarMaterial.StockActual = material.StockActual;
+                    actualizarMaterial.StockMinimo = material.StockMinimo;
+                    actualizarMaterial.UnidadMedida = material.UnidadMedida;
+                }
+
+                SCPSAPEntities.SaveChanges();
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public bool EliminarMaterial(int id)
+        {
+            try
+            {
+                var material = SCPSAPEntities.Materiales
+                                  .FirstOrDefault(c => c.IdMaterial == id);
+
+                if (material != null)
+                {
+                    SCPSAPEntities.Materiales.Remove(material);
+                    SCPSAPEntities.SaveChanges();
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

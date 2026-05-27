@@ -39,7 +39,9 @@
             this.StockMinimo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Activo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MovimientoInventarios = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
             this.pnlDatosUsuario = new System.Windows.Forms.Panel();
+            this.txbStockMinimo = new System.Windows.Forms.TextBox();
             this.cbxUnidadMedida = new System.Windows.Forms.ComboBox();
             this.lblStockMinimo = new System.Windows.Forms.Label();
             this.lblUnidadMedida = new System.Windows.Forms.Label();
@@ -47,13 +49,11 @@
             this.lblStockActual = new System.Windows.Forms.Label();
             this.txbNombre = new System.Windows.Forms.TextBox();
             this.lblNombre = new System.Windows.Forms.Label();
-            this.txbStockMinimo = new System.Windows.Forms.TextBox();
             this.btnCancelar = new System.Windows.Forms.Button();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaMateriales)).BeginInit();
             this.pnlDatosUsuario.SuspendLayout();
             this.SuspendLayout();
@@ -111,6 +111,7 @@
             this.dgvListaMateriales.RowHeadersWidth = 51;
             this.dgvListaMateriales.Size = new System.Drawing.Size(586, 327);
             this.dgvListaMateriales.TabIndex = 28;
+            this.dgvListaMateriales.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaMateriales_CellClick);
             // 
             // IdMaterial
             // 
@@ -171,6 +172,20 @@
             this.MovimientoInventarios.ReadOnly = true;
             this.MovimientoInventarios.Visible = false;
             // 
+            // Eliminar
+            // 
+            this.Eliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Eliminar.DataPropertyName = "btnEliminar";
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Image = global::SCPSAP.Properties.Resources.Borrar;
+            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Eliminar.MinimumWidth = 6;
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.ReadOnly = true;
+            this.Eliminar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Eliminar.ToolTipText = "Eliminar contribuyente";
+            this.Eliminar.Width = 49;
+            // 
             // pnlDatosUsuario
             // 
             this.pnlDatosUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
@@ -183,11 +198,18 @@
             this.pnlDatosUsuario.Controls.Add(this.lblStockActual);
             this.pnlDatosUsuario.Controls.Add(this.txbNombre);
             this.pnlDatosUsuario.Controls.Add(this.lblNombre);
-            this.pnlDatosUsuario.Enabled = false;
             this.pnlDatosUsuario.Location = new System.Drawing.Point(0, 374);
             this.pnlDatosUsuario.Name = "pnlDatosUsuario";
             this.pnlDatosUsuario.Size = new System.Drawing.Size(589, 77);
             this.pnlDatosUsuario.TabIndex = 29;
+            // 
+            // txbStockMinimo
+            // 
+            this.txbStockMinimo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.txbStockMinimo.Location = new System.Drawing.Point(408, 48);
+            this.txbStockMinimo.Name = "txbStockMinimo";
+            this.txbStockMinimo.Size = new System.Drawing.Size(165, 20);
+            this.txbStockMinimo.TabIndex = 21;
             // 
             // cbxUnidadMedida
             // 
@@ -269,14 +291,6 @@
             this.lblNombre.TabIndex = 2;
             this.lblNombre.Text = "Nombre:";
             // 
-            // txbStockMinimo
-            // 
-            this.txbStockMinimo.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbStockMinimo.Location = new System.Drawing.Point(408, 48);
-            this.txbStockMinimo.Name = "txbStockMinimo";
-            this.txbStockMinimo.Size = new System.Drawing.Size(165, 20);
-            this.txbStockMinimo.TabIndex = 21;
-            // 
             // btnCancelar
             // 
             this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
@@ -287,6 +301,7 @@
             this.btnCancelar.TabIndex = 33;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
             // 
             // btnActualizar
             // 
@@ -298,6 +313,7 @@
             this.btnActualizar.TabIndex = 32;
             this.btnActualizar.Text = "Actualizar";
             this.btnActualizar.UseVisualStyleBackColor = true;
+            this.btnActualizar.Click += new System.EventHandler(this.btnActualizar_Click);
             // 
             // btnNuevo
             // 
@@ -308,6 +324,7 @@
             this.btnNuevo.TabIndex = 31;
             this.btnNuevo.Text = "Nuevo";
             this.btnNuevo.UseVisualStyleBackColor = true;
+            this.btnNuevo.Click += new System.EventHandler(this.btnNuevo_Click);
             // 
             // btnGuardar
             // 
@@ -319,6 +336,7 @@
             this.btnGuardar.TabIndex = 30;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
+            this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);
             // 
             // dataGridViewImageColumn1
             // 
@@ -331,21 +349,6 @@
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn1.ToolTipText = "Eliminar contribuyente";
-            this.dataGridViewImageColumn1.Width = 49;
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Eliminar.DataPropertyName = "btnEliminar";
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.Image = global::SCPSAP.Properties.Resources.Borrar;
-            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Eliminar.MinimumWidth = 6;
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.ReadOnly = true;
-            this.Eliminar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Eliminar.ToolTipText = "Eliminar contribuyente";
-            this.Eliminar.Width = 49;
             // 
             // ListaInventario
             // 

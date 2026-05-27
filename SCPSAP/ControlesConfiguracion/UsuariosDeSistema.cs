@@ -253,7 +253,7 @@ namespace SCPSAP.ControlesConfiguracion
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error al eliminar usaurio", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error al eliminar usuario", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {

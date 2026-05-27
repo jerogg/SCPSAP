@@ -1,6 +1,7 @@
 ﻿using Datos;
 using Datos.Configuracion;
 using Datos.Inventario;
+using Datos.Login;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,5 +24,44 @@ namespace Negocio.Inventario
                 throw new Exception(ex.Message);
             }
         }
+
+        public Material ObtenerMaterialesPorId(int id)
+        {
+            try
+            {
+                Material material = MaterialesDatos.ObtenerMaterialesPorId(id);
+
+                return material;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public void AgregarMateriales(Material material)
+        {
+            try
+            {
+                MaterialesDatos.AgregarMateriales(material);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public bool EliminarMaterial(int id)
+        {
+            try
+            {
+                return MaterialesDatos.EliminarMaterial(id);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }
