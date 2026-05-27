@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Entidades.Modelos;
 
 namespace Datos.Inventario
 {
@@ -80,6 +81,14 @@ namespace Datos.Inventario
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public List<Material> BuscarMateriales(string criterio)
+        {
+            var lista = from m in SCPSAPEntities.Materiales
+                        where m.Nombre.Contains(criterio) select m;
+
+            return lista.ToList();
         }
 
     }

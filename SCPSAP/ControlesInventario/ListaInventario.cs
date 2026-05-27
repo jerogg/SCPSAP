@@ -2,6 +2,7 @@
 using Datos;
 using Datos.Configuracion;
 using Negocio.Configuracion;
+using Negocio.Contribuyentes;
 using Negocio.Inventario;
 using System;
 using System.Collections.Generic;
@@ -324,6 +325,31 @@ namespace SCPSAP.ControlesInventario
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error al eliminar material", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                this.Enabled = true;
+            }
+        }
+
+        private async void txbBuscar_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                this.Enabled = false;
+
+                string texto = txbBuscar.Text;
+
+                var lista = await Task.Run(() =>
+                {
+                    return new MaterialesNegocio().BuscarMateriales(texto);
+                });
+
+                dgvListaMateriales.DataSource = lista;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
             }
             finally
             {

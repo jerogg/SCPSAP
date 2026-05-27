@@ -21,6 +21,11 @@ namespace SCPSAP.ControlesInventario
             ListaInventario listaInventario = new ListaInventario();
             listaInventario.Dock = DockStyle.Fill;
             pnlMateriales.Controls.Add(listaInventario);
+
+            pnlEntradasSalidas.Controls.Clear();
+            EntradasSalidas entradasSalidas = new EntradasSalidas();
+            entradasSalidas.Dock = DockStyle.Fill;
+            pnlEntradasSalidas.Controls.Add(entradasSalidas);
         }
     }
 }

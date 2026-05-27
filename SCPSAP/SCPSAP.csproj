@@ -104,6 +104,12 @@
     <Compile Include="ControlesContribuyentes\ListaContribuyentes.Designer.cs">
       <DependentUpon>ListaContribuyentes.cs</DependentUpon>
     </Compile>
+    <Compile Include="ControlesInventario\EntradasSalidas.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesInventario\EntradasSalidas.Designer.cs">
+      <DependentUpon>EntradasSalidas.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlesInventario\Inventario.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -160,6 +166,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ControlesContribuyentes\ListaContribuyentes.resx">
       <DependentUpon>ListaContribuyentes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlesInventario\EntradasSalidas.resx">
+      <DependentUpon>EntradasSalidas.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ControlesInventario\Inventario.resx">
       <DependentUpon>Inventario.cs</DependentUpon>

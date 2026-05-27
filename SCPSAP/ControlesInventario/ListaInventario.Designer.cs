@@ -39,7 +39,6 @@
             this.StockMinimo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Activo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MovimientoInventarios = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
             this.pnlDatosUsuario = new System.Windows.Forms.Panel();
             this.txbStockMinimo = new System.Windows.Forms.TextBox();
             this.cbxUnidadMedida = new System.Windows.Forms.ComboBox();
@@ -54,6 +53,7 @@
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnGuardar = new System.Windows.Forms.Button();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaMateriales)).BeginInit();
             this.pnlDatosUsuario.SuspendLayout();
             this.SuspendLayout();
@@ -69,14 +69,17 @@
             // 
             // txbBuscar
             // 
+            this.txbBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txbBuscar.Location = new System.Drawing.Point(488, 9);
             this.txbBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.txbBuscar.Name = "txbBuscar";
             this.txbBuscar.Size = new System.Drawing.Size(101, 20);
             this.txbBuscar.TabIndex = 27;
+            this.txbBuscar.TextChanged += new System.EventHandler(this.txbBuscar_TextChanged);
             // 
             // lblBuscar
             // 
+            this.lblBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBuscar.AutoSize = true;
             this.lblBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.lblBuscar.Location = new System.Drawing.Point(406, 13);
@@ -171,20 +174,6 @@
             this.MovimientoInventarios.Name = "MovimientoInventarios";
             this.MovimientoInventarios.ReadOnly = true;
             this.MovimientoInventarios.Visible = false;
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Eliminar.DataPropertyName = "btnEliminar";
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.Image = global::SCPSAP.Properties.Resources.Borrar;
-            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Eliminar.MinimumWidth = 6;
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.ReadOnly = true;
-            this.Eliminar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Eliminar.ToolTipText = "Eliminar contribuyente";
-            this.Eliminar.Width = 49;
             // 
             // pnlDatosUsuario
             // 
@@ -349,6 +338,21 @@
             this.dataGridViewImageColumn1.Name = "dataGridViewImageColumn1";
             this.dataGridViewImageColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridViewImageColumn1.ToolTipText = "Eliminar contribuyente";
+            this.dataGridViewImageColumn1.Width = 49;
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Eliminar.DataPropertyName = "btnEliminar";
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Image = global::SCPSAP.Properties.Resources.Borrar;
+            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Eliminar.MinimumWidth = 6;
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.ReadOnly = true;
+            this.Eliminar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Eliminar.ToolTipText = "Eliminar contribuyente";
+            this.Eliminar.Width = 49;
             // 
             // ListaInventario
             // 

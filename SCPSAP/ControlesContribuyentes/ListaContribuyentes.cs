@@ -588,9 +588,9 @@ namespace SCPSAP.Contribuyentes
             }
         }
 
-        private CancellationTokenSource cts;
-       private async void txtBuscar_TextChanged(object sender, EventArgs e)
-{
+    private CancellationTokenSource cts;
+    private async void txtBuscar_TextChanged(object sender, EventArgs e)
+    {
     try
     {
         this.Enabled = false;
@@ -616,7 +616,7 @@ namespace SCPSAP.Contribuyentes
         this.Enabled = true;
         proBarCarga.Visible = false;
     }
-}
+    }
 
         private void dgvListaContribuyentes_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {

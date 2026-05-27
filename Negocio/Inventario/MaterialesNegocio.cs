@@ -1,5 +1,6 @@
 ﻿using Datos;
 using Datos.Configuracion;
+using Datos.Contribuyentes;
 using Datos.Inventario;
 using Datos.Login;
 using System;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static Entidades.Modelos;
 
 namespace Negocio.Inventario
 {
@@ -61,6 +63,12 @@ namespace Negocio.Inventario
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+        public List<Material> BuscarMateriales(string criterio)
+        {
+            MaterialesDatos datos = new MaterialesDatos();
+            return datos.BuscarMateriales(criterio);
         }
 
     }
