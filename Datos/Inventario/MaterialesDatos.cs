@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using static Entidades.Modelos;
 
 namespace Datos.Inventario
 {
@@ -91,5 +88,39 @@ namespace Datos.Inventario
             return lista.ToList();
         }
 
+        public bool GuardaEntradasSalidas(int idMaterial, int existenciasActualizadas, int cantidad, string tipoMovimiento, string observaciones, int UsuarioId)
+        {
+            try
+            {
+                var material = SCPSAPEntities.Materiales
+                                  .FirstOrDefault(c => c.IdMaterial == idMaterial);
+
+                if (material != null)
+                {
+                    material.StockActual = existenciasActualizadas;
+
+                    var movimientoInventario = new MovimientoInventario();
+
+                    movimientoInventario.TipoMovimiento = tipoMovimiento;
+                    movimientoInventario.FechaMovimiento = DateTime.Now;
+                    movimientoInventario.Cantidad = cantidad;
+                    movimientoInventario.IdMaterial = idMaterial;
+                    movimientoInventario.Observaciones = observaciones;
+                    movimientoInventario.IdUsuarioSistema = UsuarioId;
+
+                    SCPSAPEntities.MovimientoInventarios.Add( movimientoInventario );
+
+                    SCPSAPEntities.SaveChanges();
+                }
+
+
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

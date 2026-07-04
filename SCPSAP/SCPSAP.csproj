@@ -104,6 +104,12 @@
     <Compile Include="ControlesContribuyentes\ListaContribuyentes.Designer.cs">
       <DependentUpon>ListaContribuyentes.cs</DependentUpon>
     </Compile>
+    <Compile Include="ControlesEgresos\Egresos.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesEgresos\Egresos.Designer.cs">
+      <DependentUpon>Egresos.cs</DependentUpon>
+    </Compile>
     <Compile Include="ControlesInventario\EntradasSalidas.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -167,6 +173,9 @@
     <EmbeddedResource Include="ControlesContribuyentes\ListaContribuyentes.resx">
       <DependentUpon>ListaContribuyentes.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ControlesEgresos\Egresos.resx">
+      <DependentUpon>Egresos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ControlesInventario\EntradasSalidas.resx">
       <DependentUpon>EntradasSalidas.cs</DependentUpon>
     </EmbeddedResource>
@@ -211,10 +220,6 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <ProjectReference Include="..\Compartido\Compartido.csproj">
-      <Project>{1fb0f8a5-0990-4f9a-b2a3-08186a5d8c38}</Project>
-      <Name>Compartido</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Datos\Datos.csproj">
       <Project>{cfe59e18-6599-4870-935c-5ca51cf53064}</Project>
       <Name>Datos</Name>

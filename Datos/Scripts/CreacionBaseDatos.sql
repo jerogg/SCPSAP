@@ -196,3 +196,19 @@ BEGIN
     CREATE INDEX IX_MovimientoInventario_FechaMovimiento ON dbo.MovimientoInventario (FechaMovimiento);
 END
 GO
+
+IF OBJECT_ID(N'dbo.Egreso', N'U') IS NULL
+BEGIN
+    CREATE TABLE dbo.Egreso
+    (
+        IdEgreso INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+        Concepto VARCHAR(150) NOT NULL,
+        Descripcion VARCHAR(250) NOT NULL,
+        Monto DECIMAL(10,2) NOT NULL DEFAULT (0.00),
+        FechaMovimiento DATETIME NOT NULL CONSTRAINT DF_Egreso_FechaMovimiento DEFAULT (GETDATE()),
+        IdUsuarioSistema INT NOT NULL,
+        CONSTRAINT FK_Egreso_UsuarioSistema FOREIGN KEY (IdUsuarioSistema) REFERENCES dbo.UsuarioSistema (IdUsuarioSistema)
+    );
+    CREATE INDEX IX_Egreso_FechaMovimiento ON dbo.Egreso (FechaMovimiento);
+END
+GO

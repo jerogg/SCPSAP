@@ -27,6 +27,8 @@
         <EntityTypeShape EntityType="SCPSAPModel.MovimientoInventario" Width="2.25" PointX="9.375" PointY="5.625" />
         <AssociationConnector Association="SCPSAPModel.FK_MovimientoInventario_Material" />
         <AssociationConnector Association="SCPSAPModel.FK_MovimientoInventario_UsuarioSistema" />
+        <EntityTypeShape EntityType="SCPSAPModel.Egreso" Width="2.25" PointX="9.375" PointY="9.125" />
+        <AssociationConnector Association="SCPSAPModel.FK_Egreso_UsuarioSistema" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

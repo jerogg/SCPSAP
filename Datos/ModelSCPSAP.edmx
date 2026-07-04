@@ -59,6 +59,17 @@
           <Property Name="IdAdeudoContribuyente" Type="int" Nullable="false" />
           <Property Name="MontoAplicado" Type="decimal" Precision="10" Scale="2" Nullable="false" />
         </EntityType>
+        <EntityType Name="Egreso">
+          <Key>
+            <PropertyRef Name="IdEgreso" />
+          </Key>
+          <Property Name="IdEgreso" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Concepto" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="250" Nullable="false" />
+          <Property Name="Monto" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="FechaMovimiento" Type="datetime" Nullable="false" />
+          <Property Name="IdUsuarioSistema" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="Estado">
           <Key>
             <PropertyRef Name="IdEstado" />
@@ -199,6 +210,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Egreso_UsuarioSistema">
+          <End Role="UsuarioSistema" Type="Self.UsuarioSistema" Multiplicity="1" />
+          <End Role="Egreso" Type="Self.Egreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsuarioSistema">
+              <PropertyRef Name="IdUsuarioSistema" />
+            </Principal>
+            <Dependent Role="Egreso">
+              <PropertyRef Name="IdUsuarioSistema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_MovimientoInventario_Material">
           <End Role="Material" Type="Self.Material" Multiplicity="1" />
           <End Role="MovimientoInventario" Type="Self.MovimientoInventario" Multiplicity="*" />
@@ -264,6 +287,7 @@
           <EntitySet Name="AdeudoContribuyente" EntityType="Self.AdeudoContribuyente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contribuyente" EntityType="Self.Contribuyente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DetallePago" EntityType="Self.DetallePago" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Egreso" EntityType="Self.Egreso" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Estado" EntityType="Self.Estado" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Material" EntityType="Self.Material" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MovimientoInventario" EntityType="Self.MovimientoInventario" Schema="dbo" store:Type="Tables" />
@@ -294,6 +318,10 @@
           <AssociationSet Name="FK_DetallePago_Pago" Association="Self.FK_DetallePago_Pago">
             <End Role="Pago" EntitySet="Pago" />
             <End Role="DetallePago" EntitySet="DetallePago" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Egreso_UsuarioSistema" Association="Self.FK_Egreso_UsuarioSistema">
+            <End Role="UsuarioSistema" EntitySet="UsuarioSistema" />
+            <End Role="Egreso" EntitySet="Egreso" />
           </AssociationSet>
           <AssociationSet Name="FK_MovimientoInventario_Material" Association="Self.FK_MovimientoInventario_Material">
             <End Role="Material" EntitySet="Material" />
@@ -376,6 +404,11 @@
             <End Role="UsuarioSistema" EntitySet="UsuarioSistemas" />
             <End Role="MovimientoInventario" EntitySet="MovimientoInventarios" />
           </AssociationSet>
+          <EntitySet Name="Egresos" EntityType="SCPSAPModel.Egreso" />
+          <AssociationSet Name="FK_Egreso_UsuarioSistema" Association="SCPSAPModel.FK_Egreso_UsuarioSistema">
+            <End Role="UsuarioSistema" EntitySet="UsuarioSistemas" />
+            <End Role="Egreso" EntitySet="Egresos" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="Contribuyente">
           <Key>
@@ -434,6 +467,7 @@
           <NavigationProperty Name="UsuarioRol" Relationship="SCPSAPModel.FK_UsuarioSistema_Rol" FromRole="UsuarioSistema" ToRole="UsuarioRol" />
           <NavigationProperty Name="Pagos" Relationship="SCPSAPModel.FK_Pago_UsuarioSistema" FromRole="UsuarioSistema" ToRole="Pago" />
           <NavigationProperty Name="MovimientoInventarios" Relationship="SCPSAPModel.FK_MovimientoInventario_UsuarioSistema" FromRole="UsuarioSistema" ToRole="MovimientoInventario" />
+          <NavigationProperty Name="Egresoes" Relationship="SCPSAPModel.FK_Egreso_UsuarioSistema" FromRole="UsuarioSistema" ToRole="Egreso" />
         </EntityType>
         <Association Name="FK_Contribuyente_Estado">
           <End Type="SCPSAPModel.Estado" Role="Estado" Multiplicity="1" />
@@ -653,6 +687,30 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Egreso">
+          <Key>
+            <PropertyRef Name="IdEgreso" />
+          </Key>
+          <Property Name="IdEgreso" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Concepto" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Monto" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="FechaMovimiento" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdUsuarioSistema" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UsuarioSistema" Relationship="SCPSAPModel.FK_Egreso_UsuarioSistema" FromRole="Egreso" ToRole="UsuarioSistema" />
+        </EntityType>
+        <Association Name="FK_Egreso_UsuarioSistema">
+          <End Type="SCPSAPModel.UsuarioSistema" Role="UsuarioSistema" Multiplicity="1" />
+          <End Type="SCPSAPModel.Egreso" Role="Egreso" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UsuarioSistema">
+              <PropertyRef Name="IdUsuarioSistema" />
+            </Principal>
+            <Dependent Role="Egreso">
+              <PropertyRef Name="IdUsuarioSistema" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -789,6 +847,18 @@
                 <ScalarProperty Name="TipoMovimiento" ColumnName="TipoMovimiento" />
                 <ScalarProperty Name="IdMaterial" ColumnName="IdMaterial" />
                 <ScalarProperty Name="IdMovimiento" ColumnName="IdMovimiento" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Egresos">
+            <EntityTypeMapping TypeName="SCPSAPModel.Egreso">
+              <MappingFragment StoreEntitySet="Egreso">
+                <ScalarProperty Name="IdUsuarioSistema" ColumnName="IdUsuarioSistema" />
+                <ScalarProperty Name="FechaMovimiento" ColumnName="FechaMovimiento" />
+                <ScalarProperty Name="Monto" ColumnName="Monto" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Concepto" ColumnName="Concepto" />
+                <ScalarProperty Name="IdEgreso" ColumnName="IdEgreso" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

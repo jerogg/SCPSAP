@@ -72,6 +72,9 @@
     <Compile Include="DetallePago.cs">
       <DependentUpon>ModelSCPSAP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Egreso.cs">
+      <DependentUpon>ModelSCPSAP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Estado.cs">
       <DependentUpon>ModelSCPSAP.tt</DependentUpon>
     </Compile>

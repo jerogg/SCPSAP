@@ -71,5 +71,28 @@ namespace Negocio.Inventario
             return datos.BuscarMateriales(criterio);
         }
 
+
+        public bool GuardaEntradasSalidas(int idMaterial, int existencias, int cantidad, string tipoMovimiento, string observaciones, int UsuarioId)
+        {
+            int existenciasActualizadas = 0;
+            try
+            {
+                if (tipoMovimiento == "Salida")
+                {
+                    if(existencias < cantidad)
+                        throw new Exception("Las Existencias son menores a la cantidad de salida");
+
+                    existenciasActualizadas = existencias - cantidad;
+                }else
+                    existenciasActualizadas= existencias + cantidad;
+
+                    return MaterialesDatos.GuardaEntradasSalidas(idMaterial, existenciasActualizadas, cantidad, tipoMovimiento, observaciones, UsuarioId);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
     }
 }

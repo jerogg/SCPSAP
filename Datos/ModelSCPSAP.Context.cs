@@ -36,5 +36,6 @@ namespace Datos
         public virtual DbSet<Pago> Pagos { get; set; }
         public virtual DbSet<Material> Materiales { get; set; }
         public virtual DbSet<MovimientoInventario> MovimientoInventarios { get; set; }
+        public virtual DbSet<Egreso> Egresos { get; set; }
     }
 }
