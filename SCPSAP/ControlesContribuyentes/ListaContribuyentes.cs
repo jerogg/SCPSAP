@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Data;
-using System.Drawing;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using CapaUI;
@@ -39,7 +37,7 @@ namespace SCPSAP.Contribuyentes
                 dgvListaContribuyentes.CellMouseLeave += DgvListaContribuyentes_CellMouseLeave;
             }
 
-
+            CargarCalles();
             CargarContribuyentes();
             CargarTarifas();
             CargarEstados();
@@ -72,6 +70,20 @@ namespace SCPSAP.Contribuyentes
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error al cargar contribuyentes", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void CargarCalles()
+        {
+            try
+            {
+                cbxCalles.DataSource = contribuyentesNegocio.ObtenerCalles();
+                cbxCalles.DisplayMember = "Nombre"; // Muestra el nombre de la calle
+                cbxCalles.ValueMember = "IdCalle"; // Usa el ID de la calle como valor
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error al cargar calles", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -248,19 +260,18 @@ namespace SCPSAP.Contribuyentes
                 return false;
             }
 
-            // Dirección
-            string direccion = txbDireccion.Text?.Trim() ?? string.Empty;
-            if (string.IsNullOrEmpty(direccion) || direccion.Length < 5)
+            // Numero
+            string numero = txbNumero.Text?.Trim() ?? string.Empty;
+            if (!string.IsNullOrEmpty(numero))
             {
-                MessageBox.Show("La dirección es requerida (mínimo 5 caracteres).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txbDireccion.Focus();
-                return false;
-            }
-            if (direccion.Length > 200)
-            {
-                MessageBox.Show("La dirección es demasiado larga (máximo 200 caracteres).", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                txbDireccion.Focus();
-                return false;
+                // acepta alfanumericos, entre 7 y 20 caracteres
+                var pattern = @"^[A-Za-zÁÉÍÓÚáéíóúÑñ0-9\s\#\-\.,]+$";
+                if (!Regex.IsMatch(numero, pattern))
+                {
+                    MessageBox.Show("numero inválido. Solo se permiten letras, números, espacios y # - . ,", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txbTelefono.Focus();
+                    return false;
+                }
             }
 
             // Teléfono (opcional pero si se ingresa validar formato)
@@ -299,6 +310,7 @@ namespace SCPSAP.Contribuyentes
             // Tarifa y estado: asegurar selección si son requeridos por tu lógica (aquí los dejamos opcionales pero coherentes)
             int? idTarifa = cbxTarifa.SelectedValue != null && int.TryParse(cbxTarifa.SelectedValue.ToString(), out int t) ? (int?)t : null;
             int idEstado = cbxEstado.SelectedValue != null && int.TryParse(cbxEstado.SelectedValue.ToString(), out int s) ? s : 0;
+            int idCalle = cbxCalles.SelectedValue != null && int.TryParse(cbxCalles.SelectedValue.ToString(), out int c) ? c : 0;
 
             // Dias de gracia (opcional)
             int? diasGracia = null;
@@ -314,7 +326,8 @@ namespace SCPSAP.Contribuyentes
             {
                 IdContribuyente = folio,
                 Nombre = nombre,
-                Direccion = direccion,
+                Numero = numero,
+                IdCalle = idCalle,
                 Telefono = telefono,
                 Email = email,
                 IdTarifa = idTarifa,
@@ -414,9 +427,14 @@ namespace SCPSAP.Contribuyentes
                 {
                     txbFolio.Text = contribuyente.IdContribuyente.ToString();
                     txbNombre.Text = contribuyente.Nombre;
-                    txbDireccion.Text = contribuyente.Direccion;
+                    txbNumero.Text = contribuyente.Numero;
                     txbTelefono.Text = contribuyente.Telefono;
                     txbEmail.Text = contribuyente.Email;
+                    // Seleccionar la calle correspondiente en el ComboBox
+                    if (contribuyente.IdCalle.HasValue)
+                        cbxCalles.SelectedValue = contribuyente.IdCalle.Value;
+                    else
+                        cbxCalles.SelectedIndex = -1; // No seleccionado
                     // Seleccionar la tarifa correspondiente en el ComboBox
                     if (contribuyente.IdTarifa.HasValue)
                         cbxTarifa.SelectedValue = contribuyente.IdTarifa.Value;
@@ -482,7 +500,7 @@ namespace SCPSAP.Contribuyentes
             btnCancelar.Enabled = false;
             _idContribuyenteSeleccionado = 0;
             txbNombre.Clear();
-            txbDireccion.Clear();
+            txbNumero.Clear();
             txbTelefono.Clear();
             txbEmail.Clear();
             cbxTarifa.SelectedIndex = 0;
@@ -588,7 +606,6 @@ namespace SCPSAP.Contribuyentes
             }
         }
 
-    private CancellationTokenSource cts;
     private async void txtBuscar_TextChanged(object sender, EventArgs e)
     {
     try

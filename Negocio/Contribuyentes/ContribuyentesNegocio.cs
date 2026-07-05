@@ -29,6 +29,19 @@ namespace Negocio.Contribuyentes
             }
         }
 
+        
+        public List<Calle> ObtenerCalles()
+        {
+            try
+            {
+                return contribuyentesDatos.ObtenerCalles();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
         public List<Tarifa> ObtenerTarifas()
         {
             try

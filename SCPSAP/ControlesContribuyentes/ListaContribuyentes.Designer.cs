@@ -29,26 +29,11 @@
         private void InitializeComponent()
         {
             this.dgvListaContribuyentes = new System.Windows.Forms.DataGridView();
-            this.IdContribuyente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.IdTarifa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaUltimoAviso = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaLimitePago = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DiasGracia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Direccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FechaAlta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Tarifa = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.AgregarAdeudo = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
             this.lblListadoDeContribuyentes = new System.Windows.Forms.Label();
             this.lblNombre = new System.Windows.Forms.Label();
             this.txbNombre = new System.Windows.Forms.TextBox();
-            this.txbDireccion = new System.Windows.Forms.TextBox();
-            this.lblDireccion = new System.Windows.Forms.Label();
+            this.txbNumero = new System.Windows.Forms.TextBox();
+            this.lblNumero = new System.Windows.Forms.Label();
             this.txbTelefono = new System.Windows.Forms.TextBox();
             this.lblTelefono = new System.Windows.Forms.Label();
             this.txbEmail = new System.Windows.Forms.TextBox();
@@ -63,6 +48,8 @@
             this.btnNuevo = new System.Windows.Forms.Button();
             this.btnActualizar = new System.Windows.Forms.Button();
             this.pnlDatosUsuario = new System.Windows.Forms.Panel();
+            this.cbxCalles = new System.Windows.Forms.ComboBox();
+            this.lblCalle = new System.Windows.Forms.Label();
             this.txbFolio = new System.Windows.Forms.TextBox();
             this.lblFolio = new System.Windows.Forms.Label();
             this.btnCancelar = new System.Windows.Forms.Button();
@@ -70,6 +57,22 @@
             this.txbBuscar = new System.Windows.Forms.TextBox();
             this.dataGridViewImageColumn1 = new System.Windows.Forms.DataGridViewImageColumn();
             this.proBarCarga = new System.Windows.Forms.ProgressBar();
+            this.IdContribuyente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IdTarifa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaUltimoAviso = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaLimitePago = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DiasGracia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Calle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Numero = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FechaAlta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tarifa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.AgregarAdeudo = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaContribuyentes)).BeginInit();
             this.pnlDatosUsuario.SuspendLayout();
             this.SuspendLayout();
@@ -91,7 +94,8 @@
             this.FechaLimitePago,
             this.DiasGracia,
             this.Nombre,
-            this.Direccion,
+            this.Calle,
+            this.Numero,
             this.Telefono,
             this.FechaAlta,
             this.Estado,
@@ -109,140 +113,6 @@
             this.dgvListaContribuyentes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaContribuyentes_CellClick);
             this.dgvListaContribuyentes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaContribuyentes_CellContentClick);
             this.dgvListaContribuyentes.CellPainting += new System.Windows.Forms.DataGridViewCellPaintingEventHandler(this.dgvListaContribuyentes_CellPainting);
-            // 
-            // IdContribuyente
-            // 
-            this.IdContribuyente.DataPropertyName = "IdContribuyente";
-            this.IdContribuyente.HeaderText = "Folio";
-            this.IdContribuyente.MinimumWidth = 6;
-            this.IdContribuyente.Name = "IdContribuyente";
-            this.IdContribuyente.ReadOnly = true;
-            // 
-            // IdEstado
-            // 
-            this.IdEstado.DataPropertyName = "IdEstado";
-            this.IdEstado.HeaderText = "IdEstado";
-            this.IdEstado.MinimumWidth = 6;
-            this.IdEstado.Name = "IdEstado";
-            this.IdEstado.ReadOnly = true;
-            this.IdEstado.Visible = false;
-            // 
-            // IdTarifa
-            // 
-            this.IdTarifa.DataPropertyName = "IdTarifa";
-            this.IdTarifa.HeaderText = "IdTarifa";
-            this.IdTarifa.MinimumWidth = 6;
-            this.IdTarifa.Name = "IdTarifa";
-            this.IdTarifa.ReadOnly = true;
-            this.IdTarifa.Visible = false;
-            // 
-            // FechaUltimoAviso
-            // 
-            this.FechaUltimoAviso.DataPropertyName = "FechaUltimoAviso";
-            this.FechaUltimoAviso.HeaderText = "FechaUltimoAviso";
-            this.FechaUltimoAviso.MinimumWidth = 6;
-            this.FechaUltimoAviso.Name = "FechaUltimoAviso";
-            this.FechaUltimoAviso.ReadOnly = true;
-            this.FechaUltimoAviso.Visible = false;
-            // 
-            // FechaLimitePago
-            // 
-            this.FechaLimitePago.DataPropertyName = "FechaLimitePago";
-            this.FechaLimitePago.HeaderText = "FechaLimitePago";
-            this.FechaLimitePago.MinimumWidth = 6;
-            this.FechaLimitePago.Name = "FechaLimitePago";
-            this.FechaLimitePago.ReadOnly = true;
-            this.FechaLimitePago.Visible = false;
-            // 
-            // DiasGracia
-            // 
-            this.DiasGracia.DataPropertyName = "DiasGracia";
-            this.DiasGracia.HeaderText = "DiasGracia";
-            this.DiasGracia.MinimumWidth = 6;
-            this.DiasGracia.Name = "DiasGracia";
-            this.DiasGracia.ReadOnly = true;
-            this.DiasGracia.Visible = false;
-            // 
-            // Nombre
-            // 
-            this.Nombre.DataPropertyName = "Nombre";
-            this.Nombre.HeaderText = "Nombre";
-            this.Nombre.MinimumWidth = 6;
-            this.Nombre.Name = "Nombre";
-            this.Nombre.ReadOnly = true;
-            // 
-            // Direccion
-            // 
-            this.Direccion.DataPropertyName = "Direccion";
-            this.Direccion.HeaderText = "Direccion";
-            this.Direccion.MinimumWidth = 6;
-            this.Direccion.Name = "Direccion";
-            this.Direccion.ReadOnly = true;
-            // 
-            // Telefono
-            // 
-            this.Telefono.DataPropertyName = "Telefono";
-            this.Telefono.HeaderText = "Telefono";
-            this.Telefono.MinimumWidth = 6;
-            this.Telefono.Name = "Telefono";
-            this.Telefono.ReadOnly = true;
-            // 
-            // FechaAlta
-            // 
-            this.FechaAlta.DataPropertyName = "FechaAlta";
-            this.FechaAlta.HeaderText = "Fecha de alta";
-            this.FechaAlta.MinimumWidth = 6;
-            this.FechaAlta.Name = "FechaAlta";
-            this.FechaAlta.ReadOnly = true;
-            // 
-            // Estado
-            // 
-            this.Estado.DataPropertyName = "EstadoDescripcion";
-            this.Estado.HeaderText = "Situacion";
-            this.Estado.MinimumWidth = 6;
-            this.Estado.Name = "Estado";
-            this.Estado.ReadOnly = true;
-            // 
-            // Tarifa
-            // 
-            this.Tarifa.DataPropertyName = "Tarifa";
-            this.Tarifa.HeaderText = "Tarifa mensual";
-            this.Tarifa.MinimumWidth = 6;
-            this.Tarifa.Name = "Tarifa";
-            this.Tarifa.ReadOnly = true;
-            // 
-            // Email
-            // 
-            this.Email.DataPropertyName = "Email";
-            this.Email.HeaderText = "Email";
-            this.Email.MinimumWidth = 6;
-            this.Email.Name = "Email";
-            this.Email.ReadOnly = true;
-            // 
-            // AgregarAdeudo
-            // 
-            this.AgregarAdeudo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.AgregarAdeudo.HeaderText = "Agregar adeudo";
-            this.AgregarAdeudo.Image = global::SCPSAP.Properties.Resources.botonAgregar;
-            this.AgregarAdeudo.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.AgregarAdeudo.MinimumWidth = 6;
-            this.AgregarAdeudo.Name = "AgregarAdeudo";
-            this.AgregarAdeudo.ReadOnly = true;
-            this.AgregarAdeudo.Width = 80;
-            // 
-            // Eliminar
-            // 
-            this.Eliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Eliminar.DataPropertyName = "btnEliminar";
-            this.Eliminar.HeaderText = "Eliminar";
-            this.Eliminar.Image = global::SCPSAP.Properties.Resources.Borrar;
-            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
-            this.Eliminar.MinimumWidth = 6;
-            this.Eliminar.Name = "Eliminar";
-            this.Eliminar.ReadOnly = true;
-            this.Eliminar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Eliminar.ToolTipText = "Eliminar contribuyente";
-            this.Eliminar.Width = 49;
             // 
             // lblListadoDeContribuyentes
             // 
@@ -271,28 +141,28 @@
             this.txbNombre.Size = new System.Drawing.Size(206, 20);
             this.txbNombre.TabIndex = 3;
             // 
-            // txbDireccion
+            // txbNumero
             // 
-            this.txbDireccion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txbDireccion.Location = new System.Drawing.Point(65, 50);
-            this.txbDireccion.Name = "txbDireccion";
-            this.txbDireccion.Size = new System.Drawing.Size(206, 20);
-            this.txbDireccion.TabIndex = 5;
+            this.txbNumero.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.txbNumero.Location = new System.Drawing.Point(65, 72);
+            this.txbNumero.Name = "txbNumero";
+            this.txbNumero.Size = new System.Drawing.Size(206, 20);
+            this.txbNumero.TabIndex = 5;
             // 
-            // lblDireccion
+            // lblNumero
             // 
-            this.lblDireccion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblDireccion.AutoSize = true;
-            this.lblDireccion.Location = new System.Drawing.Point(7, 54);
-            this.lblDireccion.Name = "lblDireccion";
-            this.lblDireccion.Size = new System.Drawing.Size(55, 13);
-            this.lblDireccion.TabIndex = 4;
-            this.lblDireccion.Text = "Dirección:";
+            this.lblNumero.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblNumero.AutoSize = true;
+            this.lblNumero.Location = new System.Drawing.Point(15, 76);
+            this.lblNumero.Name = "lblNumero";
+            this.lblNumero.Size = new System.Drawing.Size(47, 13);
+            this.lblNumero.TabIndex = 4;
+            this.lblNumero.Text = "Numero:";
             // 
             // txbTelefono
             // 
             this.txbTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txbTelefono.Location = new System.Drawing.Point(65, 89);
+            this.txbTelefono.Location = new System.Drawing.Point(65, 99);
             this.txbTelefono.Name = "txbTelefono";
             this.txbTelefono.Size = new System.Drawing.Size(206, 20);
             this.txbTelefono.TabIndex = 7;
@@ -301,7 +171,7 @@
             // 
             this.lblTelefono.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblTelefono.AutoSize = true;
-            this.lblTelefono.Location = new System.Drawing.Point(10, 93);
+            this.lblTelefono.Location = new System.Drawing.Point(10, 103);
             this.lblTelefono.Name = "lblTelefono";
             this.lblTelefono.Size = new System.Drawing.Size(52, 13);
             this.lblTelefono.TabIndex = 6;
@@ -329,7 +199,7 @@
             // 
             this.lblTarifa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTarifa.AutoSize = true;
-            this.lblTarifa.Location = new System.Drawing.Point(321, 15);
+            this.lblTarifa.Location = new System.Drawing.Point(321, 16);
             this.lblTarifa.Name = "lblTarifa";
             this.lblTarifa.Size = new System.Drawing.Size(79, 13);
             this.lblTarifa.TabIndex = 10;
@@ -425,6 +295,8 @@
             // 
             this.pnlDatosUsuario.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.pnlDatosUsuario.Controls.Add(this.cbxCalles);
+            this.pnlDatosUsuario.Controls.Add(this.lblCalle);
             this.pnlDatosUsuario.Controls.Add(this.txbFolio);
             this.pnlDatosUsuario.Controls.Add(this.lblFolio);
             this.pnlDatosUsuario.Controls.Add(this.cbxEstado);
@@ -437,8 +309,8 @@
             this.pnlDatosUsuario.Controls.Add(this.lblEmail);
             this.pnlDatosUsuario.Controls.Add(this.txbTelefono);
             this.pnlDatosUsuario.Controls.Add(this.lblTelefono);
-            this.pnlDatosUsuario.Controls.Add(this.txbDireccion);
-            this.pnlDatosUsuario.Controls.Add(this.lblDireccion);
+            this.pnlDatosUsuario.Controls.Add(this.txbNumero);
+            this.pnlDatosUsuario.Controls.Add(this.lblNumero);
             this.pnlDatosUsuario.Controls.Add(this.txbNombre);
             this.pnlDatosUsuario.Controls.Add(this.lblNombre);
             this.pnlDatosUsuario.Enabled = false;
@@ -446,6 +318,29 @@
             this.pnlDatosUsuario.Name = "pnlDatosUsuario";
             this.pnlDatosUsuario.Size = new System.Drawing.Size(584, 159);
             this.pnlDatosUsuario.TabIndex = 22;
+            // 
+            // cbxCalles
+            // 
+            this.cbxCalles.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.cbxCalles.FormattingEnabled = true;
+            this.cbxCalles.Items.AddRange(new object[] {
+            "30",
+            "60",
+            "90"});
+            this.cbxCalles.Location = new System.Drawing.Point(65, 42);
+            this.cbxCalles.Name = "cbxCalles";
+            this.cbxCalles.Size = new System.Drawing.Size(206, 21);
+            this.cbxCalles.TabIndex = 22;
+            // 
+            // lblCalle
+            // 
+            this.lblCalle.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblCalle.AutoSize = true;
+            this.lblCalle.Location = new System.Drawing.Point(28, 46);
+            this.lblCalle.Name = "lblCalle";
+            this.lblCalle.Size = new System.Drawing.Size(33, 13);
+            this.lblCalle.TabIndex = 21;
+            this.lblCalle.Text = "Calle:";
             // 
             // txbFolio
             // 
@@ -493,7 +388,7 @@
             // 
             this.txbBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txbBuscar.Location = new System.Drawing.Point(489, 17);
-            this.txbBuscar.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.txbBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.txbBuscar.Name = "txbBuscar";
             this.txbBuscar.Size = new System.Drawing.Size(101, 20);
             this.txbBuscar.TabIndex = 25;
@@ -516,7 +411,7 @@
             // 
             this.proBarCarga.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.proBarCarga.Location = new System.Drawing.Point(257, 166);
-            this.proBarCarga.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.proBarCarga.Margin = new System.Windows.Forms.Padding(2);
             this.proBarCarga.MarqueeAnimationSpeed = 30;
             this.proBarCarga.Name = "proBarCarga";
             this.proBarCarga.Size = new System.Drawing.Size(75, 19);
@@ -524,6 +419,147 @@
             this.proBarCarga.TabIndex = 26;
             this.proBarCarga.Visible = false;
             this.proBarCarga.Click += new System.EventHandler(this.progressBar1_Click);
+            // 
+            // IdContribuyente
+            // 
+            this.IdContribuyente.DataPropertyName = "IdContribuyente";
+            this.IdContribuyente.HeaderText = "Folio";
+            this.IdContribuyente.MinimumWidth = 6;
+            this.IdContribuyente.Name = "IdContribuyente";
+            this.IdContribuyente.ReadOnly = true;
+            // 
+            // IdEstado
+            // 
+            this.IdEstado.DataPropertyName = "IdEstado";
+            this.IdEstado.HeaderText = "IdEstado";
+            this.IdEstado.MinimumWidth = 6;
+            this.IdEstado.Name = "IdEstado";
+            this.IdEstado.ReadOnly = true;
+            this.IdEstado.Visible = false;
+            // 
+            // IdTarifa
+            // 
+            this.IdTarifa.DataPropertyName = "IdTarifa";
+            this.IdTarifa.HeaderText = "IdTarifa";
+            this.IdTarifa.MinimumWidth = 6;
+            this.IdTarifa.Name = "IdTarifa";
+            this.IdTarifa.ReadOnly = true;
+            this.IdTarifa.Visible = false;
+            // 
+            // FechaUltimoAviso
+            // 
+            this.FechaUltimoAviso.DataPropertyName = "FechaUltimoAviso";
+            this.FechaUltimoAviso.HeaderText = "FechaUltimoAviso";
+            this.FechaUltimoAviso.MinimumWidth = 6;
+            this.FechaUltimoAviso.Name = "FechaUltimoAviso";
+            this.FechaUltimoAviso.ReadOnly = true;
+            this.FechaUltimoAviso.Visible = false;
+            // 
+            // FechaLimitePago
+            // 
+            this.FechaLimitePago.DataPropertyName = "FechaLimitePago";
+            this.FechaLimitePago.HeaderText = "FechaLimitePago";
+            this.FechaLimitePago.MinimumWidth = 6;
+            this.FechaLimitePago.Name = "FechaLimitePago";
+            this.FechaLimitePago.ReadOnly = true;
+            this.FechaLimitePago.Visible = false;
+            // 
+            // DiasGracia
+            // 
+            this.DiasGracia.DataPropertyName = "DiasGracia";
+            this.DiasGracia.HeaderText = "DiasGracia";
+            this.DiasGracia.MinimumWidth = 6;
+            this.DiasGracia.Name = "DiasGracia";
+            this.DiasGracia.ReadOnly = true;
+            this.DiasGracia.Visible = false;
+            // 
+            // Nombre
+            // 
+            this.Nombre.DataPropertyName = "Nombre";
+            this.Nombre.HeaderText = "Nombre";
+            this.Nombre.MinimumWidth = 6;
+            this.Nombre.Name = "Nombre";
+            this.Nombre.ReadOnly = true;
+            // 
+            // Calle
+            // 
+            this.Calle.DataPropertyName = "Calle";
+            this.Calle.HeaderText = "Calle";
+            this.Calle.MinimumWidth = 6;
+            this.Calle.Name = "Calle";
+            this.Calle.ReadOnly = true;
+            // 
+            // Numero
+            // 
+            this.Numero.DataPropertyName = "Numero";
+            this.Numero.HeaderText = "Numero";
+            this.Numero.Name = "Numero";
+            this.Numero.ReadOnly = true;
+            // 
+            // Telefono
+            // 
+            this.Telefono.DataPropertyName = "Telefono";
+            this.Telefono.HeaderText = "Telefono";
+            this.Telefono.MinimumWidth = 6;
+            this.Telefono.Name = "Telefono";
+            this.Telefono.ReadOnly = true;
+            // 
+            // FechaAlta
+            // 
+            this.FechaAlta.DataPropertyName = "FechaAlta";
+            this.FechaAlta.HeaderText = "Fecha de alta";
+            this.FechaAlta.MinimumWidth = 6;
+            this.FechaAlta.Name = "FechaAlta";
+            this.FechaAlta.ReadOnly = true;
+            // 
+            // Estado
+            // 
+            this.Estado.DataPropertyName = "EstadoDescripcion";
+            this.Estado.HeaderText = "Situacion";
+            this.Estado.MinimumWidth = 6;
+            this.Estado.Name = "Estado";
+            this.Estado.ReadOnly = true;
+            // 
+            // Tarifa
+            // 
+            this.Tarifa.DataPropertyName = "Tarifa";
+            this.Tarifa.HeaderText = "Tarifa mensual";
+            this.Tarifa.MinimumWidth = 6;
+            this.Tarifa.Name = "Tarifa";
+            this.Tarifa.ReadOnly = true;
+            // 
+            // Email
+            // 
+            this.Email.DataPropertyName = "Email";
+            this.Email.HeaderText = "Email";
+            this.Email.MinimumWidth = 6;
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            // 
+            // AgregarAdeudo
+            // 
+            this.AgregarAdeudo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.AgregarAdeudo.HeaderText = "Agregar adeudo";
+            this.AgregarAdeudo.Image = global::SCPSAP.Properties.Resources.botonAgregar;
+            this.AgregarAdeudo.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.AgregarAdeudo.MinimumWidth = 6;
+            this.AgregarAdeudo.Name = "AgregarAdeudo";
+            this.AgregarAdeudo.ReadOnly = true;
+            this.AgregarAdeudo.Width = 80;
+            // 
+            // Eliminar
+            // 
+            this.Eliminar.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Eliminar.DataPropertyName = "btnEliminar";
+            this.Eliminar.HeaderText = "Eliminar";
+            this.Eliminar.Image = global::SCPSAP.Properties.Resources.Borrar;
+            this.Eliminar.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Zoom;
+            this.Eliminar.MinimumWidth = 6;
+            this.Eliminar.Name = "Eliminar";
+            this.Eliminar.ReadOnly = true;
+            this.Eliminar.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Eliminar.ToolTipText = "Eliminar contribuyente";
+            this.Eliminar.Width = 49;
             // 
             // ListaContribuyentes
             // 
@@ -555,8 +591,8 @@
         private System.Windows.Forms.Label lblListadoDeContribuyentes;
         private System.Windows.Forms.Label lblNombre;
         private System.Windows.Forms.TextBox txbNombre;
-        private System.Windows.Forms.TextBox txbDireccion;
-        private System.Windows.Forms.Label lblDireccion;
+        private System.Windows.Forms.TextBox txbNumero;
+        private System.Windows.Forms.Label lblNumero;
         private System.Windows.Forms.TextBox txbTelefono;
         private System.Windows.Forms.Label lblTelefono;
         private System.Windows.Forms.TextBox txbEmail;
@@ -577,6 +613,9 @@
         private System.Windows.Forms.Label lblBuscar;
         private System.Windows.Forms.TextBox txbBuscar;
         private System.Windows.Forms.DataGridViewImageColumn dataGridViewImageColumn1;
+        private System.Windows.Forms.ProgressBar proBarCarga;
+        private System.Windows.Forms.ComboBox cbxCalles;
+        private System.Windows.Forms.Label lblCalle;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdContribuyente;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdEstado;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdTarifa;
@@ -584,7 +623,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaLimitePago;
         private System.Windows.Forms.DataGridViewTextBoxColumn DiasGracia;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Direccion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Calle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Numero;
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaAlta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
@@ -592,6 +632,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private System.Windows.Forms.DataGridViewImageColumn AgregarAdeudo;
         private System.Windows.Forms.DataGridViewImageColumn Eliminar;
-        private System.Windows.Forms.ProgressBar proBarCarga;
     }
 }

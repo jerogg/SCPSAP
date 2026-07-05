@@ -12,26 +12,18 @@ namespace Datos
     using System;
     using System.Collections.Generic;
     
-    public partial class Pago
+    public partial class Calle
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Pago()
+        public Calle()
         {
-            this.DetallePagoes = new HashSet<DetallePago>();
+            this.Contribuyentes = new HashSet<Contribuyente>();
         }
     
-        public int IdPago { get; set; }
-        public int IdContribuyente { get; set; }
-        public System.DateTime FechaPago { get; set; }
-        public decimal TotalPagado { get; set; }
-        public string MetodoPago { get; set; }
-        public Nullable<int> IdUsuarioSistema { get; set; }
-        public decimal PagaCon { get; set; }
-        public decimal Cambio { get; set; }
+        public int IdCalle { get; set; }
+        public string Nombre { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<DetallePago> DetallePagoes { get; set; }
-        public virtual UsuarioSistema UsuarioSistema { get; set; }
-        public virtual Contribuyente Contribuyente { get; set; }
+        public virtual ICollection<Contribuyente> Contribuyentes { get; set; }
     }
 }

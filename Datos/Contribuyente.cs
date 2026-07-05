@@ -23,7 +23,6 @@ namespace Datos
     
         public int IdContribuyente { get; set; }
         public string Nombre { get; set; }
-        public string Direccion { get; set; }
         public string Telefono { get; set; }
         public System.DateTime FechaAlta { get; set; }
         public int IdEstado { get; set; }
@@ -32,11 +31,14 @@ namespace Datos
         public Nullable<System.DateTime> FechaUltimoAviso { get; set; }
         public Nullable<System.DateTime> FechaLimitePago { get; set; }
         public Nullable<int> DiasGracia { get; set; }
+        public Nullable<int> IdCalle { get; set; }
+        public string Numero { get; set; }
     
-        public virtual Estado Estado { get; set; }
-        public virtual Tarifa Tarifa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<AdeudoContribuyente> AdeudoContribuyentes { get; set; }
+        public virtual Calle Calle { get; set; }
+        public virtual Estado Estado { get; set; }
+        public virtual Tarifa Tarifa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Pago> Pagoes { get; set; }
     }

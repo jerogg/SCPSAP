@@ -16,7 +16,9 @@ namespace Entidades
         {
             public int IdContribuyente { get; set; }
             public string Nombre { get; set; }
-            public string Direccion { get; set; }
+            public int? IdCalle { get; set; }
+            public string Calle { get; set; }
+            public string Numero { get; set; }
             public string Telefono { get; set; }
             public DateTime FechaAlta { get; set; }
             public int IdEstado { get; set; }

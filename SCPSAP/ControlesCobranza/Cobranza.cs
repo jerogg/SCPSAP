@@ -225,7 +225,7 @@ namespace SCPSAP.ControlesCobranza
 
                 txbName.Text = seleccionado.Nombre;
                 txbFolio.Text = seleccionado.IdContribuyente.ToString();
-                txbDireccion.Text = seleccionado.Direccion;
+                txbDireccion.Text = seleccionado.Calle +" "+seleccionado.Numero;
 
                 _lstResultados.Visible = false;
 

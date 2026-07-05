@@ -1,5 +1,4 @@
-﻿using Compartido;
-using Datos.Login;
+﻿using Datos.Login;
 using System;
 
 namespace Negocio.Login

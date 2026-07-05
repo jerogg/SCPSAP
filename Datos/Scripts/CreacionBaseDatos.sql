@@ -55,25 +55,61 @@ BEGIN
 END
 GO
 
+-- Tabla para calles (almacena el nombre de la calle por separado)
+IF OBJECT_ID('dbo.Calle','U') IS NULL
+BEGIN
+    CREATE TABLE dbo.Calle
+    (
+        IdCalle INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+        Nombre VARCHAR(200) NOT NULL
+    );
+END
+GO
 
+----Insertar calles en la tabla Calle
+INSERT INTO Calle (Nombre) VALUES ( 'Avenida del Norte' ); 
+INSERT INTO Calle (Nombre) VALUES ( 'Calle Luis Donaldo Colosio' ); 
+INSERT INTO Calle (Nombre) VALUES ( 'Calle Norte 2' ); 
+INSERT INTO Calle (Nombre) VALUES ( 'Calle Oriente 2' ); 
+INSERT INTO Calle (Nombre) VALUES ( 'Calle Oriente 1' ); 
+INSERT INTO Calle (Nombre) VALUES ( 'Calle Oriente 4' ); 
+INSERT INTO Calle (Nombre) VALUES ( 'Calle Oriente 5' ); 
+INSERT INTO Calle (Nombre) VALUES ( 'Calle Oriente 6' ); 
+INSERT INTO Calle (Nombre) VALUES ( 'Calle Poniente 3' ); 
+INSERT INTO Calle (Nombre) VALUES ( 'Calle Poniente 4' ); 
+INSERT INTO Calle (Nombre) VALUES ( 'Calle Poniente 5' ); 
+INSERT INTO Calle (Nombre) VALUES ( 'Cerrada Avenida del Norte' ); 
+INSERT INTO Calle (Nombre) VALUES ( 'Cerrada Poniente' ); 
+INSERT INTO Calle (Nombre) VALUES ( 'Privada Oriente 3' ); 
+INSERT INTO Calle (Nombre) VALUES ( 'Privada Oriente 4' ); 
+INSERT INTO Calle (Nombre) VALUES ( 'Privada Poniene Norte' ); 
+INSERT INTO Calle (Nombre) VALUES ( 'Privada Poniente 1' ); 
+INSERT INTO Calle (Nombre) VALUES ( 'Privada Poniente 2' ); 
+INSERT INTO Calle (Nombre) VALUES ( 'Privada Quetzalcóatl' ); 
+INSERT INTO Calle (Nombre) VALUES ( 'Privada Tollan' ); 
+
+
+-- Si la tabla Contribuyente no existe, créala con la nueva estructura (IdCalle + Numero)
 IF OBJECT_ID('dbo.Contribuyente','U') IS NULL
 BEGIN
     CREATE TABLE dbo.Contribuyente
-(
-    IdContribuyente INT NOT NULL PRIMARY KEY, -- Identificador único
-    Nombre VARCHAR(150) NOT NULL,                           -- Nombre completo
-    Direccion VARCHAR(200) NOT NULL,                            -- Dirección
-    Telefono VARCHAR(20) NULL,                              -- Teléfono
-    FechaAlta DATETIME NOT NULL DEFAULT (GETDATE()),        -- Fecha de registro
-    IdEstado INT NOT NULL,                                  -- FK a Estado (Activo/Suspendido/Baja)
-    IdTarifa INT NOT NULL,                                      -- FK a Tarifa asignada
-    Email VARCHAR(200) NULL,                                -- Correo electrónico para notificaciones
-    FechaUltimoAviso DATETIME NULL,                         -- Fecha del último aviso enviado
-    FechaLimitePago DATETIME NULL,                          -- Fecha máxima antes de suspensión
-    DiasGracia INT NOT NULL,                                -- Días permitidos antes de aplicar corte
-    CONSTRAINT FK_Contribuyente_Estado FOREIGN KEY (IdEstado) REFERENCES dbo.Estado(IdEstado),
-    CONSTRAINT FK_Contribuyente_Tarifa FOREIGN KEY (IdTarifa) REFERENCES dbo.Tarifa(IdTarifa)
-);
+    (
+        IdContribuyente INT NOT NULL PRIMARY KEY, -- Identificador único (mantener esquema existente)
+        Nombre VARCHAR(150) NOT NULL,              -- Nombre completo
+        IdCalle INT NOT NULL,                      -- FK a dbo.Calle
+        Numero VARCHAR(50) NOT NULL,               -- Número / referencia (antes Direccion)
+        Telefono VARCHAR(20) NULL,                 -- Teléfono
+        FechaAlta DATETIME NOT NULL DEFAULT (GETDATE()),
+        IdEstado INT NOT NULL,
+        IdTarifa INT NOT NULL,
+        Email VARCHAR(200) NULL,
+        FechaUltimoAviso DATETIME NULL,
+        FechaLimitePago DATETIME NULL,
+        DiasGracia INT NOT NULL,
+        CONSTRAINT FK_Contribuyente_Estado FOREIGN KEY (IdEstado) REFERENCES dbo.Estado(IdEstado),
+        CONSTRAINT FK_Contribuyente_Tarifa FOREIGN KEY (IdTarifa) REFERENCES dbo.Tarifa(IdTarifa),
+        CONSTRAINT FK_Contribuyente_Calle FOREIGN KEY (IdCalle) REFERENCES dbo.Calle(IdCalle)
+    );
 END
 GO
 

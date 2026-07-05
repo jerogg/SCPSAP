@@ -25,7 +25,6 @@ namespace Datos
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Contribuyente> Contribuyentes { get; set; }
         public virtual DbSet<Estado> Estados { get; set; }
         public virtual DbSet<Tarifa> Tarifas { get; set; }
         public virtual DbSet<UsuarioRol> UsuarioRols { get; set; }
@@ -37,5 +36,7 @@ namespace Datos
         public virtual DbSet<Material> Materiales { get; set; }
         public virtual DbSet<MovimientoInventario> MovimientoInventarios { get; set; }
         public virtual DbSet<Egreso> Egresos { get; set; }
+        public virtual DbSet<Calle> Calles { get; set; }
+        public virtual DbSet<Contribuyente> Contribuyentes { get; set; }
     }
 }

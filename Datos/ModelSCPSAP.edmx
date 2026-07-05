@@ -34,13 +34,19 @@
           <Property Name="FechaGeneracion" Type="datetime" Nullable="false" />
           <Property Name="FechaVencimiento" Type="datetime" />
         </EntityType>
+        <EntityType Name="Calle">
+          <Key>
+            <PropertyRef Name="IdCalle" />
+          </Key>
+          <Property Name="IdCalle" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="200" Nullable="false" />
+        </EntityType>
         <EntityType Name="Contribuyente">
           <Key>
             <PropertyRef Name="IdContribuyente" />
           </Key>
           <Property Name="IdContribuyente" Type="int" Nullable="false" />
           <Property Name="Nombre" Type="varchar" MaxLength="150" Nullable="false" />
-          <Property Name="Direccion" Type="varchar" MaxLength="200" />
           <Property Name="Telefono" Type="varchar" MaxLength="20" />
           <Property Name="FechaAlta" Type="datetime" Nullable="false" />
           <Property Name="IdEstado" Type="int" Nullable="false" />
@@ -49,6 +55,8 @@
           <Property Name="FechaUltimoAviso" Type="datetime" />
           <Property Name="FechaLimitePago" Type="datetime" />
           <Property Name="DiasGracia" Type="int" />
+          <Property Name="IdCalle" Type="int" />
+          <Property Name="Numero" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="DetallePago">
           <Key>
@@ -159,6 +167,18 @@
             </Principal>
             <Dependent Role="AdeudoContribuyente">
               <PropertyRef Name="IdContribuyente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contribuyente_Calle">
+          <End Role="Calle" Type="Self.Calle" Multiplicity="0..1" />
+          <End Role="Contribuyente" Type="Self.Contribuyente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calle">
+              <PropertyRef Name="IdCalle" />
+            </Principal>
+            <Dependent Role="Contribuyente">
+              <PropertyRef Name="IdCalle" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -285,6 +305,7 @@
         <EntityContainer Name="SCPSAPModelStoreContainer">
           <EntitySet Name="Adeudo" EntityType="Self.Adeudo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AdeudoContribuyente" EntityType="Self.AdeudoContribuyente" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Calle" EntityType="Self.Calle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Contribuyente" EntityType="Self.Contribuyente" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DetallePago" EntityType="Self.DetallePago" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Egreso" EntityType="Self.Egreso" Schema="dbo" store:Type="Tables" />
@@ -302,6 +323,10 @@
           <AssociationSet Name="FK_AdeudoContribuyente_Contribuyente" Association="Self.FK_AdeudoContribuyente_Contribuyente">
             <End Role="Contribuyente" EntitySet="Contribuyente" />
             <End Role="AdeudoContribuyente" EntitySet="AdeudoContribuyente" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contribuyente_Calle" Association="Self.FK_Contribuyente_Calle">
+            <End Role="Calle" EntitySet="Calle" />
+            <End Role="Contribuyente" EntitySet="Contribuyente" />
           </AssociationSet>
           <AssociationSet Name="FK_Contribuyente_Estado" Association="Self.FK_Contribuyente_Estado">
             <End Role="Estado" EntitySet="Estado" />
@@ -349,29 +374,16 @@
     <edmx:ConceptualModels>
       <Schema Namespace="SCPSAPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="SCPSAPEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="Contribuyentes" EntityType="SCPSAPModel.Contribuyente" />
           <EntitySet Name="Estados" EntityType="SCPSAPModel.Estado" />
           <EntitySet Name="Tarifas" EntityType="SCPSAPModel.Tarifa" />
           <EntitySet Name="UsuarioRols" EntityType="SCPSAPModel.UsuarioRol" />
           <EntitySet Name="UsuarioSistemas" EntityType="SCPSAPModel.UsuarioSistema" />
-          <AssociationSet Name="FK_Contribuyente_Estado" Association="SCPSAPModel.FK_Contribuyente_Estado">
-            <End Role="Estado" EntitySet="Estados" />
-            <End Role="Contribuyente" EntitySet="Contribuyentes" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Contribuyente_Tarifa" Association="SCPSAPModel.FK_Contribuyente_Tarifa">
-            <End Role="Tarifa" EntitySet="Tarifas" />
-            <End Role="Contribuyente" EntitySet="Contribuyentes" />
-          </AssociationSet>
           <AssociationSet Name="FK_UsuarioSistema_Rol" Association="SCPSAPModel.FK_UsuarioSistema_Rol">
             <End Role="UsuarioRol" EntitySet="UsuarioRols" />
             <End Role="UsuarioSistema" EntitySet="UsuarioSistemas" />
           </AssociationSet>
           <EntitySet Name="AdeudoContribuyentes" EntityType="SCPSAPModel.AdeudoContribuyente" />
           <EntitySet Name="DetallePagos" EntityType="SCPSAPModel.DetallePago" />
-          <AssociationSet Name="FK_AdeudoContribuyente_Contribuyente" Association="SCPSAPModel.FK_AdeudoContribuyente_Contribuyente">
-            <End Role="Contribuyente" EntitySet="Contribuyentes" />
-            <End Role="AdeudoContribuyente" EntitySet="AdeudoContribuyentes" />
-          </AssociationSet>
           <AssociationSet Name="FK_DetallePago_AdeudoContribuyente" Association="SCPSAPModel.FK_DetallePago_AdeudoContribuyente">
             <End Role="AdeudoContribuyente" EntitySet="AdeudoContribuyentes" />
             <End Role="DetallePago" EntitySet="DetallePagos" />
@@ -382,10 +394,6 @@
             <End Role="AdeudoContribuyente" EntitySet="AdeudoContribuyentes" />
           </AssociationSet>
           <EntitySet Name="Pagos" EntityType="SCPSAPModel.Pago" />
-          <AssociationSet Name="FK_Pago_Contribuyente" Association="SCPSAPModel.FK_Pago_Contribuyente">
-            <End Role="Contribuyente" EntitySet="Contribuyentes" />
-            <End Role="Pago" EntitySet="Pagos" />
-          </AssociationSet>
           <AssociationSet Name="FK_DetallePago_Pago" Association="SCPSAPModel.FK_DetallePago_Pago">
             <End Role="Pago" EntitySet="Pagos" />
             <End Role="DetallePago" EntitySet="DetallePagos" />
@@ -409,27 +417,29 @@
             <End Role="UsuarioSistema" EntitySet="UsuarioSistemas" />
             <End Role="Egreso" EntitySet="Egresos" />
           </AssociationSet>
+          <EntitySet Name="Calles" EntityType="SCPSAPModel.Calle" />
+          <EntitySet Name="Contribuyentes" EntityType="SCPSAPModel.Contribuyente" />
+          <AssociationSet Name="FK_AdeudoContribuyente_Contribuyente" Association="SCPSAPModel.FK_AdeudoContribuyente_Contribuyente">
+            <End Role="Contribuyente" EntitySet="Contribuyentes" />
+            <End Role="AdeudoContribuyente" EntitySet="AdeudoContribuyentes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contribuyente_Calle" Association="SCPSAPModel.FK_Contribuyente_Calle">
+            <End Role="Calle" EntitySet="Calles" />
+            <End Role="Contribuyente" EntitySet="Contribuyentes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contribuyente_Estado" Association="SCPSAPModel.FK_Contribuyente_Estado">
+            <End Role="Estado" EntitySet="Estados" />
+            <End Role="Contribuyente" EntitySet="Contribuyentes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Contribuyente_Tarifa" Association="SCPSAPModel.FK_Contribuyente_Tarifa">
+            <End Role="Tarifa" EntitySet="Tarifas" />
+            <End Role="Contribuyente" EntitySet="Contribuyentes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Pago_Contribuyente" Association="SCPSAPModel.FK_Pago_Contribuyente">
+            <End Role="Contribuyente" EntitySet="Contribuyentes" />
+            <End Role="Pago" EntitySet="Pagos" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Contribuyente">
-          <Key>
-            <PropertyRef Name="IdContribuyente" />
-          </Key>
-          <Property Name="IdContribuyente" Type="Int32" Nullable="false" />
-          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-          <Property Name="Direccion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="IdEstado" Type="Int32" Nullable="false" />
-          <Property Name="IdTarifa" Type="Int32" />
-          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="FechaUltimoAviso" Type="DateTime" Precision="3" />
-          <Property Name="FechaLimitePago" Type="DateTime" Precision="3" />
-          <Property Name="DiasGracia" Type="Int32" />
-          <NavigationProperty Name="Estado" Relationship="SCPSAPModel.FK_Contribuyente_Estado" FromRole="Contribuyente" ToRole="Estado" />
-          <NavigationProperty Name="Tarifa" Relationship="SCPSAPModel.FK_Contribuyente_Tarifa" FromRole="Contribuyente" ToRole="Tarifa" />
-          <NavigationProperty Name="AdeudoContribuyentes" Relationship="SCPSAPModel.FK_AdeudoContribuyente_Contribuyente" FromRole="Contribuyente" ToRole="AdeudoContribuyente" />
-          <NavigationProperty Name="Pagoes" Relationship="SCPSAPModel.FK_Pago_Contribuyente" FromRole="Contribuyente" ToRole="Pago" />
-        </EntityType>
         <EntityType Name="Estado">
           <Key>
             <PropertyRef Name="IdEstado" />
@@ -469,30 +479,6 @@
           <NavigationProperty Name="MovimientoInventarios" Relationship="SCPSAPModel.FK_MovimientoInventario_UsuarioSistema" FromRole="UsuarioSistema" ToRole="MovimientoInventario" />
           <NavigationProperty Name="Egresoes" Relationship="SCPSAPModel.FK_Egreso_UsuarioSistema" FromRole="UsuarioSistema" ToRole="Egreso" />
         </EntityType>
-        <Association Name="FK_Contribuyente_Estado">
-          <End Type="SCPSAPModel.Estado" Role="Estado" Multiplicity="1" />
-          <End Type="SCPSAPModel.Contribuyente" Role="Contribuyente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Estado">
-              <PropertyRef Name="IdEstado" />
-            </Principal>
-            <Dependent Role="Contribuyente">
-              <PropertyRef Name="IdEstado" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Contribuyente_Tarifa">
-          <End Type="SCPSAPModel.Tarifa" Role="Tarifa" Multiplicity="0..1" />
-          <End Type="SCPSAPModel.Contribuyente" Role="Contribuyente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Tarifa">
-              <PropertyRef Name="IdTarifa" />
-            </Principal>
-            <Dependent Role="Contribuyente">
-              <PropertyRef Name="IdTarifa" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_UsuarioSistema_Rol">
           <End Type="SCPSAPModel.UsuarioRol" Role="UsuarioRol" Multiplicity="0..1" />
           <End Type="SCPSAPModel.UsuarioSistema" Role="UsuarioSistema" Multiplicity="*" />
@@ -521,9 +507,9 @@
           <Property Name="Estado" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
           <Property Name="FechaGeneracion" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="FechaVencimiento" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Contribuyente" Relationship="SCPSAPModel.FK_AdeudoContribuyente_Contribuyente" FromRole="AdeudoContribuyente" ToRole="Contribuyente" />
           <NavigationProperty Name="DetallePagoes" Relationship="SCPSAPModel.FK_DetallePago_AdeudoContribuyente" FromRole="AdeudoContribuyente" ToRole="DetallePago" />
           <NavigationProperty Name="Adeudo" Relationship="SCPSAPModel.FK_Adeudo_AdeudoContribuyente" FromRole="AdeudoContribuyente" ToRole="Adeudo" />
+          <NavigationProperty Name="Contribuyente" Relationship="SCPSAPModel.FK_AdeudoContribuyente_Contribuyente" FromRole="AdeudoContribuyente" ToRole="Contribuyente" />
         </EntityType>
         <EntityType Name="DetallePago">
           <Key>
@@ -536,18 +522,6 @@
           <NavigationProperty Name="AdeudoContribuyente" Relationship="SCPSAPModel.FK_DetallePago_AdeudoContribuyente" FromRole="DetallePago" ToRole="AdeudoContribuyente" />
           <NavigationProperty Name="Pago" Relationship="SCPSAPModel.FK_DetallePago_Pago" FromRole="DetallePago" ToRole="Pago" />
         </EntityType>
-        <Association Name="FK_AdeudoContribuyente_Contribuyente">
-          <End Type="SCPSAPModel.Contribuyente" Role="Contribuyente" Multiplicity="1" />
-          <End Type="SCPSAPModel.AdeudoContribuyente" Role="AdeudoContribuyente" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Contribuyente">
-              <PropertyRef Name="IdContribuyente" />
-            </Principal>
-            <Dependent Role="AdeudoContribuyente">
-              <PropertyRef Name="IdContribuyente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_DetallePago_AdeudoContribuyente">
           <End Type="SCPSAPModel.AdeudoContribuyente" Role="AdeudoContribuyente" Multiplicity="1" />
           <End Type="SCPSAPModel.DetallePago" Role="DetallePago" Multiplicity="*" />
@@ -597,22 +571,10 @@
           <Property Name="IdUsuarioSistema" Type="Int32" />
           <Property Name="PagaCon" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
           <Property Name="Cambio" Type="Decimal" Nullable="false" Precision="18" Scale="2" />
-          <NavigationProperty Name="Contribuyente" Relationship="SCPSAPModel.FK_Pago_Contribuyente" FromRole="Pago" ToRole="Contribuyente" />
           <NavigationProperty Name="DetallePagoes" Relationship="SCPSAPModel.FK_DetallePago_Pago" FromRole="Pago" ToRole="DetallePago" />
           <NavigationProperty Name="UsuarioSistema" Relationship="SCPSAPModel.FK_Pago_UsuarioSistema" FromRole="Pago" ToRole="UsuarioSistema" />
+          <NavigationProperty Name="Contribuyente" Relationship="SCPSAPModel.FK_Pago_Contribuyente" FromRole="Pago" ToRole="Contribuyente" />
         </EntityType>
-        <Association Name="FK_Pago_Contribuyente">
-          <End Type="SCPSAPModel.Contribuyente" Role="Contribuyente" Multiplicity="1" />
-          <End Type="SCPSAPModel.Pago" Role="Pago" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Contribuyente">
-              <PropertyRef Name="IdContribuyente" />
-            </Principal>
-            <Dependent Role="Pago">
-              <PropertyRef Name="IdContribuyente" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_DetallePago_Pago">
           <End Type="SCPSAPModel.Pago" Role="Pago" Multiplicity="1" />
           <End Type="SCPSAPModel.DetallePago" Role="DetallePago" Multiplicity="*" />
@@ -711,29 +673,102 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="Calle">
+          <Key>
+            <PropertyRef Name="IdCalle" />
+          </Key>
+          <Property Name="IdCalle" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Contribuyentes" Relationship="SCPSAPModel.FK_Contribuyente_Calle" FromRole="Calle" ToRole="Contribuyente" />
+        </EntityType>
+        <EntityType Name="Contribuyente">
+          <Key>
+            <PropertyRef Name="IdContribuyente" />
+          </Key>
+          <Property Name="IdContribuyente" Type="Int32" Nullable="false" />
+          <Property Name="Nombre" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Telefono" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="FechaAlta" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdEstado" Type="Int32" Nullable="false" />
+          <Property Name="IdTarifa" Type="Int32" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="FechaUltimoAviso" Type="DateTime" Precision="3" />
+          <Property Name="FechaLimitePago" Type="DateTime" Precision="3" />
+          <Property Name="DiasGracia" Type="Int32" />
+          <Property Name="IdCalle" Type="Int32" />
+          <Property Name="Numero" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="AdeudoContribuyentes" Relationship="SCPSAPModel.FK_AdeudoContribuyente_Contribuyente" FromRole="Contribuyente" ToRole="AdeudoContribuyente" />
+          <NavigationProperty Name="Calle" Relationship="SCPSAPModel.FK_Contribuyente_Calle" FromRole="Contribuyente" ToRole="Calle" />
+          <NavigationProperty Name="Estado" Relationship="SCPSAPModel.FK_Contribuyente_Estado" FromRole="Contribuyente" ToRole="Estado" />
+          <NavigationProperty Name="Tarifa" Relationship="SCPSAPModel.FK_Contribuyente_Tarifa" FromRole="Contribuyente" ToRole="Tarifa" />
+          <NavigationProperty Name="Pagoes" Relationship="SCPSAPModel.FK_Pago_Contribuyente" FromRole="Contribuyente" ToRole="Pago" />
+        </EntityType>
+        <Association Name="FK_AdeudoContribuyente_Contribuyente">
+          <End Type="SCPSAPModel.Contribuyente" Role="Contribuyente" Multiplicity="1" />
+          <End Type="SCPSAPModel.AdeudoContribuyente" Role="AdeudoContribuyente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contribuyente">
+              <PropertyRef Name="IdContribuyente" />
+            </Principal>
+            <Dependent Role="AdeudoContribuyente">
+              <PropertyRef Name="IdContribuyente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contribuyente_Calle">
+          <End Type="SCPSAPModel.Calle" Role="Calle" Multiplicity="0..1" />
+          <End Type="SCPSAPModel.Contribuyente" Role="Contribuyente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Calle">
+              <PropertyRef Name="IdCalle" />
+            </Principal>
+            <Dependent Role="Contribuyente">
+              <PropertyRef Name="IdCalle" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contribuyente_Estado">
+          <End Type="SCPSAPModel.Estado" Role="Estado" Multiplicity="1" />
+          <End Type="SCPSAPModel.Contribuyente" Role="Contribuyente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estado">
+              <PropertyRef Name="IdEstado" />
+            </Principal>
+            <Dependent Role="Contribuyente">
+              <PropertyRef Name="IdEstado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Contribuyente_Tarifa">
+          <End Type="SCPSAPModel.Tarifa" Role="Tarifa" Multiplicity="0..1" />
+          <End Type="SCPSAPModel.Contribuyente" Role="Contribuyente" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tarifa">
+              <PropertyRef Name="IdTarifa" />
+            </Principal>
+            <Dependent Role="Contribuyente">
+              <PropertyRef Name="IdTarifa" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Pago_Contribuyente">
+          <End Type="SCPSAPModel.Contribuyente" Role="Contribuyente" Multiplicity="1" />
+          <End Type="SCPSAPModel.Pago" Role="Pago" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Contribuyente">
+              <PropertyRef Name="IdContribuyente" />
+            </Principal>
+            <Dependent Role="Pago">
+              <PropertyRef Name="IdContribuyente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="SCPSAPModelStoreContainer" CdmEntityContainer="SCPSAPEntities">
-          <EntitySetMapping Name="Contribuyentes">
-            <EntityTypeMapping TypeName="SCPSAPModel.Contribuyente">
-              <MappingFragment StoreEntitySet="Contribuyente">
-                <ScalarProperty Name="DiasGracia" ColumnName="DiasGracia" />
-                <ScalarProperty Name="FechaLimitePago" ColumnName="FechaLimitePago" />
-                <ScalarProperty Name="FechaUltimoAviso" ColumnName="FechaUltimoAviso" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="IdTarifa" ColumnName="IdTarifa" />
-                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
-                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="IdContribuyente" ColumnName="IdContribuyente" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Estados">
             <EntityTypeMapping TypeName="SCPSAPModel.Estado">
               <MappingFragment StoreEntitySet="Estado">
@@ -859,6 +894,32 @@
                 <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
                 <ScalarProperty Name="Concepto" ColumnName="Concepto" />
                 <ScalarProperty Name="IdEgreso" ColumnName="IdEgreso" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Calles">
+            <EntityTypeMapping TypeName="SCPSAPModel.Calle">
+              <MappingFragment StoreEntitySet="Calle">
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdCalle" ColumnName="IdCalle" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Contribuyentes">
+            <EntityTypeMapping TypeName="SCPSAPModel.Contribuyente">
+              <MappingFragment StoreEntitySet="Contribuyente">
+                <ScalarProperty Name="Numero" ColumnName="Numero" />
+                <ScalarProperty Name="IdCalle" ColumnName="IdCalle" />
+                <ScalarProperty Name="DiasGracia" ColumnName="DiasGracia" />
+                <ScalarProperty Name="FechaLimitePago" ColumnName="FechaLimitePago" />
+                <ScalarProperty Name="FechaUltimoAviso" ColumnName="FechaUltimoAviso" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="IdTarifa" ColumnName="IdTarifa" />
+                <ScalarProperty Name="IdEstado" ColumnName="IdEstado" />
+                <ScalarProperty Name="FechaAlta" ColumnName="FechaAlta" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="IdContribuyente" ColumnName="IdContribuyente" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -59,6 +59,9 @@
     <Compile Include="AdeudoContribuyente.cs">
       <DependentUpon>ModelSCPSAP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Calle.cs">
+      <DependentUpon>ModelSCPSAP.tt</DependentUpon>
+    </Compile>
     <Compile Include="Class1.cs" />
     <Compile Include="Cobranza\AgregarAdeudoPorContribuyenteDatos.cs" />
     <Compile Include="Cobranza\CobranzaDatos.cs" />

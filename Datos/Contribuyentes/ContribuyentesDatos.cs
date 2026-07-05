@@ -1,10 +1,6 @@
-﻿using Entidades;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlClient;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static Entidades.Modelos;
 
 namespace Datos.Contribuyentes
@@ -25,17 +21,21 @@ namespace Datos.Contribuyentes
                             from t in tj.DefaultIfEmpty()
                             join e in SCPSAPEntities.Estados on c.IdEstado equals e.IdEstado into ej
                             from e in ej.DefaultIfEmpty()
+                            join calle in SCPSAPEntities.Calles on c.IdCalle equals calle.IdCalle into cj
+                            from calle in cj.DefaultIfEmpty()
                             select new ContribuyenteDto
                             {
                                 IdContribuyente = c.IdContribuyente,
                                 Nombre = c.Nombre,
-                                Direccion = c.Direccion,
+                                IdCalle = c.IdCalle,
+                                Calle = calle != null ? calle.Nombre : null,
+                                Numero = c.Numero,
                                 Telefono = c.Telefono,
                                 FechaAlta = c.FechaAlta,
                                 IdEstado = c.IdEstado,
                                 EstadoDescripcion = e != null ? e.Descripcion : null,
                                 IdTarifa = c.IdTarifa,
-                                Tarifa =  t.MontoMensual,
+                                Tarifa = t.MontoMensual,
                                 Email = c.Email,
                                 FechaUltimoAviso = c.FechaUltimoAviso,
                                 FechaLimitePago = c.FechaLimitePago,
@@ -44,6 +44,18 @@ namespace Datos.Contribuyentes
 
                 return query.ToList();
 
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        public List<Calle> ObtenerCalles()
+        {
+            try
+            {
+                return SCPSAPEntities.Calles.ToList();
             }
             catch (Exception ex)
             {
@@ -111,7 +123,8 @@ namespace Datos.Contribuyentes
                 {
                     // Actualizar propiedades
                     contribuyenteExistente.Nombre = contribuyenteActualizado.Nombre;
-                    contribuyenteExistente.Direccion = contribuyenteActualizado.Direccion;
+                    contribuyenteExistente.Numero = contribuyenteActualizado.Numero;
+                    contribuyenteExistente.IdCalle = contribuyenteActualizado.IdCalle;
                     contribuyenteExistente.IdTarifa = contribuyenteActualizado.IdTarifa;
                     contribuyenteExistente.IdEstado = contribuyenteActualizado.IdEstado;
                     contribuyenteExistente.Telefono = contribuyenteActualizado.Telefono;
@@ -155,11 +168,15 @@ namespace Datos.Contribuyentes
                         from t in tj.DefaultIfEmpty()
                         join e in SCPSAPEntities.Estados on c.IdEstado equals e.IdEstado into ej
                         from e in ej.DefaultIfEmpty() where c.Nombre.Contains(criterio)
+                        join calle in SCPSAPEntities.Calles on c.IdCalle equals calle.IdCalle into cj
+                        from calle in cj.DefaultIfEmpty()
                         select new ContribuyenteDto
                         {
                             IdContribuyente = c.IdContribuyente,
                             Nombre = c.Nombre,
-                            Direccion = c.Direccion,
+                            Numero = c.Numero,
+                            IdCalle = (int)c.IdCalle,
+                            Calle = calle.Nombre,
                             Telefono = c.Telefono,
                             FechaAlta = c.FechaAlta,
                             IdEstado = c.IdEstado,
