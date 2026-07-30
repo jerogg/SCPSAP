@@ -22,7 +22,7 @@ namespace Datos.Contribuyentes
                             join e in SCPSAPEntities.Estados on c.IdEstado equals e.IdEstado into ej
                             from e in ej.DefaultIfEmpty()
                             join calle in SCPSAPEntities.Calles on c.IdCalle equals calle.IdCalle into cj
-                            from calle in cj.DefaultIfEmpty()
+                            from calle in cj.DefaultIfEmpty() where c.IdEstado == 1
                             select new ContribuyenteDto
                             {
                                 IdContribuyente = c.IdContribuyente,
@@ -36,6 +36,7 @@ namespace Datos.Contribuyentes
                                 EstadoDescripcion = e != null ? e.Descripcion : null,
                                 IdTarifa = c.IdTarifa,
                                 Tarifa = t.MontoMensual,
+                                NombreTarifa = t.NombreTarifa,
                                 Email = c.Email,
                                 FechaUltimoAviso = c.FechaUltimoAviso,
                                 FechaLimitePago = c.FechaLimitePago,
@@ -161,15 +162,16 @@ namespace Datos.Contribuyentes
             }
         }
 
-        public List<ContribuyenteDto> BuscarContribuyentes(string criterio)
+        public List<ContribuyenteDto> BuscarContribuyentes(string criterio, int IdEstado)
         {
             var lista = from c in SCPSAPEntities.Contribuyentes
                         join t in SCPSAPEntities.Tarifas on c.IdTarifa equals t.IdTarifa into tj
                         from t in tj.DefaultIfEmpty()
                         join e in SCPSAPEntities.Estados on c.IdEstado equals e.IdEstado into ej
-                        from e in ej.DefaultIfEmpty() where c.Nombre.Contains(criterio)
+                        from e in ej.DefaultIfEmpty()
                         join calle in SCPSAPEntities.Calles on c.IdCalle equals calle.IdCalle into cj
                         from calle in cj.DefaultIfEmpty()
+                        where (c.Nombre.Contains(criterio) || c.IdContribuyente.ToString() == criterio) && c.IdEstado == IdEstado
                         select new ContribuyenteDto
                         {
                             IdContribuyente = c.IdContribuyente,
@@ -183,6 +185,7 @@ namespace Datos.Contribuyentes
                             EstadoDescripcion = e != null ? e.Descripcion : null,
                             IdTarifa = c.IdTarifa,
                             Tarifa = t.MontoMensual,
+                            NombreTarifa = t.NombreTarifa,
                             Email = c.Email,
                             FechaUltimoAviso = c.FechaUltimoAviso,
                             FechaLimitePago = c.FechaLimitePago,

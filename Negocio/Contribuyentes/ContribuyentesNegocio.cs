@@ -2,9 +2,6 @@
 using Datos.Contribuyentes;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using static Entidades.Modelos;
 
 namespace Negocio.Contribuyentes
@@ -118,10 +115,10 @@ namespace Negocio.Contribuyentes
             }
         }
 
-        public List<ContribuyenteDto> BuscarContribuyentes(string criterio)
+        public List<ContribuyenteDto> BuscarContribuyentes(string criterio, int IdEstado)
         {
             ContribuyentesDatos datos = new ContribuyentesDatos();
-            return datos.BuscarContribuyentes(criterio);
+            return datos.BuscarContribuyentes(criterio, IdEstado);
         }
 
         public bool ExisteFolio(int id)

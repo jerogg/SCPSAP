@@ -87,6 +87,7 @@ INSERT INTO Calle (Nombre) VALUES ( 'Privada Poniente 1' );
 INSERT INTO Calle (Nombre) VALUES ( 'Privada Poniente 2' ); 
 INSERT INTO Calle (Nombre) VALUES ( 'Privada Quetzalcóatl' ); 
 INSERT INTO Calle (Nombre) VALUES ( 'Privada Tollan' ); 
+INSERT INTO Calle (Nombre) VALUES ( 'No asignada' ); 
 
 
 -- Si la tabla Contribuyente no existe, créala con la nueva estructura (IdCalle + Numero)

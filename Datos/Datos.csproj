@@ -78,6 +78,7 @@
     <Compile Include="Egreso.cs">
       <DependentUpon>ModelSCPSAP.tt</DependentUpon>
     </Compile>
+    <Compile Include="Egresos\EgresosDatos.cs" />
     <Compile Include="Estado.cs">
       <DependentUpon>ModelSCPSAP.tt</DependentUpon>
     </Compile>

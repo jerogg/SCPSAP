@@ -187,6 +187,7 @@
             this.btnMenuEgresos.TabIndex = 5;
             this.btnMenuEgresos.Text = "Egresos";
             this.btnMenuEgresos.UseVisualStyleBackColor = true;
+            this.btnMenuEgresos.Click += new System.EventHandler(this.btnMenuEgresos_Click);
             // 
             // pnlConfiguracion
             // 

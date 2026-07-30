@@ -112,9 +112,9 @@
             // btnPagar
             // 
             this.btnPagar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnPagar.Location = new System.Drawing.Point(567, 454);
+            this.btnPagar.Location = new System.Drawing.Point(556, 451);
             this.btnPagar.Name = "btnPagar";
-            this.btnPagar.Size = new System.Drawing.Size(72, 25);
+            this.btnPagar.Size = new System.Drawing.Size(75, 25);
             this.btnPagar.TabIndex = 23;
             this.btnPagar.Text = "Pagar";
             this.btnPagar.UseVisualStyleBackColor = true;

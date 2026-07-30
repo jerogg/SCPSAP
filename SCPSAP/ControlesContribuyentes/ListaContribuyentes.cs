@@ -21,10 +21,20 @@ namespace SCPSAP.Contribuyentes
 
         private bool esNuevo = false; // Para distinguir entre nuevo y actualización
 
+        // Timer para debounce de búsqueda
+        private readonly Timer _searchTimer;
+        private string _pendingSearchText = string.Empty;
+        private const int SearchDebounceMs = 1000; // espera en ms antes de iniciar la búsqueda
+
         public ListaContribuyentes()
         {
             InitializeComponent();
             Theme.ApplyTo(this);
+
+            // Inicializar timer de búsqueda (debounce)
+            _searchTimer = new Timer();
+            _searchTimer.Interval = SearchDebounceMs;
+            _searchTimer.Tick += SearchTimer_Tick;
 
             // Suscribir eventos
             if (dgvListaContribuyentes != null)
@@ -44,6 +54,41 @@ namespace SCPSAP.Contribuyentes
 
             // Asegurar estado correcto después de cargar datos
             ActualizarEstadoBotonActualizar();
+        }
+
+        private void SearchTimer_Tick(object sender, EventArgs e)
+        {
+            // Se dispara en hilo de UI; detener timer y ejecutar búsqueda async
+            _searchTimer.Stop();
+            var texto = _pendingSearchText;
+            var IdEstado = int.Parse(cbxFiltroSituacion.SelectedValue.ToString());
+            _ = PerformSearchAsync(texto, IdEstado); // fire-and-forget manejado internamente
+        }
+
+        private async Task PerformSearchAsync(string texto, int IdEstado)
+        {
+            try
+            {
+                this.Enabled = false;
+                proBarCarga.Visible = true;
+                proBarCarga.Enabled = true;
+
+                var lista = await Task.Run(() =>
+                {
+                    return contribuyentesNegocio.BuscarContribuyentes(texto, IdEstado);
+                });
+
+                dgvListaContribuyentes.DataSource = lista;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error");
+            }
+            finally
+            {
+                this.Enabled = true;
+                proBarCarga.Visible = false;
+            }
         }
 
         private void CargarContribuyentes()
@@ -108,6 +153,12 @@ namespace SCPSAP.Contribuyentes
                 cbxEstado.DataSource = contribuyentesNegocio.ObtenerEstados();
                 cbxEstado.DisplayMember = "Descripcion"; // Muestra la descripción del estado
                 cbxEstado.ValueMember = "IdEstado"; // Usa el ID del estado como valor
+
+                cbxFiltroSituacion.DataSource = contribuyentesNegocio.ObtenerEstados();
+                cbxFiltroSituacion.DisplayMember = "Descripcion"; // Muestra la descripción del estado
+                cbxFiltroSituacion.ValueMember = "IdEstado"; // Usa el ID del estado como valor
+
+                cbxFiltroSituacion.SelectedIndex = 0;
             }
             catch (Exception ex)
             {
@@ -131,6 +182,7 @@ namespace SCPSAP.Contribuyentes
                     txbBuscar.Enabled = false;
                     btnCancelar.Enabled = true;
                     btnGuardar.Enabled = true;
+                    dgvListaContribuyentes.Enabled = false;
                     // Aquí podrías cargar los datos completos del contribuyente en los controles:
                     CargarContribuyenteEnControles(_idContribuyenteSeleccionado);
                 }
@@ -149,6 +201,7 @@ namespace SCPSAP.Contribuyentes
         {
             esNuevo = true;
             pnlDatosUsuario.Enabled = true;
+            dgvListaContribuyentes.Enabled = false;
             btnActualizar.Enabled = false;
             txbBuscar.Enabled = false;
             btnNuevo.Enabled = false;
@@ -311,6 +364,13 @@ namespace SCPSAP.Contribuyentes
             int? idTarifa = cbxTarifa.SelectedValue != null && int.TryParse(cbxTarifa.SelectedValue.ToString(), out int t) ? (int?)t : null;
             int idEstado = cbxEstado.SelectedValue != null && int.TryParse(cbxEstado.SelectedValue.ToString(), out int s) ? s : 0;
             int idCalle = cbxCalles.SelectedValue != null && int.TryParse(cbxCalles.SelectedValue.ToString(), out int c) ? c : 0;
+
+            if (idCalle == 0)
+            {
+                MessageBox.Show("Seleccione la calle", "Validación", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                cbxCalles.Focus();
+                return false;
+            }
 
             // Dias de gracia (opcional)
             int? diasGracia = null;
@@ -493,6 +553,7 @@ namespace SCPSAP.Contribuyentes
         {
             // Limpiar controles y restablecer estado
             pnlDatosUsuario.Enabled = false;
+            dgvListaContribuyentes.Enabled = true;
             btnNuevo.Enabled = true;
             btnActualizar.Enabled = true;
             txbBuscar.Enabled = true;
@@ -568,7 +629,10 @@ namespace SCPSAP.Contribuyentes
                     var fila = dgvListaContribuyentes.Rows[e.RowIndex];
                     string nombre = fila.Cells["Nombre"].Value != null ? fila.Cells["Nombre"].Value.ToString() : string.Empty;
                     string folio = fila.Cells["IdContribuyente"].Value != null ? fila.Cells["IdContribuyente"].Value.ToString() : string.Empty;
-                    string direccion = fila.Cells["Direccion"].Value != null ? fila.Cells["Direccion"].Value.ToString() : string.Empty;
+                    string calle = fila.Cells["Calle"].Value != null ? fila.Cells["Calle"].Value.ToString() : string.Empty;
+                    string numero = fila.Cells["Numero"].Value != null ? fila.Cells["Numero"].Value.ToString() : "s/n";
+
+                    string direccion = calle + " #" + numero;
 
                     // 🔒 BLOQUEAR + SPINNER (TAREA 6)
                     this.Enabled = false;
@@ -606,34 +670,20 @@ namespace SCPSAP.Contribuyentes
             }
         }
 
-    private async void txtBuscar_TextChanged(object sender, EventArgs e)
-    {
-    try
-    {
-        this.Enabled = false;
-        proBarCarga.Visible = true;
-        proBarCarga.Enabled = true;
-
-
-        string texto = txbBuscar.Text;
-
-        var lista = await Task.Run(() =>
+        private void txtBuscar_TextChanged(object sender, EventArgs e)
         {
-            return new ContribuyentesNegocio().BuscarContribuyentes(texto);
-        });
-
-        dgvListaContribuyentes.DataSource = lista;
-    }
-    catch (Exception ex)
-    {
-        MessageBox.Show(ex.Message, "Error");
-    }
-    finally
-    {
-        this.Enabled = true;
-        proBarCarga.Visible = false;
-    }
-    }
+            // Reinicia el debounce; la búsqueda real se ejecutará cuando el timer haga Tick
+            _pendingSearchText = txbBuscar.Text;
+            try
+            {
+                _searchTimer.Stop();
+                _searchTimer.Start();
+            }
+            catch
+            {
+                // silencioso: si el timer falla no queremos romper la UI
+            }
+        }
 
         private void dgvListaContribuyentes_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
         {
@@ -682,7 +732,12 @@ namespace SCPSAP.Contribuyentes
 
         }
 
-       
+        private void cbxFiltroSituacion_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var texto = _pendingSearchText;
+            var IdEstado = int.Parse(cbxFiltroSituacion.SelectedValue.ToString());
+            _ = PerformSearchAsync(texto, IdEstado);
+        }
     }
 }
 

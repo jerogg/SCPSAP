@@ -69,10 +69,13 @@
             this.Telefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaAlta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Estado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NombreTarifa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Tarifa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.AgregarAdeudo = new System.Windows.Forms.DataGridViewImageColumn();
             this.Eliminar = new System.Windows.Forms.DataGridViewImageColumn();
+            this.cbxFiltroSituacion = new System.Windows.Forms.ComboBox();
+            this.lblFiltroSituacion = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaContribuyentes)).BeginInit();
             this.pnlDatosUsuario.SuspendLayout();
             this.SuspendLayout();
@@ -99,6 +102,7 @@
             this.Telefono,
             this.FechaAlta,
             this.Estado,
+            this.NombreTarifa,
             this.Tarifa,
             this.Email,
             this.AgregarAdeudo,
@@ -108,7 +112,7 @@
             this.dgvListaContribuyentes.Name = "dgvListaContribuyentes";
             this.dgvListaContribuyentes.ReadOnly = true;
             this.dgvListaContribuyentes.RowHeadersWidth = 51;
-            this.dgvListaContribuyentes.Size = new System.Drawing.Size(586, 229);
+            this.dgvListaContribuyentes.Size = new System.Drawing.Size(663, 229);
             this.dgvListaContribuyentes.TabIndex = 0;
             this.dgvListaContribuyentes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaContribuyentes_CellClick);
             this.dgvListaContribuyentes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvListaContribuyentes_CellContentClick);
@@ -199,7 +203,7 @@
             // 
             this.lblTarifa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblTarifa.AutoSize = true;
-            this.lblTarifa.Location = new System.Drawing.Point(321, 16);
+            this.lblTarifa.Location = new System.Drawing.Point(398, 16);
             this.lblTarifa.Name = "lblTarifa";
             this.lblTarifa.Size = new System.Drawing.Size(79, 13);
             this.lblTarifa.TabIndex = 10;
@@ -209,7 +213,7 @@
             // 
             this.lblDiasDeGracia.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblDiasDeGracia.AutoSize = true;
-            this.lblDiasDeGracia.Location = new System.Drawing.Point(318, 55);
+            this.lblDiasDeGracia.Location = new System.Drawing.Point(395, 55);
             this.lblDiasDeGracia.Name = "lblDiasDeGracia";
             this.lblDiasDeGracia.Size = new System.Drawing.Size(82, 13);
             this.lblDiasDeGracia.TabIndex = 12;
@@ -219,7 +223,7 @@
             // 
             this.lblEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblEstado.AutoSize = true;
-            this.lblEstado.Location = new System.Drawing.Point(346, 94);
+            this.lblEstado.Location = new System.Drawing.Point(423, 94);
             this.lblEstado.Name = "lblEstado";
             this.lblEstado.Size = new System.Drawing.Size(54, 13);
             this.lblEstado.TabIndex = 14;
@@ -229,7 +233,7 @@
             // 
             this.cbxTarifa.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxTarifa.FormattingEnabled = true;
-            this.cbxTarifa.Location = new System.Drawing.Point(403, 12);
+            this.cbxTarifa.Location = new System.Drawing.Point(480, 12);
             this.cbxTarifa.Name = "cbxTarifa";
             this.cbxTarifa.Size = new System.Drawing.Size(165, 21);
             this.cbxTarifa.TabIndex = 16;
@@ -242,7 +246,7 @@
             "30",
             "60",
             "90"});
-            this.cbxDiasDeGracia.Location = new System.Drawing.Point(403, 51);
+            this.cbxDiasDeGracia.Location = new System.Drawing.Point(480, 51);
             this.cbxDiasDeGracia.Name = "cbxDiasDeGracia";
             this.cbxDiasDeGracia.Size = new System.Drawing.Size(165, 21);
             this.cbxDiasDeGracia.TabIndex = 17;
@@ -251,7 +255,7 @@
             // 
             this.cbxEstado.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.cbxEstado.FormattingEnabled = true;
-            this.cbxEstado.Location = new System.Drawing.Point(403, 90);
+            this.cbxEstado.Location = new System.Drawing.Point(480, 90);
             this.cbxEstado.Name = "cbxEstado";
             this.cbxEstado.Size = new System.Drawing.Size(165, 21);
             this.cbxEstado.TabIndex = 18;
@@ -260,7 +264,7 @@
             // 
             this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGuardar.Enabled = false;
-            this.btnGuardar.Location = new System.Drawing.Point(513, 463);
+            this.btnGuardar.Location = new System.Drawing.Point(590, 463);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 25);
             this.btnGuardar.TabIndex = 19;
@@ -316,7 +320,7 @@
             this.pnlDatosUsuario.Enabled = false;
             this.pnlDatosUsuario.Location = new System.Drawing.Point(5, 289);
             this.pnlDatosUsuario.Name = "pnlDatosUsuario";
-            this.pnlDatosUsuario.Size = new System.Drawing.Size(584, 159);
+            this.pnlDatosUsuario.Size = new System.Drawing.Size(661, 159);
             this.pnlDatosUsuario.TabIndex = 22;
             // 
             // cbxCalles
@@ -345,7 +349,7 @@
             // txbFolio
             // 
             this.txbFolio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbFolio.Location = new System.Drawing.Point(403, 127);
+            this.txbFolio.Location = new System.Drawing.Point(480, 127);
             this.txbFolio.Name = "txbFolio";
             this.txbFolio.Size = new System.Drawing.Size(165, 20);
             this.txbFolio.TabIndex = 20;
@@ -354,7 +358,7 @@
             // 
             this.lblFolio.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.lblFolio.AutoSize = true;
-            this.lblFolio.Location = new System.Drawing.Point(333, 131);
+            this.lblFolio.Location = new System.Drawing.Point(410, 131);
             this.lblFolio.Name = "lblFolio";
             this.lblFolio.Size = new System.Drawing.Size(67, 13);
             this.lblFolio.TabIndex = 19;
@@ -377,7 +381,7 @@
             this.lblBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.lblBuscar.AutoSize = true;
             this.lblBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.lblBuscar.Location = new System.Drawing.Point(374, 20);
+            this.lblBuscar.Location = new System.Drawing.Point(451, 20);
             this.lblBuscar.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblBuscar.Name = "lblBuscar";
             this.lblBuscar.Size = new System.Drawing.Size(111, 13);
@@ -387,7 +391,7 @@
             // txbBuscar
             // 
             this.txbBuscar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbBuscar.Location = new System.Drawing.Point(489, 17);
+            this.txbBuscar.Location = new System.Drawing.Point(566, 17);
             this.txbBuscar.Margin = new System.Windows.Forms.Padding(2);
             this.txbBuscar.Name = "txbBuscar";
             this.txbBuscar.Size = new System.Drawing.Size(101, 20);
@@ -410,7 +414,7 @@
             // proBarCarga
             // 
             this.proBarCarga.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.proBarCarga.Location = new System.Drawing.Point(257, 166);
+            this.proBarCarga.Location = new System.Drawing.Point(295, 166);
             this.proBarCarga.Margin = new System.Windows.Forms.Padding(2);
             this.proBarCarga.MarqueeAnimationSpeed = 30;
             this.proBarCarga.Name = "proBarCarga";
@@ -520,6 +524,13 @@
             this.Estado.Name = "Estado";
             this.Estado.ReadOnly = true;
             // 
+            // NombreTarifa
+            // 
+            this.NombreTarifa.DataPropertyName = "NombreTarifa";
+            this.NombreTarifa.HeaderText = "Nombre de tarifa";
+            this.NombreTarifa.Name = "NombreTarifa";
+            this.NombreTarifa.ReadOnly = true;
+            // 
             // Tarifa
             // 
             this.Tarifa.DataPropertyName = "Tarifa";
@@ -561,10 +572,32 @@
             this.Eliminar.ToolTipText = "Eliminar contribuyente";
             this.Eliminar.Width = 49;
             // 
+            // cbxFiltroSituacion
+            // 
+            this.cbxFiltroSituacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbxFiltroSituacion.FormattingEnabled = true;
+            this.cbxFiltroSituacion.Location = new System.Drawing.Point(317, 16);
+            this.cbxFiltroSituacion.Name = "cbxFiltroSituacion";
+            this.cbxFiltroSituacion.Size = new System.Drawing.Size(129, 21);
+            this.cbxFiltroSituacion.TabIndex = 24;
+            this.cbxFiltroSituacion.SelectedIndexChanged += new System.EventHandler(this.cbxFiltroSituacion_SelectedIndexChanged);
+            // 
+            // lblFiltroSituacion
+            // 
+            this.lblFiltroSituacion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblFiltroSituacion.AutoSize = true;
+            this.lblFiltroSituacion.Location = new System.Drawing.Point(260, 20);
+            this.lblFiltroSituacion.Name = "lblFiltroSituacion";
+            this.lblFiltroSituacion.Size = new System.Drawing.Size(54, 13);
+            this.lblFiltroSituacion.TabIndex = 23;
+            this.lblFiltroSituacion.Text = "Situacion:";
+            // 
             // ListaContribuyentes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.cbxFiltroSituacion);
+            this.Controls.Add(this.lblFiltroSituacion);
             this.Controls.Add(this.proBarCarga);
             this.Controls.Add(this.txbBuscar);
             this.Controls.Add(this.lblBuscar);
@@ -576,7 +609,7 @@
             this.Controls.Add(this.lblListadoDeContribuyentes);
             this.Controls.Add(this.dgvListaContribuyentes);
             this.Name = "ListaContribuyentes";
-            this.Size = new System.Drawing.Size(592, 493);
+            this.Size = new System.Drawing.Size(669, 493);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaContribuyentes)).EndInit();
             this.pnlDatosUsuario.ResumeLayout(false);
             this.pnlDatosUsuario.PerformLayout();
@@ -628,9 +661,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Telefono;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaAlta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Estado;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NombreTarifa;
         private System.Windows.Forms.DataGridViewTextBoxColumn Tarifa;
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private System.Windows.Forms.DataGridViewImageColumn AgregarAdeudo;
         private System.Windows.Forms.DataGridViewImageColumn Eliminar;
+        private System.Windows.Forms.ComboBox cbxFiltroSituacion;
+        private System.Windows.Forms.Label lblFiltroSituacion;
     }
 }

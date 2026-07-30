@@ -42,6 +42,7 @@
             this.Monto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FechaMovimiento = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UsuarioSistema = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnCancelar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaContribuyentes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -49,7 +50,7 @@
             // 
             this.lblConcepto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblConcepto.AutoSize = true;
-            this.lblConcepto.Location = new System.Drawing.Point(10, 309);
+            this.lblConcepto.Location = new System.Drawing.Point(10, 271);
             this.lblConcepto.Name = "lblConcepto";
             this.lblConcepto.Size = new System.Drawing.Size(56, 13);
             this.lblConcepto.TabIndex = 18;
@@ -59,7 +60,7 @@
             // 
             this.lblDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblDescripcion.AutoSize = true;
-            this.lblDescripcion.Location = new System.Drawing.Point(7, 384);
+            this.lblDescripcion.Location = new System.Drawing.Point(4, 345);
             this.lblDescripcion.Name = "lblDescripcion";
             this.lblDescripcion.Size = new System.Drawing.Size(66, 13);
             this.lblDescripcion.TabIndex = 19;
@@ -69,7 +70,7 @@
             // 
             this.lblMonto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
             this.lblMonto.AutoSize = true;
-            this.lblMonto.Location = new System.Drawing.Point(25, 347);
+            this.lblMonto.Location = new System.Drawing.Point(25, 309);
             this.lblMonto.Name = "lblMonto";
             this.lblMonto.Size = new System.Drawing.Size(40, 13);
             this.lblMonto.TabIndex = 20;
@@ -79,17 +80,16 @@
             // 
             this.txbDescripcion.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.txbDescripcion.Location = new System.Drawing.Point(0, 400);
+            this.txbDescripcion.Location = new System.Drawing.Point(0, 361);
             this.txbDescripcion.Multiline = true;
             this.txbDescripcion.Name = "txbDescripcion";
-            this.txbDescripcion.Size = new System.Drawing.Size(601, 61);
+            this.txbDescripcion.Size = new System.Drawing.Size(598, 61);
             this.txbDescripcion.TabIndex = 25;
             // 
             // txbConcepto
             // 
             this.txbConcepto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txbConcepto.Enabled = false;
-            this.txbConcepto.Location = new System.Drawing.Point(69, 306);
+            this.txbConcepto.Location = new System.Drawing.Point(69, 267);
             this.txbConcepto.Name = "txbConcepto";
             this.txbConcepto.Size = new System.Drawing.Size(262, 20);
             this.txbConcepto.TabIndex = 29;
@@ -97,8 +97,7 @@
             // txbMonto
             // 
             this.txbMonto.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.txbMonto.Enabled = false;
-            this.txbMonto.Location = new System.Drawing.Point(69, 344);
+            this.txbMonto.Location = new System.Drawing.Point(69, 305);
             this.txbMonto.Name = "txbMonto";
             this.txbMonto.Size = new System.Drawing.Size(262, 20);
             this.txbMonto.TabIndex = 30;
@@ -108,7 +107,7 @@
             // 
             this.btnGuardar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnGuardar.Enabled = false;
-            this.btnGuardar.Location = new System.Drawing.Point(526, 474);
+            this.btnGuardar.Location = new System.Drawing.Point(526, 444);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(75, 25);
             this.btnGuardar.TabIndex = 31;
@@ -137,7 +136,7 @@
             this.dgvListaContribuyentes.Name = "dgvListaContribuyentes";
             this.dgvListaContribuyentes.ReadOnly = true;
             this.dgvListaContribuyentes.RowHeadersWidth = 51;
-            this.dgvListaContribuyentes.Size = new System.Drawing.Size(598, 277);
+            this.dgvListaContribuyentes.Size = new System.Drawing.Size(598, 251);
             this.dgvListaContribuyentes.TabIndex = 32;
             // 
             // IdEgreso
@@ -189,10 +188,22 @@
             this.UsuarioSistema.Name = "UsuarioSistema";
             this.UsuarioSistema.ReadOnly = true;
             // 
+            // btnCancelar
+            // 
+            this.btnCancelar.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCancelar.Location = new System.Drawing.Point(445, 444);
+            this.btnCancelar.Name = "btnCancelar";
+            this.btnCancelar.Size = new System.Drawing.Size(75, 25);
+            this.btnCancelar.TabIndex = 33;
+            this.btnCancelar.Text = "Cancelar";
+            this.btnCancelar.UseVisualStyleBackColor = true;
+            this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
+            // 
             // Egresos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.dgvListaContribuyentes);
             this.Controls.Add(this.btnGuardar);
             this.Controls.Add(this.txbMonto);
@@ -202,7 +213,7 @@
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.lblConcepto);
             this.Name = "Egresos";
-            this.Size = new System.Drawing.Size(604, 502);
+            this.Size = new System.Drawing.Size(604, 476);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListaContribuyentes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -225,5 +236,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Monto;
         private System.Windows.Forms.DataGridViewTextBoxColumn FechaMovimiento;
         private System.Windows.Forms.DataGridViewTextBoxColumn UsuarioSistema;
+        private System.Windows.Forms.Button btnCancelar;
     }
 }

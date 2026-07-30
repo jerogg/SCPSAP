@@ -25,6 +25,7 @@ namespace Entidades
             public string EstadoDescripcion { get; set; }
             public int? IdTarifa { get; set; }
             public Decimal Tarifa { get; set; }
+            public string NombreTarifa { get; set; }
             public string Email { get; set; }
             public DateTime? FechaUltimoAviso { get; set; }
             public DateTime? FechaLimitePago { get; set; }
