@@ -4,6 +4,7 @@ using SCPSAP.Contribuyentes;
 using SCPSAP.ControlesCobranza;
 using SCPSAP.ControlesConfiguracion;
 using SCPSAP.ControlesEgresos;
+using SCPSAP.ControlesEgresosIngresos;
 using SCPSAP.ControlesInventario;
 using SCPSAP.Reportes;
 using System;
@@ -87,7 +88,7 @@ namespace SCPSAP
         private void btnMenuEgresos_Click(object sender, EventArgs e)
         {
             splitContainerMenuPrincipal.Panel2.Controls.Clear();
-            Egresos egresos = new Egresos();
+            EgresosBalanceGeneral egresos = new EgresosBalanceGeneral();
             egresos.Dock = DockStyle.Fill;
             splitContainerMenuPrincipal.Panel2.Controls.Add(egresos);
         }

@@ -1,8 +1,28 @@
 ﻿-- crear base de datos SCPSAP
 CREATE DATABASE [SCPSAP]
-GO
 
 USE SCPSAP
+-- Tabla para almacenar un balance general (resumen único de caja)
+IF OBJECT_ID('dbo.BalanceGeneral','U') IS NULL
+BEGIN
+    CREATE TABLE dbo.BalanceGeneral
+    (
+        IdBalance INT IDENTITY(1,1) NOT NULL PRIMARY KEY,
+        FechaRegistro DATETIME NOT NULL CONSTRAINT DF_BalanceGeneral_FechaRegistro DEFAULT (GETDATE()),
+        -- Saldo inicial en caja (se pueden registrar ingresos como saldo inicial)
+        SaldoInicial DECIMAL(18,2) NOT NULL CONSTRAINT DF_BalanceGeneral_SaldoInicial DEFAULT (0.00),
+        -- Totales acumulados (pueden mantenerse manualmente o mediante proceso que actualice esta tabla)
+        TotalIngresos DECIMAL(18,2) NOT NULL CONSTRAINT DF_BalanceGeneral_TotalIngresos DEFAULT (0.00),
+        TotalEgresos DECIMAL(18,2) NOT NULL CONSTRAINT DF_BalanceGeneral_TotalEgresos DEFAULT (0.00),
+        -- Saldo disponible calculado
+        SaldoDisponible AS (CONVERT(DECIMAL(18,2), ISNULL(SaldoInicial,0) + ISNULL(TotalIngresos,0) - ISNULL(TotalEgresos,0))) PERSISTED,
+        Observaciones VARCHAR(500) NULL
+    );
+    INSERT INTO dbo.BalanceGeneral (FechaRegistro, SaldoInicial, TotalIngresos, TotalEgresos, Observaciones) VALUES (GETDATE(), 0.00, 0.00, 0.00, 'Saldo inicial de apertura');
+END
+GO
+
+
 IF OBJECT_ID('dbo.UsuarioRol','U') IS NULL
 BEGIN
 CREATE TABLE dbo.UsuarioRol 

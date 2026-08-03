@@ -39,7 +39,7 @@
             this.pnlInventario = new System.Windows.Forms.Panel();
             this.btnMenuInventario = new System.Windows.Forms.Button();
             this.pnlEgresos = new System.Windows.Forms.Panel();
-            this.btnMenuEgresos = new System.Windows.Forms.Button();
+            this.btnMenuEgresosBalanceGeneral = new System.Windows.Forms.Button();
             this.pnlConfiguracion = new System.Windows.Forms.Panel();
             this.btnConfiguracion = new System.Windows.Forms.Button();
             this.lblMenu = new System.Windows.Forms.Label();
@@ -171,23 +171,23 @@
             // 
             // pnlEgresos
             // 
-            this.pnlEgresos.Controls.Add(this.btnMenuEgresos);
+            this.pnlEgresos.Controls.Add(this.btnMenuEgresosBalanceGeneral);
             this.pnlEgresos.Location = new System.Drawing.Point(3, 183);
             this.pnlEgresos.Name = "pnlEgresos";
             this.pnlEgresos.Size = new System.Drawing.Size(253, 39);
             this.pnlEgresos.TabIndex = 4;
             // 
-            // btnMenuEgresos
+            // btnMenuEgresosBalanceGeneral
             // 
-            this.btnMenuEgresos.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.btnMenuEgresos.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMenuEgresos.Location = new System.Drawing.Point(0, 0);
-            this.btnMenuEgresos.Name = "btnMenuEgresos";
-            this.btnMenuEgresos.Size = new System.Drawing.Size(253, 39);
-            this.btnMenuEgresos.TabIndex = 5;
-            this.btnMenuEgresos.Text = "Egresos";
-            this.btnMenuEgresos.UseVisualStyleBackColor = true;
-            this.btnMenuEgresos.Click += new System.EventHandler(this.btnMenuEgresos_Click);
+            this.btnMenuEgresosBalanceGeneral.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.btnMenuEgresosBalanceGeneral.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMenuEgresosBalanceGeneral.Location = new System.Drawing.Point(0, 0);
+            this.btnMenuEgresosBalanceGeneral.Name = "btnMenuEgresosBalanceGeneral";
+            this.btnMenuEgresosBalanceGeneral.Size = new System.Drawing.Size(253, 39);
+            this.btnMenuEgresosBalanceGeneral.TabIndex = 5;
+            this.btnMenuEgresosBalanceGeneral.Text = "Egresos/Balance";
+            this.btnMenuEgresosBalanceGeneral.UseVisualStyleBackColor = true;
+            this.btnMenuEgresosBalanceGeneral.Click += new System.EventHandler(this.btnMenuEgresos_Click);
             // 
             // pnlConfiguracion
             // 
@@ -261,7 +261,7 @@
         private System.Windows.Forms.Button btnMenuCobranza;
         private System.Windows.Forms.Button btnMenuReportes;
         private System.Windows.Forms.Button btnMenuInventario;
-        private System.Windows.Forms.Button btnMenuEgresos;
+        private System.Windows.Forms.Button btnMenuEgresosBalanceGeneral;
         private System.Windows.Forms.Button btnConfiguracion;
     }
 }

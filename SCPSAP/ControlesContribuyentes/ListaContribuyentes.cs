@@ -61,7 +61,15 @@ namespace SCPSAP.Contribuyentes
             // Se dispara en hilo de UI; detener timer y ejecutar búsqueda async
             _searchTimer.Stop();
             var texto = _pendingSearchText;
-            var IdEstado = int.Parse(cbxFiltroSituacion.SelectedValue.ToString());
+            // Leer SelectedValue de forma robusta para evitar FormatException
+            int IdEstado = 0;
+            var sel = cbxFiltroSituacion.SelectedValue;
+            if (sel != null && sel != DBNull.Value)
+            {
+                if (sel is int) IdEstado = (int)sel;
+                else int.TryParse(sel.ToString(), out IdEstado);
+            }
+
             _ = PerformSearchAsync(texto, IdEstado); // fire-and-forget manejado internamente
         }
 
@@ -735,7 +743,17 @@ namespace SCPSAP.Contribuyentes
         private void cbxFiltroSituacion_SelectedIndexChanged(object sender, EventArgs e)
         {
             var texto = _pendingSearchText;
-            var IdEstado = int.Parse(cbxFiltroSituacion.SelectedValue.ToString());
+            // Leer SelectedValue de forma robusta para evitar FormatException
+            int IdEstado = 1;
+            var sel = cbxFiltroSituacion.SelectedValue;
+            if (sel != null && sel != DBNull.Value)
+            {
+                if (sel is int) IdEstado = (int)sel;
+                else int.TryParse(sel.ToString(), out IdEstado);
+            }
+            if (IdEstado == 0)
+                IdEstado = 1;
+
             _ = PerformSearchAsync(texto, IdEstado);
         }
     }

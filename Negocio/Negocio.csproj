@@ -48,7 +48,7 @@
     <Compile Include="Configuracion\TarifasNegocio.cs" />
     <Compile Include="Configuracion\UsuariosNegocio.cs" />
     <Compile Include="Contribuyentes\ContribuyentesNegocio.cs" />
-    <Compile Include="Egresos\EgresosNegocio.cs" />
+    <Compile Include="EgresosBalanceGeneral\EgresosNegocio.cs" />
     <Compile Include="Inventario\MaterialesNegocio.cs" />
     <Compile Include="Login\UsuariosNegocio.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -104,11 +104,23 @@
     <Compile Include="ControlesContribuyentes\ListaContribuyentes.Designer.cs">
       <DependentUpon>ListaContribuyentes.cs</DependentUpon>
     </Compile>
-    <Compile Include="ControlesEgresos\Egresos.cs">
+    <Compile Include="ControlesEgresosBalanceGeneral\Egresos.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="ControlesEgresos\Egresos.Designer.cs">
+    <Compile Include="ControlesEgresosBalanceGeneral\Egresos.Designer.cs">
       <DependentUpon>Egresos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlesEgresosBalanceGeneral\EgresosBalanceGeneral.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesEgresosBalanceGeneral\EgresosBalanceGeneral.Designer.cs">
+      <DependentUpon>EgresosBalanceGeneral.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ControlesEgresosBalanceGeneral\BalanceGeneral.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ControlesEgresosBalanceGeneral\BalanceGeneral.Designer.cs">
+      <DependentUpon>BalanceGeneral.cs</DependentUpon>
     </Compile>
     <Compile Include="ControlesInventario\EntradasSalidas.cs">
       <SubType>UserControl</SubType>
@@ -173,8 +185,14 @@
     <EmbeddedResource Include="ControlesContribuyentes\ListaContribuyentes.resx">
       <DependentUpon>ListaContribuyentes.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ControlesEgresos\Egresos.resx">
+    <EmbeddedResource Include="ControlesEgresosBalanceGeneral\Egresos.resx">
       <DependentUpon>Egresos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlesEgresosBalanceGeneral\EgresosBalanceGeneral.resx">
+      <DependentUpon>EgresosBalanceGeneral.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ControlesEgresosBalanceGeneral\BalanceGeneral.resx">
+      <DependentUpon>BalanceGeneral.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ControlesInventario\EntradasSalidas.resx">
       <DependentUpon>EntradasSalidas.cs</DependentUpon>
